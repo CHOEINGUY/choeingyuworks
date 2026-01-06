@@ -1,0 +1,238 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronUp, Check, Camera } from 'lucide-react';
+import { useScrollTrap } from '../hooks/useScrollTrap';
+import { QRCodeGenerator } from '../components/QRCodeGenerator';
+import { ScanState } from '../constants';
+
+/**
+ * Bottom Sheet Refinement:
+ * 1. Single Overlay Sheet: Avoids "two handles" issue by removing the static one.
+ * 2. Scrolling Sync: Starts hidden, rises to 'peek' as the page scrolls down.
+ * 3. Caught at Bottom: Stays in 'peek' state after closing from 'full'.
+ */
+
+type SheetState = 'hidden' | 'peek' | 'full';
+
+const PEER_HEIGHT = 80; // px
+
+export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
+    const [scanState, setScanState] = useState<ScanState>('idle');
+    const [sheetState, setSheetState] = useState<SheetState>('hidden');
+    const qrSectionRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const spacerRef = useRef<HTMLDivElement>(null);
+    const sheetContentRef = useRef<HTMLDivElement>(null);
+
+    // Apply strict scroll trap
+    useScrollTrap(containerRef, true);
+
+    useEffect(() => {
+        const timers: NodeJS.Timeout[] = [];
+
+        // 1. Scroll to bottom (starts rising the handle) (0.6s)
+        timers.push(setTimeout(() => {
+            setScanState('scrolling');
+            setSheetState('peek'); // Start showing the handle as we scroll down
+            if (containerRef.current) {
+                containerRef.current.scrollTo({
+                    top: containerRef.current.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }, 600));
+
+        // 2. Expand sheet (1.8s)
+        timers.push(setTimeout(() => {
+            setSheetState('full');
+        }, 1800));
+
+        // 3. Scroll sheet content 33% (3s)
+        timers.push(setTimeout(() => {
+            if (sheetContentRef.current) {
+                const scrollAmount = sheetContentRef.current.scrollHeight / 3;
+                sheetContentRef.current.scrollTo({ top: scrollAmount, behavior: 'smooth' });
+            }
+        }, 3000));
+
+        // 4. Scroll sheet content 66% (4s)
+        timers.push(setTimeout(() => {
+            if (sheetContentRef.current) {
+                const scrollAmount = (sheetContentRef.current.scrollHeight / 3) * 2;
+                sheetContentRef.current.scrollTo({ top: scrollAmount, behavior: 'smooth' });
+            }
+        }, 4000));
+
+        // 5. Collapse sheet (5s)
+        timers.push(setTimeout(() => {
+            setSheetState('peek');
+        }, 5000));
+
+        // 6. Start Scanning (5.8s)
+        timers.push(setTimeout(() => { setScanState('scanning'); }, 5800));
+
+        // 7. Approved (7.5s)
+        timers.push(setTimeout(() => { setScanState('approved'); }, 7500));
+
+        // 8. Complete (9s)
+        timers.push(setTimeout(() => { onComplete(); }, 9000));
+
+        return () => timers.forEach(t => clearTimeout(t));
+    }, []);
+
+    // Helper for Y transform
+    const getSheetY = () => {
+        if (sheetState === 'hidden') return '100%';
+        if (sheetState === 'peek') return `calc(100% - ${PEER_HEIGHT}px)`;
+        return '15%'; // Full
+    };
+
+    // Sheet Handle Component
+    const SheetHandle = () => (
+        <div className="px-6 pt-5 pb-3">
+            <div className="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-3" />
+            <h3 className="font-bold text-base text-center text-gray-900">파티 가이드</h3>
+            <p className="text-gray-500 text-xs text-center mt-1">입장 전 안내사항을 확인해주세요.</p>
+        </div>
+    );
+
+    // Sheet Body Content
+    const SheetBody = () => (
+        <div className="space-y-6 text-left px-5 pb-8">
+            <section>
+                <h4 className="text-sm font-bold text-gray-800 mb-2 flex items-center">
+                    <span className="mr-2">✅</span> 입장 전 필독 안내
+                </h4>
+                <ul className="space-y-1.5 text-gray-600 text-xs leading-relaxed">
+                    <li>• 현장 스냅은 공식 SNS에 업로드될 수 있어요.</li>
+                    <li className="text-red-500 font-medium">• 지각은 손해! 18:50 전 도착을 권장해요.</li>
+                    <li>• 식사는 미리 하고 오세요. 간단한 안주만 제공됩니다.</li>
+                    <li>• 주차가 어려우니 대중교통 이용을 권장합니다.</li>
+                </ul>
+            </section>
+            <section>
+                <h4 className="text-sm font-bold text-gray-800 mb-2 flex items-center">
+                    <span className="mr-2">📋</span> 파티 기본 룰
+                </h4>
+                <ul className="space-y-1.5 text-gray-600 text-xs leading-relaxed">
+                    <li>• 1시간마다 로테이션으로 자리가 변경됩니다.</li>
+                    <li>• 앱이나 스탭을 통해 '익명 편지'를 보낼 수 있어요.</li>
+                </ul>
+            </section>
+            <section>
+                <h4 className="text-sm font-bold text-gray-800 mb-2 flex items-center">
+                    <span className="mr-2">💌</span> 익명 편지 안내
+                </h4>
+                <div className="bg-gray-50 p-2.5 rounded-lg border border-gray-100">
+                    <div className="bg-white p-2.5 rounded text-xs text-gray-600 italic border border-gray-100">
+                        "To. 카리나<br />이번 주말에 같이 카페 갈래요?<br />From. 박서준"
+                    </div>
+                </div>
+            </section>
+            <div className="pt-4 text-center border-t border-gray-100">
+                <p className="text-gray-400 text-[10px]">Lindy Party는 설레는 추억이 되길 바랍니다.</p>
+            </div>
+        </div>
+    );
+
+    return (
+        <div className="h-full w-full relative overflow-hidden bg-white text-gray-900 font-sans">
+            {/* ===== SCROLLABLE PAGE CONTENT ===== */}
+            <div
+                ref={containerRef}
+                className="h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth scrollbar-thin text-center"
+                style={{ overscrollBehavior: 'contain', msScrollChaining: 'none' }}
+            >
+                {/* Background */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-100/50 rounded-full filter blur-[100px] -translate-y-1/2 translate-x-1/2" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full filter blur-[100px] translate-y-1/3 -translate-x-1/3" />
+                </div>
+
+                {/* Invitation Header */}
+                <section className="min-h-full flex flex-col items-center relative z-10 px-6 pt-[20vh] pb-8 box-border text-center">
+                    <header className="flex flex-col items-center animate-fade-in-down mb-12">
+                        <div className="text-[10px] tracking-[0.4em] text-blue-600 font-bold mb-2 font-mono uppercase">Lindy Party Invitation</div>
+                        <span className="text-2xl mb-2">🌊</span>
+                        <h1 className="text-2xl font-bold text-gray-900 leading-tight mb-8">Lindy Party로<br />최인규님을 초대합니다</h1>
+                        <div className="space-y-2 text-gray-600 text-sm leading-relaxed mb-12 text-center">
+                            <p>장소 : 서울특별시 강남구 테헤란로 123, 3층</p>
+                            <p>일시 : 1월 10일 (토) 저녁 7시</p>
+                        </div>
+                        <p className="text-gray-400 text-xs mb-8">입장 전 필독 안내가 아래에 있습니다</p>
+                    </header>
+                    <button className="mt-auto flex flex-col items-center gap-4 animate-bounce opacity-80">
+                        <span className="text-gray-500 text-sm font-light tracking-widest uppercase opacity-80">입장 QR코드 확인하기</span>
+                        <ChevronUp className="rotate-180 text-gray-400" size={20} />
+                    </button>
+                </section>
+
+                {/* QR Section */}
+                <section ref={qrSectionRef} className="flex flex-col items-center justify-center relative z-10 py-12 gap-8 text-center min-h-[50vh]">
+                    <div className="bg-white p-4 rounded-2xl shadow-xl border border-gray-100 min-h-[232px] min-w-[232px] flex items-center justify-center relative overflow-hidden">
+                        {scanState === 'scanning' && (
+                            <motion.div
+                                initial={{ top: '-20%' }}
+                                animate={{ top: "120%" }}
+                                transition={{ duration: 1.5, ease: "linear", repeat: Infinity, repeatDelay: 0.5 }}
+                                className="absolute left-0 right-0 h-32 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent backdrop-blur-[1px] z-20"
+                            />
+                        )}
+
+                        <motion.div
+                            className="relative z-10"
+                            animate={scanState === 'approved' ? { scale: 0.9, opacity: 0.2, filter: 'blur(4px)' } : { scale: 1, opacity: 1, filter: 'blur(0px)' }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <QRCodeGenerator data="b7e4cef0-fb26-4cf9-8254-ee1886896286" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 px-2 py-1 rounded border border-gray-100">
+                                <span className="font-serif text-black font-bold tracking-tighter italic">Lindy</span>
+                            </div>
+                        </motion.div>
+
+                        <AnimatePresence>
+                            {scanState === 'approved' && (
+                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 bg-white/80 backdrop-blur-md z-50 flex flex-col items-center justify-center text-center p-4">
+                                    <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-3 shadow-lg shadow-green-200">
+                                        <Check size={40} className="text-white" strokeWidth={4} />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900">입장 확인</h3>
+                                    <p className="text-gray-600 text-sm mt-1 font-medium">최인규 님 환迎합니다!</p>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <Camera size={16} className="text-gray-400" />
+                        <span className="text-gray-500 text-xs font-light tracking-widest uppercase">입장 시 QR코드를 보여주세요</span>
+                    </div>
+                </section>
+
+                {/* ===== SPACER (Makes page scrollable to the bottom) ===== */}
+                <div ref={spacerRef} className="h-[120px]" />
+            </div>
+
+            {/* ===== SINGLE OVERLAY SHEET ===== */}
+            <motion.div
+                initial={{ y: '100%' }}
+                animate={{ y: getSheetY() }}
+                transition={{
+                    type: "tween",
+                    duration: 0.45,
+                    ease: [0.33, 1, 0.68, 1]
+                }}
+                className="absolute inset-x-0 bottom-0 h-[85%] bg-white text-black rounded-t-[1.5rem] z-50 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] border-t border-gray-100 flex flex-col"
+            >
+                <SheetHandle />
+                <div
+                    ref={sheetContentRef}
+                    className="flex-1 overflow-y-auto scrollbar-thin scroll-smooth"
+                >
+                    <SheetBody />
+                </div>
+            </motion.div>
+        </div>
+    );
+};

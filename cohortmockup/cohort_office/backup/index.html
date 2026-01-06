@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+  <style>
+    body, html {
+      font-family: 'NanumSquare', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #f0f0f0;
+      font-size: 25px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* 스크롤 방지 */
+      border: none;
+    }
+    .main-container {
+      flex: 1 0 auto;
+      display: flex;
+      height: calc(100vh - 60px);
+      flex-direction: row;
+      overflow: hidden; /* 스크롤 방지 */
+    }
+    .left-section {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* 스크롤 방지 */
+    }
+    .table-container {
+      flex: 1;
+      overflow: auto;
+      background-color: #ffffff;
+      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      box-sizing: border-box;
+    }
+    .table-container::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;  /* Chrome, Safari, Opera */
+    }
+    .progress-container {
+      width: 35%;
+      height: 100%;
+      background: #f7f7fa;
+      border-left: 1px solid #e0e0e0;
+      box-sizing: border-box;
+      padding: 16px;
+      font-size: 1.1em;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 16px;
+      overflow: hidden; /* 스크롤 방지 */
+    }
+    .progress-box {
+      flex: 1 1 0;
+      min-height: 0;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      padding: 8px 8px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-box.with-next {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+    .progress-left {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e0e0e0;
+      margin-right: 0;
+      padding-right: 16px;
+      min-width: 0;
+    }
+    .progress-box.with-next .progress-title {
+      flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+    .progress-box.with-next .progress-list {
+      flex: 1;
+    }
+    .progress-next {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 16px;
+      min-width: 0;
+      text-align: center;
+    }
+    .progress-next-title {
+      font-size: 1.2em;
+      color: #666;
+      margin-bottom: 2px;
+    }
+    .progress-next-name {
+      font-weight: bold;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2c5c8e;
+      text-align: center;
+      word-break: keep-all;
+    }
+    .snsbc-next-box {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 8px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .snsbc-next-title {
+      font-size: 0.9em;
+      color: #666;
+      font-weight: bold;
+    }
+    .snsbc-next-name {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #2c5c8e;
+    }
+    @keyframes progress-blink-effect {
+      50% {
+        background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+        color: #ffffff;
+      }
+    }
+    @keyframes snsbc-blink-effect {
+      0%, 100% {
+        background: #ffffff;
+      }
+      50% {
+        background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      }
+    }
+    .progress-box.blink {
+      animation: progress-blink-effect 0.8s steps(1, end) infinite;
+    }
+    .progress-box.blink .progress-title,
+    .progress-box.blink .progress-next-title,
+    .progress-box.blink .progress-next-name {
+      color: inherit;
+    }
+    .snsbc-next-box.blink {
+      animation: snsbc-blink-effect 0.8s steps(1, end) infinite;
+    }
+    .snsbc-next-box.blink .snsbc-next-title {
+      animation: snsbc-title-blink 0.8s steps(1, end) infinite;
+    }
+    .snsbc-next-box.blink .snsbc-next-name {
+      animation: snsbc-name-blink 0.8s steps(1, end) infinite;
+    }
+    @keyframes snsbc-title-blink {
+      0%, 100% {
+        color: #666;
+      }
+      50% {
+        color: #ffffff;
+      }
+    }
+    @keyframes snsbc-name-blink {
+      0%, 100% {
+        color: #2c5c8e;
+      }
+      50% {
+        color: #ffffff;
+      }
+    }
+    .footer {
+      background-color: #ffffff;
+      padding: 5px;
+      border-top: 1px solid #000000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 30px;
+    }
+    .footer img {
+      max-height: 35px;
+      width: auto;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    .footer img:hover {
+      opacity: 0.7;
+    }
+    .footer-time {
+      font-size: 0.6em;
+      text-align: right;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    
+    .footer-time:hover {
+      opacity: 0.7;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      color: #333;
+    }
+    th, td {
+      padding: 8px 5px;
+      text-align: center;
+      border: 1px solid #ddd;
+      font-weight: bold;
+    }
+    th {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 1em;
+      position: sticky;
+      top: 0;
+      border-bottom: 2px solid #1c4f7f;
+    }
+    td {
+      font-size: 1.1em;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+    tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    .status-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+      vertical-align: middle;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .status-dot.green { 
+      background-color: #5cb85c;
+      box-shadow: 0 2px 4px rgba(92,184,92,0.3);
+    }
+    .status-dot.yellow { background-color: #f0ad4e; }
+    .status-dot.black { 
+      background-color: #2E2E2E;
+      box-shadow: 0 2px 4px rgba(46,46,46,0.3);
+    }
+    .status-dot.red { 
+      background-color: #d9534f;
+      box-shadow: 0 2px 4px rgba(217,83,79,0.3);
+    }
+    tr.completed {
+      background-color: #d4edda;
+    }
+    tr.in-progress {
+      background-color: #fff3cd;
+    }
+    @media (min-width: 1200px) {
+      table {
+        font-size: 1.5em;
+      }
+      th, td {
+        padding: 12px 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      th, td {
+        padding: 6px 4px;
+        font-size: 1.2em;
+      }
+    }
+    .text-overlay {
+      position: relative;
+      top: -125px; /* Adjust this value to move the text higher or lower */
+      text-align: center;
+      width: 100%; /* Full width of the left section */
+      z-index: 10; /* Ensure the text is above the video */
+    }
+    .overlay-text {
+      margin: -0;
+      font-size: 1.0em;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+    }
+    .overlay-text2 {
+      margin: -0;
+      font-size: 0.5em;
+      font-weight: regular;
+      padding: 5px 20px 20px 20px;
+      text-align: center;
+    }
+    table th:nth-child(2),
+    table td:nth-child(2) {
+      padding-left: 5px;
+      padding-right: 5px;
+      width: auto;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: ellipsis;
+      max-width: 150px;
+      letter-spacing: -0.5px;
+    }
+    table th:nth-child(1),
+    table td:nth-child(1) {
+      padding-left: 1px;
+      padding-right: 1px;
+      width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+    #fullScreenBtn {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.5em;
+      font-weight: regular;
+    }
+    #fullScreenBtn:hover {
+      background-color: #f0f0f0;
+    }
+    .fullscreen .left-section {
+      display: none;
+    }
+    .fullscreen .table-container {
+      width: 100%;
+      height: 100vh;
+      overflow: auto;
+    }
+    .fullscreen table {
+      font-size: 2em;
+    }
+    .fullscreen th, .fullscreen td {
+      padding: 15px 10px;
+    }
+    .fullscreen #fullScreenBtn {
+      left: 10px;
+      top: 10px;
+      transform: none;
+    }
+    @media (max-width: 1200px) {
+      .fullscreen table {
+        font-size: 1.5em;
+      }
+    }
+    @media (max-width: 800px) {
+      .fullscreen table {
+        font-size: 1.2em;
+      }
+    }
+    .notification-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      width: 97.5%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .notification-box {
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 2.9em;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out, background-color 0.5s ease-in-out;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-weight: bold;
+    }
+    .notification-box.show {
+      opacity: 1;
+    }
+    .notification-box.column-a {
+      background-color: #dd9933; 
+    }
+    .notification-box.column-bcd {
+      background-color: #1e73be;
+    }
+    @media (max-width: 768px) {
+      .notification-box {
+        font-size: 1.8em;
+      }
+    }
+    @media (max-width: 480px) {
+      .notification-box {
+        font-size: 1.5em;
+      }
+    }
+    .progress-title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.2em;
+      flex-shrink: 0;
+    }
+    .progress-list {
+      font-size: 1.2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      width: 100%;
+      overflow: hidden;
+      flex: 1;
+      padding: 8px 0;
+      min-height: 0; /* flex item이 올바르게 축소되도록 */
+    }
+    .progress-list div {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      padding: 0 4px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 1.2em; /* height 대신 min-height 사용 */
+      flex-shrink: 0; /* 아이템이 축소되지 않도록 */
+    }
+    .progress-box.active {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(44,92,142,0.08);
+    }
+    .progress-box.active .progress-title {
+      color: #fff;
+    }
+    .progress-box.active .progress-next-title,
+    .progress-box.active .progress-next-name {
+      color: #fff;
+    }
+    .progress-box .progress-title {
+      color: #333;
+    }
+    /* 신체기능 시작, SNSB-C 시작, 심전도 시작, 수행자 열 숨기기 (6,7,8,9번째 열) */
+    #tableContainer table th:nth-child(6),
+    #tableContainer table td:nth-child(6),
+    #tableContainer table th:nth-child(7),
+    #tableContainer table td:nth-child(7),
+    #tableContainer table th:nth-child(8),
+    #tableContainer table td:nth-child(8),
+    #tableContainer table th:nth-child(9),
+    #tableContainer table td:nth-child(9),
+    #tableContainer table th:nth-child(10),
+    #tableContainer table td:nth-child(10),
+    #tableContainer table th:nth-child(11),
+    #tableContainer table td:nth-child(11) {
+      display: none !important;
+    }
+
+    /* 화면 전환 관련 스타일 */
+    .screen {
+      display: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+    .screen-title {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    /* 두 번째 화면 스타일 */
+    #screen2 .left-section, #screen2 .right-section {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      background-color: #ffffff;
+      height: 100%;
+    }
+    #screen2 .main-container {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    #screen2 {
+      border-top: none;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    #screen2 .left-section.active {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: #ffffff;
+    }
+    #screen2 .right-section.active {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: #ffffff;
+    }
+    #screen2 .right-section {
+      border-left: 1px solid #e0e0e0;
+    }
+    .section-title {
+      background: #ffffff;
+      color: #000000;
+      padding: 15px;
+      text-align: center;
+      font-size: 2.5em;
+      font-weight: bold;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #screen2 .left-section.active .section-title {
+      color: #000000;
+    }
+    #screen2 .right-section.active .section-title {
+      color: #000000;
+    }
+    .in-progress-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .in-progress-item {
+      background: transparent;
+      border: none;
+      padding: 20px;
+      text-align: center;
+      font-size: 3.5em;
+      font-weight: bold;
+      color: inherit;
+      margin-bottom: 10px;
+    }
+    .in-progress-item.active {
+      color: #ffffff;
+    }
+    .in-progress-item.empty {
+      color: #999;
+      font-size: 1.5em;
+    }
+    .incomplete-section {
+      margin-top: 20px;
+      padding-top: 20px;
+    }
+    .incomplete-title {
+      background: none;
+      color: #000000;
+      padding: 10px;
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .incomplete-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .incomplete-item {
+      background: #ffffff;
+      color: #000000;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      border-bottom: 1px solid #e0e0e0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* 스크롤링 텍스트 효과 */
+    .scrolling-text {
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .scrolling-text {
+      animation: scroll-left 15s linear infinite;
+    }
+    
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    
+    /* 상태 표 스타일 */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0;
+      flex: 1;
+      min-height: 0;
+    }
+    
+    .status-table tbody {
+      height: 100%;
+    }
+    
+    .status-table tr {
+      height: 50%; /* 2행일 때 각각 50% */
+    }
+    
+    .status-table tr:nth-child(3) {
+      height: 33.33%; /* 3행일 때 각각 33.33% */
+    }
+    
+    .status-table td {
+      padding: 20px;
+      text-align: center;
+      font-size: 3.5em;
+      font-weight: bold;
+      border: 2px solid #ffffff;
+      background: #ffffff;
+      color: #000000;
+      height: 100%;
+      vertical-align: middle;
+    }
+    
+    .status-table tr:first-child td {
+      font-size: 5em; /* 신체계측용 7em */
+    }
+    
+    .status-table tr:first-child td.active {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: #ffffff;
+    }
+    
+
+    
+    .left-section {
+      position: relative;
+    }
+    
+    .urine-incomplete-overlay {
+      position: absolute;
+      bottom: 260px;
+      left: 0; /* left-section 내에서 왼쪽 끝에서 시작 */
+      width: 100%; /* left-section 전체 차지 */
+      font-size: 1.5em;
+      font-weight: normal;
+      color: #000000; /* 기본 검정색 */
+      white-space: nowrap;
+      overflow: hidden;
+      animation: scroll-left 25s linear infinite;
+      text-overflow: clip;
+      z-index: 10;
+      text-align: left; /* 왼쪽 정렬로 변경 */
+      padding-right: 0; /* 오른쪽 패딩 제거 */
+      padding-left: 0; /* 왼쪽 패딩 제거 */
+      box-sizing: border-box;
+    }
+    
+    /* 왼쪽 섹션이 활성화(파란색 배경)일 때는 흰색 텍스트 */
+    #screen2 .left-section.active .urine-incomplete-overlay {
+      color: #ffffff;
+    }
+    
+    .status-table td.scrolling {
+      white-space: nowrap;
+      overflow: hidden;
+      animation: scroll-left 20s linear infinite;
+      text-overflow: clip; /* 점점점 제거 */
+      padding-right: 50px; /* 스크롤링 공간 확보 */
+    }
+    
+    /* 두 번째 화면용 깜박임 애니메이션 */
+    @keyframes status-table-blink-effect {
+      50% {
+        background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+        color: #ffffff;
+      }
+    }
+    
+    .status-table td.blink {
+      animation: status-table-blink-effect 0.8s steps(1, end) infinite;
+    }
+    
+    /* 다음 대상자 텍스트 스타일링 */
+    .next-person-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    .next-label {
+      font-size: 0.4em;
+      color: #666;
+      margin-bottom: 2px;
+    }
+    
+    .next-name {
+      font-size: 1.0em;
+      font-weight: bold;
+      color: #2c5c8e;
+    }
+
+
+
+    /* 모달 스타일 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 2% auto;
+      padding: 0;
+      border: none;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 85vh;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: modalSlideIn 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .close {
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .close:hover {
+      opacity: 0.7;
+    }
+
+    .modal-body {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      max-height: calc(85vh - 140px);
+    }
+
+    .settings-section {
+      margin-bottom: 20px;
+    }
+
+    .settings-section h3 {
+      color: #2c5c8e;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .setting-item {
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .setting-item:hover {
+      background: #e9ecef;
+    }
+
+    .setting-item label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    .setting-item input[type="checkbox"] {
+      margin-right: 12px;
+      transform: scale(1.2);
+      accent-color: #2c5c8e;
+    }
+
+    .modal-footer {
+      padding: 15px 20px;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .save-btn, .reset-btn, .test-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .save-btn {
+      background: linear-gradient(to bottom, #4c8fbd 0%, #2c5c8e 100%);
+      color: white;
+    }
+
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(44,92,142,0.3);
+    }
+
+    .reset-btn {
+      background: #6c757d;
+      color: white;
+    }
+
+    .reset-btn:hover {
+      background: #5a6268;
+    }
+
+    .test-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    .test-btn:hover {
+      background: #218838;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        max-height: 90vh;
+      }
+      
+      .modal-body {
+        padding: 15px;
+        max-height: calc(90vh - 120px);
+      }
+      
+      .modal-footer {
+        flex-direction: column;
+        padding: 10px 15px;
+      }
+      
+      .save-btn, .reset-btn, .test-btn {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 첫 번째 화면: 기존 검사 상황판 -->
+  <div class="screen active" id="screen1">
+    <div class="main-container">
+      <div class="left-section">
+        <div class="table-container" id="tableContainer">
+          <!-- JS가 동적으로 테이블을 그립니다. -->
+        </div>
+      </div>
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-box with-next" id="progress-ecg">
+          <div class="progress-left">
+            <div class="progress-title">심전도</div>
+            <div class="progress-list" id="progress-ecg-list"></div>
+          </div>
+          <div class="progress-next" id="progress-ecg-next">
+            <div class="progress-next-title">다음</div>
+            <div class="progress-next-name" id="next-ecg-name">-</div>
+          </div>
+        </div>
+        <div class="progress-box with-next" id="progress-physical">
+          <div class="progress-left">
+            <div class="progress-title">신체기능</div>
+            <div class="progress-list" id="progress-physical-list"></div>
+          </div>
+          <div class="progress-next" id="progress-physical-next">
+            <div class="progress-next-title">다음</div>
+            <div class="progress-next-name" id="next-physical-name">-</div>
+          </div>
+        </div>
+        <div class="snsbc-next-box" id="snsbc-next-box">
+          <div class="snsbc-next-title">다음</div>
+          <div class="snsbc-next-name" id="next-snsbc-name">-</div>
+        </div>
+        <div class="progress-box" id="progress-snsbc-1">
+          <div class="progress-title">SNSB-C 1</div>
+          <div class="progress-list" id="progress-snsbc-1-list"></div>
+        </div>
+        <div class="progress-box" id="progress-snsbc-2">
+          <div class="progress-title">SNSB-C 2</div>
+          <div class="progress-list" id="progress-snsbc-2-list"></div>
+        </div>
+        <div class="progress-box" id="progress-snsbc-3">
+          <div class="progress-title">SNSB-C 3</div>
+          <div class="progress-list" id="progress-snsbc-3-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 두 번째 화면: 새 검사 상황판 (채혈/채뇨/신체계측) -->
+  <div class="screen" id="screen2">
+    <div class="main-container">
+      <div class="left-section">
+        <div class="section-title">채혈/채뇨</div>
+        <table class="status-table" id="blood-urine-table">
+          <tbody>
+            <tr id="blood-current-row">
+              <td>-</td>
+            </tr>
+            <tr id="blood-next-row">
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="urine-incomplete-overlay" id="urine-incomplete-overlay" style="display: none;"></div>
+      </div>
+      <div class="right-section">
+        <div class="section-title">신체계측</div>
+        <table class="status-table" id="measurement-table">
+          <tbody>
+            <tr id="measurement-current-row">
+              <td>-</td>
+            </tr>
+            <tr id="measurement-next-row">
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <img src="https://www.jnu.ac.kr/Data/tmfiles/images/sub/intro/signature_7.svg" alt="전남대학교 로고" onclick="toggleScreen()">
+    <div class="footer-time" onclick="openSettingsModal()">
+      <div id="currentDate"></div>
+      <div id="currentTime"></div>
+    </div>
+  </div>
+
+  <!-- 설정 모달 -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>알림 설정</h2>
+        <span class="close" onclick="closeSettingsModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          <h3>첫 번째 화면 (기존 검사)</h3>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="sound-ecg" checked>
+              심전도 알림음
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="sound-physical" checked>
+              신체기능 알림음
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="sound-snsbc" checked>
+              SNSB-C 알림음
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="tts-snsbc" checked>
+              SNSB-C TTS 호명
+            </label>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>두 번째 화면 (채혈/채뇨/신체계측)</h3>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="sound-blood" checked>
+              채혈 알림음
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="tts-blood" checked>
+              채혈 TTS 호명
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="sound-measurement" checked>
+              신체계측 알림음
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="tts-measurement" checked>
+              신체계측 TTS 호명
+            </label>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>전체 설정</h3>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="enable-all-sounds" checked>
+              모든 알림음 활성화
+            </label>
+          </div>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="enable-all-tts" checked>
+              모든 TTS 호명 활성화
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button onclick="saveSettings()" class="save-btn">저장</button>
+        <button onclick="resetSettings()" class="reset-btn">초기화</button>
+        <button onclick="testSound()" class="test-btn">테스트</button>
+      </div>
+    </div>
+  </div>
+  <div id="player" style="position: absolute; top: -9999px; left: -9999px;"></div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    // 화면 전환 관련 변수
+    let currentScreen = 1;
+    let lastProgressData2 = [];
+    let startTimeCache2 = {};
+    const recentlyCalled = {}; // TTS 중복 호출 방지용 캐시
+
+    // 화면 전환 함수
+    function toggleScreen() {
+      const screen1 = document.getElementById('screen1');
+      const screen2 = document.getElementById('screen2');
+      
+      if (currentScreen === 1) {
+        screen1.classList.remove('active');
+        screen2.classList.add('active');
+        currentScreen = 2;
+        // 두 번째 화면 데이터 로드
+        fetchAndRender2();
+      } else {
+        screen2.classList.remove('active');
+        screen1.classList.add('active');
+        currentScreen = 1;
+        // 첫 번째 화면 데이터 로드
+        fetchAndRender();
+      }
+    }
+
+    // 검사중인 사람들의 경과시간을 progress-container에 표시
+    let lastProgressData = [];
+    let startTimeCache = {}; // 사람별 시작 시간 캐시 {name: startTime}
+    
+    // 시작시간 파싱 함수 ("17:41:17" 등 HH:mm:ss 형식 지원)
+    function parseStartTime(str) {
+      if (!str) return null;
+      // HH:mm:ss 형식이면 오늘 날짜와 합쳐서 Date 객체 생성
+      if (/^\d{1,2}:\d{2}:\d{2}$/.test(str)) {
+        const now = new Date();
+        const [h, m, s] = str.split(":").map(Number);
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m, s);
+      }
+      // Date 문자열이면 그대로 파싱
+      const d = new Date(str);
+      if (!isNaN(d.getTime())) return d;
+      return null;
+    }
+    
+    // 캐시된 시작 시간을 사용하여 경과 시간 계산
+    function getCachedElapsedString(name) {
+      const startTime = startTimeCache[name];
+      if (!startTime) return '';
+      let now = new Date();
+      let diff = Math.floor((now - startTime) / 1000);
+      if (diff < 0) diff = 0;
+      let m = Math.floor(diff / 60);
+      let s = diff % 60;
+      return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
+
+    // 두 번째 화면용 경과시간 계산 함수
+    function getCachedElapsedString2(name) {
+      const startTime = startTimeCache2[name];
+      if (!startTime) return '';
+      let now = new Date();
+      let diff = Math.floor((now - startTime) / 1000);
+      if (diff < 0) diff = 0;
+      let m = Math.floor(diff / 60);
+      let s = diff % 60;
+      return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function updateProgressBoxes(data) {
+      // 헤더 인덱스 파악
+      const header = data[0];
+      const idx = {
+        이름: header.indexOf('이름'),
+        심전도: header.indexOf('심전도'),
+        심전도시작: header.indexOf('심전도 시작'),
+        신체기능: header.indexOf('신체기능'),
+        신체기능시작: header.indexOf('신체기능 시작'),
+        SNSBC: header.indexOf('SNSB-C'),
+        SNSBC시작: header.indexOf('SNSB-C 시작'),
+        수행자: header.indexOf('수행자')
+      };
+      // 분류용
+      const snsbcEmailMap = {
+        'chldlsrb07@gmail.com': 'progress-snsbc-1-list',
+        'wjdgh7946@gmail.com': 'progress-snsbc-2-list',
+        'a93430506@gmail.com': 'progress-snsbc-3-list'
+      };
+      // 초기화
+      const progress = {
+        'progress-ecg-list': [],
+        'progress-physical-list': [],
+        'progress-snsbc-1-list': [],
+        'progress-snsbc-2-list': [],
+        'progress-snsbc-3-list': []
+      };
+      
+      // 현재 검사중인 사람들의 시작 시간 캐시 업데이트
+      for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        const personName = row[idx.이름];
+        
+        // 심전도 검사중
+        if (row[idx.심전도] === '검사중' && row[idx.심전도시작]) {
+          const cacheKey = `${personName}-ecg`;
+          const startTime = parseStartTime(row[idx.심전도시작]);
+          
+          // 새로운 검사자이거나 시작 시간이 다르면 캐시 업데이트
+          if (!startTimeCache[cacheKey] || startTimeCache[cacheKey].getTime() !== startTime?.getTime()) {
+            startTimeCache[cacheKey] = startTime;
+          }
+          
+          progress['progress-ecg-list'].push({
+            name: personName,
+            cacheKey: cacheKey,
+            start: row[idx.심전도시작]
+          });
+        }
+        
+        // 신체기능 검사중
+        if (row[idx.신체기능] === '검사중' && row[idx.신체기능시작]) {
+          const cacheKey = `${personName}-physical`;
+          const startTime = parseStartTime(row[idx.신체기능시작]);
+          
+          if (!startTimeCache[cacheKey] || startTimeCache[cacheKey].getTime() !== startTime?.getTime()) {
+            startTimeCache[cacheKey] = startTime;
+          }
+          
+          progress['progress-physical-list'].push({
+            name: personName,
+            cacheKey: cacheKey,
+            start: row[idx.신체기능시작]
+          });
+        }
+        
+        // SNSB-C 검사중
+        if (row[idx.SNSBC] === '검사중' && row[idx.SNSBC시작] && row[idx.수행자]) {
+          const boxId = snsbcEmailMap[row[idx.수행자]];
+          if (boxId) {
+            const cacheKey = `${personName}-snsbc`;
+            const startTime = parseStartTime(row[idx.SNSBC시작]);
+            
+            if (!startTimeCache[cacheKey] || startTimeCache[cacheKey].getTime() !== startTime?.getTime()) {
+              startTimeCache[cacheKey] = startTime;
+            }
+            
+            progress[boxId].push({
+              name: personName,
+              cacheKey: cacheKey,
+              start: row[idx.SNSBC시작]
+            });
+          }
+        }
+      }
+      
+      // 완료된 검사자들의 캐시 정리
+      cleanupCache(progress);
+      
+      lastProgressData = progress;
+      renderProgressBoxes();
+    }
+    
+    // 완료된 검사자들의 캐시 정리 함수
+    function cleanupCache(currentProgress) {
+      const activeCacheKeys = new Set();
+      
+      // 현재 검사중인 모든 사람들의 cacheKey 수집
+      Object.values(currentProgress).forEach(list => {
+        list.forEach(item => {
+          if (item.cacheKey) {
+            activeCacheKeys.add(item.cacheKey);
+          }
+        });
+      });
+      
+      // 활성화되지 않은 캐시 삭제
+      Object.keys(startTimeCache).forEach(cacheKey => {
+        if (!activeCacheKeys.has(cacheKey)) {
+          delete startTimeCache[cacheKey];
+        }
+      });
+    }
+
+    // 두 번째 화면용 캐시 정리 함수
+    function cleanupCache2(currentProgress) {
+      const activeCacheKeys = new Set();
+      
+      Object.values(currentProgress).forEach(list => {
+        list.forEach(item => {
+          if (item.cacheKey) {
+            activeCacheKeys.add(item.cacheKey);
+          }
+        });
+      });
+      
+      Object.keys(startTimeCache2).forEach(cacheKey => {
+        if (!activeCacheKeys.has(cacheKey)) {
+          delete startTimeCache2[cacheKey];
+        }
+      });
+    }
+
+    // 두 번째 화면용 진행 상황 업데이트 함수
+    function updateProgressBoxes2(data) {
+      // 헤더 인덱스 파악 (모든 검사 데이터 포함)
+      const header = data[0];
+      const idx = {
+        이름: header.indexOf('이름'),
+        채혈: header.indexOf('채혈'),
+        채혈시작: header.indexOf('채혈 시작'),
+        채뇨: header.indexOf('채뇨'),
+        채뇨시작: header.indexOf('채뇨 시작'),
+        신체계측: header.indexOf('신체계측'),
+        신체계측시작: header.indexOf('신체계측 시작'),
+        심전도: header.indexOf('심전도'),
+        심전도시작: header.indexOf('심전도 시작'),
+        신체기능: header.indexOf('신체기능'),
+        신체기능시작: header.indexOf('신체기능 시작'),
+        SNSBC: header.indexOf('SNSB-C'),
+        SNSBC시작: header.indexOf('SNSB-C 시작')
+      };
+      
+      // 초기화
+      const progress = {
+        'progress-blood-list': [],
+        'progress-urine-list': [],
+        'progress-measurement-list': []
+      };
+      
+      // 현재 검사중인 사람들의 시작 시간 캐시 업데이트
+      for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        const personName = row[idx.이름];
+        
+        // 채혈 검사중
+        if (row[idx.채혈] === '검사중' && row[idx.채혈시작]) {
+          const cacheKey = `${personName}-blood`;
+          const startTime = parseStartTime(row[idx.채혈시작]);
+          
+          if (!startTimeCache2[cacheKey] || startTimeCache2[cacheKey].getTime() !== startTime?.getTime()) {
+            startTimeCache2[cacheKey] = startTime;
+          }
+          
+          progress['progress-blood-list'].push({
+            name: personName,
+            cacheKey: cacheKey,
+            start: row[idx.채혈시작]
+          });
+        }
+        
+        // 채뇨 미완료 (검사중이 아닌 미완료 상태만)
+        if (row[idx.채뇨] === '미완료') {
+          progress['progress-urine-list'].push({
+            name: personName,
+            cacheKey: null,
+            start: null
+          });
+        }
+        
+        // 신체계측 검사중
+        if (row[idx.신체계측] === '검사중' && row[idx.신체계측시작]) {
+          const cacheKey = `${personName}-measurement`;
+          const startTime = parseStartTime(row[idx.신체계측시작]);
+          
+          if (!startTimeCache2[cacheKey] || startTimeCache2[cacheKey].getTime() !== startTime?.getTime()) {
+            startTimeCache2[cacheKey] = startTime;
+          }
+          
+          progress['progress-measurement-list'].push({
+            name: personName,
+            cacheKey: cacheKey,
+            start: row[idx.신체계측시작]
+          });
+        }
+      }
+      
+      // 완료된 검사자들의 캐시 정리
+      cleanupCache2(progress);
+      
+      lastProgressData2 = progress;
+      renderProgressBoxes2();
+    }
+
+    // progress-container 4칸에 표시
+    function renderProgressBoxes() {
+      // lastProgressData가 없으면 초기화
+      if (!lastProgressData) {
+        lastProgressData = {
+          'progress-ecg-list': [],
+          'progress-physical-list': [],
+          'progress-snsbc-1-list': [],
+          'progress-snsbc-2-list': [],
+          'progress-snsbc-3-list': []
+        };
+      }
+
+      // 심전도
+      const ecg = document.getElementById('progress-ecg-list');
+      const ecgBox = document.getElementById('progress-ecg');
+      const hasEcg = lastProgressData['progress-ecg-list'].length > 0;
+      ecgBox.classList.toggle('active', hasEcg);
+      ecg.innerHTML = lastProgressData['progress-ecg-list'].map(item =>
+        `<div>${item.name.replace(/<span class="status-dot [^"]*"><\/span> /, '')} &nbsp; <span class="elapsed">${getCachedElapsedString(item.cacheKey)}</span></div>`
+      ).join('') || '<div style="color:#bbb">-</div>';
+      // 신체기능
+      const p1 = document.getElementById('progress-physical-list');
+      const p1Box = document.getElementById('progress-physical');
+      const hasPhysical = lastProgressData['progress-physical-list'].length > 0;
+      p1Box.classList.toggle('active', hasPhysical);
+      p1.innerHTML = lastProgressData['progress-physical-list'].map(item =>
+        `<div>${item.name.replace(/<span class="status-dot [^"]*"><\/span> /, '')} &nbsp; <span class="elapsed">${getCachedElapsedString(item.cacheKey)}</span></div>`
+      ).join('') || '<div style="color:#bbb">-</div>';
+      // SNSB-C 1/2/3
+      for (let i = 1; i <= 3; i++) {
+        const boxId = `progress-snsbc-${i}-list`;
+        const box = document.getElementById(boxId);
+        const boxWrap = document.getElementById(`progress-snsbc-${i}`);
+        const hasData = lastProgressData[boxId].length > 0;
+        boxWrap.classList.toggle('active', hasData);
+        box.innerHTML = lastProgressData[boxId].map(item =>
+          `<div>${item.name.replace(/<span class="status-dot [^"]*"><\/span> /, '')} &nbsp; <span class="elapsed">${getCachedElapsedString(item.cacheKey)}</span></div>`
+        ).join('') || '<div style="color:#bbb">-</div>';
+      }
+    }
+
+    // 두 번째 화면용 진행 상황 업데이트 함수
+    function renderProgressBoxes2() {
+      // 두 번째 화면에서는 progress-container를 사용하지 않으므로 함수를 비활성화
+      return;
+    }
+
+
+
+
+
+    // 왼쪽 섹션 렌더링 함수 (다음 대상자 정보를 인자로 받도록 수정)
+    function renderLeftSection(tableData, nextUpData) {
+      const header = tableData[0];
+      const idx = {
+        이름: header.indexOf('이름'),
+        채혈: header.indexOf('채혈'),
+        채뇨: header.indexOf('채뇨'),
+        신체계측: header.indexOf('신체계측')
+      };
+
+      // 매번 초기화
+      const bloodCurrentRow = document.getElementById('blood-current-row');
+      const bloodNextRow = document.getElementById('blood-next-row');
+      const urineIncompleteOverlay = document.getElementById('urine-incomplete-overlay');
+      const measurementCurrentRow = document.getElementById('measurement-current-row');
+      const measurementNextRow = document.getElementById('measurement-next-row');
+      
+      // 초기 상태로 리셋
+      bloodCurrentRow.querySelector('td').textContent = '-';
+      bloodNextRow.querySelector('td').textContent = '-';
+      urineIncompleteOverlay.style.display = 'none';
+      urineIncompleteOverlay.textContent = '';
+      measurementCurrentRow.querySelector('td').textContent = '-';
+      measurementNextRow.querySelector('td').textContent = '-';
+
+      // 검사중/미완료 목록 생성
+      const bloodInProgress = [];
+      const measurementInProgress = [];
+      const urineIncomplete = [];
+
+      for (let i = 1; i < tableData.length; i++) {
+        const row = tableData[i];
+        const name = row[idx.이름].replace(/<span class="status-dot [^"]*"><\/span> /, '');
+        
+        if (row[idx.채혈] === '검사중') bloodInProgress.push(name);
+        if (row[idx.신체계측] === '검사중') measurementInProgress.push(name);
+        if (row[idx.채뇨] === '미완료') urineIncomplete.push(name);
+      }
+
+      // 채혈/채뇨 표 렌더링
+      const leftSection = document.getElementById('screen2').querySelector('.left-section');
+      leftSection.classList.toggle('active', bloodInProgress.length > 0);
+      bloodCurrentRow.querySelector('td').textContent = bloodInProgress.length > 0 ? bloodInProgress[0] : '-';
+      bloodCurrentRow.querySelector('td').classList.toggle('active', bloodInProgress.length > 0);
+
+      // 다음 채혈 대상자 표시 (서버에서 받은 nextUpData 사용)
+      if (nextUpData && nextUpData.blood && nextUpData.blood !== '-') {
+        bloodNextRow.querySelector('td').innerHTML = `
+          <div class="next-person-text">
+            <div class="next-label">다음</div>
+            <div class="next-name">${nextUpData.blood}</div>
+          </div>
+        `;
+      } else {
+        bloodNextRow.querySelector('td').textContent = '-';
+      }
+      
+      // 채뇨 미완료 렌더링
+      if (urineIncomplete.length > 0) {
+        urineIncompleteOverlay.textContent = `채뇨 미완료 ${urineIncomplete.join(' ')}`;
+        urineIncompleteOverlay.style.display = 'block';
+      }
+
+      // 신체계측 표 렌더링
+      const rightSection = document.getElementById('screen2').querySelector('.right-section');
+      rightSection.classList.toggle('active', measurementInProgress.length > 0);
+      measurementCurrentRow.querySelector('td').textContent = measurementInProgress.length > 0 ? measurementInProgress[0] : '-';
+      measurementCurrentRow.querySelector('td').classList.toggle('active', measurementInProgress.length > 0);
+
+      // 다음 신체계측 대상자 표시 (서버에서 받은 nextUpData 사용)
+      if (nextUpData && nextUpData.measurement && nextUpData.measurement !== '-') {
+        measurementNextRow.querySelector('td').innerHTML = `
+          <div class="next-person-text">
+            <div class="next-label">다음</div>
+            <div class="next-name">${nextUpData.measurement}</div>
+          </div>
+        `;
+      } else {
+        measurementNextRow.querySelector('td').textContent = '-';
+      }
+    }
+
+    // 주기적으로 Apps Script에서 데이터 받아오기
+    function fetchAndRender() {
+      google.script.run.withSuccessHandler(renderTable).getFilteredTableData();
+    }
+
+    // 두 번째 화면용 데이터 가져오기 함수
+    function fetchAndRender2() {
+      google.script.run.withSuccessHandler(renderTable2).getFilteredTableData2();
+    }
+
+    // 최초 실행
+    fetchAndRender();
+
+    // 1.5초마다 현재 활성화된 화면의 데이터만 가져오도록 수정
+    setInterval(function() {
+      if (currentScreen === 1) {
+        fetchAndRender();
+      } else {
+        fetchAndRender2();
+      }
+    }, 1500);
+
+    // 1초마다 경과시간만 갱신
+    setInterval(function() {
+      if (currentScreen === 1) {
+        renderProgressBoxes();
+      } else {
+        // renderProgressBoxes2()는 현재 아무 작업도 하지 않지만,
+        // 향후 기능을 위해 호출 구조를 유지합니다.
+        renderProgressBoxes2();
+      }
+    }, 1000);
+
+    // 현재 일시를 footer에 표시
+    function updateTime() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var date = now.getDate();
+      var hours = now.getHours();
+      var minutes = now.getMinutes().toString().padStart(2, '0');
+      var seconds = now.getSeconds().toString().padStart(2, '0');
+      var ampm = hours >= 12 ? '오후' : '오전';
+      var displayHour = hours % 12;
+      displayHour = displayHour ? displayHour : 12;
+      var dateString = year + "년 " + month + "월 " + date + "일";
+      var timeString = ampm + " " + displayHour + ":" + minutes + ":" + seconds;
+      document.getElementById('currentDate').textContent = dateString;
+      document.getElementById('currentTime').textContent = timeString;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // YouTube Player 설정
+    let player;
+    const soundMap = {
+      A: 'rvoCNw6ROnU', // ECG, Physical
+      B: '7uCP_mq4XPM', // SNSB-C 1
+      C: 'oQZIW4RjCOM', // SNSB-C 2
+      D: 'LjrzAaGLUGU'  // SNSB-C 3
+    };
+    const snsbcSoundMap = {
+      'chldlsrb07@gmail.com': soundMap.B,
+      'wjdgh7946@gmail.com': soundMap.C,
+      'a93430506@gmail.com': soundMap.D
+    };
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '1',
+        width: '1',
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.setVolume(100);
+    }
+
+    function playSound(videoId) {
+      if (player && typeof player.loadVideoById === 'function') {
+        player.loadVideoById(videoId);
+        // playVideo()는 onStateChange 이벤트에서 처리하는 것이 더 안정적일 수 있으나
+        // 여기서는 즉시 재생을 위해 바로 호출합니다.
+        // 일부 브라우저에서는 사용자의 초기 상호작용 없이는 자동 재생이 실패할 수 있습니다.
+      }
+    }
+
+    // 이름을 자연스럽게 발음하기 위한 SSML 변환 함수
+    function formatNameForTTS(name) {
+      // 이름을 붙여서 두 번 반복
+      return `<speak>${name} 님.<break time="0.4s"/>${name} 님.</speak>`;
+    }
+
+    // Google Cloud TTS를 호출하여 음성을 재생하는 함수
+    function speak(text) {
+      // SSML 형식이 아니면 이름 형식으로 변환
+      const ssmlText = text.startsWith('<speak>') ? text : formatNameForTTS(text);
+      
+      google.script.run
+        .withSuccessHandler(function(audioContent) {
+          if (audioContent) {
+            playAudioFromBase64(audioContent);
+          }
+        })
+        .withFailureHandler(function(error) {
+          console.error('TTS 에러:', error.message);
+        })
+        .getTTSAudioNew(ssmlText);
+    }
+
+    // Base64로 인코딩된 오디오 데이터를 재생하는 함수
+    function playAudioFromBase64(base64Data) {
+      try {
+        const audioSrc = `data:audio/mp3;base64,${base64Data}`;
+        const audio = new Audio(audioSrc);
+        audio.volume = 1.0;
+        audio.play().catch(error => {
+          console.error('오디오 재생 실패:', error);
+        });
+      } catch (e) {
+        console.error('오디오 재생 에러:', e);
+      }
+    }
+
+    // 테스트용 TTS 호출 함수
+    function testTTS() {
+      speak('홍길동');  // 자동으로 "홍^길동 님. 홍^길동 님" 형식으로 변환됨
+    }
+
+    // 전역 스코프에 함수들을 노출
+    window.testTTS = testTTS;
+    window.speak = speak;
+
+    // 브라우저 자동재생 정책 해결을 위한 사용자 클릭 감지
+    document.addEventListener('click', function() {
+      // 오디오 컨텍스트 활성화
+    }, { once: true });
+
+    // 설정 관리 시스템
+    let settings = {
+      // 첫 번째 화면 설정
+      soundEcg: true,
+      soundPhysical: true,
+      soundSnsbc: true,
+      ttsSnsbc: true,
+      
+      // 두 번째 화면 설정
+      soundBlood: true,
+      ttsBlood: true,
+      soundMeasurement: true,
+      ttsMeasurement: true,
+      
+      // 전체 설정
+      enableAllSounds: true,
+      enableAllTts: true
+    };
+
+    // 설정 로드
+    function loadSettings() {
+      const savedSettings = localStorage.getItem('notificationSettings');
+      if (savedSettings) {
+        settings = { ...settings, ...JSON.parse(savedSettings) };
+      }
+      applySettingsToUI();
+    }
+
+    // 설정을 UI에 적용
+    function applySettingsToUI() {
+      document.getElementById('sound-ecg').checked = settings.soundEcg;
+      document.getElementById('sound-physical').checked = settings.soundPhysical;
+      document.getElementById('sound-snsbc').checked = settings.soundSnsbc;
+      document.getElementById('tts-snsbc').checked = settings.ttsSnsbc;
+      document.getElementById('sound-blood').checked = settings.soundBlood;
+      document.getElementById('tts-blood').checked = settings.ttsBlood;
+      document.getElementById('sound-measurement').checked = settings.soundMeasurement;
+      document.getElementById('tts-measurement').checked = settings.ttsMeasurement;
+      document.getElementById('enable-all-sounds').checked = settings.enableAllSounds;
+      document.getElementById('enable-all-tts').checked = settings.enableAllTts;
+    }
+
+    // 모달 열기
+    function openSettingsModal() {
+      document.getElementById('settingsModal').style.display = 'block';
+      loadSettings();
+      setupSettingsEventListeners(); // 이벤트 리스너 설정
+    }
+
+    // 모달 닫기
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').style.display = 'none';
+    }
+
+    // 설정 저장
+    function saveSettings() {
+      settings.soundEcg = document.getElementById('sound-ecg').checked;
+      settings.soundPhysical = document.getElementById('sound-physical').checked;
+      settings.soundSnsbc = document.getElementById('sound-snsbc').checked;
+      settings.ttsSnsbc = document.getElementById('tts-snsbc').checked;
+      settings.soundBlood = document.getElementById('sound-blood').checked;
+      settings.ttsBlood = document.getElementById('tts-blood').checked;
+      settings.soundMeasurement = document.getElementById('sound-measurement').checked;
+      settings.ttsMeasurement = document.getElementById('tts-measurement').checked;
+      settings.enableAllSounds = document.getElementById('enable-all-sounds').checked;
+      settings.enableAllTts = document.getElementById('enable-all-tts').checked;
+
+      localStorage.setItem('notificationSettings', JSON.stringify(settings));
+      
+      // 저장 완료 알림
+      alert('설정이 저장되었습니다.');
+      closeSettingsModal();
+    }
+
+    // 설정 초기화
+    function resetSettings() {
+      if (confirm('모든 설정을 초기화하시겠습니까?')) {
+        settings = {
+          soundEcg: true,
+          soundPhysical: true,
+          soundSnsbc: true,
+          ttsSnsbc: true,
+          soundBlood: true,
+          ttsBlood: true,
+          soundMeasurement: true,
+          ttsMeasurement: true,
+          enableAllSounds: true,
+          enableAllTts: true
+        };
+        
+        localStorage.removeItem('notificationSettings');
+        applySettingsToUI();
+        alert('설정이 초기화되었습니다.');
+      }
+    }
+
+    // 사운드 테스트
+    function testSound() {
+      if (settings.enableAllSounds) {
+        playSound(soundMap.A);
+        setTimeout(() => {
+          if (settings.enableAllTts) {
+            speak('최인규');
+          }
+        }, 1000);
+      } else {
+        alert('알림음이 비활성화되어 있습니다.');
+      }
+    }
+
+    // 모달 외부 클릭 시 닫기
+    window.onclick = function(event) {
+      const modal = document.getElementById('settingsModal');
+      if (event.target === modal) {
+        closeSettingsModal();
+      }
+    }
+
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeSettingsModal();
+      }
+    });
+
+    // 전체 설정 체크박스 이벤트 리스너 설정 함수
+    function setupSettingsEventListeners() {
+      // 전체 알림음 설정
+      const enableAllSounds = document.getElementById('enable-all-sounds');
+      if (enableAllSounds) {
+        enableAllSounds.addEventListener('change', function() {
+          const isChecked = this.checked;
+          document.getElementById('sound-ecg').checked = isChecked;
+          document.getElementById('sound-physical').checked = isChecked;
+          document.getElementById('sound-snsbc').checked = isChecked;
+          document.getElementById('sound-blood').checked = isChecked;
+          document.getElementById('sound-measurement').checked = isChecked;
+        });
+      }
+
+      // 전체 TTS 설정
+      const enableAllTts = document.getElementById('enable-all-tts');
+      if (enableAllTts) {
+        enableAllTts.addEventListener('change', function() {
+          const isChecked = this.checked;
+          document.getElementById('tts-snsbc').checked = isChecked;
+          document.getElementById('tts-blood').checked = isChecked;
+          document.getElementById('tts-measurement').checked = isChecked;
+        });
+      }
+    }
+
+    // 기존 playSound 함수 수정 - 설정 확인 추가
+    function playSoundWithSettings(videoId, type = 'general') {
+      if (!settings.enableAllSounds) return;
+      
+      // 개별 설정 확인
+      switch(type) {
+        case 'ecg':
+          if (!settings.soundEcg) return;
+          break;
+        case 'physical':
+          if (!settings.soundPhysical) return;
+          break;
+        case 'snsbc':
+          if (!settings.soundSnsbc) return;
+          break;
+        case 'blood':
+          if (!settings.soundBlood) return;
+          break;
+        case 'measurement':
+          if (!settings.soundMeasurement) return;
+          break;
+      }
+      
+      playSound(videoId);
+    }
+
+    // 기존 speak 함수 수정 - 설정 확인 추가
+    function speakWithSettings(text, type = 'general') {
+      if (!settings.enableAllTts) return;
+      
+      // 개별 설정 확인
+      switch(type) {
+        case 'snsbc':
+          if (!settings.ttsSnsbc) return;
+          break;
+        case 'blood':
+          if (!settings.ttsBlood) return;
+          break;
+        case 'measurement':
+          if (!settings.ttsMeasurement) return;
+          break;
+      }
+      
+      speak(text);
+    }
+
+    // 첫 번째 화면 테이블 렌더링 함수 (설정 기능 포함)
+    function renderTable(data) {
+      console.log("getFilteredTableData 결과:", data);
+      
+      const tableData = data.tableData;
+      const nextUpData = data.nextUp;
+
+      if (!tableData || tableData.length === 0) {
+        document.getElementById('tableContainer').innerHTML = '<p>표시할 데이터가 없습니다.</p>';
+        ['progress-ecg-list','progress-physical-list','progress-snsbc-1-list','progress-snsbc-2-list','progress-snsbc-3-list'].forEach(id=>{
+          document.getElementById(id).innerHTML = '<div style="color:#bbb">-</div>';
+        });
+        return;
+      }
+
+      // 이전 데이터와 비교하여 검사 완료 상태 확인 및 소리/깜박임 처리
+      const prevDataMap = new Map((window.lastTableData || []).map(row => [row[1], row]));
+      const currentData = tableData.slice(1);
+
+      for (const currentRow of currentData) {
+        const prevRow = prevDataMap.get(currentRow[1]);
+        if (!prevRow) continue;
+
+        const header = tableData[0];
+        const idx = {
+          ID: header.indexOf('ID'),
+          심전도: header.indexOf('심전도'),
+          신체기능: header.indexOf('신체기능'),
+          SNSBC: header.indexOf('SNSB-C'),
+          수행자: header.indexOf('수행자')
+        };
+
+        // 심전도 완료
+        if (prevRow[idx.심전도] === '검사중' && currentRow[idx.심전도] === '완료') {
+          playSoundWithSettings(soundMap.A, 'ecg');
+          const box = document.getElementById('progress-ecg');
+          box.classList.add('blink');
+          setTimeout(() => box.classList.remove('blink'), 10000);
+        }
+        
+        // 신체기능 완료
+        if (prevRow[idx.신체기능] === '검사중' && currentRow[idx.신체기능] === '완료') {
+          playSoundWithSettings(soundMap.A, 'physical');
+          const box = document.getElementById('progress-physical');
+          box.classList.add('blink');
+          setTimeout(() => box.classList.remove('blink'), 10000);
+        }
+        
+        // SNSB-C 완료
+        if (prevRow[idx.SNSBC] === '검사중' && currentRow[idx.SNSBC] === '완료') {
+          const performerEmail = currentRow[idx.수행자];
+          const videoId = snsbcSoundMap[performerEmail];
+          
+          playSoundWithSettings(videoId, 'snsbc');
+          
+          const box = document.getElementById('snsbc-next-box');
+          box.classList.add('blink');
+          setTimeout(() => box.classList.remove('blink'), 10000);
+
+          // TTS 호명
+          setTimeout(() => {
+            if (nextUpData && nextUpData.snsbc && nextUpData.snsbc !== '-') {
+              const nextPersonName = nextUpData.snsbc.replace(/<[^>]*>/g, '');
+              speakWithSettings(nextPersonName, 'snsbc');
+            }
+          }, 1000);
+        }
+      }
+
+      window.lastTableData = currentData;
+
+      // 첫 번째 화면에서 표시할 열만 필터링 (1-5번째 열만)
+      const firstScreenHeaders = tableData[0].slice(0, 5);
+      const firstScreenData = tableData.slice(1).map(row => row.slice(0, 5));
+
+      let html = '<table><thead><tr>';
+      firstScreenHeaders.forEach(header => {
+        html += `<th>${header}</th>`;
+      });
+      html += '</tr></thead><tbody>';
+      for (let i = 0; i < firstScreenData.length; i++) {
+        html += '<tr>';
+        firstScreenData[i].forEach(cell => {
+          html += `<td>${cell}</td>`;
+        });
+        html += '</tr>';
+      }
+      html += '</tbody></table>';
+      document.getElementById('tableContainer').innerHTML = html;
+      updateProgressBoxes(tableData);
+
+      if(nextUpData) {
+        document.getElementById('next-ecg-name').textContent = nextUpData.ecg;
+        document.getElementById('next-physical-name').textContent = nextUpData.physical;
+        document.getElementById('next-snsbc-name').textContent = nextUpData.snsbc;
+      }
+    }
+
+    // 두 번째 화면 테이블 렌더링 함수 (설정 기능 포함)
+    function renderTable2(data) {
+      console.log("getFilteredTableData2 결과:", data);
+      
+      const tableData = data.tableData;
+      const nextUpData = data.nextUp;
+
+      if (!tableData || tableData.length === 0) {
+        return;
+      }
+
+      const prevDataMap = new Map((window.lastTableData2 || []).map(row => [row[1], row]));
+      const currentData = tableData.slice(1);
+
+      for (const currentRow of currentData) {
+        const prevRow = prevDataMap.get(currentRow[1]);
+        if (!prevRow) continue;
+
+        const header = tableData[0];
+        const idx = {
+          ID: header.indexOf('ID'),
+          채혈: header.indexOf('채혈'),
+          신체계측: header.indexOf('신체계측')
+        };
+
+        // 채혈 완료
+        if (prevRow[idx.채혈] === '검사중' && currentRow[idx.채혈] === '완료') {
+          const nextPersonName = nextUpData.blood.replace(/<[^>]*>/g, '');
+          const callKey = `blood-${nextPersonName}`;
+
+          if (!recentlyCalled[callKey] || (new Date() - recentlyCalled[callKey] > 60000)) {
+            playSoundWithSettings(soundMap.A, 'blood');
+            const bloodCurrentTd = document.getElementById('blood-current-row').querySelector('td');
+            bloodCurrentTd.classList.add('blink');
+            setTimeout(() => bloodCurrentTd.classList.remove('blink'), 10000);
+
+            setTimeout(() => {
+              if (nextUpData && nextUpData.blood && nextUpData.blood !== '-') {
+                speakWithSettings(`<speak>다음 채혈, <break time="0.2s"/> ${nextPersonName} 님.<break time="0.4s"/>${nextPersonName} 님.</speak>`, 'blood');
+                recentlyCalled[callKey] = new Date();
+              }
+            }, 1000);
+          }
+        }
+        
+        // 신체계측 완료
+        if (prevRow[idx.신체계측] === '검사중' && currentRow[idx.신체계측] === '완료') {
+          const nextPersonName = nextUpData.measurement.replace(/<[^>]*>/g, '');
+          const callKey = `measurement-${nextPersonName}`;
+
+          if (!recentlyCalled[callKey] || (new Date() - recentlyCalled[callKey] > 60000)) {
+            playSoundWithSettings(soundMap.A, 'measurement');
+            const measurementCurrentTd = document.getElementById('measurement-current-row').querySelector('td');
+            measurementCurrentTd.classList.add('blink');
+            setTimeout(() => measurementCurrentTd.classList.remove('blink'), 10000);
+
+            setTimeout(() => {
+              if (nextUpData && nextUpData.measurement && nextUpData.measurement !== '-') {
+                speakWithSettings(`<speak>다음 신체계측, <break time="0.2s"/> ${nextPersonName} 님.<break time="0.4s"/>${nextPersonName} 님.</speak>`, 'measurement');
+                recentlyCalled[callKey] = new Date();
+              }
+            }, 1000);
+          }
+        }
+      }
+
+      window.lastTableData2 = currentData;
+      renderLeftSection(tableData, nextUpData);
+      updateProgressBoxes2(tableData);
+    }
+
+    // 페이지 로드 시 설정 로드
+    loadSettings();
+  </script>
+</body>
+</html>

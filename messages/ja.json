@@ -1,0 +1,37 @@
+{
+    "Navbar": {
+        "title": "Lindy Works",
+        "links": {
+            "process": "プロセス",
+            "projects": "プロジェクト",
+            "services": "サービス",
+            "about": "私について"
+        },
+        "viewResume": "履歴書を見る"
+    },
+    "ResumeCTA": {
+        "text1": "ビジネスの複雑さを解決する経験を",
+        "text2": " 履歴書に詳しく記載しました。",
+        "button": "履歴書全文を見る"
+    },
+    "_comment_Resume": "Resume section is intentionally omitted for Japanese.",
+    "Hero": {
+        "title": "複雑な現場を圧倒的な効率で",
+        "subtitle": "派手な機能よりも現場で生き残る<b>リンディ（Lindy）なロジック</b>を構築します。\n単なる構築を超え、<strong>不要な固定費と時間を画期的に削減し</strong>\n開発費以上の<strong>圧倒的な成果</strong>をお返しします。",
+        "buttons": {
+            "requestService": "サービス依頼",
+            "contactMe": "お問い合わせ"
+        },
+        "dock": {
+            "write": "執筆",
+            "feedback": "フィードバック",
+            "applyJob": "求人応募"
+        }
+    },
+    "Footer": {
+        "brand": "Lindy Works",
+        "copyright": "© 2026 Lindy Works. All rights reserved.",
+        "address": "大韓民国 光州広域市",
+        "businessNo": "事業者登録番号 123-45-67890"
+    }
+}
