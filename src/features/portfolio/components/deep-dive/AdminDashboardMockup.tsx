@@ -12,14 +12,18 @@ import {
     Send,
     Search,
     Square,
-    CheckSquare
+    CheckSquare,
+    X,
+    Clock,
+    Shield,
+    MoreHorizontal
 } from "lucide-react";
 
 // Helper Component for Table Rows
 function MockGuestTable({ type }: { type: 'M' | 'F' }) {
     const names = type === 'M'
-        ? ['김철수', '이민호', '박준형', '최현우', '정우성', '강동원', '조인성', '공유']
-        : ['이영희', '김민지', '박지수', '최서연', '한가인', '김태희', '송혜교', '전지현'];
+        ? ['김민준', '이서준', '박도현', '최시우', '정건우', '강지훈', '조현우', '윤우진']
+        : ['이지은', '박서윤', '최지유', '한수아', '김하은', '성민지', '이채원', '정다은'];
 
     return (
         <div className="w-full overflow-x-auto scrollbar-thin pb-10">
@@ -83,28 +87,6 @@ function MockGuestTable({ type }: { type: 'M' | 'F' }) {
                             </tr>
                         );
                     })}
-                    {/* Simulated New Row */}
-                    {type === 'M' && (
-                        <motion.tr
-                            initial={{ opacity: 0, backgroundColor: "#F3E8FF" }}
-                            animate={{ opacity: [0, 1, 1, 0], backgroundColor: ["#EEF2FF", "#EEF2FF", "#ffffff"] }}
-                            transition={{ duration: 4, repeat: Infinity, repeatDelay: 3 }}
-                        >
-                            <td className="py-1.5 text-center"><div className="w-3 h-3 border border-slate-200 rounded mx-auto" /></td>
-                            <td className="px-2 py-1.5">
-                                <div className="flex flex-col">
-                                    <span className="text-[11px] font-bold text-indigo-600">신규 신청자</span>
-                                    <span className="text-[9px] text-indigo-400">NEW</span>
-                                </div>
-                            </td>
-                            <td className="px-2 py-1.5" colSpan={3}>
-                                <span className="text-[10px] text-slate-400">입금 확인 중...</span>
-                            </td>
-                            <td className="px-2 py-1.5 text-right">
-                                <span className="text-[9px] text-slate-300">대기</span>
-                            </td>
-                        </motion.tr>
-                    )}
                 </tbody>
             </table>
         </div>

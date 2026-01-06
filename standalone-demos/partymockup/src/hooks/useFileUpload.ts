@@ -14,7 +14,7 @@ const COMPRESSION_OPTIONS = {
     initialQuality: 0.7    // 초기 품질 70%
 };
 
-const UPLOAD_TOKEN = "rotation-dating-secret-key-2025"; // [SECURITY] Worker의 UPLOAD_TOKEN과 일치해야 함
+const UPLOAD_TOKEN = process.env.NEXT_PUBLIC_UPLOAD_TOKEN || ""; // [SECURITY] .env.local 파일에 NEXT_PUBLIC_UPLOAD_TOKEN 정의 필요
 
 /**
  * Hook for handling file uploads to Cloudflare R2 via Worker
