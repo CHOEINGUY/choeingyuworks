@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Hero } from "@/features/hero/components/Hero";
 import { PortfolioSection } from "@/features/portfolio/components/PortfolioSection";
 import { AboutSection } from "@/features/hero/components/AboutSection";
@@ -9,7 +10,10 @@ import { AnimatePresence, motion } from "framer-motion";
 export type TabType = "about" | "portfolio";
 
 export default function Home() {
-    const [activeTab, setActiveTab] = useState<TabType>("about");
+    const searchParams = useSearchParams();
+    const [activeTab, setActiveTab] = useState<TabType>(() => {
+        return searchParams.get('tab') === 'portfolio' ? 'portfolio' : 'about';
+    });
 
     return (
         <main className="min-h-screen bg-white">

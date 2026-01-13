@@ -1,0 +1,161 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { User, Check, X, Clock, Volume2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+interface LogicFlowAnimationProps {
+    step: number;
+    isPaused: boolean;
+    onResume: () => void;
+    candidates: any[];
+    room: string;
+}
+
+export function LogicFlowAnimation({ step, isPaused, onResume, candidates, room }: LogicFlowAnimationProps) {
+    const t = useTranslations("CohortDashboard.LogicFlow");
+    const winner = candidates.find(c => c.id === 4);
+
+    return (
+        <div className="bg-slate-50 rounded-[2.5rem] p-8 md:p-10 border border-slate-200 relative h-[700px] flex flex-col shadow-inner overflow-hidden transition-all duration-300">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+            <div className="relative z-10 flex flex-col h-full">
+                {/* Header */}
+                <div className="flex justify-between items-center mb-8 shrink-0">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                        <span className="text-xs font-bold text-slate-500 tracking-wider">{t('header')}</span>
+                    </div>
+                    <div className="px-3 py-1 bg-white rounded-full border border-slate-200 text-[10px] font-mono font-bold text-slate-400">
+                        {t('phase')}: {step}/4
+                    </div>
+                </div>
+
+                {/* Content Area - Using LayoutGroup/AnimatePresence for smooth swapping */}
+                <div className="flex-1 flex flex-col gap-4">
+                    <AnimatePresence mode="popLayout">
+                        {candidates.map((person) => {
+                            const isBlockedByStatus = step >= 1 && person.status === "Active";
+                            const isBlockedByPrereq = step >= 2 && !isBlockedByStatus && !person.prereq;
+                            const isWinner = person.id === 4;
+                            
+                            // In step 4, we only show the winner
+                            if (step === 4 && !isWinner) return null;
+
+                            return (
+                                <motion.div
+                                    key={person.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                    animate={{ 
+                                        opacity: (isBlockedByStatus || isBlockedByPrereq) ? 0.4 : 1,
+                                        scale: 1, 
+                                        y: 0,
+                                        filter: (isBlockedByStatus || isBlockedByPrereq) ? "grayscale(0.4)" : "none"
+                                    }}
+                                    exit={{ opacity: 0, scale: 0.8, x: -20 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    className={`bg-white items-center justify-between border-2
+                                        ${(step === 4 && isWinner) 
+                                            ? "p-8 rounded-[2rem] border-blue-500 shadow-xl flex" 
+                                            : "p-4 rounded-2xl border-slate-100 shadow-sm flex"}
+                                        ${(isBlockedByStatus || isBlockedByPrereq) ? "bg-slate-50/50" : "bg-white"}
+                                    `}
+                                >
+                                    <div className="flex items-center gap-5">
+                                        <div className={`flex items-center justify-center font-bold shrink-0 transition-colors duration-300
+                                            ${(step === 4 && isWinner) 
+                                                ? "w-16 h-16 rounded-2xl text-xl bg-blue-100 text-blue-700" 
+                                                : "w-12 h-12 rounded-xl text-sm bg-slate-100 text-slate-400"}`}>
+                                            {step >= 3 && isWinner ? "1st" : <User className="w-5 h-5 text-slate-400" />}
+                                        </div>
+                                        <div>
+                                            <div className={`font-bold text-slate-900 flex items-center gap-2 transition-all duration-300 ${(step === 4 && isWinner) ? "text-2xl" : "text-base"}`}>
+                                                {person.name}
+                                                {isBlockedByStatus && <span className="text-[10px] bg-red-50 text-red-500 px-2 rounded-full">{t('status.active')}</span>}
+                                                {isBlockedByPrereq && <span className="text-[10px] bg-orange-50 text-orange-500 px-2 rounded-full">{t('status.locked')}</span>}
+                                            </div>
+                                            <div className={`text-slate-500 flex items-center gap-2 mt-1 transition-all duration-300 ${(step === 4 && isWinner) ? "text-sm" : "text-xs"}`}>
+                                                <Clock className={(step === 4 && isWinner) ? "w-4 h-4" : "w-3 h-3"} /> {person.time}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-3">
+                                        {(isBlockedByStatus || isBlockedByPrereq) ? (
+                                            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg text-[11px] font-bold text-slate-400">
+                                                <X className="w-3.5 h-3.5" />
+                                                {person.reason}
+                                            </div>
+                                        ) : step >= 1 && (
+                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className={`flex items-center gap-1.5 rounded-lg font-bold text-emerald-600 bg-emerald-50
+                                                ${(step === 4 && isWinner) ? "px-4 py-2 text-sm" : "px-3 py-1.5 text-[11px]"}`}>
+                                                <Check className={(step === 4 && isWinner) ? "w-4 h-4" : "w-3.5 h-3.5"} /> {t('status.waiting')}
+                                            </motion.div>
+                                        )}
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+
+                        {step === 4 && winner && (
+                            <motion.div 
+                                layout
+                                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 20 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.1 }}
+                                className="mt-4" // slight margin top
+                            >
+                                <div className="bg-blue-600 rounded-[2rem] p-8 text-white relative overflow-hidden shadow-2xl shadow-blue-500/40">
+                                    {/* Animated Waves */}
+                                    <div className="absolute top-0 right-0 p-8 flex gap-1 items-end h-full opacity-20 group">
+                                        {[0.4, 0.7, 0.5, 0.9, 0.6].map((h, i) => (
+                                            <motion.div 
+                                                key={i}
+                                                className="w-2 bg-white rounded-full"
+                                                animate={{ height: ['20%', '80%', '20%'] }}
+                                                transition={{ repeat: Infinity, duration: 1, delay: i * 0.1 }}
+                                            />
+                                        ))}
+                                    </div>
+
+                                    <div className="relative z-10">
+                                        <div className="flex items-center gap-3 mb-4 opacity-70">
+                                            <Volume2 className="w-5 h-5" />
+                                            <span className="text-xs font-bold tracking-widest uppercase">{t('ttsLabel')}</span>
+                                        </div>
+                                        <h4 className="text-2xl font-black mb-2 leading-tight" dangerouslySetInnerHTML={{ __html: t('ttsMessage', {name: winner.name, room: room}) }} />
+                                        <div className="inline-block px-3 py-1 bg-white/20 rounded-full text-[10px] font-bold">
+                                            {t('ttsActive')}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+                {/* Reset / Play Button */}
+                {isPaused && (
+                    <div className="absolute bottom-6 right-6 z-20">
+                         <button 
+                            onClick={onResume}
+                            className="p-3 bg-white hover:bg-slate-50 rounded-full shadow-lg border border-slate-200 text-slate-400 hover:text-blue-600 transition-all flex items-center gap-2"
+                        >
+                            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 4, ease: "linear" }}>
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                            </motion.div>
+                            <span className="text-xs font-bold pr-1">{t('resume')}</span>
+                        </button>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}

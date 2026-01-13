@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { margin:0; font-family:'Noto Sans KR',sans-serif; }
+    .report-page { width: 210mm; min-height: 297mm; padding: 20mm 17mm; box-sizing: border-box; }
+    .title { text-align:center; margin-top:60px; font-size:24pt; font-weight:600; }
+    .section { margin-top:30px; }
+    .section-title { font-size:14pt; font-weight:600; margin-bottom:8px; }
+    .stat-table { width:100%; border-collapse:collapse; font-size:11pt; }
+    .stat-table th,.stat-table td { border:1px solid #ccc; padding:6px 8px; }
+    .stat-table th { background:#f2f2f2; text-align:left; }
+  </style>
+</head>
+<body>
+  <div class="report-page">
+    <div class="title">집단발생 역학조사 결과보고서</div>
+
+    <div class="section">
+      <div class="section-title">주요 지표</div>
+      <table class="stat-table">
+        <tr><th>사례 발병률</th><td>%caseAttackRate%</td></tr>
+        <tr><th>환자 발병률</th><td>%patientAttackRate%</td></tr>
+        <tr><th>추정 노출일시</th><td>%exposureDate%</td></tr>
+        <tr><th>최초사례 발생일시</th><td>%firstCaseDate%</td></tr>
+        <tr><th>평균 잠복기(시간)</th><td>%meanIncubation%</td></tr>
+        <tr><th>추정 감염원</th><td>%suspectedSource%</td></tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html> 

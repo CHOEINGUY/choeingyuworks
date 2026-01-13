@@ -1,0 +1,60 @@
+.DS_Store
+node_modules
+/dist
+
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+#Electron-builder output
+/dist_electron
+
+# 배포 전 정리 스크립트
+cleanup-for-production.js
+
+# 개발/테스트 전용 파일들 (배포 시 제거됨)
+tests/
+jest.config.js
+test-modes.js
+test-offline.html
+update-user.js
+worker/test-api.js
+worker/setup-admin.js
+start-offline.bat
+__사용설명서.html
+__3초 사용설명서.html
+OFFLINE_README.md
+BUILD_SUMMARY.md
+worker/DEPLOYMENT_CHECKLIST.md
+worker/DEPLOYMENT_GUIDE.md
+worker/README.md
+# docs/
+env.development
+env.noauth
+temp_template/
+.wrangler/
+worker/.wrangler/
+worker/node_modules/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

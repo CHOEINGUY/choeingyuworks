@@ -34,7 +34,7 @@ export function ResumeCallToAction() {
 
                         <div>
                             <h3 className="text-2xl font-bold text-gray-900 tracking-tight">최인규 <span className="text-gray-400 font-normal text-lg ml-1">(In-gyu Choi)</span></h3>
-                            <p className="text-gray-500 font-medium">Problem Solver & Software Engineer</p>
+                            <p className="text-gray-500 font-medium">Business Solution Architect</p>
                             <div className="flex items-center justify-center md:justify-start gap-2 mt-2 text-sm text-gray-400">
                                 <span>Developer</span>
                             </div>

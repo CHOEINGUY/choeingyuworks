@@ -1,0 +1,181 @@
+{
+    "Hero": {
+        "title": "시스템이 판단하고 호명하는,<br><span>실시간 통합 관리 시스템</span>",
+        "description": "복잡한 검사 과정에서 발생하는 의미 없이 버려지던 시간을 줄이고 싶었습니다.<br>사람의 직관에 의존하던 순서 배정을 <strong>알고리즘</strong>으로 전환하여, 매일 1시간 이상의 불필요한 대기 시간을 줄였습니다."
+    },
+    "BusinessContext": {
+        "title": "코호트 검진 사업이란?",
+        "description": "매일 10명의 연구원이 15~20명의 참여자를 대상으로, <br>한정된 시간 안에 <strong>5가지 이상의 검사</strong>를 진행하는 대규모 건강검진 프로젝트입니다.",
+        "problemTitle": "어떤 문제가 있었나요?",
+        "problemDesc": "A→B→C 순서로 검사를 진행하면, <strong>특정 검사실 앞에만 긴 줄이 생기고</strong> 다른 곳은 텅 비는 비효율이 발생했습니다. 보조원들은 빈 검사실이 생길 때마다 쌓여있는 차트를 뒤져가며 다음 대상자를 찾느라 혼란스러웠습니다.",
+        "solutionTitle": "해결 방향",
+        "solutionDesc": "<strong>\"도착한 사람을 먼저, 가능한 검사부터\"</strong> — 유동적인 선착순 배정 시스템을 구상했습니다. 빈 검사실이 생기면 시스템이 자동으로 다음 대상자를 호명하여 대기 시간을 최소화했습니다."
+    },
+    "backToPortfolio": "포트폴리오로 돌아가기",
+    "Bottleneck": {
+        "title": "검진 흐름 최적화",
+        "description": "앞 사람이 끝나야만 이동하는 <b>'한 줄 서기'</b> 방식을 버리고,<br>빈 검사실이 생기면 바로 안내하는 <b>'실시간 배정'</b>을 도입했습니다.",
+        "before": {
+            "title": "기존 방식",
+            "subtitle": "한 줄 서기 (병목 발생)",
+            "problems": [
+                "치매검사(60분)가 끝나야 다음 사람 입장 가능",
+                "앞 검사가 빨라도 뒤에서 막히면 대기",
+                "다른 검사가 비어있어도 순서 때문에 활용 불가"
+            ]
+        },
+        "after": {
+            "title": "도입 후",
+            "subtitle": "빈 용량 우선 배정",
+            "engine": "실시간 배정 엔진",
+            "solutions": [
+                "비어있는 검사로 즉시 안내",
+                "검사 순서에 상관없이 병렬 진행",
+                "모든 검사 가동률 최대화",
+                "도착 순서(선착순)를 준수하여 참여자 항의 및 혼선 방지"
+            ]
+        },
+        "results": {
+            "time": "결과 1: 전체 운영 시간 <span class='text-emerald-600 font-extrabold'>1시간 이상</span> 단축 (매일)",
+            "satisfaction": "결과 2: 실시간 순서 배정으로 <span class='text-emerald-600 font-extrabold'>참여자 항의 및 대기 피로도</span> 감소"
+        },
+        "exams": {
+            "blood": "채혈",
+            "body": "신체기능",
+            "ecg": "심전도",
+            "dementia": "치매검사"
+        }
+    },
+    "TechStack": {
+        "title": "데이터 흐름과 시스템 구조",
+        "description": "현장에 익숙한 도구(Google Sheets)를 DB로 사용하면서도,<br>Firebase(클라우드 DB)와 Apps Script를 결합하여 실시간성을 확보한 구조입니다.",
+        "steps": {
+            "appsheet": { "label": "현장 입력 (Tablet)", "title": "태블릿 접수 시스템", "desc": "복잡한 서류 대신 태블릿으로 터치 몇 번이면 접수 끝. 어르신들도, 연구원들도 편하게 사용할 수 있습니다." },
+            "sheets": { "label": "Google Sheets (DB)", "title": "우리에게 익숙한 엑셀(Google Sheets)", "desc": "굳이 어렵고 비싼 DB를 쓰지 않았습니다. 연구원들이 가장 익숙하게 다루는 엑셀을 그대로 활용해 교육 비용을 0으로 만들었습니다." },
+            "appsscript": { "label": "Apps Script (Logic)", "title": "똑똑한 교통정리 (Algorithm)", "desc": "검사실에서 '검사 완료'를 누르는 즉시, 시스템이 빈 자리를 인식하고 다음 대기자를 호출합니다. 사람이 일일이 소리쳐 찾을 필요가 없어졌습니다." },
+            "firebase": { "label": "Firebase (Real-time)", "title": "Firebase: 트리거 기반 실시간 동기화", "desc": "Apps Script에서 데이터가 변경되면 트리거가 발동되어 Firebase Realtime Database로 푸시합니다. 별도 서버 구축 없이 클라우드 서비스(Apps Script & Firebase)만으로 안정적인 실시간 동기화를 구현했습니다." },
+            "dashboard": { "label": "Web Dashboard", "title": "목소리로 알려주는 안내원", "desc": "\"김철수님, 김철수님 다음 검사는 심전도입니다.\" 라는 음성 안내가 나오면, 보조원들이 해당 참여자를 인지하고 즉시 다음 검사실로 안내합니다." }
+        }
+    },
+    "Logic": {
+        "title": "\"휴먼 에러 없는\" <br><span class='text-blue-600'>최적의 흐름</span>",
+        "description": "현장은 복잡합니다. 시스템은 실시간 데이터를 종합하여<br>가장 효율적이고 공정한 다음 대상자를 선정합니다.",
+        "steps": {
+            "1": { "title": "1. 검사 가능 여부 확인", "desc": "검사 중이거나 이미 완료한 사람은 제외합니다." },
+            "2": { "title": "2. 검사 순서(선행조건) 확인", "desc": "예: 심전도는 '신체기능 완료' 상태여야만 가능합니다." },
+            "3": { "title": "3. 먼저 온 순서대로 배정 (FIFO)", "desc": "남은 후보 중 가장 일찍 온 사람을 우선 배정합니다." },
+            "4": { "title": "4. Text-To-Speech (자동 호명)", "desc": "Google TTS 서비스를 통해 대상을 음성으로 자동 호명합니다." }
+        },
+        "status": {
+            "active": "이미 검사 중",
+            "waiting": "차순위 (늦게 도착)",
+            "selected": "최종 선정 (FIFO)",
+            "prereq": "선행조건 미달"
+        }
+    },
+    "LogicFlow": {
+        "header": "실시간 배정 엔진",
+        "phase": "단계",
+        "status": {
+            "active": "검사중",
+            "locked": "조건미달",
+            "waiting": "대기"
+        },
+        "ttsLabel": "자동 음성 안내",
+        "ttsMessage": "<span class='text-yellow-300'>{name}</span>님, 다음 검사는 <span class='text-yellow-300'>{room}</span>입니다.",
+        "ttsActive": "음성 송출 중",
+        "resume": "다시 보기"
+    },
+    "Insight": {
+        "title": "더 나은 시스템을 위한 고민의 기록",
+        "description": "단순히 기술적인 구현을 넘어, 현장에서 마주했던 실제적인 고민과 <br>이를 해결하며 얻은 통찰을 담았습니다.",
+        "cards": {
+            "speed": { "title": "현장의 속도를 무시한 기술은 정답이 아니었습니다", "content": "논리적으로는 빈틈이 없다고 생각했습니다. 하지만 연구원분들에게 '완료' 버튼은 그저 귀찮은 추가 업무일 뿐이었습니다. 그 데이터가 전체 대기줄 해소에 얼마나 중요한지 공감하지 못했기에, 버튼 누르는 것을 깜빡하기 일쑤였습니다. 기술의 정답이 현장의 해답은 아니라는 것을 뼈저리게 느꼈습니다." },
+            "empathy": { "title": "기능 구현보다 중요한 것은 사용자의 공감을 얻는 것이었습니다", "content": "코드를 고치기에 앞서 현장으로 나갔습니다. '왜 이 시스템이 필요한지'를 설명하고, 이것이 단순한 업무 지시가 아니라 '참여자들의 만족도를 높이고 휴먼 에러를 최소화하기 위한 도구'라는 목표를 공유했습니다. 사용자가 시스템의 가치를 이해하고 동료로 느끼기 시작하자, 복잡했던 예외 상황들이 현장의 기꺼운 협조로 해결되기 시작했습니다." },
+            "trust": { "title": "사용자의 신뢰가 있을 때 기술은 비로소 완성됩니다", "content": "신뢰가 쌓이자 데이터의 선순환이 일어났습니다. 입력 누락이 사라지면서 알고리즘은 제 기능을 발휘했고, 매일 아침의 병목 현상은 자연스럽게 해소되었습니다. 시스템의 효율은 알고리즘의 성능보다 사용자의 신뢰도에 비례한다는 본질적인 가치를 배울 수 있었습니다." }
+        }
+    },
+    "ExamFlow": {
+        "title": "실시간 연동: 태블릿 → 상황판 → TTS",
+        "description": "검사실에서 <strong>\"완료\"</strong>를 누르면 상황판이 즉시 업데이트되고, 자동 음성 안내 시스템이 다음 대상자를 안내하는 일련의 과정을 시뮬레이션합니다.",
+        "StatusBoard": {
+            "header": "실시간 현황판 (TV Screen)",
+            "next": "다음",
+            "roomSuffix": "번 검사실",
+            "noSubject": "대상자 없음"
+        },
+        "Tablet": {
+            "headerTitle": "검사실 태블릿",
+            "today": "오늘",
+            "id": "ID",
+            "name": "이름",
+            "birth": "생년월일",
+            "statusing": "검사중",
+            "complete": "완료",
+            "birthLabel": "생년월일",
+            "progress": "진행현황"
+        },
+        "TTS": {
+            "label": "TTS 음성 안내 시스템",
+            "message": "{name}님, {name}님 다음 검사는 {room}와 입니다"
+        },
+        "automationLabel": "Automation Flow",
+        "boardLabel": "실시간 현황판"
+    },
+    "LogicFlow": {
+        "header": "실시간 배정 엔진",
+        "phase": "단계",
+        "status": {
+            "active": "검사중",
+            "locked": "대기(잠김)",
+            "waiting": "대기중"
+        },
+        "ttsLabel": "음성 안내",
+        "ttsMessage": "{name}님, {name}님 다음 검사는 {room}와 입니다",
+        "ttsActive": "안내중",
+        "resume": "시뮬레이션 재개"
+    },
+    "Monitor": {
+        "Sidebar": {
+            "title": "현장관리",
+            "menu": {
+                "dashboard": "대시보드",
+                "map": "실시간 지도",
+                "orders": "작업 지시",
+                "team": "팀 관리",
+                "reports": "보고서",
+                "settings": "설정"
+            },
+            "user": {
+                "name": "관리자",
+                "role": "매니저"
+            }
+        },
+        "Header": {
+            "status": "시스템 정상 가동 중",
+            "region": "전체 지역"
+        },
+        "Stats": {
+            "active": "활동 작업자",
+            "pending": "대기 중인 작업",
+            "completed": "금일 완료",
+            "latency": "평균 응답 속도",
+            "stable": "안정적"
+        },
+        "Map": {
+            "title": "실시간 추적",
+            "workerParams": "작업자"
+        },
+        "Feed": {
+            "title": "실시간 운영 현황",
+            "badge": "실시간",
+            "items": [
+                { "time": "방금 전", "msg": "작업자 #104 A구역 도착", "status": "도착" },
+                { "time": "2분 전", "msg": "자재 요청: 시멘트 x50", "status": "대기" },
+                { "time": "5분 전", "msg": "안전 점검표 확인 완료", "status": "확인" },
+                { "time": "12분 전", "msg": "작업자 #102 업무 시작", "status": "활동" },
+                { "time": "24분 전", "msg": "B구역 점검 완료", "status": "완료" }
+            ]
+        }
+    }
+}

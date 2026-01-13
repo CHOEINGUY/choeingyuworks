@@ -1,0 +1,28 @@
+{
+  "name": "epidemiology-auth-worker",
+  "version": "2.0.0",
+  "description": "Cloudflare Worker for Epidemiology Web Authentication with Approval System",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "authentication",
+    "epidemiology"
+  ],
+  "author": "Epidemiology Team",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0",
+    "@cloudflare/workers-types": "^4.20230518.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jose": "^6.0.11"
+  }
+}

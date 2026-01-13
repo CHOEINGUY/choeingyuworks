@@ -7,6 +7,7 @@ import { Link, usePathname } from "@/navigation"; // Use localized Link
 import { useScroll } from "@/hooks/useScroll";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { CURRENT_BRAND } from "@/config/brand";
 
 export function Navbar() {
     const isScrolled = useScroll(50);
@@ -30,9 +31,9 @@ export function Navbar() {
                 <div className="flex items-center gap-2 md:gap-4">
                     <InfinityIcon className="w-6 h-6 md:w-8 md:h-8 text-[#333] stroke-[3px]" />
                     <div className="flex items-center">
-                        <span className="font-bold text-xl md:text-2xl tracking-tighter text-[#333]">Lindy</span>
+                        <span className="font-bold text-xl md:text-2xl tracking-tighter text-[#333]">{CURRENT_BRAND.mainText}</span>
                         <span className="w-0 opacity-0 overflow-hidden group-hover:w-auto group-hover:opacity-100 transition-all duration-500 ease-in-out whitespace-nowrap font-bold text-xl md:text-2xl tracking-tighter text-[#333]">
-                            &nbsp;Works
+                            &nbsp;{CURRENT_BRAND.subText}
                         </span>
                     </div>
                 </div>
@@ -40,12 +41,12 @@ export function Navbar() {
 
             <div className="flex items-center gap-0 md:gap-4">
                 <LanguageSwitcher />
-                <Link href="/resume">
+                <Link href={pathname.includes("/portfolio/") ? "/?tab=portfolio" : "/resume"}>
                     <Button variant="ghost" size="icon" className="md:hidden rounded-full w-9 h-9">
                         <User className="w-5 h-5 text-gray-900" />
                     </Button>
                     <Button className="rounded-full bg-black text-white px-6 hidden md:inline-flex hover:bg-[#333333] h-9 text-sm">
-                        {t("viewResume")}
+                        {pathname.includes("/portfolio/") ? t("backToPortfolio") : t("viewResume")}
                     </Button>
                 </Link>
             </div>

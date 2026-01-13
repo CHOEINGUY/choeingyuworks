@@ -9,8 +9,18 @@ export default getRequestConfig(async ({ requestLocale }) => {
         locale = 'ko';
     }
 
+    const common = (await import(`../messages/${locale}/common.json`)).default;
+    const party = (await import(`../messages/${locale}/party.json`)).default;
+    const cohort = (await import(`../messages/${locale}/cohort.json`)).default;
+    const epidemiology = (await import(`../messages/${locale}/epidemiology.json`)).default;
+
     return {
         locale,
-        messages: (await import(`../messages/${locale}.json`)).default
+        messages: {
+            ...common,
+            PartySaaS: party,
+            CohortDashboard: cohort,
+            EasyEpidemiology: epidemiology
+        }
     };
 });

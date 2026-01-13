@@ -12,7 +12,7 @@ import {
     BarChart2,
     CheckCircle2
 } from "lucide-react";
-import { FieldManagementDemo } from "@/features/portfolio/components/field-management-demo";
+// import { FieldManagementDemo } from "@/features/portfolio/projects/field-management";
 import { Button } from "@/components/ui/button";
 
 // Animation variants
@@ -155,10 +155,11 @@ export default function FieldManagementPage() {
                             <div className="relative aspect-[16/12] md:aspect-[16/11] w-full max-w-full mx-auto rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#F6F5FB]">
                                 <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.1),transparent)]" />
                                 <div className="absolute inset-0 z-10 p-0 flex items-center justify-center overflow-hidden">
-                                    <FieldManagementDemo
+                                    {/* <FieldManagementDemo
                                         isEmbedded
                                         scale={0.62}
-                                    />
+                                    /> */}
+                                    <div className="w-full h-full flex items-center justify-center text-gray-400">Demo Placeholder</div>
                                 </div>
                             </div>
                         </motion.div>

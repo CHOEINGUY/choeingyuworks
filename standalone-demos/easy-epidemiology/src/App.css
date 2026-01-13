@@ -1,0 +1,370 @@
+/* App.css */
+
+/* body margin 초기화 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent body-level scrolling */
+}
+
+/* 메인 앱 컨테이너 */
+.main-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Utility for hiding scrollbar but allowing scroll */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  /* Removed duplicate flex properties if they conflict with .main-app */
+}
+
+/* content 영역 스타일 */
+.content {
+  flex-grow: 1;
+  background-color: #f0f0f0; /* Google Sheets와 유사한 배경색 */
+  position: relative; /* relative for internal absolute elements */
+  min-height: 0; /* Important for flex child to be scrollable */
+}
+
+/* Add margin only when tabs are visible */
+.content.has-tabs {
+  margin-bottom: 48px;
+}
+
+.content.no-scroll {
+  overflow: hidden; /* DataInputVirtual 컴포넌트가 자체 스크롤 관리 */
+  margin-bottom: 0; /* No margin when tabs are not showing or if specialized */
+}
+
+.content.scrollable {
+  overflow-y: auto; /* Allow internal scrolling only on the content container */
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease;
+}
+
+.success-icon-large {
+  margin-bottom: 24px;
+}
+
+.success-icon-large .material-icons {
+  font-size: 64px;
+  color: #4caf50;
+}
+
+.warning-icon-large {
+  margin-bottom: 24px;
+}
+
+.warning-icon-large .material-icons {
+  font-size: 64px;
+  color: #ff9800;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.modal-message {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.modal-timer {
+  margin-bottom: 32px;
+}
+
+.timer-bar {
+  width: 100%;
+  height: 6px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.timer-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #45a049);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  box-shadow: 0 1px 3px rgba(76, 175, 80, 0.3);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.modal-actions .secondary-btn,
+.modal-actions .primary-btn {
+  min-width: 120px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.modal-actions .secondary-btn {
+  background: #f8f9fa;
+  color: #5f6368;
+  border: 1px solid #dadce0;
+}
+
+.modal-actions .secondary-btn:hover {
+  background: #f1f3f4;
+  border-color: #c4c7c5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-actions .primary-btn {
+  background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+}
+
+.modal-actions .primary-btn:hover {
+  background: linear-gradient(135deg, #3367d6 0%, #2a56c6 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+}
+
+.modal-actions .secondary-btn:active,
+.modal-actions .primary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Grid Selection Styles (Blue Theme - Inner Border Fix) --- */
+
+.cell-selected {
+  /* Use inset shadow for inner border that doesn't affect layout */
+  box-shadow: inset 0 0 0 2px #2563eb !important; 
+  outline: none !important;
+  z-index: 10 !important;
+}
+
+.cell-range-selected {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+.cell-active-in-range {
+  background-color: rgba(37, 99, 235, 0.1) !important; /* Match range selection color */
+  z-index: 10 !important;
+}
+
+.cell-multi-selected {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Row/Range Borders (Box-Shadow to prevent layout shift) */
+/* Combine box-shadows if multiple borders are needed - tricky in CSS classes without collision */
+/* Strategy: Use pseudo-elements or specific box-shadows for directions */
+/* Actually, standard border is fine IF box-sizing is border-box AND we don't change width. 
+   But headers might change width if border: 1px -> 2px. 
+   Let's stick to inset box-shadow for "borders" to be safe. */
+
+/* Note: Simple box-shadow doesn't allow one-sided inset easily without complex values or clip-path. 
+   Alternative: Use ::after pseudo elements for selection borders if possible, but that requires relative positioning. */
+
+/* Let's try standard 2px border but with box-sizing border-box, it shouldn't shift layout IF width is fixed.
+   The user said "header height increases", implying vertical shift. 
+   So border-top: 2px solid inside a fixed height cell WILL reduce content height or expand cell if height:auto.
+   Box-shadow is definitely safer. */
+
+.border-top { box-shadow: inset 0 2px 0 0 #2563eb !important; border-top: none !important; }
+.border-bottom { box-shadow: inset 0 -2px 0 0 #2563eb !important; border-bottom: none !important; }
+.border-left { box-shadow: inset 2px 0 0 0 #2563eb !important; border-left: none !important; }
+.border-right { box-shadow: inset -2px 0 0 0 #2563eb !important; border-right: none !important; }
+
+/* Combined borders need combined shadows (Cascading issue with classes? Yes.)
+   If a cell has both border-top and border-right, the last class wins if we simply set box-shadow property.
+   We probably need a more robust approach in VirtualGridBody to join classes?
+   Or use specific combined classes?
+   
+   Actually, `box-shadow` supports multiple values. 
+   But classes overwrite property.
+   
+   Better approach:
+   Use physical borders but force `box-sizing: border-box` and ensure the cell has `border: 2px transparent` by default?
+   The cells currently have `border border-gray-300` (1px).
+   Replacing 1px gray with 2px blue -> 1px layout shift.
+   
+   Correct implementation:
+   Use `outline` for whole cell selection.
+   For partial borders (ranges), we utilize `::after` on the cell to draw the border.
+   But we can't easily add `::after` styles via just utility classes without updated CSS.
+   
+   Let's try using `box-shadow` with `!important` but realized specific direction classes will overwrite each other.
+   
+   WAIT: The previous implementation used `border-top` etc.
+   If I change to `box-shadow`, `border-top` class overwrites `border-left` class's box-shadow.
+   
+   Let's stick to Border 2px but add negative margin? No.
+   
+   Let's use `box-shadow` for the full cell selection (already done).
+   For ranges (borders), let's accept the 1px shift for now OR try `outline`?
+   No, user complained about shift.
+   
+   Solution: `outline` can be used for full cell.
+   For Edge selection:
+   We can use `position: relative` on cell (already there).
+   Add `::after` to draw borders?
+   
+   Let's go back to `border` but makes sure they don't shift layout.
+   Maybe `outline` with offset?
+   
+   Let's try strict `box-shadow` combinations. 
+   Actually, `VirtualGridBody` logic adds classes independently.
+   
+   Let's try a different trick: `background-image` linear-gradient for borders?
+   
+   .border-top { background-image: linear-gradient(to bottom, #2563eb 2px, transparent 2px); background-repeat: no-repeat; }
+   
+   This works and doesn't conflict with other background images easily (unless existing).
+   But multiple gradients?
+   
+   Let's try:
+   .border-top { box-shadow: inset 0 2px 0 0 #2563eb !important; }
+   
+   If we have top AND left?
+   .border-top.border-left { box-shadow: inset 0 2px 0 0 #2563eb, inset 2px 0 0 0 #2563eb !important; }
+   
+   I need to add combinations to App.css to handle this class collision.
+*/
+
+.border-top { box-shadow: inset 0 2px 0 0 #2563eb !important; }
+.border-bottom { box-shadow: inset 0 -2px 0 0 #2563eb !important; }
+.border-left { box-shadow: inset 2px 0 0 0 #2563eb !important; }
+.border-right { box-shadow: inset -2px 0 0 0 #2563eb !important; }
+
+/* Combinations to prevent overwriting */
+.border-top.border-left { box-shadow: inset 0 2px 0 0 #2563eb, inset 2px 0 0 0 #2563eb !important; }
+.border-top.border-right { box-shadow: inset 0 2px 0 0 #2563eb, inset -2px 0 0 0 #2563eb !important; }
+.border-bottom.border-left { box-shadow: inset 0 -2px 0 0 #2563eb, inset 2px 0 0 0 #2563eb !important; }
+.border-bottom.border-right { box-shadow: inset 0 -2px 0 0 #2563eb, inset -2px 0 0 0 #2563eb !important; }
+
+.border-top.border-bottom { box-shadow: inset 0 2px 0 0 #2563eb, inset 0 -2px 0 0 #2563eb !important; }
+.border-left.border-right { box-shadow: inset 2px 0 0 0 #2563eb, inset -2px 0 0 0 #2563eb !important; }
+
+/* 3-side combinations */
+.border-top.border-left.border-right { box-shadow: inset 0 2px 0 0 #2563eb, inset 2px 0 0 0 #2563eb, inset -2px 0 0 0 #2563eb !important; }
+.border-bottom.border-left.border-right { box-shadow: inset 0 -2px 0 0 #2563eb, inset 2px 0 0 0 #2563eb, inset -2px 0 0 0 #2563eb !important; }
+.border-left.border-top.border-bottom { box-shadow: inset 2px 0 0 0 #2563eb, inset 0 2px 0 0 #2563eb, inset 0 -2px 0 0 #2563eb !important; }
+.border-right.border-top.border-bottom { box-shadow: inset -2px 0 0 0 #2563eb, inset 0 2px 0 0 #2563eb, inset 0 -2px 0 0 #2563eb !important; }
+
+/* 4-side (just in case) */
+.border-top.border-bottom.border-left.border-right { box-shadow: inset 0 0 0 2px #2563eb !important; }
+
+
+/* Prevent layout shift when cell is selected (reset physical border to 1px hidden, rely on shadow) */
+.cell-selected.border-top { border-top: 1px solid transparent !important; }
+.cell-selected.border-bottom { border-bottom: 1px solid transparent !important; }
+.cell-selected.border-left { border-left: 1px solid transparent !important; }
+.cell-selected.border-right { border-right: 1px solid transparent !important; }
+
+/* Editing State - Caret Position Fix */
+.cell-editing {
+  background-color: white !important;
+  box-shadow: inset 0 0 0 2px #2563eb !important;
+  outline: none !important;
+  z-index: 20 !important;
+  
+  /* Vertical alignment fixes */
+  line-height: 33px !important; /* Row height 35px - 2px border? or just match height */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; 
+}
+
+.row-individual-selected {
+  background-color: rgba(37, 99, 235, 0.05) !important;
+}
+
+@keyframes bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-short {
+  animation: bounce-soft 2s ease-in-out infinite;
+}

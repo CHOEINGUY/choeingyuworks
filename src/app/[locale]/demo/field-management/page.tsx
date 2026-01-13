@@ -1,6 +1,5 @@
-
-import { FieldManagementDemo } from "@/features/portfolio/components/field-management-demo";
+// import { FieldManagementDemo } from "@/features/portfolio/projects/field-management";
 
 export default function FieldManagementDemoPage() {
-    return <FieldManagementDemo />;
+    return <div className="p-8 text-center text-gray-500">Demo temporarily unavailable</div>;
 }

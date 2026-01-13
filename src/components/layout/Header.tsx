@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LINDY_WORKS_CONTENT } from "@/config/content";
 import { Infinity as InfinityIcon } from "lucide-react";
+import { CURRENT_BRAND } from "@/config/brand";
 
 export function Header() {
     return (
@@ -12,9 +13,9 @@ export function Header() {
                     <div className="flex items-center gap-2">
                         <InfinityIcon className="w-6 h-6 md:w-8 md:h-8 text-[#333] stroke-[3px]" />
                         <div className="flex items-center">
-                            <span className="font-bold text-xl md:text-2xl tracking-tighter text-[#333]">Lindy</span>
+                            <span className="font-bold text-xl md:text-2xl tracking-tighter text-[#333]">{CURRENT_BRAND.mainText}</span>
                             <span className="font-bold text-xl md:text-2xl tracking-tighter text-[#333]">
-                                &nbsp;Works
+                                &nbsp;{CURRENT_BRAND.subText}
                             </span>
                         </div>
                     </div>

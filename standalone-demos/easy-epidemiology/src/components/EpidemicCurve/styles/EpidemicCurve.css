@@ -1,0 +1,113 @@
+/* EpidemicCurve/index.vue Styles */
+
+/* === Main Layout === */
+.app { 
+  font-family: "Noto Sans KR", sans-serif; 
+  width: 100%; 
+  margin: 0; 
+  padding: 0; 
+  background-color: #f0f0f0; 
+  min-height: 100vh; 
+}
+
+.app-header { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 8px 16px; 
+  background-color: white; 
+  border-bottom: 1px solid #e0e0e0; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+  z-index: 4; 
+}
+
+.app-title { 
+  margin: 0; 
+  font-size: 1.5rem; 
+  font-weight: 300; 
+  font-family: "Noto Sans KR", sans-serif; 
+  color: #202124; 
+}
+
+.dashboard { 
+  display: flex; 
+  flex-direction: column; 
+  text-align: center; 
+  width: 97%; 
+  margin: 20px auto; 
+  background-color: #f0f0f0; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+}
+
+/* === Output Area & Rows === */
+.output-area { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 30px; 
+  margin: 20px 30px 30px 30px; 
+  align-items: stretch; /* 아이템들이 가로로 꽉 차게 */
+  padding: 0;
+}
+
+.output-row { 
+  display: flex; 
+  gap: 30px; 
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* === Containers === */
+.table-container { 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column; 
+  background-color: #fff; 
+  box-sizing: border-box; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 12px; 
+  overflow-x: auto; 
+  flex: 0 0 400px; 
+  align-self: stretch; /* 부모 높이에 맞춤 */
+  max-height: 750px;
+  overflow-y: auto;
+}
+
+.analysis-table-container,
+.controls-and-chart-wrapper {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-and-chart-wrapper {
+  flex: 1;
+  gap: 15px;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch; /* 부모 높이에 맞춤 */
+}
+
+/* 차트 컴포넌트 자체가 남은 공간을 다 비우도록 강제 */
+.controls-and-chart-wrapper > :last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Responsive === */
+@media (max-width: 1200px) {
+  .output-row {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .table-container,
+  .controls-and-chart-wrapper {
+    flex-basis: auto;
+    width: 100%;
+    min-width: 0;
+  }
+}

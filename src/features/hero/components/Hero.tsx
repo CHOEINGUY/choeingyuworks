@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { TabType } from "@/app/[locale]/page";
+import { CURRENT_BRAND } from "@/config/brand";
 
 interface HeroProps {
     activeTab: TabType;
@@ -71,6 +72,8 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                     className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-2 md:mt-0"
                 >
                     {/* Light Gray Pill Button */}
+                    {/* Light Gray Pill Button */}
+                    {CURRENT_BRAND.hero.showRequestButton && (
                     <Link href="/request">
                         <Button
                             size="lg"
@@ -80,6 +83,7 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                             {t("buttons.requestService")}
                         </Button>
                     </Link>
+                    )}
 
                     {/* Dynamic Bar Contact Button */}
                     <motion.div

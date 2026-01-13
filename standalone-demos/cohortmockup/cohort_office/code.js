@@ -253,7 +253,7 @@ function onSheetChange(e) {
 // === Firebase Integration ===
 function syncToFirebase() {
     var FIREBASE_URL = "https://namwon-cohort-default-rtdb.asia-southeast1.firebasedatabase.app/";
-    var FIREBASE_SECRET = "kQa9xCykaKejXalGgf7xEgDcstDOBNuY6sklhwhI"; // TODO: Move to Script Properties
+    var FIREBASE_SECRET = "YOUR_FIREBASE_SECRET"; // TODO: Move to Script Properties
 
     // 1. 데이터 가져오기 (기존 로직 재사용)
     var data = getFilteredTableData();
@@ -414,7 +414,7 @@ function getFilteredTableData2() {
 // (8) Google Cloud TTS 함수 (수정됨)
 function getTTSAudioNew(text) {
     try {
-        var API_KEY = 'AIzaSyBwky76XHNzSHfQstUl0KD5ufiihyW8VhY';
+        var API_KEY = 'YOUR_GOOGLE_CLOUD_API_KEY';
         var url = 'https://texttospeech.googleapis.com/v1/text:synthesize?key=' + API_KEY;
 
         // SSML 태그 제거하고 일반 텍스트로 변환

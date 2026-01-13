@@ -1,0 +1,89 @@
+{
+  "Hero": {
+    "title": "システムが判断し呼び出す、<br/>リアルタイム統合管理システム",
+    "description": "複雑な検査過程で発生していた無意味な待ち時間を減らしたいと考えました。<br>人の直感に頼っていた順序配分を<strong>アルゴリズム</strong>に転換し、毎日1時間以上の不要な待機時間を削減しました。"
+  },
+  "backToPortfolio": "ポートフォリオに戻る",
+  "BusinessContext": {
+    "title": "コホート検診事業とは？",
+    "description": "毎日10人の研究員が15~20人の参加者を対象に、<br>限られた時間内に<strong>5種類以上の検査</strong>を行う大規模な健康診断プロジェクトです。",
+    "problemTitle": "どんな問題があったのか？",
+    "problemDesc": "A→B→Cの順序で検査を行うと、<strong>特定の検査室の前だけに長い列ができ</strong>他の場所はガラガラになるという非効率が発生しました。補助員たちは空き検査室ができるたびに、積まれたチャートをかき分けて次の対象者を探すのに混乱していました。",
+    "solutionTitle": "解決の方向性",
+    "solutionDesc": "<strong>「到着した人を先に、可能な検査から」</strong> — 流動的な先着順配分システムを構想しました。空き検査室ができると、システムが自動的に次の対象者を呼び出し、待機時間を最小化しました。"
+  },
+  "Bottleneck": {
+    "title": "検診フローの最適化",
+    "description": "前の人が終わるまで待つ<b>「一列並び」</b>方式を捨て、<br>空き検査室ができればすぐに案内する<b>「リアルタイム配分」</b>を導入しました。",
+    "before": {
+        "title": "既存方式",
+        "subtitle": "一列並び（ボトルネック発生）",
+        "problems": [
+            "認知症検査(60分)が終わらないと次の人は入場不可",
+            "前の検査が早くても後ろで詰まれば待機",
+            "他の検査が空いていても順序のために活用不可"
+        ]
+    },
+    "after": {
+        "title": "新システム",
+        "subtitle": "空き容量優先配分",
+        "engine": "リアルタイム配分エンジン",
+        "solutions": [
+            "空いている検査へ即時案内",
+            "検査順序に関係なく並列進行",
+            "すべての検査の稼働率を最大化",
+            "到着順序(先着順)を遵守し、参加者の不満と混乱を防止"
+        ]
+    },
+    "results": {
+        "time": "結果 1: 全体運営時間 <span class='text-emerald-600 font-extrabold'>1時間以上</span> 短縮 (毎日)",
+        "satisfaction": "結果 2: リアルタイム順序配分で <span class='text-emerald-600 font-extrabold'>参加者の不満および待機疲労度</span> 減少"
+    },
+    "exams": {
+        "blood": "採血",
+        "body": "身体機能",
+        "ecg": "心電図",
+        "dementia": "認知症検査"
+    }
+  },
+  "LogicFlow": {
+    "header": "リアルタイム配分エンジン",
+    "phase": "フェーズ",
+    "status": {
+        "active": "検査中",
+        "locked": "条件未達",
+        "waiting": "待機"
+    },
+    "ttsLabel": "自動音声案内",
+    "ttsMessage": "<span class='text-yellow-300'>{name}</span>様、次の検査は<span class='text-yellow-300'>{room}</span>です。",
+    "ttsActive": "音声送出中",
+    "resume": "もう一度見る"
+  },
+  "ExamFlow": {
+    "title": "リアルタイム連動: タブレット → 状況板 → TTS",
+    "description": "検査室で<strong>「完了」</strong>を押すと状況板が即座に更新され、自動音声案内システムが次の対象者を案内する一連の過程をシミュレーションします。",
+    "StatusBoard": {
+        "header": "リアルタイム状況板 (TV Screen)",
+        "next": "次",
+        "roomSuffix": "番 検査室",
+        "noSubject": "対象者なし"
+    },
+    "Tablet": {
+        "headerTitle": "検査室タブレット",
+        "today": "本日",
+        "id": "ID",
+        "name": "名前",
+        "birth": "生年月日",
+        "statusing": "検査中",
+        "complete": "完了",
+        "birthLabel": "生年月日",
+        "progress": "進行状況"
+    },
+    "TTS": {
+        "label": "TTS 音声案内システム",
+        "message": "{name}様、{name}様、次の検査は{room}です"
+    },
+    "automationLabel": "自動化フロー",
+    "boardLabel": "リアルタイムダッシュボード"
+  }
+}

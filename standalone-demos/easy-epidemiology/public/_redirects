@@ -1,0 +1,10 @@
+# SPA 라우팅을 위한 리다이렉트
+/*    /index.html   200
+
+# 정적 파일들에 대한 명시적 처리
+/js/*    /index.html   200
+/css/*    /index.html   200
+/assets/*    /index.html   200
+
+# 404 에러 처리
+/404    /index.html   200 
