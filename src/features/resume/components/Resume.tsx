@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, useRouter, usePathname } from "@/navigation";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
 import { useTranslations, useLocale } from "next-intl";
@@ -310,6 +310,13 @@ export function Resume() {
     const currentData = RESUME_DATA[locale as 'ko' | 'en'] || RESUME_DATA.en;
     const commonData = RESUME_DATA.common;
     const resumeRef = useRef<HTMLDivElement>(null);
+    const [today, setToday] = useState("");
+
+    useEffect(() => {
+        const date = new Date();
+        setToday(`${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.`);
+    }, []);
+
     const handlePrint = () => {
         window.print();
     };
@@ -576,6 +583,12 @@ export function Resume() {
 
 
                 </div>
+
+            </div>
+
+            {/* Print Only Footer */}
+            <div className="hidden print:flex fixed bottom-0 left-0 w-full justify-center pb-8 text-xs text-gray-400">
+                <span>{today}</span>
             </div>
         </div>
     );

@@ -12,6 +12,17 @@ import { EpidemiologyDemo } from "@/features/portfolio/projects/easy-epidemiolog
 const PROJECTS = [
 
     {
+        id: "easy-epidemiology",
+        subtitle: "Browser-based High Performance Analytics",
+        title: "웹 브라우저의 한계를 넘는 대용량 역학 분석 도구",
+        description: "별도의 통계 프로그램 설치 없이 웹 브라우저에서 대용량 역학 데이터를 즉시 입력하고 분석하는 고성능 도구입니다.\n\n웹 워커와 가상 스크롤 기술을 적용하여 수만 건의 데이터도 지연 없이 처리합니다. 현장에 익숙한 스프레드시트 UX를 제공하며, 유행 곡선 등 핵심 지표 시각화부터 최종 결과보고서 작성까지 원클릭으로 자동화했습니다.",
+        tags: ["Vue.js 3", "Web Worker", "Virtual Scroll", "System Architecture"],
+        result: <>서버 전송 없이 <strong>브라우저 내에서 모든 연산을 처리</strong>하는 아키텍처로 데이터 보안을 강화하고 인프라 비용을 제로화했습니다.</>,
+        imageColor: "bg-emerald-50",
+        detailLink: "/portfolio/easy-epidemiology",
+        demoUrl: "https://easy-epi.xyz/"
+    },
+    {
         id: "field",
         subtitle: "Real-time Cohort Management",
         title: "실시간 코호트 검진 시스템",
@@ -30,17 +41,6 @@ const PROJECTS = [
         result: <>수작업 입금 확인 <strong>90% 자동화</strong>, 현장 운영 인력 <strong>80% 절감</strong>. 1인 운영자도 수백 명 규모의 이벤트를 무리 없이 관리할 수 있는 시스템을 구축했습니다.</>,
         imageColor: "bg-purple-50",
         detailLink: "/portfolio/party-saas"
-    },
-    {
-        id: "easy-epidemiology",
-        subtitle: "Browser-based High Performance Analytics",
-        title: "웹 브라우저의 한계를 넘는 대용량 역학 분석 도구",
-        description: "별도의 통계 프로그램 설치 없이 웹 브라우저에서 대용량 역학 데이터를 즉시 입력하고 분석하는 고성능 도구입니다.\n\n웹 워커와 가상 스크롤 기술을 적용하여 수만 건의 데이터도 지연 없이 처리합니다. 현장에 익숙한 스프레드시트 UX를 제공하며, 유행 곡선 등 핵심 지표 시각화부터 최종 결과보고서 작성까지 원클릭으로 자동화했습니다.",
-        tags: ["Vue.js 3", "Web Worker", "Virtual Scroll", "System Architecture"],
-        result: <>서버 전송 없이 <strong>브라우저 내에서 모든 연산을 처리</strong>하는 아키텍처로 데이터 보안을 강화하고 인프라 비용을 제로화했습니다.</>,
-        imageColor: "bg-emerald-50",
-        detailLink: "/portfolio/easy-epidemiology",
-        demoUrl: "https://easy-epi.xyz/"
     },
 
 ];
