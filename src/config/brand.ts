@@ -5,7 +5,7 @@ export const BRAND_CONFIG = {
     personal: {
         mainText: 'Choeingyu',
         subText: 'Works', // Optional hover text
-        logoText: 'Choeingyu',
+        logoText: 'Choeingyu Works',
         showSubTextOnHover: true,
         hero: {
             showRequestButton: false, // Hide "Service Request"
