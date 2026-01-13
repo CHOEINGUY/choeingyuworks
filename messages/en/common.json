@@ -30,7 +30,7 @@
         },
         "personal": {
             "title": "Faster Execution, Meticulous Verification",
-            "subtitle": "Leveraging AI, I build <b>3x faster</b> than the industry standard.\nThat saved time is invested entirely into <strong>'flawless field verification'</strong>.\nI deliver both <strong>speed and stability</strong> without compromise."
+            "subtitle": "Leveraging AI, I build <b>3x faster</b> than the industry standard.\nThat saved time is invested entirely into <strong>''flawless field verification''</strong>.\nI deliver both <strong>speed and stability</strong> without compromise."
         },
         "buttons": {
             "requestService": "Request Service",
@@ -43,20 +43,40 @@
             "applyJob": "Apply Job"
         },
         "aboutSection": {
-            "headline": "We found the answer not at the desk,<line></line>but in the intense field.",
-            "description": "Gaps in the field that commercial tools cannot fill, unpredictable variables.<line></line>Before writing code, <b>we first deeply understood the operational workflow,<line></line>and captured that rhythm in the program.</b>",
-            "features": {
-                "business": {
-                    "title": "Business Optimization Design",
-                    "description": "It's not just about implementing features. We design logic optimized for your business considering revenue structure and operational flow."
-                },
-                "asset": {
-                    "title": "Data Becoming Assets",
-                    "description": "Not Excel files that vanish over time. We build core assets that accumulate to guide your business direction."
-                },
-                "stability": {
-                    "title": "Uncompromising Stability",
-                    "description": "This is a field where money and people move. We prevent accidents with solid defense logic that allows zero margin for error."
+            "agency": {
+                "headline": "We found the answer not at the desk,<line></line>but in the intense field.",
+                "description": "Gaps in the field that commercial tools cannot fill, unpredictable variables.<line></line>Before writing code, <b>we first deeply understood the operational workflow,<line></line>and captured that rhythm in the program.</b>",
+                "features": {
+                    "business": {
+                        "title": "Business Optimization Design",
+                        "description": "It''s not just about implementing features. We design logic optimized for your business considering revenue structure and operational flow."
+                    },
+                    "asset": {
+                        "title": "Data Becoming Assets",
+                        "description": "Not Excel files that vanish over time. We build core assets that accumulate to guide your business direction."
+                    },
+                    "stability": {
+                        "title": "Uncompromising Stability",
+                        "description": "This is a field where money and people move. We prevent accidents with solid defense logic that allows zero margin for error."
+                    }
+                }
+            },
+            "personal": {
+                "headline": "I can''t just ignore inconveniences in the field.",
+                "description": "I don''t just walk past complex field problems.<line></line>Just like when I <b>reduced a 3-month task to 1 month</b>, if it can be solved with a system, I dig in until it''s done.",
+                "features": {
+                    "business": {
+                        "title": "Field-First Thinking",
+                        "description": "Before writing code, I deeply understand the user''s workflow first."
+                    },
+                    "asset": {
+                        "title": "AI-Powered Speed",
+                        "description": "I build fast with the latest AI tools, without sacrificing maintainable architecture."
+                    },
+                    "stability": {
+                        "title": "Rigorous Verification",
+                        "description": "Build fast, then meticulously verify it works flawlessly in the field."
+                    }
                 }
             }
         }

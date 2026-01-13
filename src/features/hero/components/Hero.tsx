@@ -102,34 +102,18 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                         >
                             <AnimatePresence mode="wait">
                                 {!isExpanded ? (
-                                    CURRENT_BRAND.mainText === 'Choeingyu' ? (
-                                        <Link href="/resume" className="w-full h-full">
-                                            <motion.button
-                                                layout
-                                                key="resume-btn"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                                                className="flex items-center justify-center w-full h-full text-white font-bold px-6 whitespace-nowrap absolute inset-0 cursor-pointer"
-                                            >
-                                                <FileText className="w-4 h-4 mr-2 shrink-0" />
-                                                {t("buttons.viewResume")}
-                                            </motion.button>
-                                        </Link>
-                                    ) : (
-                                        <motion.button
-                                            layout
-                                            key="collapsed-contact"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                                            onClick={() => setIsExpanded(true)}
-                                            className="flex items-center justify-center w-full h-full text-white font-bold px-6 whitespace-nowrap absolute inset-0 cursor-pointer"
-                                        >
-                                            <Mail className="w-4 h-4 mr-2 shrink-0" />
-                                            {t("buttons.contactMe")}
-                                        </motion.button>
-                                    )
+                                    <motion.button
+                                        layout
+                                        key="collapsed-contact"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                                        onClick={() => setIsExpanded(true)}
+                                        className="flex items-center justify-center w-full h-full text-white font-bold px-6 whitespace-nowrap absolute inset-0 cursor-pointer"
+                                    >
+                                        <Mail className="w-4 h-4 mr-2 shrink-0" />
+                                        {t("buttons.contactMe")}
+                                    </motion.button>
                                 ) : (
                                     <motion.div
                                         layout

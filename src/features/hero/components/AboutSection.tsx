@@ -3,22 +3,24 @@
 import { motion } from "framer-motion";
 
 import { useTranslations } from "next-intl";
+import { BRAND_CONFIG } from "@/config/brand";
 
 export function AboutSection() {
     const t = useTranslations("Hero");
+    const mode = BRAND_CONFIG.mode;
 
     const features = [
         {
-            title: t("aboutSection.features.business.title"),
-            description: t("aboutSection.features.business.description")
+            title: t(`aboutSection.${mode}.features.business.title`),
+            description: t(`aboutSection.${mode}.features.business.description`)
         },
         {
-            title: t("aboutSection.features.asset.title"),
-            description: t("aboutSection.features.asset.description")
+            title: t(`aboutSection.${mode}.features.asset.title`),
+            description: t(`aboutSection.${mode}.features.asset.description`)
         },
         {
-            title: t("aboutSection.features.stability.title"),
-            description: t("aboutSection.features.stability.description")
+            title: t(`aboutSection.${mode}.features.stability.title`),
+            description: t(`aboutSection.${mode}.features.stability.description`)
         }
     ];
 
@@ -33,12 +35,12 @@ export function AboutSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 break-words">
-                        {t.rich("aboutSection.headline", {
+                        {t.rich(`aboutSection.${mode}.headline`, {
                             line: () => <br className="hidden md:block" />
                         })}
                     </h2>
                     <p className="text-gray-600 leading-relaxed text-lg max-w-3xl mx-auto break-words">
-                        {t.rich("aboutSection.description", {
+                        {t.rich(`aboutSection.${mode}.description`, {
                             line: () => <br className="hidden md:block" />,
                             b: (chunks) => <strong className="font-bold text-gray-900">{chunks}</strong>
                         })}
