@@ -91,7 +91,7 @@ const RESUME_DATA = {
                     "해결 방안: 데이터 입력 즉시 통계 로직이 작동하여 분석 결과와 보고서 양식(한글/PDF)을 자동 생성하는 시스템 구축",
                     "의사결정: 외부 SW 의존도를 낮추기 위해 브라우저 기반 경량 통계 알고리즘을 직접 구현하여 현장 호환성 확보",
                     "성 과: 수 시간이 소요되던 분석 및 보고서 작성을 데이터 입력 즉시 완료되도록 개선",
-                    "사용 기술: Vue.js, React, Tailwind CSS, 통계 분석 로직(Custom)"
+                    "사용 기술: Vue.js, Tailwind CSS, 통계 분석 로직(Custom)"
                 ]
             },
             {
@@ -222,7 +222,7 @@ const RESUME_DATA = {
                     "Solution: Built a system where statistical logic runs immediately upon data entry, auto-generating results and reports (HWP/PDF)",
                     "Decision: Implemented browser-based lightweight specific statistical algorithms to reduce dependence on external software",
                     "Result: Improved workflow from hours of manual work to instant completion upon data entry",
-                    "Tech Stack: Vue.js, React, Tailwind CSS, Statistical Logic (Custom)"
+                    "Tech Stack: Vue.js, Tailwind CSS, Statistical Logic (Custom)"
                 ]
             },
             {
