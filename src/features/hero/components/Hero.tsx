@@ -102,7 +102,7 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                         >
                             <AnimatePresence mode="wait">
                                 {!isExpanded ? (
-                                    BRAND_CONFIG.mode === 'personal' ? (
+                                    CURRENT_BRAND.mode === 'personal' ? (
                                         <Link href="/resume" className="w-full h-full">
                                             <motion.button
                                                 layout

@@ -3,6 +3,7 @@ export const BRAND_CONFIG = {
     mode: 'personal' as const, 
 
     personal: {
+        mode: 'personal' as const,
         mainText: 'Choeingyu',
         subText: 'Works', // Optional hover text
         logoText: 'Choeingyu Works',
@@ -16,6 +17,7 @@ export const BRAND_CONFIG = {
         }
     },
     agency: {
+        mode: 'agency' as const,
         mainText: 'Lindy',
         subText: 'Works',
         logoText: 'Lindy Works',
