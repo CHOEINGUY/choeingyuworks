@@ -7,7 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { TabType } from "@/app/[locale]/page";
-import { CURRENT_BRAND } from "@/config/brand";
+import { BRAND_CONFIG, CURRENT_BRAND } from "@/config/brand";
 
 interface HeroProps {
     activeTab: TabType;
@@ -102,7 +102,7 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                         >
                             <AnimatePresence mode="wait">
                                 {!isExpanded ? (
-                                    CURRENT_BRAND.mode === 'personal' ? (
+                                    BRAND_CONFIG.mode === 'personal' ? (
                                         <Link href="/resume" className="w-full h-full">
                                             <motion.button
                                                 layout

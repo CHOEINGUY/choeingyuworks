@@ -4,9 +4,10 @@ import { getMessages } from 'next-intl/server';
 import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CURRENT_BRAND } from "@/config/brand";
 
 export const metadata: Metadata = {
-    title: "Lindy Works",
+    title: CURRENT_BRAND.logoText,
     description: "Problem Solver In-gyu Choi",
 };
 
