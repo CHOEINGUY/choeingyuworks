@@ -24,8 +24,14 @@
         "contact": "Contact"
     },
     "Hero": {
-        "title": "Overwhelming Efficiency for Complex Fields",
-        "subtitle": "We build <b>Lindy logic</b> that survives in the field rather than flashy features. Beyond simple construction, we <strong>drastically reduce unnecessary fixed costs and time</strong> to return <strong>overwhelming results</strong> worthy of more than the development cost.",
+        "agency": {
+            "title": "Overwhelming Efficiency for Complex Fields",
+            "subtitle": "We build <b>Lindy logic</b> that survives in the field rather than flashy features. Beyond simple construction, we <strong>drastically reduce unnecessary fixed costs and time</strong> to return <strong>overwhelming results</strong> worthy of more than the development cost."
+        },
+        "personal": {
+            "title": "Faster Execution, Meticulous Verification",
+            "subtitle": "Leveraging AI, I build <b>3x faster</b> than the industry standard.\nThat saved time is invested entirely into <strong>'flawless field verification'</strong>.\nI deliver both <strong>speed and stability</strong> without compromise."
+        },
         "buttons": {
             "requestService": "Request Service",
             "contactMe": "Contact Me",

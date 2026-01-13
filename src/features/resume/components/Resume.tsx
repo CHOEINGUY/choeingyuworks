@@ -581,14 +581,12 @@ export function Resume() {
 
                     {/* Footer / Contact Note */}
 
-
                 </div>
-
-            </div>
-
-            {/* Print Only Footer */}
-            <div className="hidden print:flex fixed bottom-0 left-0 w-full justify-center pb-8 text-xs text-gray-400">
-                <span>{today}</span>
+                
+                {/* Print Only Date (Last Page) */}
+                <div className="hidden print:flex w-full justify-center mt-12 mb-8 text-xs text-gray-400">
+                    <span>{today}</span>
+                </div>
             </div>
         </div>
     );

@@ -24,8 +24,14 @@
         "contact": "연락처"
     },
     "Hero": {
-        "title": "복잡한 현장을 압도적 효율로",
-        "subtitle": "화려한 기능보다 현장에서 살아남는 <b>린디(Lindy)한 로직</b>을 짭니다.\n단순한 구축을 넘어, <strong>불필요한 고정비와 시간을 획기적으로 줄여</strong>\n개발비 그 이상의 <strong>압도적인 성과</strong>를 돌려드립니다.",
+        "agency": {
+            "title": "복잡한 현장을 압도적 효율로",
+            "subtitle": "화려한 기능보다 현장에서 살아남는 <b>린디(Lindy)한 로직</b>을 짭니다.\n단순한 구축을 넘어, <strong>불필요한 고정비와 시간을 획기적으로 줄여</strong>\n개발비 그 이상의 <strong>압도적인 성과</strong>를 돌려드립니다."
+        },
+        "personal": {
+            "title": "누구보다 빠르게, 누구보다 꼼꼼하게",
+            "subtitle": "AI를 활용해 남들보다 <b>3배 더 빠른 속도</b>로 결과물을 만듭니다.\n그렇게 확보한 시간은 온전히 <strong>'오류 없는 현장 검증'</strong>에 투자합니다.\n<strong>속도와 안정성</strong>, 두 마리 토끼를 모두 잡는 개발을 약속합니다."
+        },
         "buttons": {
             "requestService": "서비스 의뢰",
             "contactMe": "연락하기",
