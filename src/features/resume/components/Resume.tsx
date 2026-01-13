@@ -49,8 +49,8 @@ const RESUME_DATA = {
                     {
                         title: "남원 코호트 연구 (심뇌혈관질환 R&D)",
                         details: [
-                            "현장 시스템 구축: AppSheet/Firebase 기반 '실시간 검진 운영 시스템' 기획 및 개발 (대기시간 단축 및 동선 최적화)",
-                            "운영 관리: 검진 대상자 예약 관리, 검진 데이터 정합성 검증 및 Python 기반 스캔 파일 자동 라벨링(파일명 규칙화) 처리"
+                            "현장 시스템 및 환경 구축: AppSheet 기반 '실시간 검진 운영 시스템' 개발 및 검진 현장 동선/구조 세팅 총괄",
+                            "운영 및 인력 관리(연 200명): 보조 인력 채용 및 직무 교육, 프로그램 현장 교육 전담, 데이터/스캔 파일(Python) 정합성 관리"
                         ]
                     },
                     {
@@ -190,8 +190,8 @@ const RESUME_DATA = {
                     {
                         title: "Namwon Cohort Study (Cardiovascular R&D)",
                         details: [
-                            "Field System: Built 'Real-time Exam Operation System' (AppSheet/Firebase) - Reduced waiting time & optimized flow",
-                            "Operation: Established reservation management, data integrity verification, and Python-based automated labeling for scanned documents"
+                            "Field System & Layout: Built 'Real-time Operation System' (AppSheet) and directed physical exam site layout/flow setup",
+                            "Operation & Staff Management (200+/yr): Managed support staff hiring/training, conducted on-site system education, and handled data/Python file automation"
                         ]
                     },
                     {
