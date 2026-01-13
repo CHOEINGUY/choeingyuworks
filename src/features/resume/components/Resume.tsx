@@ -15,7 +15,7 @@ const RESUME_DATA = {
         name: "최인규",
         role: "Business Solution Engineer",
         location: "광주광역시 광산구",
-        about: "현장의 비효율을 참지 못하는, 실용주의 엔지니어입니다.\n복잡한 기술 과시보다는 '사용자가 편한가?', '업무가 빨라졌는가?'를 최우선으로 고민합니다. 전남대학교 의과대학 연구원 재직 시 3개월이 소요되던 업무를 자동화하여 1개월로 단축시켰고, 최근에는 1인 개발로 파티 운영의 전 과정을 자동화한 시스템을 구축했습니다.\n\n[업무 스타일: 현장 중심의 빠른 구현]\n새로운 언어 문법을 익히느라 시간을 쏟기보다, 이미 검증된 도구와 AI를 활용해 '지금 당장 작동하는 결과물'을 만드는 데 집중합니다. 개발 그 자체보다는 비즈니스 로직의 빈틈을 메우고, 사용자가 겪을 시행착오를 줄이는 시스템 설계에 핵심 역량을 투입합니다.",
+        about: "**\"현장의 불편함을 그냥 지나치지 못합니다.\"** 저는 어려운 기술을 뽐내기보다 '동료가 편해졌는지', '퇴근 시간이 빨라졌는지'를 먼저 생각하는 엔지니어입니다. 전남대 의대 연구원 시절, 3개월 걸리던 업무를 자동화해 1개월로 줄였을 때의 그 쾌감이 제 원동력입니다. 최근에는 파티 운영의 전 과정을 혼자서 자동화하며 시스템이 주는 실질적인 편리함을 다시 한번 확인했습니다.\n\n**\"빠르게 만들고, 꼼꼼하게 검증합니다.\"** 문법을 하나하나 외우느라 시간을 쓰는 대신, AI 같은 최신 도구를 영리하게 활용해 남들보다 3배 빠르게 결과물을 만듭니다. 그렇게 아낀 시간은 '이 시스템이 현장에서 오류 없이 잘 돌아가는지', '사용자가 쓰는 데 불편함은 없는지'를 한 번 더 체크하는 데 씁니다. 입사 후에도 대호이엔지의 업무 현장을 누구보다 빠르게 편하게 바꾸겠습니다.",
         education: [
             {
                 school: "한국방송통신대학교",
@@ -76,56 +76,69 @@ const RESUME_DATA = {
                 name: "3가지 사업 모델(파티/소개팅/1:1) 통합 이벤트 관리 솔루션",
                 period: "2026. 01",
                 description: [
-                    "문제 해결: 단일 아이템만 지원하던 기존 솔루션을 개선하여, 3가지 비즈니스(파티, 단체 미팅, 1:1)를 하나의 시스템에서 통합 운영",
-                    "신청서 시스템 설계: 3가지 사업 모델을 모두 수용할 수 있도록 유연한 신청서 관리 구조 도입(JSON 엔진 활용)",
-                    "운영 업무 자동화: 입금 확인부터 안내 문자 발송까지, 휴먼 에러를 제거하는 자동화 프로세스 구축",
-                    "현장 동선 최적화: 현장 병목을 제거하는 QR 체크인 및 웹앱 자동 연동 프로세스 설계",
-                    "보안 및 권한 설계: 운영자가 실수로 데이터를 망가뜨리지 않도록 사용자별 권한 관리(Master/Staff) 및 안전장치 마련",
-                    "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
+                    "문제 상황: 사업 모델별로 다른 신청 양식과 운영 로직을 개별 구축해야 하는 개발 비효율 발생",
+                    "해결 방안: JSON 엔진 기반의 동적 신청서 구조를 설계하여 코드 수정 없이 신규 사업 모델 즉시 대응",
+                    "의사결정: 서비스 확장 속도를 위해 정적 최적화보다는 관리자 편의성 및 데이터 가변성에 집중하여 개발 및 운영 공수 절감",
+                    "성 과: 입금 확인부터 알림톡 발송까지 전 과정 자동화로 1인 운영 체제 확립 및 휴먼 에러 최소화",
+                    "사용 기술: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
             },
             {
-                name: "집단발생 및 역학조사 통합 분석 솔루션 Easy-Epidemiology",
+                name: "역학조사 통합 분석 솔루션 (Easy-Epidemiology)",
                 period: "2024. 11 - 2025. 07",
                 description: [
-                    "개요: 광주·전남 지역 보건소 담당자를 위한 웹 기반 감염병 대응 및 보고서 자동화 시스템",
-                    "주요 기능: 감염원 추정을 위한 환자-대조군 연구(OR 계산) 및 유행곡선(Epidemic Curve) 자동 생성, 보고서 양식(한글/PDF) 제안",
-                    "기술 스택: Vue.js, React, Tailwind CSS, 통계 분석 로직",
-                    "성과: 수작업으로 수 시간이 소요되던 역학 분석 및 보고서 작성을 데이터 입력 즉시 완료되도록 개선"
+                    "문제 상황: 보건소 담당자가 환자 대조군 분석 및 유행곡선 생성을 수작업으로 진행하여 발생하는 시간 병목",
+                    "해결 방안: 데이터 입력 즉시 통계 로직이 작동하여 분석 결과와 보고서 양식(한글/PDF)을 자동 생성하는 시스템 구축",
+                    "의사결정: 외부 SW 의존도를 낮추기 위해 브라우저 기반 경량 통계 알고리즘을 직접 구현하여 현장 호환성 확보",
+                    "성 과: 수 시간이 소요되던 분석 및 보고서 작성을 데이터 입력 즉시 완료되도록 개선",
+                    "사용 기술: Vue.js, React, Tailwind CSS, 통계 분석 로직(Custom)"
                 ]
             },
             {
-                name: "제조업(루나테크) ERP 및 업무 자동화 시스템",
+                name: "제조업(루나테크) 경량 ERP 시스템",
                 period: "2024. 10",
                 description: [
-                    "문제 해결: 전문적인 ERP 도입은 비용 부담이 컸던 현장 상황을 고려하여, 익숙한 Google Sheets를 DB로 쓰되 AppSheet를 인터페이스로 활용",
-                    "현실적 타협: 데이터 처리 속도의 한계는 존재하나, AppSheet-Google Apps Script 연동 최적화로 타협하여 0원의 비용으로 사무 행정 시간 70% 단축이라는 실리를 챙김",
-                    "Key Tech: AppSheet, Google Apps Script, 국세청 홈택스 API 연동"
+                    "문제 상황: 고가 ERP 도입이 어려운 환경에서 발생하는 견적-발주 업무의 수기 입력 및 중복 행정",
+                    "해결 방안: 현장에 익숙한 Google Sheets를 DB로 활용하고, AppSheet 기반 모바일 입력 및 국세청 API 연동",
+                    "의사결정: 고성능 서버 구축 대신 비용 0원의 실용적 전산화를 목표로 설정하여 즉각적인 현장 도입 유도",
+                    "성 과: 모바일 견적 산출 및 세금계산서 원클릭 발행으로 반복적인 수기 입력 업무 제거",
+                    "사용 기술: AppSheet, Google Apps Script, 국세청 홈택스 API"
                 ]
             },
             {
-                name: "실시간 코호트 검진 현장 대시보드 및 운영 관리 시스템",
+                name: "실시간 코호트 검진 현장 관제 시스템",
                 period: "2024. 01 - 2025. 12",
                 description: [
-                    "개요: 한정된 시간 내 다수 검사가 이루어지는 코호트 검진 현장의 병목 현상을 해결하기 위한 실시간 통합 관제 시스템",
-                    "핵심 기능: AppSheet와 Firebase 연동을 통한 실시간 현황 현장 중계, Google TTS 기반 음성 호명 및 지능형 순서 배정 자동화",
-                    "기술적 의사결정: 초기에는 관리 편의성을 위해 Google Sheets만 썼으나, 대기 현황 업데이트가 5초 이상 지연되는 병목 발생. 현장 반응 속도를 위해 데이터 싱크 복잡도를 감수하고 Firebase Realtime DB를 도입하여 지연 시간을 1초 미만으로 단축.",
-                    "철학: 기술적 완성도를 넘어 사용자의 행동 패턴을 고려한 운영 프로세스 정립 및 사용자 교육을 통한 현장 문제 해결"
+                    "문제 상황: 대규모 검진 현장의 병목 현상 및 대기 시간 관리 부재로 인한 혼선 발생",
+                    "해결 방안: AppSheet-Firebase 실시간 연동 및 Google TTS 기반 자동 음성 호명 시스템 구축",
+                    "의사결정: Google Sheets의 5초 지연 문제를 해결하기 위해 Firebase Realtime DB를 도입, 반응 속도를 1초 미만으로 개선",
+                    "성 과: 실시간 순서 배정 자동화로 검진 대상자 동선 최적화 및 현장 혼선 제거",
+                    "사용 기술: AppSheet, Firebase Realtime DB, Google TTS API"
                 ]
             }
         ],
+        closing: "화려한 기술보다는, 끝까지 문제를 물고 늘어져 기어코 해결해내는 '끈기'와 '패기'를 약속드립니다. 현장의 문제를 내 일처럼 고민하고, 당장 작동하는 결과로 증명하는 엔지니어가 되겠습니다.",
         skills: [
             { 
                 category: "웹 서비스 구축 및 운영", 
-                items: "React, TypeScript, Tailwind CSS: 컴포넌트 기반의 UI 설계 및 사용자 중심의 반응형 웹 구현\nFirebase, Supabase: 실시간 데이터 동기화, 사용자 인증, 서버리스 환경의 백엔드 구축" 
+                items: [
+                    "React, TypeScript, Tailwind CSS: 사용자 중심의 반응형 웹 UI 설계 및 컴포넌트 기반 개발",
+                    "Firebase, Supabase: 실시간 DB 동기화 및 서버리스 백엔드 인프라 구축·운영"
+                ]
             },
             { 
                 category: "현장 업무 자동화 (BPA)", 
-                items: "AppSheet, Google Apps Script: 요구사항에 맞춘 커스텀 앱 개발 및 반복 업무 워크플로우 자동화\nPython, R (GIS): 대량의 데이터 전처리, 통계 분석 자동화 및 공간 정보 시각화" 
+                items: [
+                    "AppSheet, Google Apps Script: 실무 요구사항에 맞춘 커스텀 앱 제작 및 반복 업무 자동화",
+                    "Python, R (GIS): 대량의 데이터 전처리, 통계 분석 및 공간 정보 시각화 자동화"
+                ]
             },
             { 
                 category: "외부 시스템 연동 및 효율화", 
-                items: "API 연동: 국세청(홈택스), 금융 API, 알림톡 등 외부 서비스 통합 및 비즈니스 로직 연결\nAI 협업 프로그래밍: LLM을 활용한 코드 최적화 및 테스트 자동화로 1인 개발 생산성 극대화" 
+                items: [
+                    "API 연동: 국세청(홈택스), 금융 API, 알림톡 등 외부 서비스 통합 및 비즈니스 로직 연결",
+                    "AI 협업 프로그래밍: LLM(대형언어모델)을 활용한 코드 최적화로 1인 개발 생산성 극대화"
+                ]
             }
         ]
     },
@@ -194,11 +207,10 @@ const RESUME_DATA = {
                 name: "All-in-One Event SaaS Platform (Party/Speed Dating/1:1)",
                 period: "Jan 2026",
                 description: [
-                    "Problem Solving: Resolved single-item solution limitations by integrating 3 business models (Party, Group Meeting, 1:1) into one system",
-                    "Form Engine Architecture: Adopted flexible form structure (JSON Engine) to handle 3 distinct business models",
-                    "Operation Automation: Established automated workflow from deposit verification to SMS notification, eliminating human error",
-                    "Field Flow Optimization: QR check-in & web app auto-sync design to remove field bottlenecks",
-                    "Security & Permission: Implemented user permission management (Master/Staff) to prevent accidental data modification by operators",
+                    "Problem: Inefficiency of building separate application forms and logic for each business model",
+                    "Solution: Designed a dynamic form structure based on a JSON Engine to respond immediately to new business models without code changes",
+                    "Decision: Prioritized administrator convenience and data flexibility over static optimization for rapid service expansion",
+                    "Result: Established a one-person operation system by automating the entire process from deposit verification to notification sending",
                     "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
             },
@@ -206,44 +218,58 @@ const RESUME_DATA = {
                 name: "Easy-Epidemiology Integration Solution",
                 period: "Nov 2024 - Jul 2025",
                 description: [
-                    "Overview: Web-based infection response & automated reporting system for local health departments",
-                    "Key Features: Automated Case-Control studies (OR calculation), Epidemic Curve generation, Report format mirroring",
-                    "Tech Stack: Vue.js, React, Tailwind CSS, Statistical Logic",
-                    "Impact: Improved workflow from hours of manual work to instant completion upon data entry"
+                    "Problem: Time bottlenecks caused by manual Case-Control analysis and Epidemic Curve generation by health officials",
+                    "Solution: Built a system where statistical logic runs immediately upon data entry, auto-generating results and reports (HWP/PDF)",
+                    "Decision: Implemented browser-based lightweight specific statistical algorithms to reduce dependence on external software",
+                    "Result: Improved workflow from hours of manual work to instant completion upon data entry",
+                    "Tech Stack: Vue.js, React, Tailwind CSS, Statistical Logic (Custom)"
                 ]
             },
             {
                 name: "Manufacturing (Lunatech) ERP & Automation System",
                 period: "Oct 2024",
                 description: [
-                    "Problem Solving: Addressed cost burden of professional ERPs by using Google Sheets as DB and AppSheet as Interface",
-                    "Pragmatic Trade-off: Accepted speed limitations but secured 70% admin time reduction at $0 cost via AppSheet-GAS optimization",
-                    "Key Tech: AppSheet, Google Apps Script, National Tax Service API"
+                    "Problem: Manual entry and duplicate administration in quotation/ordering due to high cost of professional ERPs",
+                    "Solution: Used Google Sheets as DB familiar to the field, and AppSheet for mobile entry & Tax API integration",
+                    "Decision: Aimed for practical digitization at $0 cost instead of high-performance server construction",
+                    "Result: Eliminated repetitive manual data entry via mobile quotation and one-click tax invoice issuance",
+                    "Tech Stack: AppSheet, Google Apps Script, National Tax Service API"
                 ]
             },
             {
                 name: "Real-time Cohort Dashboard & Operation System",
                 period: "Jan 2024 - Dec 2025",
                 description: [
-                    "Overview: Real-time control system to resolve bottlenecks in time-critical cohort exam sites",
-                    "Key Features: Real-time field relay via AppSheet-Firebase, Google TTS auto-calling, Intelligent queue assignment",
-                    "Technical Decision: Initially used Google Sheets but hit 5s+ latency bottlenecks. Migrated to Firebase Realtime DB despite complexity to achieve sub-1s latency for field responsiveness.",
-                    "Philosophy: Solved field problems via process design based on user behavior patterns beyond just code"
+                    "Problem: Confusion due to bottlenecks and lack of wait time management at large-scale exam sites",
+                    "Solution: Built AppSheet-Firebase real-time sync & Google TTS-based auto-calling system",
+                    "Decision: Adopted Firebase Realtime DB to solve Google Sheets' 5s+ latency, improving response time to under 1s",
+                    "Result: Optimized examinee flow and eliminated field confusion via automated real-time queue assignment",
+                    "Tech Stack: AppSheet, Firebase Realtime DB, Google TTS API"
                 ]
             }
         ],
+        closing: "I promise the 'persistence' and 'spirit' to solve problems until the end, rather than just flashy technology. I will become an engineer who worries about field problems as my own and proves them with results that work right now.",
         skills: [
             { 
                 category: "Web Development & Architecture", 
-                items: "React, TypeScript, Tailwind CSS: Component-based UI design & Responsive Web Implementation\nFirebase, Supabase: Real-time Data Sync, Auth, Serverless Backend Operation" 
+                items: [
+                    "React, TypeScript, Tailwind CSS: Component-based UI design & Responsive Web Implementation",
+                    "Firebase, Supabase: Real-time Data Sync, Auth, Serverless Backend Operation"
+                ]
             },
             { 
                 category: "Business Process Automation (BPA)", 
-                items: "AppSheet, Google Apps Script: Custom App Development & Workflow Automation based on requirements\nPython, R (GIS): Bulk Data Preprocessing, Automated Statistical Analysis & Spatial Visualization" 
+                items: [
+                    "AppSheet, Google Apps Script: Custom App Development & Workflow Automation based on requirements",
+                    "Python, R (GIS): Bulk Data Preprocessing, Automated Statistical Analysis & Spatial Visualization"
+                ]
             },
             { 
                 category: "Integration & Ecosystem", 
-                items: "API Integration: Integrating external services (Tax, Banking, Notification Talk) & connecting business logic\nAI-Assisted Engineering: Code optimization, Test automation & Rapid Prototyping using LLMs" 
+                items: [
+                    "API Integration: Integrating external services (Tax, Banking, Notification Talk) & connecting business logic",
+                    "AI-Assisted Engineering: Code optimization, Test automation & Rapid Prototyping using LLMs"
+                ]
             }
         ]
     }
@@ -329,9 +355,19 @@ export function Resume() {
                     {/* About Section */}
                     <section className="space-y-3">
                         <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('about')}</h2>
-                        <p className="text-gray-700 leading-relaxed text-sm md:text-base whitespace-pre-line">
-                            {currentData.about}
-                        </p>
+                        <div className="text-gray-700 leading-relaxed text-sm md:text-base space-y-4">
+                            {currentData.about.split('\n\n').map((paragraph: string, index: number) => (
+                                <p key={index}>
+                                    {paragraph.split(/(\*\*.*?\*\*)/).map((part, i) => 
+                                        part.startsWith('**') && part.endsWith('**') ? (
+                                            <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>
+                                        ) : (
+                                            part
+                                        )
+                                    )}
+                                </p>
+                            ))}
+                        </div>
                     </section>
 
 
@@ -370,7 +406,7 @@ export function Resume() {
 
                                     {/* Main Description */}
                                     {exp.description && exp.description.length > 0 && (
-                                        <ul className="space-y-2 list-disc list-outside ml-4 text-sm md:text-base text-gray-600 leading-relaxed marker:text-gray-500 mt-4 mb-6">
+                                        <ul className="space-y-2 list-disc list-outside ml-4 text-sm md:text-base text-gray-600 leading-relaxed marker:text-gray-500 mt-4 mb-6 break-keep">
                                             {exp.description.map((item: string, i: number) => (
                                                 <li key={i} className="pl-1">{item}</li>
                                             ))}
@@ -386,7 +422,7 @@ export function Resume() {
                                                         <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
                                                         {project.title}
                                                     </h4>
-                                                    <ul className="space-y-1.5 list-none ml-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                                                    <ul className="space-y-1.5 list-none ml-2 text-sm md:text-base text-gray-600 leading-relaxed break-keep">
                                                         {project.details.map((detail: string, dIndex: number) => (
                                                             <li key={dIndex} className="relative pl-4 before:content-['-'] before:absolute before:left-0 before:text-gray-400">
                                                                 {detail}
@@ -414,10 +450,24 @@ export function Resume() {
                                         <h3 className="text-lg md:text-xl font-bold text-gray-900">{project.name}</h3>
                                         <span className="text-xs md:text-sm text-gray-500 md:text-gray-400 font-mono whitespace-nowrap">{project.period}</span>
                                     </div>
-                                    <ul className="space-y-2 list-disc list-outside ml-4 text-sm md:text-base text-gray-600 leading-relaxed marker:text-gray-500 mt-2">
-                                        {project.description.map((item: string, i: number) => (
-                                            <li key={i} className="pl-1">{item}</li>
-                                        ))}
+                                    <ul className="space-y-2 list-disc list-outside ml-4 text-sm md:text-base text-gray-600 leading-relaxed marker:text-gray-500 mt-2 break-keep">
+                                        {project.description.map((item: string, i: number) => {
+                                            const parts = item.split(": ");
+                                            const title = parts[0];
+                                            const content = parts.slice(1).join(": ");
+                                            
+                                            return (
+                                                <li key={i} className="pl-1">
+                                                    {content ? (
+                                                        <>
+                                                            <span className="font-bold text-gray-900">{title}:</span> {content}
+                                                        </>
+                                                    ) : (
+                                                        item
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 </div>
                             ))}
@@ -432,13 +482,28 @@ export function Resume() {
                             {currentData.skills.map((skill: any, index: number) => (
                                 <div key={index} className="flex flex-col md:flex-row md:items-start gap-1 md:gap-4">
                                     <div className="font-bold text-gray-900 text-sm md:text-base md:w-32 md:shrink-0 break-keep">{skill.category}</div>
-                                    <div className="text-sm md:text-base text-gray-700 leading-relaxed">
-                                        {skill.items}
+                                    <div className="text-sm md:text-base text-gray-700 leading-relaxed w-full">
+                                        <ul className="list-disc list-outside ml-4 space-y-1 marker:text-gray-400 break-keep">
+                                            {skill.items.map((item: string, i: number) => (
+                                                <li key={i} className="pl-1">
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </section>
+                    
+                    {/* Closing Section */}
+                    {currentData.closing && (
+                         <section className="mt-12 mb-8 p-6 bg-gray-50 rounded-lg border border-gray-100">
+                            <p className="text-center text-gray-700 font-medium text-lg md:text-xl break-keep leading-relaxed whitespace-pre-line">
+                                "{currentData.closing}"
+                            </p>
+                         </section>
+                    )}
 
                     {/* Contact Section */}
                     <section className="space-y-3">
