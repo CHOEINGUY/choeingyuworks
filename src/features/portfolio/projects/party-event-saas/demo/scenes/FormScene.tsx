@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Check, Camera, Copy } from 'lucide-react';
 import { LindyLogo } from '../components/LindyLogo';
@@ -20,9 +20,9 @@ export const FormScene = ({ onComplete }: { onComplete: () => void }) => {
     const mounted = useRef(true);
     useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
     const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
-    const click = async () => { if (!mounted.current) return; setIsClicking(true); await wait(180); if (mounted.current) setIsClicking(false); };
-    const typeName = async (text: string) => { for (let i = 1; i <= text.length; i++) { if (!mounted.current) return; setName(text.slice(0, i)); await wait(70); } };
-    const typePhone = async (text: string) => { for (let i = 1; i <= text.length; i++) { if (!mounted.current) return; setPhone(text.slice(0, i)); await wait(50); } };
+    const click = useCallback(async () => { if (!mounted.current) return; setIsClicking(true); await wait(180); if (mounted.current) setIsClicking(false); }, []);
+    const typeName = useCallback(async (text: string) => { for (let i = 1; i <= text.length; i++) { if (!mounted.current) return; setName(text.slice(0, i)); await wait(70); } }, []);
+    const typePhone = useCallback(async (text: string) => { for (let i = 1; i <= text.length; i++) { if (!mounted.current) return; setPhone(text.slice(0, i)); await wait(50); } }, []);
 
     useEffect(() => {
         let active = true;
@@ -37,7 +37,7 @@ export const FormScene = ({ onComplete }: { onComplete: () => void }) => {
         };
         sequence();
         return () => { active = false; };
-    }, [step]);
+    }, [step, onComplete, click, typeName, typePhone]);
 
     const getStepIndex = () => {
         switch (step) {

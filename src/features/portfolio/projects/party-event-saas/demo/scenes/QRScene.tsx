@@ -81,7 +81,7 @@ export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
         timers.push(setTimeout(() => { onComplete(); }, 10800));
 
         return () => timers.forEach(t => clearTimeout(t));
-    }, []);
+    }, [onComplete]);
 
     // Helper for Y transform
     const getSheetY = () => {

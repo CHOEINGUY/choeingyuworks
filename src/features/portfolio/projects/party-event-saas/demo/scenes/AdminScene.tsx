@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, Send } from 'lucide-react';
 import { LindyLogo } from '../components/LindyLogo';
@@ -17,7 +17,7 @@ export const AdminScene = ({ onComplete }: { onComplete: () => void }) => {
     useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
 
     const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
-    const click = async () => { if (!mounted.current) return; setIsClicking(true); await wait(100); if (mounted.current) setIsClicking(false); };
+    const click = useCallback(async () => { if (!mounted.current) return; setIsClicking(true); await wait(100); if (mounted.current) setIsClicking(false); }, []);
 
     useEffect(() => {
         let active = true;
@@ -38,7 +38,7 @@ export const AdminScene = ({ onComplete }: { onComplete: () => void }) => {
         };
         scenario();
         return () => { active = false; };
-    }, []);
+    }, [onComplete, click]);
 
     return (
         <div className="h-full w-full bg-gray-50 flex flex-col font-sans admin-scene-container relative">

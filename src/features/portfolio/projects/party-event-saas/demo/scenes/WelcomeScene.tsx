@@ -8,7 +8,7 @@ export const WelcomeScene = ({ onComplete }: { onComplete: () => void }) => {
     useEffect(() => {
         const t = setTimeout(onComplete, 2500);
         return () => clearTimeout(t);
-    }, []);
+    }, [onComplete]);
 
     return (
         <div className="h-full w-full bg-black text-white font-sans relative flex flex-col items-center justify-center text-center p-6">
