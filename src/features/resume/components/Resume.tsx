@@ -2,8 +2,7 @@
 
 import { Link, useRouter, usePathname } from "@/navigation";
 import { useRef, useState } from "react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import { Link as ScrollLink } from "react-scroll";
 
 import { useTranslations, useLocale } from "next-intl";
 import { Mail, Github, Linkedin, MapPin, Globe, Infinity as InfinityIcon, Printer, Phone, Download } from "lucide-react";
@@ -46,7 +45,8 @@ const RESUME_DATA = {
                             "사업 관리(PM): 연간 사업계획 수립 지원 및 예산 집행 관리, 조사원 56명 채용/교육/인력 운영 전담",
                             "업무 효율화: 현장 '예비가구 추가' 절차 병목 해결을 위한 [Chrome Extension 및 Android 웹앱(Android Studio)](https://sites.google.com/view/jnupreventautomation/%ED%99%88) 자체 개발, 전국 200여 담당자에 배포",
                             "데이터 자동화: SAS 데이터 추출 이후, [Python/VBA(분석·시각화) → Python(HWPX 누름틀 삽입)]으로 이어지는 지역사회건강통계집 작성 전 과정을 자동화 (3개월→1개월 단축) 및 전국 단위 업무 보조 도구(Excel Macro) 배포",
-                            "프로세스 시스템화: 1년 단위 계약직 교체로 인한 업무 단절 문제를 해결하기 위해, 연간 업무 타임라인 및 단계별 실행 매뉴얼(Protocol)을 구글 시트로 시스템화하여 업무 연속성 확보"
+                            "프로세스 시스템화: 1년 단위 계약직 교체로 인한 업무 단절 문제를 해결하기 위해, 연간 업무 타임라인 및 단계별 실행 매뉴얼(Protocol)을 구글 시트로 시스템화하여 업무 연속성 확보",
+                            "조사 품질 관리(QC): 조사 시간, 이상치 점검 등 실시간 데이터 모니터링 및 조사원 피드백을 통한 결과보고서 작성 및 데이터 정합성 총괄"
                         ]
                     },
                     {
@@ -60,7 +60,8 @@ const RESUME_DATA = {
                         title: "해남군 소지역 건강조사",
                         details: [
                             "DX(디지털 전환): 기존 수기 설문을 Google Forms 기반 모바일 조사 시스템으로 전면 전환 및 교육",
-                            "GIS 분석: R을 활용한 공간정보(GIS) 시각화 및 사업계획서 기술 지원"
+                            "GIS 분석: R을 활용한 공간정보(GIS) 시각화 및 사업계획서 기술 지원",
+                            "조사 품질 관리: 실시간 데이터 모니터링 및 조사원 피드백(1:1 코칭)을 통한 조사 정확도 유지 관리"
                         ]
                     },
 
@@ -187,7 +188,8 @@ const RESUME_DATA = {
                             "PM: Annual plan support, budget management, hiring/training/managing 56 surveyors",
                             "Workflow Efficiency: Developed [Chrome Extension and Android WebApp (Android Studio)](https://sites.google.com/view/jnupreventautomation/%ED%99%88) to solve field bottlenecks, deployed to 200+ users nationwide",
                             "Automation: Built a full pipeline (Python/VBA → HWPX) using SAS-extracted data to auto-generate charts and fill Community Health Statistics Yearbook templates, reducing workload from 3 months to 1 month; Deployed nationwide Excel Macro automation tools",
-                            "Process Systemization: Built a comprehensive annual timeline and protocol manual on Google Sheets to prevent knowledge loss from staff turnover, ensuring operational continuity"
+                            "Process Systemization: Built a comprehensive annual timeline and protocol manual on Google Sheets to prevent knowledge loss from staff turnover, ensuring operational continuity",
+                            "Quality Management: Managed survey quality indicators (duration, outliers), monitored real-time data, and authored final result reports"
                         ]
                     },
                     {
@@ -201,7 +203,8 @@ const RESUME_DATA = {
                         title: "Haenam Small Area Health Survey",
                         details: [
                             "DX: Converted manual paper surveys to Google Forms mobile system & provided training",
-                            "GIS Analysis: Spatial visualization using R & technical support for business proposals"
+                            "GIS Analysis: Spatial visualization using R & technical support for business proposals",
+                            "Quality Control: Real-time monitoring of survey data & interviewer feedback for data consistency"
                         ]
                     },
                     {
@@ -307,46 +310,8 @@ export function Resume() {
     const currentData = RESUME_DATA[locale as 'ko' | 'en'] || RESUME_DATA.en;
     const commonData = RESUME_DATA.common;
     const resumeRef = useRef<HTMLDivElement>(null);
-    const [isDownloading, setIsDownloading] = useState(false);
-
-    const handleDownloadPdf = async () => {
-        if (!resumeRef.current) return;
-        setIsDownloading(true);
-
-        try {
-            const canvas = await html2canvas(resumeRef.current, {
-                scale: 2, // Higher scale for better quality
-                useCORS: true,
-                logging: false,
-                backgroundColor: '#ffffff'
-            });
-
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
-            const imgWidth = pdfWidth;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-            let heightLeft = imgHeight;
-            let position = 0;
-
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pdfHeight;
-
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pdfHeight;
-            }
-
-            pdf.save(`Resume_Ingyu_Choi_${locale}.pdf`);
-        } catch (error) {
-            console.error("PDF generation failed:", error);
-        } finally {
-            setIsDownloading(false);
-        }
+    const handlePrint = () => {
+        window.print();
     };
 
     const toggleLanguage = () => {
@@ -357,7 +322,7 @@ export function Resume() {
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-gray-100">
             {/* Custom Resume Header */}
-            <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+            <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 print:hidden">
                 <div className="w-full px-6 h-16 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 group">
                         <div className="flex items-center gap-2">
@@ -379,10 +344,9 @@ export function Resume() {
                             <span>{locale === 'ko' ? 'EN' : 'KO'}</span>
                         </button>
                         <button
-                            onClick={handleDownloadPdf}
-                            disabled={isDownloading}
-                            className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors disabled:opacity-50"
-                            title="Download PDF"
+                            onClick={handlePrint}
+                            className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors"
+                            title="Save as PDF"
                         >
                             <Download className="w-5 h-5" />
                         </button>
@@ -390,8 +354,8 @@ export function Resume() {
                 </div>
             </div>
 
-            <div className="pt-10 pb-20 px-8 md:px-12">
-                <div ref={resumeRef} className="max-w-3xl mx-auto space-y-12 bg-white p-4 md:p-8">
+            <div className="pt-10 pb-20 px-8 md:px-12 print:p-0 print:pt-4">
+                <div ref={resumeRef} className="max-w-3xl mx-auto space-y-12 bg-white p-4 md:p-8 print:p-0 print:max-w-none print:space-y-8">
 
                     {/* Personal Info Header Section */}
                     <header className="flex flex-row items-start gap-4 md:gap-8">
