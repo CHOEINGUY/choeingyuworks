@@ -28,7 +28,8 @@
         "subtitle": "We build <b>Lindy logic</b> that survives in the field rather than flashy features. Beyond simple construction, we <strong>drastically reduce unnecessary fixed costs and time</strong> to return <strong>overwhelming results</strong> worthy of more than the development cost.",
         "buttons": {
             "requestService": "Request Service",
-            "contactMe": "Contact Me"
+            "contactMe": "Contact Me",
+            "viewResume": "View Resume"
         },
         "dock": {
             "write": "Write",

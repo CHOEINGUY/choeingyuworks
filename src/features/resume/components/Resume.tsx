@@ -78,7 +78,7 @@ const RESUME_DATA = {
                 description: [
                     "문제 상황: 사업 모델별로 다른 신청 양식과 운영 로직을 개별 구축해야 하는 개발 비효율 발생",
                     "해결 방안: JSON 엔진 기반의 동적 신청서 구조를 설계하여 코드 수정 없이 신규 사업 모델 즉시 대응",
-                    "의사결정: 서비스 확장 속도를 위해 정적 최적화보다는 관리자 편의성 및 데이터 가변성에 집중하여 개발 및 운영 공수 절감",
+                    "의사결정: 서비스 확장 시마다 개발자가 투입되는 병목을 해결하기 위해, 개별 페이지 개발 대신 JSON 스키마 기반의 실시간 렌더링 엔진을 구축하여 기획자의 자율성을 높이고 운영 생산성을 극대화함.",
                     "성 과: 입금 확인부터 알림톡 발송까지 전 과정 자동화로 1인 운영 체제 확립 및 휴먼 에러 최소화",
                     "사용 기술: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
@@ -209,7 +209,7 @@ const RESUME_DATA = {
                 description: [
                     "Problem: Inefficiency of building separate application forms and logic for each business model",
                     "Solution: Designed a dynamic form structure based on a JSON Engine to respond immediately to new business models without code changes",
-                    "Decision: Prioritized administrator convenience and data flexibility over static optimization for rapid service expansion",
+                    "Decision: Built a JSON schema-based real-time rendering engine instead of developing individual pages to resolve developer bottlenecks during service expansion, maximizing planner autonomy and operational productivity",
                     "Result: Established a one-person operation system by automating the entire process from deposit verification to notification sending",
                     "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]

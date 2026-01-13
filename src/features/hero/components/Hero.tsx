@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Rocket, Mail, Check, Copy, ArrowUpRight } from "lucide-react";
+import { Rocket, Mail, Check, Copy, ArrowUpRight, FileText } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
@@ -71,84 +71,105 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-2 md:mt-0"
                 >
-                    {/* Light Gray Pill Button */}
-                    {/* Light Gray Pill Button */}
+                    {/* Left Button (White/Light Gray Pill) */}
                     {CURRENT_BRAND.hero.showRequestButton && (
-                    <Link href="/request">
-                        <Button
-                            size="lg"
-                            className="w-full sm:w-auto min-w-[150px] rounded-full bg-white text-gray-900 hover:bg-gray-50 border border-gray-200 px-8 h-12 text-base font-semibold shadow-sm hover:border-gray-300 transition-colors"
-                        >
-                            <Rocket className="w-4 h-4 mr-2" />
-                            {t("buttons.requestService")}
-                        </Button>
-                    </Link>
+                        <div className="w-full sm:w-auto">
+                            <Link href="/request">
+                                <Button
+                                    size="lg"
+                                    className="w-full sm:w-auto min-w-[150px] rounded-full bg-white text-gray-900 hover:bg-gray-50 border border-gray-200 px-8 h-12 text-base font-semibold shadow-sm hover:border-gray-300 transition-colors"
+                                >
+                                    <Rocket className="w-4 h-4 mr-2" />
+                                    {t("buttons.requestService")}
+                                </Button>
+                            </Link>
+                        </div>
                     )}
 
-                    {/* Dynamic Bar Contact Button */}
-                    <motion.div
-                        layout
-                        initial={false}
-                        animate={{
-                            width: isExpanded ? "auto" : "150px",
-                            backgroundColor: "#000000"
-                        }}
-                        whileHover={{ backgroundColor: "#333333" }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        style={{ originX: 1 }}
-                        className="w-full sm:w-auto h-12 rounded-full flex items-center justify-center overflow-hidden cursor-pointer relative shadow-lg hover:shadow-xl"
-                    >
-                        <AnimatePresence>
-                            {!isExpanded ? (
-                                <motion.button
-                                    layout
-                                    key="collapsed"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                                    onClick={() => setIsExpanded(true)}
-                                    className="flex items-center justify-center w-full h-full text-white font-bold px-6 whitespace-nowrap absolute inset-0 cursor-pointer"
-                                >
-                                    <Mail className="w-4 h-4 mr-2 shrink-0" />
-                                    {t("buttons.contactMe")}
-                                </motion.button>
-                            ) : (
-                                <motion.div
-                                    layout
-                                    key="expanded"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                                    className="flex items-center px-4 md:px-6 w-full h-full gap-3 text-white min-w-max"
-                                >
-                                    {/* Email Copy Section */}
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleCopyEmail();
-                                        }}
-                                        className="flex items-center gap-2 hover:text-gray-300 transition-colors"
+                    {/* Right Button (Black dynamic area) */}
+                    <div className="w-full sm:w-auto flex flex-col items-center">
+                        <motion.div
+                            layout
+                            initial={false}
+                            animate={{
+                                width: isExpanded ? "auto" : "150px",
+                                backgroundColor: "#000000"
+                            }}
+                            whileHover={{ backgroundColor: "#333333" }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            style={{ originX: 1 }}
+                            className="w-full sm:w-auto h-12 rounded-full flex items-center justify-center overflow-hidden cursor-pointer relative shadow-lg hover:shadow-xl"
+                        >
+                            <AnimatePresence mode="wait">
+                                {!isExpanded ? (
+                                    CURRENT_BRAND.mode === 'personal' ? (
+                                        <Link href="/resume" className="w-full h-full">
+                                            <motion.button
+                                                layout
+                                                key="resume-btn"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                                                className="flex items-center justify-center w-full h-full text-white font-bold px-6 whitespace-nowrap absolute inset-0 cursor-pointer"
+                                            >
+                                                <FileText className="w-4 h-4 mr-2 shrink-0" />
+                                                {t("buttons.viewResume")}
+                                            </motion.button>
+                                        </Link>
+                                    ) : (
+                                        <motion.button
+                                            layout
+                                            key="collapsed-contact"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                                            onClick={() => setIsExpanded(true)}
+                                            className="flex items-center justify-center w-full h-full text-white font-bold px-6 whitespace-nowrap absolute inset-0 cursor-pointer"
+                                        >
+                                            <Mail className="w-4 h-4 mr-2 shrink-0" />
+                                            {t("buttons.contactMe")}
+                                        </motion.button>
+                                    )
+                                ) : (
+                                    <motion.div
+                                        layout
+                                        key="expanded-info"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                                        className="flex items-center px-4 md:px-6 w-full h-full gap-3 text-white min-w-max"
                                     >
-                                        {isCopied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
-                                        <span className="font-mono text-sm md:text-base">chldlsrb07@gmail.com</span>
-                                    </button>
-
-                                    {/* Divider */}
-                                    <div className="w-[1px] h-4 bg-gray-600" />
-
-                                    {/* Mailto Link Section */}
-                                    <a
-                                        href="mailto:chldlsrb07@gmail.com"
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="p-1 hover:text-gray-300 transition-colors"
-                                        title="Open Mail App"
-                                    >
-                                        <ArrowUpRight className="w-5 h-5" />
-                                    </a>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </motion.div>
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleCopyEmail();
+                                            }}
+                                            className="flex items-center gap-2 hover:text-gray-300 transition-colors"
+                                        >
+                                            {isCopied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+                                            <span className="font-mono text-sm md:text-base">chldlsrb07@gmail.com</span>
+                                        </button>
+                                        <div className="w-[1px] h-4 bg-gray-600" />
+                                        <a
+                                            href="mailto:chldlsrb07@gmail.com"
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="p-1 hover:text-gray-300 transition-colors"
+                                            title="Open Mail App"
+                                        >
+                                            <ArrowUpRight className="w-5 h-5" />
+                                        </a>
+                                        {/* Close button for expanded state */}
+                                        <button 
+                                            onClick={(e) => { e.stopPropagation(); setIsExpanded(false); }}
+                                            className="ml-2 text-xs text-gray-400 hover:text-white"
+                                        >
+                                            ✕
+                                        </button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+                    </div>
                 </motion.div>
             </div>
 

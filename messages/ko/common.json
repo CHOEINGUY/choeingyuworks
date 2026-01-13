@@ -28,7 +28,8 @@
         "subtitle": "화려한 기능보다 현장에서 살아남는 <b>린디(Lindy)한 로직</b>을 짭니다.\n단순한 구축을 넘어, <strong>불필요한 고정비와 시간을 획기적으로 줄여</strong>\n개발비 그 이상의 <strong>압도적인 성과</strong>를 돌려드립니다.",
         "buttons": {
             "requestService": "서비스 의뢰",
-            "contactMe": "연락하기"
+            "contactMe": "연락하기",
+            "viewResume": "이력서 보기"
         },
         "dock": {
             "write": "Write",
