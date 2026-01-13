@@ -160,7 +160,7 @@ const RESUME_DATA = {
         name: "In-gyu Choi",
         role: "Business Solution Engineer",
         location: "Gwangsan-gu, Gwangju, South Korea",
-        about: "I am a pragmatic engineer who cannot stand field inefficiencies.\nRather than boasting about complex technologies, I prioritize two questions: 'Is it easy for the user?' and 'Has the work become faster?' During my time as a researcher at Chonnam National University Medical School, I reduced a 3-month workload to 1 month through automation. Most recently, I developed a solo-built automated system for entire party operations.\n\n[Work Style: Field-Centric Rapid Implementation]\nInstead of spending time memorizing new syntax, I focus on creating 'working results right now' using proven tools and AI. I concentrate my core competencies on filling gaps in business logic and designing systems that reduce user trial-and-error, rather than development itself.",
+        about: "**\"I cannot overlook inefficiencies in the field.\"**\nRather than showing off complex technologies, I am an engineer who thinks first about 'Are my colleagues comfortable?' and 'Did they go home earlier?' During my time as a researcher at Chonnam National University Medical School, the thrill I felt when I reduced a task that involved 3 months of manual work to just 1 month through automation is my driving force. Recently, I automated the entire process of party operations by myself, confirming once again the practical convenience that systems provide.\n\n**\"I build fast and verify meticulously.\"**\nInstead of spending time memorizing every single syntax, I cleverly utilize the latest tools like AI to produce results 3 times faster than others. I use the time saved to check once more 'Does this system work without errors in the field?' and 'Is there any inconvenience for the user?' I am dedicated to transforming the work field faster and more comfortably than anyone else.",
         education: [
             {
                 school: "Korea National Open University",
@@ -189,7 +189,7 @@ const RESUME_DATA = {
                             "Workflow Efficiency: Developed [Chrome Extension and Android WebApp (Android Studio)](https://sites.google.com/view/jnupreventautomation/%ED%99%88) to solve field bottlenecks, deployed to 200+ users nationwide",
                             "Automation: Built a full pipeline (Python/VBA → HWPX) using SAS-extracted data to auto-generate charts and fill Community Health Statistics Yearbook templates, reducing workload from 3 months to 1 month; Deployed nationwide Excel Macro automation tools",
                             "Process Systemization: Built a comprehensive annual timeline and protocol manual on Google Sheets to prevent knowledge loss from staff turnover, ensuring operational continuity",
-                            "Quality Management: Managed survey quality indicators (duration, outliers), monitored real-time data, and authored final result reports"
+                            "Quality Control (QC): Real-time data monitoring (survey duration, outlier checks) and investigator feedback management to ensure data consistency and final report integrity"
                         ]
                     },
                     {
@@ -204,7 +204,7 @@ const RESUME_DATA = {
                         details: [
                             "DX: Converted manual paper surveys to Google Forms mobile system & provided training",
                             "GIS Analysis: Spatial visualization using R & technical support for business proposals",
-                            "Quality Control: Real-time monitoring of survey data & interviewer feedback for data consistency"
+                            "Quality Control: Real-time monitoring of survey data & interviewer feedback (1:1 coaching) to maintain survey accuracy"
                         ]
                     },
                     {
@@ -338,14 +338,14 @@ export function Resume() {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-gray-100 text-sm font-medium text-gray-600 transition-colors"
+                            className="flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-gray-100 text-sm font-medium text-gray-600 transition-colors print:hidden"
                         >
                             <Globe className="w-4 h-4" />
                             <span>{locale === 'ko' ? 'EN' : 'KO'}</span>
                         </button>
                         <button
                             onClick={handlePrint}
-                            className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors"
+                            className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors print:hidden"
                             title="Save as PDF"
                         >
                             <Download className="w-5 h-5" />

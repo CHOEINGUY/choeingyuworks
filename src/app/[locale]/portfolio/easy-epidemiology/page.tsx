@@ -52,7 +52,7 @@ export default function EasyEpidemiologyPage() {
                                 
                                 <div className="flex items-center gap-4">
                                     <a 
-                                        href="https://easy-epi.io" 
+                                        href="https://easy-epi.xyz/" 
                                         target="_blank" 
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"

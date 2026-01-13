@@ -10,15 +10,7 @@ import { ExamFlowAnimation } from "@/features/portfolio/projects/namwon-cohort/E
 import { EpidemiologyDemo } from "@/features/portfolio/projects/easy-epidemiology/EpidemiologyDemo";
 
 const PROJECTS = [
-    {
-        id: "automation",
-        subtitle: "Architecture Automation",
-        title: "업무 프로세스 혁신",
-        description: "3개월이 걸리던 복잡한 정산 업무를 자동화 로직을 통해 1개월로 단축했습니다. 단순 반복 작업에서 해방되어 팀원들이 본질적인 기획과 전략에 집중할 수 있는 환경을 만들었습니다.",
-        tags: ["Python", "RPA", "System Architecture"],
-        result: <>수작업 대비 <strong>업무 시간을 90% 단축</strong>하고, <strong>휴먼 에러 0%</strong>의 완전 무결성을 검증했습니다.</>,
-        imageColor: "bg-blue-50"
-    },
+
     {
         id: "field",
         subtitle: "Real-time Cohort Management",
@@ -48,17 +40,9 @@ const PROJECTS = [
         result: <>서버 전송 없이 <strong>브라우저 내에서 모든 연산을 처리</strong>하는 아키텍처로 데이터 보안을 강화하고 인프라 비용을 제로화했습니다.</>,
         imageColor: "bg-emerald-50",
         detailLink: "/portfolio/easy-epidemiology",
-        demoUrl: "https://easy-epi.io"
+        demoUrl: "https://easy-epi.xyz/"
     },
-    {
-        id: "analytics",
-        subtitle: "Data Analytics",
-        title: "데이터 분석 및 인사이트",
-        description: "축적된 데이터를 분석하여 숨겨진 비용 누수 구간을 찾아냅니다. 감이 아닌 확실한 숫자에 기반한 경영 전략을 수립할 수 있도록 지원합니다.",
-        tags: ["Data Mining", "Visualization", "Business Intelligence"],
-        result: <>데이터 기반의 의사결정으로 <strong>연간 운영 비용 15%를 절감</strong>하고, <strong>새로운 매출 기회</strong>를 발굴했습니다.</>,
-        imageColor: "bg-orange-50"
-    }
+
 ];
 
 export function PortfolioSection() {

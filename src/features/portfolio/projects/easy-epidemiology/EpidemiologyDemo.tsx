@@ -124,7 +124,7 @@ export function EpidemiologyDemo({ scale = 1, isLandingPage = false, isEmbedded 
              {/* Main Container */}
              {/* Main Container */}
              <div style={{ width: `${scale * 100}%`, height: `${scale * 100}%` }}>
-                <BrowserFrame url="easy-epi.io" className="w-full h-full" hideAddressBar={false} uiScale={scale}>
+                <BrowserFrame url="https://easy-epi.xyz/" className="w-full h-full" hideAddressBar={false} uiScale={scale}>
                     <div className="flex flex-col h-full bg-slate-50">
                         {/* 1. App Header */}
                         <div className="min-h-[30px] bg-white/95 backdrop-blur-sm border-b border-gray-200 flex items-center justify-between px-4 shrink-0 z-20 sticky top-0">

@@ -84,7 +84,7 @@ export function VirtualScrollDemo() {
                                 <div className="h-[32px] bg-[#f9f9fb] flex items-center px-3 gap-2 border-b border-gray-200 shrink-0 relative z-30">
                                     <div className="flex-1 h-6 bg-white border border-gray-200 rounded-full flex items-center px-3 gap-2 text-[10px] text-gray-600 shadow-sm relative">
                                         <Lock size={10} className="text-green-500" />
-                                        <span className="flex-1 truncate text-center text-[10px]">easy-epi.io</span>
+                                        <span className="flex-1 truncate text-center text-[10px]">https://easy-epi.xyz/</span>
                                         <ArrowRight size={10} className="text-gray-400" />
                                     </div>
                                 </div>
