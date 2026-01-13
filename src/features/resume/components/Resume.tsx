@@ -117,7 +117,7 @@ const RESUME_DATA = {
                 ]
             }
         ],
-        closing: "화려한 기술보다는, 끝까지 문제를 물고 늘어져 기어코 해결해내는 '끈기'와 '패기'를 약속드립니다. 현장의 문제를 내 일처럼 고민하고, 당장 작동하는 결과로 증명하는 엔지니어가 되겠습니다.",
+
         skills: [
             { 
                 category: "웹 서비스 구축 및 운영", 
@@ -248,7 +248,7 @@ const RESUME_DATA = {
                 ]
             }
         ],
-        closing: "I promise the 'persistence' and 'spirit' to solve problems until the end, rather than just flashy technology. I will become an engineer who worries about field problems as my own and proves them with results that work right now.",
+
         skills: [
             { 
                 category: "Web Development & Architecture", 
