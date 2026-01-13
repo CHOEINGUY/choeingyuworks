@@ -387,6 +387,12 @@ export function Resume() {
                                 <a href={`mailto:${commonData.email}`} className="hover:text-black transition-colors">
                                     {commonData.email}
                                 </a>
+                                {(currentData as any).birthYear && (
+                                    <>
+                                        <span className="hidden md:inline text-gray-400">|</span>
+                                        <span>{(currentData as any).birthYear}</span>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </header>
@@ -577,15 +583,6 @@ export function Resume() {
                                     • {commonData.phone}
                                 </p>
                             </div>
-                            {/* Birth Year (Korean Only) */}
-                            {(currentData as any).birthYear && (
-                                <div>
-                                    <h3 className="text-sm font-bold text-gray-900 mb-1">Birth Year</h3>
-                                    <p className="text-gray-600">
-                                        • {(currentData as any).birthYear}
-                                    </p>
-                                </div>
-                            )}
                         </div>
                     </section>
 
