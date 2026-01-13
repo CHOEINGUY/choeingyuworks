@@ -1,9 +1,12 @@
 "use client";
 
 import { Link, useRouter, usePathname } from "@/navigation";
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import { useTranslations, useLocale } from "next-intl";
-import { Mail, Github, Linkedin, MapPin, Globe, Infinity as InfinityIcon, Printer, Phone } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Globe, Infinity as InfinityIcon, Printer, Phone, Download } from "lucide-react";
 
 const RESUME_DATA = {
     common: {
@@ -49,7 +52,7 @@ const RESUME_DATA = {
                     {
                         title: "남원 코호트 연구 (심뇌혈관질환 R&D)",
                         details: [
-                            "현장 시스템 및 환경 구축: AppSheet 기반 '실시간 검진 운영 시스템' 개발 및 검진 현장 동선/구조 세팅 총괄",
+                            "현장 시스템 및 환경 구축: AppSheet 기반 '실시간 검진 운영 시스템' 개발 및 검진 현장 동선/구조 세팅 수립",
                             "운영 및 인력 관리(연 200명): 보조 인력 채용 및 직무 교육, 프로그램 현장 교육 전담, 데이터/스캔 파일(Python) 정합성 관리"
                         ]
                     },
@@ -190,7 +193,7 @@ const RESUME_DATA = {
                     {
                         title: "Namwon Cohort Study (Cardiovascular R&D)",
                         details: [
-                            "Field System & Layout: Built 'Real-time Operation System' (AppSheet) and directed physical exam site layout/flow setup",
+                            "Field System & Layout: Built 'Real-time Operation System' (AppSheet) and established physical exam site layout/flow",
                             "Operation & Staff Management (200+/yr): Managed support staff hiring/training, conducted on-site system education, and handled data/Python file automation"
                         ]
                     },
@@ -303,6 +306,48 @@ export function Resume() {
 
     const currentData = RESUME_DATA[locale as 'ko' | 'en'] || RESUME_DATA.en;
     const commonData = RESUME_DATA.common;
+    const resumeRef = useRef<HTMLDivElement>(null);
+    const [isDownloading, setIsDownloading] = useState(false);
+
+    const handleDownloadPdf = async () => {
+        if (!resumeRef.current) return;
+        setIsDownloading(true);
+
+        try {
+            const canvas = await html2canvas(resumeRef.current, {
+                scale: 2, // Higher scale for better quality
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff'
+            });
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            const imgWidth = pdfWidth;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pdfHeight;
+
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pdfHeight;
+            }
+
+            pdf.save(`Resume_Ingyu_Choi_${locale}.pdf`);
+        } catch (error) {
+            console.error("PDF generation failed:", error);
+        } finally {
+            setIsDownloading(false);
+        }
+    };
 
     const toggleLanguage = () => {
         const nextLocale = locale === 'ko' ? 'en' : 'ko';
@@ -334,17 +379,19 @@ export function Resume() {
                             <span>{locale === 'ko' ? 'EN' : 'KO'}</span>
                         </button>
                         <button
-                            onClick={() => window.print()}
-                            className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors"
+                            onClick={handleDownloadPdf}
+                            disabled={isDownloading}
+                            className="p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition-colors disabled:opacity-50"
+                            title="Download PDF"
                         >
-                            <Printer className="w-5 h-5" />
+                            <Download className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
             </div>
 
             <div className="pt-10 pb-20 px-8 md:px-12">
-                <div className="max-w-3xl mx-auto space-y-12">
+                <div ref={resumeRef} className="max-w-3xl mx-auto space-y-12 bg-white p-4 md:p-8">
 
                     {/* Personal Info Header Section */}
                     <header className="flex flex-row items-start gap-4 md:gap-8">
