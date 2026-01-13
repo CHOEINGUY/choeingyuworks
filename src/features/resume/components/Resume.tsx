@@ -327,7 +327,7 @@ export function Resume() {
     };
 
     return (
-        <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-gray-100">
+        <div className="min-h-screen bg-white print:bg-white font-sans text-gray-900 selection:bg-gray-100">
             {/* Custom Resume Header */}
             <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 print:hidden">
                 <div className="w-full px-6 h-16 flex items-center justify-between">
@@ -584,7 +584,7 @@ export function Resume() {
                 </div>
                 
                 {/* Print Only Date (Last Page) */}
-                <div className="hidden print:flex w-full justify-center mt-12 mb-8 text-xs text-gray-400">
+                <div className="hidden print:flex w-full justify-center mt-12 mb-8 text-sm text-black font-medium">
                     <span>{today}</span>
                 </div>
             </div>
