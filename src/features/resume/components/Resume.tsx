@@ -15,7 +15,7 @@ const RESUME_DATA = {
         name: "최인규",
         role: "Business Solution Engineer",
         location: "광주광역시 광산구",
-        about: "**\"현장의 불편함을 그냥 지나치지 못합니다.\"** 저는 어려운 기술을 뽐내기보다 '동료가 편해졌는지', '퇴근 시간이 빨라졌는지'를 먼저 생각하는 엔지니어입니다. 전남대 의대 연구원 시절, 3개월 걸리던 업무를 자동화해 1개월로 줄였을 때의 그 쾌감이 제 원동력입니다. 최근에는 파티 운영의 전 과정을 혼자서 자동화하며 시스템이 주는 실질적인 편리함을 다시 한번 확인했습니다.\n\n**\"빠르게 만들고, 꼼꼼하게 검증합니다.\"** 문법을 하나하나 외우느라 시간을 쓰는 대신, AI 같은 최신 도구를 영리하게 활용해 남들보다 3배 빠르게 결과물을 만듭니다. 그렇게 아낀 시간은 '이 시스템이 현장에서 오류 없이 잘 돌아가는지', '사용자가 쓰는 데 불편함은 없는지'를 한 번 더 체크하는 데 씁니다. 업무 현장을 누구보다 빠르게 편하게 바꾸겠습니다.",
+        about: "**\"현장의 불편함을 그냥 지나치지 못합니다.\"**\n저는 어려운 기술을 뽐내기보다 '동료가 편해졌는지', '퇴근 시간이 빨라졌는지'를 먼저 생각하는 엔지니어입니다. 전남대 의대 연구원 시절, 3개월 걸리던 업무를 자동화해 1개월로 줄였을 때의 그 쾌감이 제 원동력입니다. 최근에는 파티 운영의 전 과정을 혼자서 자동화하며 시스템이 주는 실질적인 편리함을 다시 한번 확인했습니다.\n\n**\"빠르게 만들고, 꼼꼼하게 검증합니다.\"**\n문법을 하나하나 외우느라 시간을 쓰는 대신, AI 같은 최신 도구를 영리하게 활용해 남들보다 3배 빠르게 결과물을 만듭니다. 그렇게 아낀 시간은 '이 시스템이 현장에서 오류 없이 잘 돌아가는지', '사용자가 쓰는 데 불편함은 없는지'를 한 번 더 체크하는 데 씁니다. 업무 현장을 누구보다 빠르게 편하게 바꾸겠습니다.",
         education: [
             {
                 school: "한국방송통신대학교",
@@ -41,15 +41,16 @@ const RESUME_DATA = {
                         title: "지역사회건강조사 (전남 14개 시·군, 연 1.2만명 규모)",
                         details: [
                             "사업 관리(PM): 연간 사업계획 수립 지원 및 예산 집행 관리, 조사원 56명 채용/교육/인력 운영 전담",
-                            "업무 효율화: 현장 '예비가구 추가' 절차 병목 해결을 위한 Chrome Extension 및 Android 웹앱(Android Studio) 자체 개발, 전국 200여 담당자에 배포",
-                            "데이터 자동화: Python/VBA/SAS 활용 통계 분석 자동화(3개월→1개월 단축) 및 전국 단위 업무 보조 도구(VBA) 배포"
+                            "업무 효율화: 현장 '예비가구 추가' 절차 병목 해결을 위한 [Chrome Extension 및 Android 웹앱(Android Studio)](https://sites.google.com/view/jnupreventautomation/%ED%99%88) 자체 개발, 전국 200여 담당자에 배포",
+                            "데이터 자동화: SAS 데이터 추출 이후, [Python/VBA(분석·시각화) → Python(HWPX 누름틀 삽입)]으로 이어지는 지역사회건강통계집 작성 전 과정을 자동화 (3개월→1개월 단축) 및 전국 단위 업무 보조 도구(Excel Macro) 배포",
+                            "프로세스 시스템화: 1년 단위 계약직 교체로 인한 업무 단절 문제를 해결하기 위해, 연간 업무 타임라인 및 단계별 실행 매뉴얼(Protocol)을 구글 시트로 시스템화하여 업무 연속성 확보"
                         ]
                     },
                     {
                         title: "남원 코호트 연구 (심뇌혈관질환 R&D)",
                         details: [
                             "현장 시스템 구축: AppSheet/Firebase 기반 '실시간 검진 운영 시스템' 기획 및 개발 (대기시간 단축 및 동선 최적화)",
-                            "운영 관리: 검진 대상자 예약 관리 및 검진 데이터 정합성 검증 프로세스 정립"
+                            "운영 관리: 검진 대상자 예약 관리, 검진 데이터 정합성 검증 및 Python 기반 스캔 파일 자동 라벨링(파일명 규칙화) 처리"
                         ]
                     },
                     {
@@ -57,6 +58,15 @@ const RESUME_DATA = {
                         details: [
                             "DX(디지털 전환): 기존 수기 설문을 Google Forms 기반 모바일 조사 시스템으로 전면 전환 및 교육",
                             "GIS 분석: R을 활용한 공간정보(GIS) 시각화 및 사업계획서 기술 지원"
+                        ]
+                    },
+
+                    {
+                        title: "역학조사 통합 분석 솔루션 (Easy-Epidemiology) 개발 및 운영",
+                        details: [
+                            "솔루션 개발: 기존 수작업 분석 과정을 웹 기반으로 자동화하여 업무 효율성 증대 (상세 내용은 Projects 참조)",
+                            "현장 운영: 보건소 담당자 대상 프로그램 사용법 교육 및 매뉴얼 제작·배포",
+                            "품질 관리(QC): 현장 피드백을 반영한 UI/UX 개선 및 3단계 기능 검증(QC)을 거쳐 최종 안정화 버전 배포"
                         ]
                     }
                 ]
@@ -172,15 +182,16 @@ const RESUME_DATA = {
                         title: "Community Health Survey (14 cities/counties in Jeonnam, 12k people/year)",
                         details: [
                             "PM: Annual plan support, budget management, hiring/training/managing 56 surveyors",
-                            "Workflow Efficiency: Developed Chrome Extension and Android WebApp (Android Studio) to solve field bottlenecks, deployed to 200+ users nationwide",
-                            "Automation: Reduced analysis time (3 months → 1 month) via Python/VBA/SAS; Deployed nationwide VBA automation tools"
+                            "Workflow Efficiency: Developed [Chrome Extension and Android WebApp (Android Studio)](https://sites.google.com/view/jnupreventautomation/%ED%99%88) to solve field bottlenecks, deployed to 200+ users nationwide",
+                            "Automation: Built a full pipeline (Python/VBA → HWPX) using SAS-extracted data to auto-generate charts and fill Community Health Statistics Yearbook templates, reducing workload from 3 months to 1 month; Deployed nationwide Excel Macro automation tools",
+                            "Process Systemization: Built a comprehensive annual timeline and protocol manual on Google Sheets to prevent knowledge loss from staff turnover, ensuring operational continuity"
                         ]
                     },
                     {
                         title: "Namwon Cohort Study (Cardiovascular R&D)",
                         details: [
                             "Field System: Built 'Real-time Exam Operation System' (AppSheet/Firebase) - Reduced waiting time & optimized flow",
-                            "Operation: Established reservation management & data integrity verification processes"
+                            "Operation: Established reservation management, data integrity verification, and Python-based automated labeling for scanned documents"
                         ]
                     },
                     {
@@ -188,6 +199,14 @@ const RESUME_DATA = {
                         details: [
                             "DX: Converted manual paper surveys to Google Forms mobile system & provided training",
                             "GIS Analysis: Spatial visualization using R & technical support for business proposals"
+                        ]
+                    },
+                    {
+                        title: "Easy-Epidemiology Integration Solution",
+                        details: [
+                            "Development: Automated manual analysis processes via web-based tools (See 'Projects' for details)",
+                            "Operation: Conducted user training sessions and distributed operation manuals to health officials",
+                            "Quality Control: Implemented UI/UX improvements based on field feedback and completed 3 rounds of QC for stability"
                         ]
                     }
                 ]
@@ -225,6 +244,7 @@ const RESUME_DATA = {
                     "Tech Stack: Vue.js, Tailwind CSS, Statistical Logic (Custom)"
                 ]
             },
+
             {
                 name: "Manufacturing (Lunatech) ERP & Automation System",
                 period: "Oct 2024",
@@ -357,7 +377,7 @@ export function Resume() {
                         <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('about')}</h2>
                         <div className="text-gray-700 leading-relaxed text-sm md:text-base space-y-4">
                             {currentData.about.split('\n\n').map((paragraph: string, index: number) => (
-                                <p key={index}>
+                                <p key={index} className="whitespace-pre-line">
                                     {paragraph.split(/(\*\*.*?\*\*)/).map((part, i) => 
                                         part.startsWith('**') && part.endsWith('**') ? (
                                             <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>
@@ -425,7 +445,18 @@ export function Resume() {
                                                     <ul className="space-y-1.5 list-none ml-2 text-sm md:text-base text-gray-600 leading-relaxed break-keep">
                                                         {project.details.map((detail: string, dIndex: number) => (
                                                             <li key={dIndex} className="relative pl-4 before:content-['-'] before:absolute before:left-0 before:text-gray-400">
-                                                                {detail}
+                                                                {detail.split(/(\[.*?\]\(.*?\))/).map((part, i) => {
+                                                                    const match = part.match(/\[(.*?)\]\((.*?)\)/);
+                                                                    if (match) {
+                                                                        return (
+                                                                            <a key={i} href={match[2]} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium inline-flex items-center gap-0.5">
+                                                                                {match[1]}
+                                                                                <span className="text-[10px]">↗</span>
+                                                                            </a>
+                                                                        );
+                                                                    }
+                                                                    return part;
+                                                                })}
                                                             </li>
                                                         ))}
                                                     </ul>
