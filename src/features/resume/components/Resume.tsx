@@ -41,7 +41,7 @@ const RESUME_DATA = {
                         title: "지역사회건강조사 (전남 14개 시·군, 연 1.2만명 규모)",
                         details: [
                             "사업 관리(PM): 연간 사업계획 수립 지원 및 예산 집행 관리, 조사원 56명 채용/교육/인력 운영 전담",
-                            "업무 효율화: 현장 '예비가구 추가' 절차 병목 해결을 위한 Chrome Extension 자체 개발 및 전국 200여 담당자에 배포",
+                            "업무 효율화: 현장 '예비가구 추가' 절차 병목 해결을 위한 Chrome Extension 및 Android 웹앱(Android Studio) 자체 개발, 전국 200여 담당자에 배포",
                             "데이터 자동화: Python/VBA/SAS 활용 통계 분석 자동화(3개월→1개월 단축) 및 전국 단위 업무 보조 도구(VBA) 배포"
                         ]
                     },
@@ -172,7 +172,7 @@ const RESUME_DATA = {
                         title: "Community Health Survey (14 cities/counties in Jeonnam, 12k people/year)",
                         details: [
                             "PM: Annual plan support, budget management, hiring/training/managing 56 surveyors",
-                            "Workflow Efficiency: Developed Chrome Extension to solve field bottlenecks, deployed to 200+ users nationwide",
+                            "Workflow Efficiency: Developed Chrome Extension and Android WebApp (Android Studio) to solve field bottlenecks, deployed to 200+ users nationwide",
                             "Automation: Reduced analysis time (3 months → 1 month) via Python/VBA/SAS; Deployed nationwide VBA automation tools"
                         ]
                     },
