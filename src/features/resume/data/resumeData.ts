@@ -9,7 +9,7 @@ export const RESUME_DATA = {
         birthYear: "1998년생",
         role: "Business Solution Engineer",
         location: "광주광역시 광산구",
-        about: "**비즈니스 흐름을 읽고, 기술로 실질적인 답을 찾습니다.**\n저는 단순히 코드를 짜는 개발자를 넘어, 현장과 소통하고 복잡하게 얽힌 업무 프로세스를 분석하여 최적의 자동화 흐름을 설계하는 '솔루션 빌더'입니다. 어려운 기술을 뽐내기보다 '현장의 병목 현상 해결', '실질적인 운영 비용과 시간 절감'을 최우선으로 고민합니다. \"업무 구조에 대한 이해가 효율화의 시작이었습니다.\" 14개 통계집의 공통된 작성 흐름을 파악하여 자동화 설계를 마쳤습니다. 기술 이전에 업무 본질을 먼저 이해함으로써 3개월의 소요 시간을 1개월로 줄이는 결과를 얻었습니다.\n\n**빠르게 구현하고, 꼼꼼하게 검증합니다.**\n특정 언어의 문법에 매몰되기보다 AI와 최신 도구를 영리하게 활용해 구현 속도를 비약적으로 높입니다. 그렇게 확보한 시간은 오로지 '이 시스템이 현장에서 오류 없이 잘 돌아가는지', '사용자가 쓰는 데 불편함은 없는지'를 한 번 더 체크하는 데 투자합니다. 1인 개발로 기획부터 배포까지 전 과정을 책임져 본 경험을 바탕으로, 어느 곳에서든 실질적인 변화를 만들어내는 든든한 일잘러가 되겠습니다.",
+        about: "**비즈니스 흐름을 읽고, 기술로 답을 찾습니다.**\n저는 단순히 코드를 짜는 개발자를 넘어, 현장과 소통하고 복잡하게 얽힌 업무 프로세스를 분석하여 최적의 자동화 흐름을 설계하는 '솔루션 빌더' 어려운 기술을 뽐내기보다 '현장의 병목 현상 해결', '실질적인 운영 비용과 시간 절감'을 최우선으로 고민합니다. \"업무 구조에 대한 이해가 효율화의 시작이었습니다.\" 14개 통계집의 공통된 작성 흐름을 파악하여 자동화 설계를 마쳤습니다. 기술 이전에 업무 본질을 먼저 이해함으로써 3개월의 소요 시간을 1개월로 줄이는 결과를 얻었습니다.\n\n**빠르게 구현하고, 꼼꼼하게 검증합니다.**\n특정 언어의 문법에 매몰되기보다 AI와 최신 도구를 영리하게 활용해 구현 속도를 비약적으로 높입니다. 그렇게 확보한 시간은 오로지 '이 시스템이 현장에서 오류 없이 잘 돌아가는지', '사용자가 쓰는 데 불편함은 없는지'를 한 번 더 체크하는 데 투자합니다. 1인 개발로 기획부터 배포까지 전 과정을 책임져 본 경험을 바탕으로, 어느 곳에서든 실질적인 변화를 만들어내는 든든한 일잘러가 되겠습니다.",
         education: [
             {
                 school: "한국방송통신대학교",
@@ -157,7 +157,7 @@ export const RESUME_DATA_V2 = {
     ...RESUME_DATA,
     ko: {
         ...RESUME_DATA.ko,
-        about: "**비즈니스 흐름을 읽고, 기술로 실질적인 답을 찾는 '솔루션 빌더'입니다.**\n\n• **본질에 집중하는 효율화** : 14개 통계집 작성 프로세스를 분석·자동화하여, 3개월이 소요되던 업무를 1개월로 66% 단축했습니다. 기술 이전에 업무 구조를 먼저 이해하는 것이 제 해결 방식입니다.\n\n• **압도적 생산성과 철저한 검증** : AI와 최신 도구를 영리하게 활용해 구현 속도를 비약적으로 높입니다. 여기서 확보한 시간은 오로지 시스템의 안정성과 현장 UX를 검증하는 데 투자합니다.\n\n• **현장 중심의 일잘러** : 1인 개발로 기획부터 배포까지 전 과정을 책임져 본 경험을 바탕으로, 어느 곳에서든 실질적인 운영 비용 절감을 만들어내는 든든한 조력자가 되겠습니다.",
+        about: "**비즈니스 흐름을 읽고, 기술로 답을 찾는 '솔루션 빌더'**\n\n• **본질에 집중하는 효율화** : 14개 통계집 작성 프로세스를 분석·자동화하여, 3개월이 소요되던 업무를 1개월로 66% 단축했습니다. 기술 이전에 업무 구조를 먼저 이해하는 것이 제 해결 방식입니다.\n\n• **압도적 생산성과 철저한 검증** : AI와 최신 도구를 영리하게 활용해 구현 속도를 비약적으로 높입니다. 여기서 확보한 시간은 오로지 시스템의 안정성과 현장 UX를 검증하는 데 투자합니다.\n\n• **현장 중심의 일잘러** : 1인 개발로 기획부터 배포까지 전 과정을 책임져 본 경험을 바탕으로, 어느 곳에서든 실질적인 운영 비용 절감을 만들어내는 든든한 조력자가 되겠습니다.",
         experience: [
             {
                 company: "전남대학교 의과대학 예방의학교실",
@@ -206,6 +206,150 @@ export const RESUME_DATA_V2 = {
                 ]
             },
             RESUME_DATA.ko.experience[1] // Keep other experience same
+        ]
+    },
+    en: {
+        name: "Ingyu Choe",
+        birthYear: "Born in 1998",
+        role: "Business Solution Engineer",
+        location: "Gwangju, South Korea",
+        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\n\n• **Efficiency focused on essence**: Analyzed and automated the process for 14 statistical reports, reducing a 3-month workload to 1 month (66% reduction). My approach is to understand the business structure before applying technology.\n\n• **Overwhelming productivity and thorough verification**: I dramatically increase implementation speed by smartly utilizing AI and modern tools. The time saved is invested solely in verifying system stability and on-site UX.\n\n• **Field-centric professional**: Based on experience taking responsibility for the entire process from planning to deployment as a solo developer, I will be a reliable partner who creates substantial operating cost savings anywhere.",
+        education: [
+            {
+                school: "Korea National Open University",
+                major: "Computer Science (In Progress)",
+                period: "2024. 03 - Present",
+            },
+            {
+                school: "Chonnam National University",
+                major: "Dept. of Biology Education (Graduated)",
+                period: "2017. 03 - 2021. 08",
+            }
+        ],
+        experience: [
+            {
+                company: "JNU Preventive Medicine",
+                position: "Research Associate (Public Health PM & System Dev)",
+                period: "2022. 08 - 2025. 12 (3y 4m)",
+                description: [
+                    "Role: Public Health Project (Community Health Survey, etc.) Planning Support & Field Operations Management, System Development"
+                ],
+                projects: [
+                    {
+                        title: "Community Health Survey (Jeonnam 14 Cities/Counties, 12k participants/yr)",
+                        details: [
+                            "PM & Operations: Annual planning, budget management, recruited & trained 56 interviewers.",
+                            "Field Automation: Developed & deployed [Chrome Extension & Android App](https://sites.google.com/view/jnupreventautomation/%ED%99%88) to resolve bottlenecks in complex manual entry processes.",
+                            "Analysis Automation: Automating SAS/Python/VBA reporting reduced workload by 66% (3mo → 1mo).",
+                            "Systematization: Built step-by-step manuals (Protocols) and Google Sheet-based workflow systems.",
+                            "QC: Real-time monitoring & surveyor feedback to ensure data integrity & final reporting."
+                        ]
+                    },
+                    {
+                        title: "Namwon Cohort Study (Cardiovascular R&D)",
+                        details: [
+                            "Operations Management: Scheduled yearly exams (200+ participants), managed support staff.",
+                            "Digital Transition: Replaced manual tracking with real-time dashboard & auto-calling system, reducing wait times by 15%.",
+                            "Data QC: Automated data verification using Python/Pandas to ensure long-term study data reliability."
+                        ]
+                    },
+                    {
+                        title: "Haenam Gyegok-myeon Small Area Survey",
+                        details: [
+                            "DX: Transitioned manual surveys to Google Forms-based mobile system.",
+                            "GIS Analysis: Visualized spatial data using R for project planning support.",
+                            "QC: Real-time monitoring & 1:1 coaching for interviewers to maintain accuracy."
+                        ]
+                    },
+                    {
+                        title: "Easy-Epidemiology Solution Development",
+                        details: [
+                            "Development: Built web-based automation tools to replace manual analysis (see Projects).",
+                            "Operations: Conducted user training for public health officers and distributed manuals.",
+                            "QC: Improved UI/UX based on field feedback and ensured 3rd-round QC stability."
+                        ]
+                    }
+                ]
+            },
+            {
+                company: "Personal Projects & Consulting",
+                position: "Solution Builder (Solo Dev & Ops)",
+                period: "2025. 10 - Present",
+                description: [
+                    "BPA Consulting: Diagnosed manual bottlenecks via client interviews & proposed DX roadmaps.",
+                    "Logic Optimization: Designed & delivered management systems for complex operation logic (Party/Dating SaaS).",
+                    "Achievement: Transformed manual quoting at LunaTech (Manufacturing) to ERP with e-Tax API integration."
+                ]
+            }
+        ],
+        projects: [
+            {
+                name: "[Event Management SaaS (Party/Dating/1:1)](/portfolio/party-saas)",
+                period: "2026. 01",
+                description: [
+                    "Problem: Inefficiency of building separate logic for different business models.",
+                    "Solution: Designed a dynamic JSON-engine structure to handle new models without code changes.",
+                    "Decision: Empowered planners to configure forms directly, maximizing operational efficiency.",
+                    "Result: Automated everything from payment check to notifications, enabling 1-person operation.",
+                    "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
+                ]
+            },
+            {
+                name: "[Easy-Epidemiology (Analysis Solution)](/portfolio/easy-epidemiology)",
+                period: "2024. 11 - 2025. 07",
+                description: [
+                    "Problem: Time bottlenecks due to manual case-control analysis by health officers.",
+                    "Solution: Built a system that auto-generates stats & reports (HWP/PDF) upon data entry.",
+                    "Decision: Implemented lightweight browser-based stats algorithms to reduce external SW dependency.",
+                    "Result: Reduced analysis & reporting time from hours/days to instant completion.",
+                    "Tech Stack: Vue.js, Tailwind CSS, ECharts, Custom Stats Logic"
+                ]
+            },
+            {
+                name: "[Real-time Cohort Dashboard](/portfolio/cohort-dashboard)",
+                period: "2024. 01 - 2025. 12",
+                description: [
+                    "Problem: Chaos & waiting time management issues at examination sites.",
+                    "Solution: Real-time AppSheet-Firebase integration & Google TTS-based auto-calling.",
+                    "Decision: Adopted Firebase Realtime DB to solve Google Sheets' 5s latency (reduced to <1s).",
+                    "Result: Optimized participant flow & eliminated on-site confusion via auto-assignment.",
+                    "Tech Stack: AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "LunaTech ERP (Manufacturing)",
+                period: "2024. 10 - Present",
+                description: [
+                    "Problem: Redundant admin work due to fragmented manual quoting/ordering/tax data.",
+                    "Solution: Integrated automation combining auto-tax invoice (Flask) & high-quality PDF engine.",
+                    "Decision: Kept familiar Google Sheets interface while using Cloud Run for complex backend logic.",
+                    "Result: Integrated quoting, PDF generation, and tax invoicing into 'One-Click', eliminating errors.",
+                    "Tech Stack: Next.js, Python(Flask), Google Cloud Run, AppSheet, Tax Invoice API"
+                ]
+            }
+        ],
+        skills: [
+            {
+                category: "Web & Frontend Engineering",
+                items: [
+                    "Next.js, React, Vue.js, TypeScript: Building high-performance, user-centric interactive UI/UX.",
+                    "Firebase, Supabase: Rapid deployment & operations based on serverless infrastructure."
+                ]
+            },
+            {
+                category: "Business Process Automation (BPA)",
+                items: [
+                    "AppSheet, Google Apps Script: Diagnosing manual workflows & designing app-based DX systems.",
+                    "Python(Flask), Google Cloud Run: Building custom backend servers for business logic & integration."
+                ]
+            },
+            {
+                category: "Integration & Data Analysis",
+                items: [
+                    "API Integration: Integrating external services (Tax, Payments, AlimTalk) into business flows.",
+                    "SAS, Python, R: Automating data preprocessing, statistical analysis, and reporting processes."
+                ]
+            }
         ]
     }
 };

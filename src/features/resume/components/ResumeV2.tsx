@@ -28,7 +28,7 @@ export function ResumeV2() {
 
     useEffect(() => {
         const date = new Date();
-        setToday(`${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.`);
+        setToday(new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(date));
     }, []);
 
     const handlePrint = () => {
@@ -63,7 +63,7 @@ export function ResumeV2() {
                 onPrintClick={handlePrint} 
             />
 
-            <div className="pt-10 pb-20 px-8 md:px-12 print:p-0 print:pt-4">
+            <div className="pt-10 pb-20 px-4 md:px-12 print:p-0 print:pt-4">
                 <div ref={resumeRef} className="max-w-4xl mx-auto space-y-12 bg-white p-4 md:p-12 print:p-0 print:max-w-none print:space-y-8">
 
                     <ResumeHeader data={currentData} commonData={commonData} />

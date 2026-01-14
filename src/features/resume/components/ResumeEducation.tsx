@@ -21,7 +21,7 @@ export const ResumeEducation = ({ education }: ResumeEducationProps) => {
                     <div key={index} className="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-0">
                         <div>
                             <h3 className="text-lg md:text-xl font-bold text-gray-900">{edu.school}</h3>
-                            <p className="text-sm md:text-base text-gray-700 font-medium">{edu.major}</p>
+                            <p className="text-sm md:text-base text-gray-600 font-medium">{edu.major}</p>
                         </div>
                         <span className="text-xs md:text-sm text-gray-500 md:text-gray-400 font-mono">{edu.period}</span>
                     </div>

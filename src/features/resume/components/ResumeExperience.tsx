@@ -45,7 +45,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
         <section className="space-y-3">
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('experience')}</h2>
 
-            <div className="space-y-12">
+            <div className="space-y-8">
                 {experience.map((exp: any, index: number) => (
                     <div key={index} className="group">
                         <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-1 md:gap-0">
