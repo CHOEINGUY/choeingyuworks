@@ -16,9 +16,9 @@ import { ResumeClosing } from "./ResumeClosing";
 import { ResumeQRCode } from "./ResumeQRCode";
 import { ResumeShareModal } from "./ResumeShareModal";
 
-export function Resume() {
+export function ResumeV1() {
     const locale = useLocale();
-    const currentData = RESUME_DATA[locale as 'ko' | 'en'] || RESUME_DATA.en || RESUME_DATA.ko;
+    const currentData = RESUME_DATA[locale as 'ko' | 'en'] || RESUME_DATA.en;
     const commonData = RESUME_DATA.common;
     
     const resumeRef = useRef<HTMLDivElement>(null);

@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 import { useTranslations } from "next-intl";
+import { Link } from "@/navigation";
+import { Button } from "@/components/ui/button";
 import { BRAND_CONFIG } from "@/config/brand";
 
 export function AboutSection() {
@@ -34,12 +37,12 @@ export function AboutSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 break-words">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 break-keep">
                         {t.rich(`aboutSection.${mode}.headline`, {
                             line: () => <br className="hidden md:block" />
                         })}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed text-lg max-w-3xl mx-auto break-words">
+                    <p className="text-gray-600 leading-relaxed text-lg max-w-3xl mx-auto break-keep">
                         {t.rich(`aboutSection.${mode}.description`, {
                             line: () => <br className="hidden md:block" />,
                             b: (chunks) => <strong className="font-bold text-gray-900">{chunks}</strong>
@@ -58,12 +61,30 @@ export function AboutSection() {
                             className="p-6 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300 group"
                         >
                             <h3 className="font-bold text-gray-900 mb-2">{feature.title}</h3>
-                            <p className="text-sm text-gray-600 leading-relaxed break-words">
+                            <p className="text-sm text-gray-600 leading-relaxed break-keep">
                                 {feature.description}
                             </p>
                         </motion.div>
                     ))}
                 </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="mt-12 md:mt-16 text-center"
+                >
+                    <Link href="/resume">
+                        <Button
+                            size="lg"
+                            className="rounded-full px-8 h-12 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
+                        >
+                            {t("buttons.viewResume")}
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                    </Link>
+                </motion.div>
             </div>
         </section>
     );

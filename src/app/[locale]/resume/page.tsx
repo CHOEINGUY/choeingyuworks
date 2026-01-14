@@ -1,6 +1,6 @@
 
-import { Resume } from "@/features/resume/components/Resume";
+import { ResumeV2 } from "@/features/resume/components/ResumeV2";
 
-export default function ResumePage() {
-    return <Resume />;
+export default function ResumePageV2() {
+    return <ResumeV2 />;
 }

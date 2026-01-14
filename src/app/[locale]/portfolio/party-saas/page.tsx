@@ -22,6 +22,7 @@ import {
     PremiumCTA
 } from "@/features/portfolio/projects/party-event-saas";
 import { Button } from "@/components/ui/button";
+import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 
 
 const INFRASTRUCTURE = [
@@ -33,6 +34,7 @@ const INFRASTRUCTURE = [
 
 export default function PartySaaSPage() {
     const t = useTranslations("PartySaaS");
+    const scale = useResponsiveScale();
 
     return (
         <div className="min-h-screen bg-white font-sans selection:bg-blue-100 relative">
@@ -45,10 +47,10 @@ export default function PartySaaSPage() {
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent z-10" />
 
                 <div className="w-[93%] max-w-[77rem] mx-auto relative z-20">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+                    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
 
                         {/* Left Content (Text) */}
-                        <div className="lg:col-span-5 flex flex-col items-start text-left">
+                        <div className="lg:col-span-5 flex flex-col items-start text-left order-1">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -75,17 +77,17 @@ export default function PartySaaSPage() {
 
                         {/* Right Content (Visual) */}
                         <motion.div
-                            className="lg:col-span-7 relative"
+                            className="lg:col-span-7 relative order-2 w-full"
                             initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            <div className="relative aspect-[16/12] md:aspect-[16/11] w-full max-w-full mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-purple-50/50 to-slate-100/80 border border-slate-200/50">
+                            <div className="relative aspect-[4/3] md:aspect-[16/11] w-full max-w-full mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-purple-50/50 to-slate-100/80 border border-slate-200/50">
                                 <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.1),transparent)]" />
                                 <div className="absolute inset-0 z-10 p-0 flex items-center justify-center overflow-hidden">
                                     <PartySolutionDemo
                                         isEmbedded
-                                        scale={0.6}
+                                        scale={scale * 0.6}
                                     />
                                 </div>
                             </div>

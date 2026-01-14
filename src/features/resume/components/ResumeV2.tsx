@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 
-import { RESUME_DATA } from "../data/resumeData";
+import { RESUME_DATA_V2, RESUME_DATA } from "../data/resumeData";
 import { ResumeNavbar } from "./ResumeNavbar";
 import { ResumeHeader } from "./ResumeHeader";
 import { ResumeAbout } from "./ResumeAbout";
@@ -16,9 +16,10 @@ import { ResumeClosing } from "./ResumeClosing";
 import { ResumeQRCode } from "./ResumeQRCode";
 import { ResumeShareModal } from "./ResumeShareModal";
 
-export function Resume() {
+export function ResumeV2() {
     const locale = useLocale();
-    const currentData = RESUME_DATA[locale as 'ko' | 'en'] || RESUME_DATA.en || RESUME_DATA.ko;
+    // Use RESUME_DATA_V2 if available for locale, fall back to base English data if strictly needed (though likely RESUME_DATA_V2 has it via spread)
+    const currentData = (RESUME_DATA_V2 as any)[locale as 'ko' | 'en'] || RESUME_DATA.en || RESUME_DATA.ko;
     const commonData = RESUME_DATA.common;
     
     const resumeRef = useRef<HTMLDivElement>(null);

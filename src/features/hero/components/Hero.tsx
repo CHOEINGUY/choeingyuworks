@@ -44,7 +44,7 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className={`text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] text-balance text-center mb-4 md:mb-6 tracking-tight ${locale === 'ko' ? 'break-keep' : ''}`}
+                        className={`text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] text-balance text-center mb-4 md:mb-6 tracking-tight break-keep`}
                     >
                         {t(`${BRAND_CONFIG.mode}.title`)}
                     </motion.h1>
@@ -55,7 +55,7 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <p className={`text-sm md:text-lg lg:text-xl font-normal leading-relaxed text-center text-gray-700 whitespace-normal md:whitespace-pre-line max-w-[90%] md:max-w-3xl mx-auto px-1 mt-3 md:mt-0 ${locale === 'ko' ? 'break-keep' : ''}`}>
+                        <p className={`text-sm md:text-lg lg:text-xl font-normal leading-relaxed text-center text-gray-700 whitespace-normal md:whitespace-pre-line max-w-[90%] md:max-w-3xl mx-auto px-1 mt-3 md:mt-0 break-keep`}>
                             {t.rich(`${BRAND_CONFIG.mode}.subtitle`, {
                                 b: (chunks) => <strong>{chunks}</strong>,
                                 strong: (chunks) => <strong>{chunks}</strong>

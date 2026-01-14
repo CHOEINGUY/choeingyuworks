@@ -8,6 +8,7 @@ import { ResumeCallToAction } from "@/features/resume/components/ResumeCallToAct
 import { PartySolutionDemo } from "@/features/portfolio/projects/party-event-saas";
 import { ExamFlowAnimation } from "@/features/portfolio/projects/namwon-cohort/ExamFlowAnimation";
 import { EpidemiologyDemo } from "@/features/portfolio/projects/easy-epidemiology/EpidemiologyDemo";
+import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 
 const PROJECTS = [
 
@@ -50,6 +51,7 @@ export function PortfolioSection() {
     const observerRef = useRef<IntersectionObserver | null>(null);
     const ratiosRef = useRef<Map<string, number>>(new Map());
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const scale = useResponsiveScale();
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -173,7 +175,7 @@ export function PortfolioSection() {
                                             <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-purple-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
                                                 <PartySolutionDemo
                                                     isEmbedded
-                                                    scale={0.55}
+                                                    scale={scale * 0.55}
                                                     isActive={isActive}
                                                 />
                                             </div>
@@ -186,7 +188,7 @@ export function PortfolioSection() {
                                                 <div className="absolute inset-0 w-[125%] h-[125%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                                                     <ExamFlowAnimation
                                                         isEmbedded
-                                                        scale={0.8}
+                                                        scale={scale * 0.8}
                                                         isActive={isActive}
                                                     />
                                                 </div>
@@ -197,7 +199,7 @@ export function PortfolioSection() {
                                             <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-emerald-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
                                                 <EpidemiologyDemo
                                                     isEmbedded
-                                                    scale={0.95}
+                                                    scale={scale * 0.95}
                                                     isActive={isActive}
                                                 />
                                             </div>
