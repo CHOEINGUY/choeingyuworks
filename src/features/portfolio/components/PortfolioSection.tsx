@@ -48,10 +48,19 @@ const PROJECTS = [
 
 export function PortfolioSection() {
     const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
     const observerRef = useRef<IntersectionObserver | null>(null);
     const ratiosRef = useRef<Map<string, number>>(new Map());
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const scale = useResponsiveScale();
+
+    // Detect mobile
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -167,7 +176,7 @@ export function PortfolioSection() {
                                 </div>
 
                                 {/* Right Column: Visual (60%) */}
-                                <div className={`lg:col-span-7 w-full aspect-[16/12] lg:aspect-[16/11] rounded-2xl lg:rounded-3xl ${project.id === "solution" ? "bg-[#F6F5FB]" : project.imageColor} flex items-center justify-center overflow-hidden relative order-1 lg:order-2`}>
+                                <div className={`lg:col-span-7 w-full ${project.id === "solution" ? "aspect-square" : "aspect-[16/12]"} lg:aspect-[16/11] rounded-2xl lg:rounded-3xl ${project.id === "solution" ? "bg-[#F6F5FB]" : project.imageColor} flex items-center justify-center overflow-hidden relative order-1 lg:order-2`}>
                                     {project.id === "solution" ? (
                                         <>
                                             <div className="absolute inset-0 z-0 bg-gradient-to-br from-violet-50 via-purple-50/50 to-slate-50/80" />
@@ -175,8 +184,9 @@ export function PortfolioSection() {
                                             <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-purple-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
                                                 <PartySolutionDemo
                                                     isEmbedded
-                                                    scale={scale * 0.55}
+                                                    scale={isMobile ? scale * 0.45 : scale * 0.55}
                                                     isActive={isActive}
+                                                    isMobile={isMobile}
                                                 />
                                             </div>
                                         </>
@@ -190,6 +200,7 @@ export function PortfolioSection() {
                                                         isEmbedded
                                                         scale={scale * 0.8}
                                                         isActive={isActive}
+                                                        isMobile={isMobile}
                                                     />
                                                 </div>
                                             </div>
@@ -201,6 +212,7 @@ export function PortfolioSection() {
                                                     isEmbedded
                                                     scale={scale * 0.95}
                                                     isActive={isActive}
+                                                    isMobile={isMobile}
                                                 />
                                             </div>
                                         </>

@@ -1,2 +1,0 @@
-src/features/resume/components/Resume.tsx(350,6): error TS1472: 'catch' or 'finally' expected.
-src/features/resume/components/Resume.tsx(619,1): error TS1005: '}' expected.

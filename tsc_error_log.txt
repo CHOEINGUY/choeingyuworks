@@ -1,3 +1,0 @@
-src/features/resume/components/Resume.tsx(589,13): error TS1005: ')' expected.
-src/features/resume/components/Resume.tsx(593,9): error TS1128: Declaration or statement expected.
-src/features/resume/components/Resume.tsx(594,5): error TS1109: Expression expected.

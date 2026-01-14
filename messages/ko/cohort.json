@@ -105,7 +105,7 @@
             "noSubject": "대상자 없음"
         },
         "Tablet": {
-            "headerTitle": "검사실 태블릿",
+            "headerTitle": "검사실 AppSheet App Screen",
             "today": "오늘",
             "id": "ID",
             "name": "이름",
@@ -117,7 +117,7 @@
         },
         "TTS": {
             "label": "TTS 음성 안내 시스템",
-            "message": "{name}님, {name}님 다음 검사는 {room}와 입니다"
+            "message": "{name}님, {name}님 다음 검사는 {room}입니다"
         },
         "automationLabel": "Automation Flow",
         "boardLabel": "실시간 현황판"

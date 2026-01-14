@@ -16,10 +16,11 @@ export const ResumeHeader = ({ data, commonData }: ResumeHeaderProps) => {
     return (
         <header className="flex flex-row items-start gap-4 md:gap-8">
             <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-                {/* Placeholder for Avatar - Replace 'src' with actual image path or Next.js Image component */}
-                <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center text-gray-400">
-                    <span className="text-xs">Avatar</span>
-                </div>
+                <img 
+                    src="/profile.jpg" 
+                    alt={data.name} 
+                    className="w-full h-full object-cover"
+                />
             </div>
 
             <div className="flex-1 text-left flex flex-col justify-center space-y-0.5">

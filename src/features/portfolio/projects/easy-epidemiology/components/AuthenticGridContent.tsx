@@ -78,7 +78,7 @@ export function AuthenticGridContent({ isActive }: Props) {
                      <span className="px-1 text-[#5f6368] text-[12px]">▼</span>
                      <div className="h-[60%] w-[1px] bg-gray-300 mx-2" />
                      <span className="px-2 text-[15px] font-medium italic text-gray-500 font-serif">fx</span>
-                     <div className="flex items-center h-full px-2 text-[14px] text-gray-800 flex-1 outline-none">입력 대기</div>
+                     <div className="flex items-center h-full px-2 text-[14px] text-gray-800 flex-1 outline-none"></div>
                      
                      <div className="flex items-center gap-1 ml-2">
                          <button className="w-7 h-7 flex items-center justify-center rounded text-[#5f6368] hover:bg-[#f1f3f4] hover:text-[#1a73e8] disabled:opacity-50 transition-colors">
@@ -182,7 +182,7 @@ export function AuthenticGridContent({ isActive }: Props) {
 
                             {/* Diet Group (Expanded) */}
                             <th colSpan={9} className="border border-slate-300 bg-slate-50 text-center text-[12px] font-medium text-slate-600 relative group leading-tight">
-                                식단 (점심)
+                                식단(1/0)
                                 <div className="absolute top-1/2 left-1.5 -translate-y-1/2 flex gap-0.5 opacity-40 group-hover:opacity-100 transition-opacity">
                                     <button className="w-[16px] h-[16px] flex items-center justify-center bg-white border border-slate-300 rounded text-[10px] hover:bg-blue-50 hover:text-blue-600 hover:border-blue-400">+</button>
                                 </div>
@@ -228,7 +228,7 @@ export function AuthenticGridContent({ isActive }: Props) {
                     </colgroup>
                     <tbody>
                          {Array.from({ length: 40 }).map((_, i) => { 
-                             const isPatient = i < 15;
+                             const isPatient = i < 40;
                              const isConfirmed = isPatient && i % 2 === 0;
                              
                              const hasDiarrhea = isPatient && i % 2 === 0;

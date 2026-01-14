@@ -27,9 +27,10 @@ interface Props {
     isLandingPage?: boolean;
     isActive?: boolean;
     isEmbedded?: boolean;
+    isMobile?: boolean;
 }
 
-export function EpidemiologyDemo({ scale = 1, isLandingPage = false, isEmbedded = false, isActive = true }: Props) {
+export function EpidemiologyDemo({ scale = 1, isLandingPage = false, isEmbedded = false, isActive = true, isMobile = false }: Props) {
     // const [scale, setScale] = useState(1); // Removed: Use prop directly
     const [activeTab, setActiveTab] = useState('DataInputVirtual');
     const [isAutoPlay, setIsAutoPlay] = useState(false);
@@ -124,7 +125,7 @@ export function EpidemiologyDemo({ scale = 1, isLandingPage = false, isEmbedded 
              {/* Main Container */}
              {/* Main Container */}
              <div style={{ width: `${scale * 100}%`, height: `${scale * 100}%` }}>
-                <BrowserFrame url="https://easy-epi.xyz/" className="w-full h-full" hideAddressBar={false} uiScale={scale}>
+                <BrowserFrame url="https://easy-epi.xyz/" className="w-full h-full" hideAddressBar={false} uiScale={isMobile ? scale * 0.6 : scale * 0.7}>
                     <div className="flex flex-col h-full bg-slate-50">
                         {/* 1. App Header */}
                         <div className="min-h-[30px] bg-white/95 backdrop-blur-sm border-b border-gray-200 flex items-center justify-between px-4 shrink-0 z-20 sticky top-0">
@@ -135,7 +136,12 @@ export function EpidemiologyDemo({ scale = 1, isLandingPage = false, isEmbedded 
 
                         {/* 2. Main Content Area */}
                         <div className="flex-1 relative overflow-hidden bg-slate-50">
-                            <div className="w-full h-full" style={{ width: '166.67%', height: '166.67%', transform: 'scale(0.6)', transformOrigin: 'top left' }}>
+                            <div className="w-full h-full" style={{ 
+                                width: isMobile ? '166.67%' : '111.11%', 
+                                height: isMobile ? '166.67%' : '111.11%', 
+                                transform: isMobile ? 'scale(0.6)' : 'scale(0.9)', 
+                                transformOrigin: 'top left' 
+                            }}>
                                 {renderContent()}
                             </div>
                         </div>

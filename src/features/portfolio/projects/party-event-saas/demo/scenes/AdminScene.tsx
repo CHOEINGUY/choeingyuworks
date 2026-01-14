@@ -52,7 +52,7 @@ export const AdminScene = ({ onComplete }: { onComplete: () => void }) => {
 
                             {/* Header */}
                             <div className="p-6 pb-4 border-b border-gray-100 flex items-start gap-5">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=200&h=200" className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md bg-gray-100" />
+                                <img src="/profile.jpg" className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md bg-gray-100" />
                                 <div className="flex-1 min-w-0 pt-1">
                                     <div className="flex items-center justify-between mb-1">
                                         <h2 className="text-2xl font-bold text-gray-900">{selectedApplicant.name}</h2>

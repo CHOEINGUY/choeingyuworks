@@ -44,13 +44,15 @@ interface ExamFlowAnimationProps {
     scale?: number;
     className?: string;
     isActive?: boolean;
+    isMobile?: boolean;
 }
 
 export function ExamFlowAnimation({
     isEmbedded = false,
     scale,
     className,
-    isActive = true
+    isActive = true,
+    isMobile = false
 }: ExamFlowAnimationProps) {
     const t = useTranslations("CohortDashboard");
     const tExam = useTranslations("CohortDashboard.ExamFlow");
@@ -157,7 +159,13 @@ export function ExamFlowAnimation({
 
     const content = (
         <div className="w-full h-full relative overflow-hidden">
-            {/* Base Background Decor Removed */}
+            <div className="w-full h-full" style={{
+                width: isMobile ? '142.86%' : '100%',
+                height: isMobile ? '142.86%' : '100%',
+                transform: isMobile ? 'scale(0.7)' : 'none',
+                transformOrigin: 'top left'
+            }}>
+                {/* Base Background Decor Removed */}
             
             {/* Status Board - positioned to bottom-right */}
             <motion.div
@@ -185,10 +193,11 @@ export function ExamFlowAnimation({
             {/* Tablet Screen - positioned to top-left */}
             <motion.div
                 className="absolute rounded-2xl shadow-[0_30px_60px_-12px_rgba(0,0,0,0.15)] border border-white overflow-hidden ring-1 ring-slate-200"
-                style={{ width: '82%', height: '85%' }}
+                style={{ height: '85%' }}
                 animate={{
-                    top: isTabletFront ? '5%' : '12%',
-                    left: isTabletFront ? '4%' : '15%',
+                    top: isTabletFront ? '3%' : '12%',
+                    left: isTabletFront ? '3%' : '12%',
+                    width: isTabletFront ? '94%' : '76%',
                     zIndex: isTabletFront ? 30 : 10,
                     scale: isTabletFront ? 1 : 0.92,
                     filter: isTabletFront ? 'brightness(1) blur(0px)' : 'brightness(0.95) blur(2px)',
@@ -208,8 +217,7 @@ export function ExamFlowAnimation({
                     <TTSAnnouncement ttsText={currentExam.ttsText} />
                 )}
             </AnimatePresence>
-
-
+            </div>
         </div>
     );
 

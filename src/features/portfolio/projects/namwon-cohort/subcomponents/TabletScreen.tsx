@@ -14,6 +14,18 @@ export function TabletScreen({ currentExam, patientList, phase }: TabletScreenPr
 
     return (
         <div className="w-full h-full flex flex-col bg-white font-sans overflow-hidden rounded-lg">
+            {/* Browser-like Address Bar - Safari style */}
+            <div className="shrink-0 bg-gradient-to-b from-gray-50 to-gray-100 border-b border-gray-200 px-3 py-1">
+                <div className="flex items-center bg-white rounded-md border border-gray-200 px-2 py-0.5">
+                    <svg className="w-3 h-3 text-green-500 mr-1.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="flex-1 text-xs text-gray-600">{t('headerTitle')}</span>
+                    <svg className="w-3 h-3 text-gray-400 ml-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </div>
             {/* AppSheet Header */}
             <div className="shrink-0 h-12 bg-white border-b border-gray-300 flex items-center justify-between px-4">
                 <div className="flex items-center gap-3">
@@ -21,7 +33,6 @@ export function TabletScreen({ currentExam, patientList, phase }: TabletScreenPr
                     <span className="text-gray-800 font-bold text-lg">{currentExam.examRoom}</span>
                 </div>
                 <div className="text-gray-400 text-sm font-medium">
-                    {t('headerTitle')}
                 </div>
             </div>
 
