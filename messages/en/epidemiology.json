@@ -6,7 +6,7 @@
   "backToPortfolio": "Back to Portfolio",
   "CoreDescription": {
     "title": "Why was a web-based tool needed?",
-    "description": "In traditional epidemiological investigation sites, the inefficient method of collecting data in Excel and then moving it to statistical programs (SPSS, SAS) for analysis was repeated. Also, there was a security risk of having to take files containing sensitive personal information outside.",
+    "description": "In traditional epidemiological investigation sites, the inefficient method of collecting data in Excel and then moving it to statistical programs was repeated. Easy Epidemiology integrates this fragmented process into a single web platform. The moment an investigator enters data, a professional statistical engine automatically analyzes trends and calculates risk factors within the browser, completing the final report with one click.",
     "problems": {
       "brokenWorkflow": "Disconnected Workflow",
       "brokenWorkflowDesc": "Data entry (Excel) and analysis tools (SPSS) were separated, so every time there was a revision, files had to be converted and moved.",
