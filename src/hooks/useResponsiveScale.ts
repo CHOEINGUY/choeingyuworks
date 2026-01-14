@@ -4,23 +4,20 @@ import { useState, useEffect } from 'react';
 
 /**
  * Returns a responsive scale value based on screen width.
- * - Desktop (lg+): 1.0
- * - Tablet (md): 0.8
- * - Mobile (sm-): 0.6
+ * - All sizes: 1.0 (demos handle their own internal scaling)
+ * 
+ * Note: We removed the 0.6 mobile scale because it made demos too small
+ * with too much whitespace. Individual demos already have their own
+ * base scale factors (0.55, 0.8, 0.95) which work well at all sizes.
  */
 export function useResponsiveScale() {
     const [scale, setScale] = useState(1);
 
     useEffect(() => {
         const updateScale = () => {
-            const width = window.innerWidth;
-            if (width >= 1024) {
-                setScale(1.0);
-            } else if (width >= 768) {
-                setScale(0.8);
-            } else {
-                setScale(0.6);
-            }
+            // Return 1.0 for all screen sizes
+            // Each demo component has its own appropriate base scale
+            setScale(1.0);
         };
 
         updateScale();
@@ -30,3 +27,4 @@ export function useResponsiveScale() {
 
     return scale;
 }
+
