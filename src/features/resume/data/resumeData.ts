@@ -82,7 +82,7 @@ export const RESUME_DATA = {
         projects: [
             {
                 name: "[3가지 사업 모델 (파티/소개팅/1:1) 통합 이벤트 관리 솔루션](/portfolio/party-saas)",
-                period: "2026. 01",
+                period: "2025. 10 - 2025. 12",
                 description: [
                     "문제 상황 : 사업 모델별로 다른 신청 양식과 운영 로직을 개별 구축해야 하는 개발 비효율 발생",
                     "해결 방안 : JSON 엔진 기반의 동적 신청서 구조를 설계하여 코드 수정 없이 신규 사업 모델 즉시 대응",
@@ -285,7 +285,7 @@ export const RESUME_DATA_V2 = {
         projects: [
             {
                 name: "[Event Management SaaS (Party/Dating/1:1)](/portfolio/party-saas)",
-                period: "2026. 01",
+                period: "2025. 10 - 2025. 12",
                 description: [
                     "Problem: Inefficiency of building separate logic for different business models.",
                     "Solution: Designed a dynamic JSON-engine structure to handle new models without code changes.",
