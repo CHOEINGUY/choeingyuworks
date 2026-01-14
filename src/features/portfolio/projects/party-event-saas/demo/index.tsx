@@ -1,98 +1,94 @@
-"use client";
-
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { FormScene } from './scenes/FormScene';
-import { AdminScene } from './scenes/AdminScene';
-import { SMSScene } from './scenes/SMSScene';
-import { QRScene } from './scenes/QRScene';
-import { WelcomeScene } from './scenes/WelcomeScene';
+import { cn } from '@/lib/utils';
+import { useMobile } from '@/hooks/useMobile';
 import { BrowserFrame } from '@/features/portfolio/components/BrowserFrame';
 
-interface PartySolutionDemoProps {
-    isEmbedded?: boolean;
-    scale?: number;
-    className?: string;
-    isActive?: boolean;
-    isMobile?: boolean; // Add isMobile prop
-}
+import { UI_CONSTANTS, SCENES } from './config';
+import { DemoSceneWrapper } from './components/DemoSceneWrapper';
+import type { PartySolutionDemoProps } from './types';
 
 export function PartySolutionDemo({
     isEmbedded = false,
     scale,
     className,
     isActive = true,
-    isMobile = false // Default to false
 }: PartySolutionDemoProps) {
     const [sceneIndex, setSceneIndex] = useState(0);
-    const nextScene = () => setSceneIndex(prev => (prev + 1) % 5);
+    const isMobile = useMobile();
 
-    // Reduce scale for Admin scene (index 1) on mobile to prevent overflow
-    const adminScaleMultiplier = (isMobile && sceneIndex === 1) ? 0.94 : 1;
-    const currentScale = (scale ?? (isEmbedded ? 0.55 : 1)) * adminScaleMultiplier;
+    // No auto-reset. Just pause.
+    
+    const nextScene = () => setSceneIndex(prev => (prev + 1) % SCENES.length);
+    
+    // Use current sceneIndex regardless of active state (Pause behavior)
+    const currentScene = SCENES[sceneIndex];
 
-    const Content = (
-        <div className={`relative w-full ${isEmbedded ? 'h-full' : 'max-w-[1200px] h-[800px]'} flex ${
-            isMobile 
-                ? sceneIndex === 1 // Admin scene
-                    ? 'items-start justify-center pt-[15%] px-[3%] pb-[3%]' 
-                    : 'items-start justify-end pt-[6%] pr-[6%] pb-[6%]'
-                : 'items-center justify-center'
-        }`}
-            style={{ transformOrigin: 'center' }}>
-            {isActive ? (
-                <AnimatePresence mode="wait">
-                    {sceneIndex === 0 && (<BrowserFrame key="s1" width={400} height={700} url="lindy.party/apply" isMobile uiScale={currentScale}><FormScene onComplete={nextScene} /></BrowserFrame>)}
-                    {sceneIndex === 1 && (<BrowserFrame key="s2" width={isMobile ? 600 : 1000} height={700} url="admin.lindy.party" uiScale={currentScale}><AdminScene onComplete={nextScene} /></BrowserFrame>)}
-                    {sceneIndex === 2 && (<BrowserFrame key="s3" width={400} height={700} url="Messages" isMobile hideAddressBar uiScale={currentScale}><SMSScene onComplete={nextScene} /></BrowserFrame>)}
-                    {sceneIndex === 3 && (<BrowserFrame key="s4" width={400} height={700} url="lindy.party/invitation" isMobile uiScale={currentScale}><QRScene onComplete={nextScene} /></BrowserFrame>)}
-                    {sceneIndex === 4 && (<BrowserFrame key="s5" width={400} height={700} url="lindy.party/welcome" isMobile uiScale={currentScale}><WelcomeScene onComplete={nextScene} /></BrowserFrame>)}
-                </AnimatePresence>
-            ) : (
-                <BrowserFrame key="static" width={400} height={700} url="lindy.party" isMobile uiScale={currentScale}>
-                    <div className="w-full h-full bg-slate-50/50 flex flex-col items-center justify-center p-8 text-center space-y-4">
-                        <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-indigo-50 rounded-2xl flex items-center justify-center shadow-inner">
-                            <span className="text-3xl">✨</span>
-                        </div>
-                        <div className="space-y-1">
-                            <h3 className="font-bold text-slate-700">All-in-One Solution</h3>
-                            <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Interactive Demo</p>
-                        </div>
-                    </div>
-                </BrowserFrame>
-            )}
-        </div>
-    );
+    // Scale Logic
+    const isAdminScene = sceneIndex === 1; // Admin is always index 1 in current config
+    const adminScaleMultiplier = (isMobile && isAdminScene) ? UI_CONSTANTS.SCALE.ADMIN_MOBILE_MULTIPLIER : 1;
+    const baseScale = scale ?? (isEmbedded ? UI_CONSTANTS.SCALE.EMBEDDED_DEFAULT : 1);
+    const currentScale = baseScale * adminScaleMultiplier;
 
-    if (isEmbedded) {
-        return (
-            <div className={`relative w-full h-full flex items-center justify-center overflow-hidden ${className ?? ''}`}>
-                {Content}
-                <div className={`absolute top-4 left-4 z-50 pointer-events-none transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
-                    <h3 className="inline-block font-bold text-gray-500/80 text-[10px] uppercase tracking-wider backdrop-blur-md bg-white/40 px-3 py-1 rounded-full border border-white/20 shadow-sm whitespace-nowrap pointer-events-auto">
-                        {sceneIndex === 0 && "Step 1: 신청서 작성"}
-                        {sceneIndex === 1 && "Step 2: 관리자 승인"}
-                        {sceneIndex === 2 && "Step 3: 문자 발송"}
-                        {sceneIndex === 3 && "Step 4: QR 체크인"}
-                        {sceneIndex === 4 && "Step 5: 환영 메시지"}
-                    </h3>
-                </div>
-            </div>
-        );
-    }
+    // Dimensions Logic
+    const frameWidth = (isMobile && currentScene.mobileWidth) 
+        ? currentScene.mobileWidth 
+        : (currentScene.width || UI_CONSTANTS.DIMENSIONS.MOBILE_WIDTH);
 
     return (
-        <div className={`w-full min-h-screen flex items-center justify-center bg-[#e5e5e5] p-8 font-sans ${className ?? ''}`}>
-            {Content}
-            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-center space-y-3 z-50">
-                <h3 className="font-bold text-gray-500 text-sm uppercase tracking-wider backdrop-blur-md bg-white/50 px-6 py-2 rounded-full border border-white/20 shadow-sm">
-                    {sceneIndex === 0 && "Step 1: User Application"}
-                    {sceneIndex === 1 && "Step 2: Admin Approval"}
-                    {sceneIndex === 2 && "Step 3: Invitation SMS"}
-                    {sceneIndex === 3 && "Step 4: QR Check-in"}
-                    {sceneIndex === 4 && "Step 5: Welcome"}
-                </h3>
+        <div className={cn(
+            "relative w-full flex overflow-hidden",
+            isEmbedded ? "h-full" : "max-w-[1200px] h-[800px] min-h-screen bg-[#e5e5e5] p-8 font-sans",
+            // The parent wrapper alignment matters less now as children are absolute positioned or controlled,
+            // but keeping it centered is safe.
+            "items-center justify-center",
+            className
+        )}>
+            {/* Main Content Area - Static Centered Container */}
+            <div 
+                className={cn(
+                    "relative w-full h-full flex items-center justify-center transition-all duration-500"
+                )}
+                style={{ transformOrigin: 'center' }}
+            >
+                <AnimatePresence mode="wait">
+                    <DemoSceneWrapper
+                        key={currentScene.id}
+                        paramKey={currentScene.id}
+                        isMobile={isMobile}
+                        isAdminScene={isAdminScene}
+                    >
+                        <BrowserFrame
+                            width={frameWidth}
+                            height={UI_CONSTANTS.DIMENSIONS.HEIGHT}
+                            url={currentScene.url}
+                            isMobile={currentScene.isMobileFrame}
+                            hideAddressBar={currentScene.hideAddressBar}
+                            uiScale={currentScale}
+                        >
+                            <currentScene.component 
+                                onComplete={nextScene} 
+                                isActive={isActive}
+                            />
+                        </BrowserFrame>
+                    </DemoSceneWrapper>
+                </AnimatePresence>
             </div>
+
+            {/* Steps Indicator (Embedded or Full Page) */}
+            {isEmbedded ? (
+                <div className="absolute top-4 left-4 z-50 pointer-events-none">
+                    <h3 className="inline-block font-bold text-gray-500/80 text-[10px] uppercase tracking-wider backdrop-blur-md bg-white/40 px-3 py-1 rounded-full border border-white/20 shadow-sm whitespace-nowrap pointer-events-auto">
+                        Step {sceneIndex + 1}: {currentScene.title}
+                    </h3>
+                </div>
+            ) : (
+                <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-center space-y-3 z-50">
+                    <h3 className="font-bold text-gray-500 text-sm uppercase tracking-wider backdrop-blur-md bg-white/50 px-6 py-2 rounded-full border border-white/20 shadow-sm">
+                        Step {sceneIndex + 1}: {currentScene.enTitle}
+                    </h3>
+                </div>
+            )}
         </div>
     );
 }

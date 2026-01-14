@@ -68,8 +68,10 @@ export function FormBuilderMockup() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
         >
-            {/* Browser Window (Main Frame) */}
-            <div className="w-full aspect-[16/10] bg-white rounded-lg shadow-xl border border-slate-200/50 flex flex-col overflow-hidden relative z-10 font-sans">
+            {/* Browser Window Wrapper for Scaling */}
+            <div className="relative w-full h-[350px] md:h-auto md:aspect-auto">
+                {/* Browser Window (Scaled on Mobile) */}
+                <div className="absolute inset-0 w-[160%] h-[160%] origin-top-left scale-[0.625] md:static md:w-full md:h-auto md:scale-100 md:transform-none md:aspect-[16/10] bg-white rounded-lg shadow-xl border border-slate-200/50 flex flex-col overflow-hidden relative z-10 font-sans">
 
                 {/* Browser Chrome (Header) */}
                 <div className="h-10 bg-gray-50/50 border-b border-slate-100 flex items-center px-4 justify-center relative shrink-0">
@@ -97,6 +99,7 @@ export function FormBuilderMockup() {
                         onSubTabChange={setSubTab}
                     />
                 )}
+             </div>
             </div>
         </motion.div>
     );

@@ -34,9 +34,54 @@ export function BottleneckSimulation() {
                             </div>
                         </div>
 
-                        {/* Sequential Flow Diagram - Straight Line */}
-                        <div className="bg-white rounded-xl p-4 mb-5 border border-red-100 flex flex-col justify-center h-[240px]">
-                            <div className="flex items-center justify-center gap-1.5">
+                        {/* Flow Diagram Container */}
+                        <div className="bg-white rounded-xl p-4 mb-5 border border-red-100 flex flex-col justify-center min-h-[240px]">
+                            
+                            {/* MOBILE LAYOUT: 2x2 Grid with Bent Connector */}
+                            <div className="md:hidden relative grid grid-cols-2 gap-x-6 gap-y-10 px-2 py-6">
+                                {/* SVG Connector Layer for 2->3 Step */}
+                                <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                     <defs>
+                                        <marker id="arrowhead-mobile" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                                            <polyline points="1 1 5 3 1 5" fill="none" stroke="#D1D5DB" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </marker>
+                                    </defs>
+                                    {/* Path: Bottom of Box 2 (75, 40) -> Down -> Left -> Top of Box 3 (25, 60) */}
+                                    <path d="M 75 40 V 50 H 25 V 60" stroke="#D1D5DB" strokeWidth="1" fill="none" markerEnd="url(#arrowhead-mobile)" vectorEffect="non-scaling-stroke" />
+                                </svg>
+
+                                {/* 1. Blood */}
+                                <div className="relative z-10">
+                                    <ExamBox label={t('exams.blood')} time="10m" />
+                                    <ArrowRight className="absolute top-1/2 -right-5 -translate-y-1/2 w-3 h-3 text-gray-300" />
+                                </div>
+                                
+                                {/* 2. Body */}
+                                <div className="relative z-10">
+                                    <ExamBox label={t('exams.body')} time="20m" />
+                                </div>
+                                
+                                {/* 3. ECG */}
+                                <div className="relative z-10">
+                                    <ExamBox label={t('exams.ecg')} time="15m" />
+                                    <ArrowRight className="absolute top-1/2 -right-5 -translate-y-1/2 w-3 h-3 text-gray-300" />
+                                </div>
+                                
+                                {/* 4. Dementia */}
+                                <div className="relative z-10">
+                                    <div className="relative">
+                                        <ExamBox label={t('exams.dementia')} time="60m" isBottleneck />
+                                        <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-20">
+                                             <div className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold shadow-sm border border-red-200">
+                                                ⚠️ Bottleneck
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* DESKTOP LAYOUT: Linear (Hidden on Mobile) */}
+                            <div className="hidden md:flex items-center justify-center gap-1.5">
                                 <ExamBox label={t('exams.blood')} time="10m" />
                                 <ArrowRight className="w-3 h-3 text-gray-300 shrink-0" />
                                 <ExamBox label={t('exams.body')} time="20m" />
@@ -52,6 +97,7 @@ export function BottleneckSimulation() {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         {/* Problem Description */}
@@ -156,16 +202,16 @@ export function BottleneckSimulation() {
                 </div>
 
                 {/* Bottom Summary */}
-                <div className="mt-8 bg-slate-50 rounded-xl p-5 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm shadow-sm border border-slate-100">
+                <div className="mt-8 bg-slate-50 rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 md:gap-8 text-sm shadow-sm border border-slate-100">
                     <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                         <span className="text-gray-700 font-medium"
                               dangerouslySetInnerHTML={{ __html: t.raw('results.time') }}
                         />
                     </div>
                     <div className="hidden md:block w-px h-4 bg-slate-300" />
                     <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                         <span className="text-gray-700 font-medium"
                               dangerouslySetInnerHTML={{ __html: t.raw('results.satisfaction') }}
                         />

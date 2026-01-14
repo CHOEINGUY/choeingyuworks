@@ -38,7 +38,7 @@ export function QrSystemMockup() {
 
     return (
         <motion.div
-            className="w-full aspect-[16/10] bg-[#F7F5FF] rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-200/50 flex items-center justify-center relative overflow-hidden ring-1 ring-black/5"
+            className="w-full aspect-[3/4] md:aspect-[16/10] bg-[#F7F5FF] rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-200/50 flex items-center justify-center relative overflow-hidden ring-1 ring-black/5"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -49,7 +49,9 @@ export function QrSystemMockup() {
                 <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] bg-blue-100 rounded-full blur-[60px]" />
             </div>
 
-            <div className="relative h-[95%] aspect-[9/18.5] bg-white rounded-[36px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.18)] border border-slate-200/80 flex flex-col overflow-hidden z-10 font-sans">
+            {/* Scaler Wrapper for Mobile Content */}
+            <div className="w-[160%] h-[160%] scale-[0.625] origin-center flex items-center justify-center md:w-full md:h-full md:scale-100">
+                <div className="relative h-[95%] aspect-[9/18.5] bg-white rounded-[36px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.18)] border border-slate-200/80 flex flex-col overflow-hidden z-10 font-sans">
                     <div className="h-10 bg-slate-50/90 border-b border-slate-100 flex items-center px-6 shrink-0 backdrop-blur-md z-30 rounded-t-[36px]">
                         <div className="flex-1 bg-white h-6 rounded-full border border-slate-200 flex items-center justify-center text-[10px] text-slate-500 shadow-sm relative">
                              <span className="flex items-center gap-0.5 opacity-80">
@@ -71,6 +73,7 @@ export function QrSystemMockup() {
                         )}
                     </div>
                 </div>
+            </div>
         </motion.div>
     );
 }

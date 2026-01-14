@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp, Check, Camera, AlertCircle, List, Mail, MapPin, Clock } from 'lucide-react';
+import { ChevronUp, Check, Camera, AlertCircle, List, Mail, MapPin, Clock, Info } from 'lucide-react';
 import { useScrollTrap } from '../hooks/useScrollTrap';
 import { QRCodeGenerator } from '../components/QRCodeGenerator';
 import { ScanState } from '../constants';
@@ -92,10 +92,13 @@ export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
 
     // Sheet Handle Component
     const SheetHandle = () => (
-        <div className="px-6 pt-5 pb-3">
-            <div className="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-3" />
-            <h3 className="font-bold text-base text-center text-gray-900">파티 가이드</h3>
-            <p className="text-gray-500 text-xs text-center mt-1">입장 전 안내사항을 확인해주세요.</p>
+        <div className="px-6 pt-5 pb-3 bg-white rounded-t-[1.5rem]">
+            <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
+            <h3 className="font-bold text-base text-center text-gray-900 flex items-center justify-center gap-2">
+                <Info size={18} className="text-blue-500" />
+                파티 가이드
+            </h3>
+            <p className="text-gray-400 text-[11px] text-center mt-1.5 tracking-tight">즐거운 파티를 위한 안내사항입니다</p>
         </div>
     );
 
@@ -150,7 +153,7 @@ export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
                     <Mail size={14} /> Message Preview
                 </h4>
                 <div className="bg-white p-3 rounded-xl shadow-sm border border-blue-100 text-[11px] text-gray-600 relative">
-                    <div className="absolute -top-1 -left-1 w-2 h-2 bg-blue-200 rounded-full animate-ping opacity-75" />
+
                     <p className="italic leading-relaxed">
                         <span className="font-bold text-blue-600 not-italic mr-1">To. 카리나</span>
                         이번 주말에 시간 괜찮으시면 같이 카페 가실래요?

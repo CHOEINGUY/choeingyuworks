@@ -7,6 +7,43 @@ import { TabletScreen } from "./subcomponents/TabletScreen";
 import { TTSAnnouncement } from "./subcomponents/TTSAnnouncement";
 import { useTranslations } from "next-intl";
 import { BrowserFrame } from "@/features/portfolio/components/BrowserFrame";
+import { useMobile } from "@/hooks/useMobile";
+import { cn } from "@/lib/utils";
+
+// --- Constants & Configuration ---
+
+const CONSTANTS = {
+    TIMINGS: {
+        "tablet-focus": 2500,
+        "tablet-clicking": 700,
+        "statusboard-focus": 1000,
+        "statusboard-blink": 1500,
+        "statusboard-update": 1200,
+        "tts-announce": 2500,
+    },
+    SCALE: {
+        MOBILE_CONTAINER: 0.7,
+        MOBILE_WIDTH: '142.86%',
+        MOBILE_HEIGHT: '142.86%',
+        DEFAULT_WIDTH: '100%',
+        DEFAULT_HEIGHT: '100%',
+        EMBEDDED_DEFAULT: 0.55,
+    },
+    STYLES: {
+        TABLET_FRONT: {
+            TOP: '3%', LEFT: '3%', WIDTH: '94%', SCALE: 1, FILTER: 'brightness(1) blur(0px)', Z: 30
+        },
+        TABLET_BACK: {
+            TOP: '12%', LEFT: '12%', WIDTH: '76%', SCALE: 0.92, FILTER: 'brightness(0.95) blur(2px)', Z: 10
+        },
+        BOARD_FRONT: {
+            TOP: '3%', LEFT: '3%', WIDTH: '94%', SCALE: 1, FILTER: 'brightness(1) blur(0px)', Z: 30
+        },
+        BOARD_BACK: {
+            TOP: '12%', LEFT: '12%', WIDTH: '76%', SCALE: 0.92, FILTER: 'brightness(0.95) blur(2px)', Z: 10
+        }
+    }
+} as const;
 
 // 실제 검진 목업 데이터 - 더 현실적인 이름들이 포함된 원본 리스트
 const PATIENT_LIST = [
@@ -44,7 +81,8 @@ interface ExamFlowAnimationProps {
     scale?: number;
     className?: string;
     isActive?: boolean;
-    isMobile?: boolean;
+    // isMobile prop deprecated in favor of internal hook
+    isMobile?: boolean; 
 }
 
 export function ExamFlowAnimation({
@@ -52,8 +90,9 @@ export function ExamFlowAnimation({
     scale,
     className,
     isActive = true,
-    isMobile = false
+    // isMobile = false // internal hook used instead
 }: ExamFlowAnimationProps) {
+    const isMobile = useMobile();
     const t = useTranslations("CohortDashboard");
     const tExam = useTranslations("CohortDashboard.ExamFlow");
 
@@ -99,7 +138,7 @@ export function ExamFlowAnimation({
     ], [t, tExam]);
 
     const currentExam = EXAM_SCENARIOS[currentStep];
-    const currentScale = scale ?? (isEmbedded ? 0.55 : 1);
+    const currentScale = scale ?? (isEmbedded ? CONSTANTS.SCALE.EMBEDDED_DEFAULT : 1);
 
     useEffect(() => {
         if (!blinkingStation || !isActive) {
@@ -114,15 +153,6 @@ export function ExamFlowAnimation({
 
     useEffect(() => {
         if (!isActive) return;
-
-        const timings: Record<AnimationPhase, number> = {
-            "tablet-focus": 2500,
-            "tablet-clicking": 700,
-            "statusboard-focus": 1000,
-            "statusboard-blink": 1500,
-            "statusboard-update": 1200,
-            "tts-announce": 2500,
-        };
 
         const timer = setTimeout(() => {
             switch (phase) {
@@ -150,7 +180,7 @@ export function ExamFlowAnimation({
                     setPhase("tablet-focus");
                     break;
             }
-        }, timings[phase]);
+        }, CONSTANTS.TIMINGS[phase]);
 
         return () => clearTimeout(timer);
     }, [phase, currentExam.stationId, isActive, EXAM_SCENARIOS.length]);
@@ -160,9 +190,9 @@ export function ExamFlowAnimation({
     const content = (
         <div className="w-full h-full relative overflow-hidden">
             <div className="w-full h-full" style={{
-                width: isMobile ? '142.86%' : '100%',
-                height: isMobile ? '142.86%' : '100%',
-                transform: isMobile ? 'scale(0.7)' : 'none',
+                width: isMobile ? CONSTANTS.SCALE.MOBILE_WIDTH : CONSTANTS.SCALE.DEFAULT_WIDTH,
+                height: isMobile ? CONSTANTS.SCALE.MOBILE_HEIGHT : CONSTANTS.SCALE.DEFAULT_HEIGHT,
+                transform: isMobile ? `scale(${CONSTANTS.SCALE.MOBILE_CONTAINER})` : 'none',
                 transformOrigin: 'top left'
             }}>
                 {/* Base Background Decor Removed */}
@@ -171,13 +201,13 @@ export function ExamFlowAnimation({
             <motion.div
                 className="absolute rounded-xl shadow-[0_30px_60px_-12px_rgba(0,0,0,0.15)] border border-white overflow-hidden ring-1 ring-slate-200"
                 animate={{
-                    top: isTabletFront ? '12%' : '3%',
-                    left: isTabletFront ? '12%' : '3%',
-                    width: isTabletFront ? '76%' : '94%',
+                    top: isTabletFront ? CONSTANTS.STYLES.BOARD_BACK.TOP : CONSTANTS.STYLES.BOARD_FRONT.TOP,
+                    left: isTabletFront ? CONSTANTS.STYLES.BOARD_BACK.LEFT : CONSTANTS.STYLES.BOARD_FRONT.LEFT,
+                    width: isTabletFront ? CONSTANTS.STYLES.BOARD_BACK.WIDTH : CONSTANTS.STYLES.BOARD_FRONT.WIDTH,
                     height: '85%',
-                    zIndex: isTabletFront ? 10 : 30,
-                    scale: isTabletFront ? 0.92 : 1,
-                    filter: isTabletFront ? 'brightness(0.95) blur(2px)' : 'brightness(1) blur(0px)',
+                    zIndex: isTabletFront ? CONSTANTS.STYLES.BOARD_BACK.Z : CONSTANTS.STYLES.BOARD_FRONT.Z,
+                    scale: isTabletFront ? CONSTANTS.STYLES.BOARD_BACK.SCALE : CONSTANTS.STYLES.BOARD_FRONT.SCALE,
+                    filter: isTabletFront ? CONSTANTS.STYLES.BOARD_BACK.FILTER : CONSTANTS.STYLES.BOARD_FRONT.FILTER,
                 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
             >
@@ -195,12 +225,12 @@ export function ExamFlowAnimation({
                 className="absolute rounded-2xl shadow-[0_30px_60px_-12px_rgba(0,0,0,0.15)] border border-white overflow-hidden ring-1 ring-slate-200"
                 style={{ height: '85%' }}
                 animate={{
-                    top: isTabletFront ? '3%' : '12%',
-                    left: isTabletFront ? '3%' : '12%',
-                    width: isTabletFront ? '94%' : '76%',
-                    zIndex: isTabletFront ? 30 : 10,
-                    scale: isTabletFront ? 1 : 0.92,
-                    filter: isTabletFront ? 'brightness(1) blur(0px)' : 'brightness(0.95) blur(2px)',
+                    top: isTabletFront ? CONSTANTS.STYLES.TABLET_FRONT.TOP : CONSTANTS.STYLES.TABLET_BACK.TOP,
+                    left: isTabletFront ? CONSTANTS.STYLES.TABLET_FRONT.LEFT : CONSTANTS.STYLES.TABLET_BACK.LEFT,
+                    width: isTabletFront ? CONSTANTS.STYLES.TABLET_FRONT.WIDTH : CONSTANTS.STYLES.TABLET_BACK.WIDTH,
+                    zIndex: isTabletFront ? CONSTANTS.STYLES.TABLET_FRONT.Z : CONSTANTS.STYLES.TABLET_BACK.Z,
+                    scale: isTabletFront ? CONSTANTS.STYLES.TABLET_FRONT.SCALE : CONSTANTS.STYLES.TABLET_BACK.SCALE,
+                    filter: isTabletFront ? CONSTANTS.STYLES.TABLET_FRONT.FILTER : CONSTANTS.STYLES.TABLET_BACK.FILTER,
                 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
             >
@@ -224,7 +254,7 @@ export function ExamFlowAnimation({
     if (isEmbedded) {
         return (
             <div 
-                className={`w-full h-full ${className || ''}`}
+                className={cn(`w-full h-full`, className)}
                 style={{ transform: `scale(${currentScale})`, transformOrigin: 'center' }}
             >
                 {content}

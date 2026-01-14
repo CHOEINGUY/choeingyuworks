@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useRouter, usePathname } from "@/navigation";
+import { useLocale } from "next-intl";
 import { Hero } from "@/features/hero/components/Hero";
 import { PortfolioSection } from "@/features/portfolio/components/PortfolioSection";
 import { AboutSection } from "@/features/hero/components/AboutSection";
@@ -10,14 +12,38 @@ import { AnimatePresence, motion } from "framer-motion";
 export type TabType = "about" | "portfolio";
 
 export default function Home() {
+    const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams();
+    const locale = useLocale();
+    
+    // Initialize tab based on URL param or pathname
     const [activeTab, setActiveTab] = useState<TabType>(() => {
-        return searchParams.get('tab') === 'portfolio' ? 'portfolio' : 'about';
+        const isPortfolio = searchParams.get('tab') === 'portfolio' || pathname.endsWith('/portfolio');
+        return isPortfolio ? 'portfolio' : 'about';
     });
+
+    // Sync tab with URL changes
+    useEffect(() => {
+        const isPortfolio = searchParams.get('tab') === 'portfolio' || pathname.endsWith('/portfolio');
+        setActiveTab(isPortfolio ? 'portfolio' : 'about');
+    }, [searchParams, pathname]);
+
+    const handleTabChange = (tab: TabType) => {
+        // Optimistic update
+        setActiveTab(tab);
+        
+        // Use router for navigation
+        if (tab === 'portfolio') {
+            router.replace('/portfolio', { scroll: false });
+        } else {
+            router.replace('/', { scroll: false });
+        }
+    };
 
     return (
         <main className="min-h-screen bg-white">
-            <Hero activeTab={activeTab} onTabChange={setActiveTab} />
+            <Hero activeTab={activeTab} onTabChange={handleTabChange} />
 
             <div className="relative">
                 <AnimatePresence mode="wait">

@@ -16,7 +16,7 @@ export function FeatureTimeline() {
 
     return (
         <section className="py-20 bg-gray-50">
-           <div className="max-w-3xl mx-auto px-6">
+           <div className="max-w-3xl mx-auto px-4 md:px-6">
                 <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
                     {t('title')}
                 </h2>

@@ -101,7 +101,43 @@ export function TechStackFlow() {
                     {/* Top: Progress Bar & Icons */}
                     <div className="px-0 relative w-full">
                         {/* Container with extra padding to prevent clipping of scaled active items and text labels */}
-                        <div className="flex items-center w-full min-w-[300px] md:min-w-full overflow-x-auto gap-0 pl-1 pr-1 pt-12 pb-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] touch-pan-x cursor-grab active:cursor-grabbing">
+                        {/* MOBILE LAYOUT: Single Focused Step (Carousel) */}
+                        <div className="md:hidden w-full flex flex-col items-center gap-6 mb-8 min-h-[160px] justify-center">
+                            {/* Active Icon Body */}
+                            <div className="flex flex-col items-center gap-3">
+                                <motion.div 
+                                    key={activeStep}
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    className="relative w-20 h-20 rounded-3xl bg-blue-600 flex items-center justify-center shadow-xl shadow-blue-200 z-10"
+                                >
+                                    {/* Render Active Icon */}
+                                    {(() => {
+                                        const ActiveIcon = PIPELINE_STEPS[activeStep].icon;
+                                        return <ActiveIcon className="w-9 h-9 text-white" strokeWidth={2} />;
+                                    })()}
+                                </motion.div>
+                                <span className="text-sm font-bold text-blue-700">
+                                    {PIPELINE_STEPS[activeStep].label}
+                                </span>
+                            </div>
+
+                            {/* Dots Indicator */}
+                            <div className="flex gap-2">
+                                {PIPELINE_STEPS.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => handleStepClick(idx)}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 
+                                            ${idx === activeStep ? "bg-blue-600 w-6" : "bg-gray-300"}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* DESKTOP LAYOUT: Horizontal Linear Flow (Hidden on Mobile) */}
+                        <div className="hidden md:flex flex-row items-center justify-between w-full pt-12 pb-20 relative gap-0">
                             {PIPELINE_STEPS.map((step, index) => {
                                 const isActive = index === activeStep;
                                 const isCompleted = index < activeStep;
@@ -112,36 +148,35 @@ export function TechStackFlow() {
                                     <div key={step.id} className="contents">
                                         {/* Step Node */}
                                         <div 
-                                            className="flex flex-col items-center gap-6 cursor-pointer group relative z-10 shrink-0"
+                                            className="flex flex-col items-center gap-6 cursor-pointer group relative z-10 p-0"
                                             onClick={() => handleStepClick(index)}
-                                            style={{ width: '100px' }} // 아이콘 간격 조금 더 확보
                                         >
                                             <motion.div 
-                                                className={`relative w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ease-out z-20
+                                                className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ease-out z-20 shrink-0
                                                     ${isActive ? "bg-blue-600 shadow-xl shadow-blue-200 scale-110" : 
                                                       isCompleted ? "bg-white border-2 border-blue-600" : "bg-white border-2 border-gray-200 group-hover:border-gray-400"}`}
                                             >
                                                 <Icon 
-                                                    className={`w-6 h-6 md:w-7 md:h-7 transition-colors duration-500
+                                                    className={`w-7 h-7 transition-colors duration-500
                                                         ${isActive ? "text-white" : isCompleted ? "text-blue-600" : "text-gray-400"}`} 
                                                     strokeWidth={2}
                                                 />
                                             </motion.div>
                                             
-                                            <span className={`absolute top-full left-1/2 -translate-x-1/2 mt-5 w-48 text-xs md:text-sm font-bold break-keep text-center transition-colors duration-500 ${isActive ? "text-blue-700" : "text-gray-500"}`}>
+                                            <span className={`absolute top-full left-1/2 -translate-x-1/2 mt-5 w-48 text-center text-sm font-bold transition-colors duration-500
+                                                ${isActive ? "text-blue-700" : "text-gray-500"}`}>
                                                 {step.label}
                                             </span>
                                         </div>
 
                                         {/* Connecting Line */}
                                         {!isLast && (
-                                            <div className="flex-1 h-[2px] bg-gray-200 mx-2 relative overflow-hidden shrink-0 min-w-[40px] rounded-full">
-                                                {/* Fill line */}
+                                            <div className="flex-1 h-[2px] bg-gray-200 mx-4 relative overflow-hidden shrink-0 min-w-[40px] rounded-full">
                                                 <motion.div 
-                                                    className="absolute inset-y-0 left-0 bg-blue-500"
+                                                    className="absolute inset-0 bg-blue-500"
                                                     initial={{ width: "0%" }}
                                                     animate={{ width: index < activeStep ? "100%" : "0%" }}
-                                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                                    transition={{ duration: 0.4 }}
                                                 />
                                             </div>
                                         )}

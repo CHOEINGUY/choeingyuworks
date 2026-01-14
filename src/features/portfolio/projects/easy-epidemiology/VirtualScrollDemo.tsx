@@ -22,9 +22,12 @@ import {
     Upload
 } from "lucide-react";
 
+import { useMobile } from "@/hooks/useMobile";
+
 export function VirtualScrollDemo() {
     const t = useTranslations("EasyEpidemiology.VirtualScroll");
     const containerRef = useRef<HTMLDivElement>(null);
+    const isMobile = useMobile();
     
     // "Shell" implementation - Just enough rows to look like a grid
     const mockRows = Array.from({ length: 20 }).map((_, i) => ({
@@ -54,7 +57,7 @@ export function VirtualScrollDemo() {
 
     return (
         <section className="py-24 bg-white overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-4 md:px-6">
                 
                 <div className="text-center mb-16">
                     <span className="text-emerald-600 font-bold tracking-wider text-sm uppercase mb-3 block">
@@ -71,7 +74,7 @@ export function VirtualScrollDemo() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     
                     {/* Left: Authentic Virtual Grid Demo */}
-                    <div className="relative aspect-[16/12] w-full max-w-full mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50/50 to-slate-100/80 border border-emerald-100/50 shadow-2xl shadow-emerald-100/20">
+                    <div className="relative aspect-[16/12] w-full max-w-full mx-auto rounded-2xl lg:rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50/50 to-slate-100/80 ring-1 ring-emerald-200/50">
                         <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.08),transparent)]" />
                         
                         <div className="absolute inset-0 z-10 overflow-hidden flex items-center justify-center p-2 md:p-4">
@@ -155,6 +158,12 @@ export function VirtualScrollDemo() {
                                     ref={containerRef}
                                     className="flex-1 overflow-auto relative bg-slate-50 overscroll-contain no-scrollbar"
                                 >
+                                    <div style={{ 
+                                        width: isMobile ? '166.67%' : '100%', 
+                                        height: isMobile ? '166.67%' : '100%', 
+                                        transform: isMobile ? 'scale(0.6)' : undefined, 
+                                        transformOrigin: 'top left' 
+                                    }}>
                                     <table className="min-w-[900px] w-full border-collapse table-fixed bg-white">
                                         <colgroup>
                                             <col style={{ width: '45px' }} /><col style={{ width: '70px' }} /><col style={{ width: '70px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '65px' }} /><col style={{ width: '65px' }} /><col style={{ width: '65px' }} /><col style={{ width: '120px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: '55px' }} /><col style={{ width: 'auto' }} />
@@ -261,7 +270,8 @@ export function VirtualScrollDemo() {
                                                 </tr>
                                             ))}
                                         </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                                 
                             </div>

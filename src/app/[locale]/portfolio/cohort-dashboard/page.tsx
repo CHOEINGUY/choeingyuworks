@@ -26,10 +26,10 @@ export default function CohortDashboardPage() {
                 style={{ backgroundImage: `radial-gradient(#000 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
             {/* Hero Section (Matching Layout) */}
-            <section className="relative pt-24 pb-12 md:pt-40 md:pb-20 px-6 overflow-hidden">
+            <section className="relative pt-24 pb-12 md:pt-40 md:pb-20 px-4 md:px-6 overflow-hidden">
                 <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent z-10" />
 
-                <div className="w-[93%] max-w-[77rem] mx-auto relative z-20">
+                <div className="w-full md:w-[93%] max-w-[77rem] mx-auto relative z-20">
                     <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
                         
                         {/* Left Content (Text) */}
@@ -57,13 +57,15 @@ export default function CohortDashboardPage() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            <div className="relative aspect-[4/3] md:aspect-[16/11] w-full max-w-full mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/50 to-slate-100/80 border border-slate-200/50">
+                            <div className="relative aspect-[4/3] md:aspect-[16/11] w-full max-w-full mx-auto rounded-2xl lg:rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/50 to-slate-100/80 ring-1 ring-slate-200/50">
                                 <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent)]" />
                                 <div className="absolute inset-0 z-10 overflow-hidden">
-                                    <ExamFlowAnimation
-                                        isEmbedded
-                                        scale={scale}
-                                    />
+                                    <div className="absolute inset-0 w-[125%] h-[125%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                                        <ExamFlowAnimation
+                                            isEmbedded
+                                            scale={scale * 0.8}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>

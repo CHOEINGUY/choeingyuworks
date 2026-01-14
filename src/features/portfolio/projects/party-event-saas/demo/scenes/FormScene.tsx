@@ -8,7 +8,7 @@ import { DemoProgressBar } from '../components/DemoProgressBar';
 import { DemoNavButtons } from '../components/DemoNavButtons'; // Keeping if needed or remove? removed usage in code so remove import.
 import { DemoBottomNavigation } from '../components/DemoBottomNavigation';
 
-export const FormScene = ({ onComplete }: { onComplete: () => void }) => {
+export const FormScene = ({ onComplete, isActive = true }: { onComplete: () => void; isActive?: boolean }) => {
     const [step, setStep] = useState<'cover' | 'name' | 'phone' | 'schedule' | 'photo' | 'payment' | 'success'>('cover');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -25,9 +25,12 @@ export const FormScene = ({ onComplete }: { onComplete: () => void }) => {
     const typePhone = useCallback(async (text: string) => { for (let i = 1; i <= text.length; i++) { if (!mounted.current) return; setPhone(text.slice(0, i)); await wait(50); } }, []);
 
     useEffect(() => {
+        if (!isActive) return; // Stop sequence if not active
+
         let active = true;
         const sequence = async () => {
-            if (step === 'cover') { await wait(720); if (active) { await click(); await wait(180); if (active) setStep('name'); } }
+            if (active) await wait(500); // Initial delay
+            if (step === 'cover') { await wait(220); if (active) { await click(); await wait(180); if (active) setStep('name'); } }
             if (step === 'name') { await wait(480); if (active) { await click(); await typeName("최인규"); await wait(300); if (active) await click(); if (active) setStep('phone'); } }
             if (step === 'phone') { await wait(420); if (active) { await click(); await typePhone("010-1234-5678"); await wait(300); if (active) await click(); if (active) setStep('schedule'); } }
             if (step === 'schedule') { await wait(600); if (active) { await click(); setSelectedSchedule('fri'); await wait(420); if (active) await click(); if (active) setStep('photo'); } }
@@ -37,7 +40,7 @@ export const FormScene = ({ onComplete }: { onComplete: () => void }) => {
         };
         sequence();
         return () => { active = false; };
-    }, [step, onComplete, click, typeName, typePhone]);
+    }, [step, onComplete, click, typeName, typePhone, isActive]);
 
     const getStepIndex = () => {
         switch (step) {

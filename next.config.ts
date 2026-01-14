@@ -16,6 +16,22 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:locale(ko|en|ja)/portfolio',
+        destination: '/:locale?tab=portfolio',
+      },
+      {
+        source: '/portfolio',
+        destination: '/?tab=portfolio',
+      },
+      {
+        source: '/:locale(ko|en|ja)',
+        destination: '/:locale?tab=about',
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

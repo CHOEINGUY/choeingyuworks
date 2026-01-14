@@ -75,9 +75,46 @@ export function E2EFlowBento() {
                 <div className="flex flex-col gap-16">
                     
                     {/* Top: Progress Bar & Icons */}
+                    {/* Top: Progress Bar & Icons */}
                     <div className="px-0 relative w-full">
-                        {/* Container with extra padding to prevent clipping of scaled active items */}
-                        <div className="flex items-center w-full min-w-[300px] md:min-w-full overflow-x-auto gap-0 pl-1 pr-1 py-12 md:pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] touch-pan-x cursor-grab active:cursor-grabbing">
+                        
+                        {/* MOBILE LAYOUT: Single Focused Step (Carousel) */}
+                        <div className="md:hidden w-full flex flex-col items-center gap-6 mb-8 min-h-[160px] justify-center">
+                            {/* Active Icon Body */}
+                            <div className="flex flex-col items-center gap-3">
+                                <motion.div 
+                                    key={activeStep}
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    className="relative w-20 h-20 rounded-full bg-neutral-900 flex items-center justify-center shadow-xl shadow-neutral-200 z-10"
+                                >
+                                    {/* Render Active Icon */}
+                                    {(() => {
+                                        const ActiveIcon = steps[activeStep].icon;
+                                        return <ActiveIcon className="w-9 h-9 text-white" strokeWidth={2} />;
+                                    })()}
+                                </motion.div>
+                                <span className="text-sm font-bold text-neutral-900">
+                                    {steps[activeStep].label}
+                                </span>
+                            </div>
+
+                            {/* Dots Indicator */}
+                            <div className="flex gap-2">
+                                {steps.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => handleStepClick(idx)}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 
+                                            ${idx === activeStep ? "bg-neutral-900 w-6" : "bg-gray-300"}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* DESKTOP LAYOUT: Horizontal Linear Flow (Hidden on Mobile) */}
+                        <div className="hidden md:flex items-center w-full justify-between gap-0 pl-1 pr-1 py-12">
                             {steps.map((step, index) => {
                                 const isActive = index === activeStep;
                                 const isCompleted = index < activeStep;

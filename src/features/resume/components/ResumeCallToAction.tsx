@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import Image from "next/image";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
@@ -28,16 +27,17 @@ export function ResumeCallToAction() {
                     <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left z-10 shrink-0">
                         {/* Avatar / Placeholder */}
                         <div className="w-24 h-24 rounded-full bg-gray-100 border-4 border-white shadow-md flex items-center justify-center overflow-hidden shrink-0">
-                            {/* Ideally replace with real image if available */}
-                            <span className="text-3xl font-bold text-gray-400">IC</span>
+                            <img 
+                                src="/profile.jpg" 
+                                alt="Choi In-gyu" 
+                                className="w-full h-full object-cover"
+                            />
                         </div>
 
                         <div>
                             <h3 className="text-2xl font-bold text-gray-900 tracking-tight">최인규 <span className="text-gray-400 font-normal text-lg ml-1">(In-gyu Choi)</span></h3>
                             <p className="text-gray-500 font-medium">Business Solution Architect</p>
-                            <div className="flex items-center justify-center md:justify-start gap-2 mt-2 text-sm text-gray-400">
-                                <span>Developer</span>
-                            </div>
+
                         </div>
                     </div>
 

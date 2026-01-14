@@ -9,7 +9,7 @@ export function ArchitectureFlow() {
 
     return (
         <section className="py-24 bg-slate-900 text-white overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-4 md:px-6">
                 
                 <div className="text-center mb-20">
                     <span className="text-blue-400 font-bold tracking-wider text-sm uppercase mb-3 block">
