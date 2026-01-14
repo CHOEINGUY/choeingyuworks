@@ -28,14 +28,14 @@ export function PartySolutionDemo({
     const nextScene = () => setSceneIndex(prev => (prev + 1) % 5);
 
     // Reduce scale for Admin scene (index 1) on mobile to prevent overflow
-    const adminScaleMultiplier = (isMobile && sceneIndex === 1) ? 0.96 : 1;
+    const adminScaleMultiplier = (isMobile && sceneIndex === 1) ? 0.94 : 1;
     const currentScale = (scale ?? (isEmbedded ? 0.55 : 1)) * adminScaleMultiplier;
 
     const Content = (
         <div className={`relative w-full ${isEmbedded ? 'h-full' : 'max-w-[1200px] h-[800px]'} flex ${
             isMobile 
                 ? sceneIndex === 1 // Admin scene
-                    ? 'items-start justify-center pt-[15%] px-[2%] pb-[2%]' 
+                    ? 'items-start justify-center pt-[15%] px-[3%] pb-[3%]' 
                     : 'items-start justify-end pt-[6%] pr-[6%] pb-[6%]'
                 : 'items-center justify-center'
         }`}
@@ -43,7 +43,7 @@ export function PartySolutionDemo({
             {isActive ? (
                 <AnimatePresence mode="wait">
                     {sceneIndex === 0 && (<BrowserFrame key="s1" width={400} height={700} url="lindy.party/apply" isMobile uiScale={currentScale}><FormScene onComplete={nextScene} /></BrowserFrame>)}
-                    {sceneIndex === 1 && (<BrowserFrame key="s2" width={isMobile ? 700 : 1000} height={700} url="admin.lindy.party" uiScale={currentScale}><AdminScene onComplete={nextScene} /></BrowserFrame>)}
+                    {sceneIndex === 1 && (<BrowserFrame key="s2" width={isMobile ? 600 : 1000} height={700} url="admin.lindy.party" uiScale={currentScale}><AdminScene onComplete={nextScene} /></BrowserFrame>)}
                     {sceneIndex === 2 && (<BrowserFrame key="s3" width={400} height={700} url="Messages" isMobile hideAddressBar uiScale={currentScale}><SMSScene onComplete={nextScene} /></BrowserFrame>)}
                     {sceneIndex === 3 && (<BrowserFrame key="s4" width={400} height={700} url="lindy.party/invitation" isMobile uiScale={currentScale}><QRScene onComplete={nextScene} /></BrowserFrame>)}
                     {sceneIndex === 4 && (<BrowserFrame key="s5" width={400} height={700} url="lindy.party/welcome" isMobile uiScale={currentScale}><WelcomeScene onComplete={nextScene} /></BrowserFrame>)}
