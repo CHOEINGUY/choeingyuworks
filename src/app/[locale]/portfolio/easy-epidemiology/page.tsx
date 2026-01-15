@@ -41,9 +41,7 @@ export default function EasyEpidemiologyPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <span className="text-emerald-600 font-bold tracking-wider text-sm uppercase mb-4 block">
-                                    Web-based Epidemic Investigation Tool
-                                </span>
+
                                 <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-keep tracking-tight text-gray-900"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.title') }}
                                 />

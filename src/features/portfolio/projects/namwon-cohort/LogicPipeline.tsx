@@ -80,67 +80,72 @@ export function LogicPipeline() {
 
     return (
         <section className="py-24 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="max-w-7xl mx-auto px-6">
                 
-                {/* Left: Logic Steps */}
-                <div>
-                    <div className="mb-10">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-6"
-                            dangerouslySetInnerHTML={{ __html: t.raw('Logic.title') }}
-                        />
-                        <p className="text-gray-600 leading-relaxed"
-                           dangerouslySetInnerHTML={{ __html: t.raw('Logic.description') }}
-                        />
-                    </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-end">
                     
-                    <div className="space-y-4">
-                        {steps.map((item, i) => (
-                            <button 
-                                key={i}
-                                onClick={() => {
-                                    setStep(i + 1);
-                                    setIsPaused(true);
-                                }}
-                                className={`w-full text-left p-6 rounded-2xl border-2 transition-all duration-300 relative group
-                                    ${step === i + 1 
-                                        ? "bg-blue-50 border-blue-500 shadow-md transform scale-[1.02]" 
-                                        : "bg-white border-gray-100 hover:border-blue-200"}`}
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0
-                                        ${step === i + 1 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-400"}`}>
-                                        {i + 1}
+                    {/* Left: Logic Steps */}
+                    <div>
+                        <div className="mb-10">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-6"
+                                dangerouslySetInnerHTML={{ __html: t.raw('Logic.title') }}
+                            />
+                            <p className="text-gray-600 leading-relaxed break-keep"
+                               dangerouslySetInnerHTML={{ __html: t.raw('Logic.description') }}
+                            />
+                        </div>
+
+                        <div className="space-y-4">
+                            {steps.map((item, i) => (
+                                <button 
+                                    key={i}
+                                    onClick={() => {
+                                        setStep(i + 1);
+                                        setIsPaused(true);
+                                    }}
+                                    className={`w-full text-left p-6 rounded-2xl border-2 transition-all duration-300 relative group
+                                        ${step === i + 1 
+                                            ? "bg-blue-50 border-blue-500 shadow-md transform scale-[1.02]" 
+                                            : "bg-white border-gray-100 hover:border-blue-200"}`}
+                                >
+                                    <div className="flex items-start gap-4">
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0
+                                            ${step === i + 1 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-400"}`}>
+                                            {i + 1}
+                                        </div>
+                                        <div>
+                                            <h3 className={`font-bold text-base mb-1 ${step === i + 1 ? "text-blue-900" : "text-gray-900"}`}>
+                                                {item.title.split('. ')[1] || item.title}
+                                            </h3>
+                                            <p className={`text-sm leading-relaxed break-keep ${step === i + 1 ? "text-blue-700/70" : "text-gray-500"}`}>
+                                                {item.desc}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h3 className={`font-bold text-base mb-1 ${step === i + 1 ? "text-blue-900" : "text-gray-900"}`}>
-                                            {item.title.split('. ')[1] || item.title}
-                                        </h3>
-                                        <p className={`text-sm leading-relaxed ${step === i + 1 ? "text-blue-700/70" : "text-gray-500"}`}>
-                                            {item.desc}
-                                        </p>
-                                    </div>
-                                </div>
-                                {step === i + 1 && (
-                                    <motion.div 
-                                        layoutId="active-indicator"
-                                        className="absolute right-6 top-1/2 -translate-y-1/2"
-                                    >
-                                        <div className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
-                                    </motion.div>
-                                )}
-                            </button>
-                        ))}
+                                    {step === i + 1 && (
+                                        <motion.div 
+                                            layoutId="active-indicator"
+                                            className="absolute right-6 top-1/2 -translate-y-1/2"
+                                        >
+                                            <div className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
+                                        </motion.div>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right: Decision Engine Dashboard (Extracted) */}
+                    <div>
+                        <LogicFlowAnimation 
+                            step={step} 
+                            isPaused={isPaused} 
+                            onResume={() => setIsPaused(false)} 
+                            candidates={SCENARIOS[scenarioIdx].candidates}
+                            room={SCENARIOS[scenarioIdx].room}
+                        />
                     </div>
                 </div>
-
-                {/* Right: Decision Engine Dashboard (Extracted) */}
-                <LogicFlowAnimation 
-                    step={step} 
-                    isPaused={isPaused} 
-                    onResume={() => setIsPaused(false)} 
-                    candidates={SCENARIOS[scenarioIdx].candidates}
-                    room={SCENARIOS[scenarioIdx].room}
-                />
             </div>
         </section>
     );

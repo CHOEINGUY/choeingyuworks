@@ -213,7 +213,7 @@ export function TechStackFlow() {
           </div>
 
           {/* Bottom: Dynamic Detail Card */}
-          <div className="relative h-[200px] w-full max-w-3xl mx-auto">
+          <div className="relative h-[240px] md:h-[200px] w-full max-w-3xl mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}

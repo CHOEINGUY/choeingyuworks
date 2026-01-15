@@ -14,7 +14,7 @@ export function BottleneckSimulation() {
                     <h2 className="text-3xl font-bold text-gray-900 mb-3">
                         {t('title')}
                     </h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto"
+                    <p className="text-gray-500 max-w-2xl mx-auto break-keep"
                        dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
                 </div>
@@ -30,7 +30,7 @@ export function BottleneckSimulation() {
                             </div>
                             <div>
                                 <h3 className="font-bold text-gray-900">{t('before.title')}</h3>
-                                <p className="text-xs text-red-600">{t('before.subtitle')}</p>
+                                <p className="text-xs text-red-600 break-keep">{t('before.subtitle')}</p>
                             </div>
                         </div>
 
@@ -116,7 +116,7 @@ export function BottleneckSimulation() {
                             </div>
                             <div>
                                 <h3 className="font-bold text-gray-900">{t('after.title')}</h3>
-                                <p className="text-xs text-emerald-600">{t('after.subtitle')}</p>
+                                <p className="text-xs text-emerald-600 break-keep">{t('after.subtitle')}</p>
                             </div>
                         </div>
 
@@ -205,14 +205,14 @@ export function BottleneckSimulation() {
                 <div className="mt-8 bg-slate-50 rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 md:gap-8 text-sm shadow-sm border border-slate-100">
                     <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                        <span className="text-gray-700 font-medium"
+                        <span className="text-gray-700 font-medium break-keep"
                               dangerouslySetInnerHTML={{ __html: t.raw('results.time') }}
                         />
                     </div>
                     <div className="hidden md:block w-px h-4 bg-slate-300" />
                     <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                        <span className="text-gray-700 font-medium"
+                        <span className="text-gray-700 font-medium break-keep"
                               dangerouslySetInnerHTML={{ __html: t.raw('results.satisfaction') }}
                         />
                     </div>
@@ -254,7 +254,7 @@ function ProblemItem({ text }: { text: string }) {
     return (
         <div className="flex items-start gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
-            <span className="text-xs text-gray-600 leading-tight">{text}</span>
+            <span className="text-xs text-gray-600 leading-tight break-keep">{text}</span>
         </div>
     );
 }
@@ -263,7 +263,7 @@ function SolutionItem({ text }: { text: string }) {
     return (
         <div className="flex items-start gap-2">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0" />
-            <span className="text-xs text-gray-600 leading-tight">{text}</span>
+            <span className="text-xs text-gray-600 leading-tight break-keep">{text}</span>
         </div>
     );
 }

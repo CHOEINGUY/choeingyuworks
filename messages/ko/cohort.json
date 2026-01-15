@@ -131,7 +131,7 @@
             "waiting": "대기중"
         },
         "ttsLabel": "음성 안내",
-        "ttsMessage": "{name}님, {name}님 다음 검사는 {room}와 입니다",
+        "ttsMessage": "{name}님, {name}님 다음 검사는 {room}입니다",
         "ttsActive": "안내중",
         "resume": "시뮬레이션 재개"
     },

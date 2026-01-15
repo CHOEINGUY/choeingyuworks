@@ -17,7 +17,7 @@ export function LogicFlowAnimation({ step, isPaused, onResume, candidates, room 
     const winner = candidates.find(c => c.id === 4);
 
     return (
-        <div className="bg-slate-50 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 border border-slate-200 relative h-[600px] md:h-[700px] flex flex-col shadow-inner overflow-hidden transition-all duration-300">
+        <div className="bg-slate-50 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 border border-slate-200 relative h-[500px] md:h-[580px] flex flex-col shadow-inner overflow-hidden transition-all duration-300">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                  style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
@@ -139,22 +139,7 @@ export function LogicFlowAnimation({ step, isPaused, onResume, candidates, room 
                     </AnimatePresence>
                 </div>
 
-                {/* Reset / Play Button */}
-                {isPaused && (
-                    <div className="absolute bottom-6 right-6 z-20">
-                         <button 
-                            onClick={onResume}
-                            className="p-3 bg-white hover:bg-slate-50 rounded-full shadow-lg border border-slate-200 text-slate-400 hover:text-blue-600 transition-all flex items-center gap-2"
-                        >
-                            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 4, ease: "linear" }}>
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                </svg>
-                            </motion.div>
-                            <span className="text-xs font-bold pr-1">{t('resume')}</span>
-                        </button>
-                    </div>
-                )}
+
             </div>
         </div>
     );
