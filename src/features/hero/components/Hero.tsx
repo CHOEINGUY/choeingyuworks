@@ -100,7 +100,7 @@ export function Hero({ activeTab, onTabChange }: HeroProps) {
                             style={{ originX: 1 }}
                             className="w-full sm:w-auto h-12 rounded-full flex items-center justify-center overflow-hidden cursor-pointer relative shadow-lg hover:shadow-xl"
                         >
-                            <AnimatePresence mode="wait">
+                            <AnimatePresence>
                                 {!isExpanded ? (
                                     <motion.button
                                         layout
