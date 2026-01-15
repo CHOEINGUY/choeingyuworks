@@ -93,13 +93,13 @@ export const RESUME_DATA = {
             },
             {
                 name: "[역학조사 통합 분석 솔루션 (Easy-Epidemiology)](/portfolio/easy-epidemiology)",
-                period: "2024. 11 - 2025. 07",
+                period: "2024. 11 - 2025. 12",
                 description: [
                     "문제 상황 : 보건소 담당자가 환자 대조군 분석 및 유행곡선 생성을 수작업으로 진행하여 발생하는 시간 병목",
-                    "해결 방안 : 데이터 입력 즉시 통계 로직이 작동하여 분석 결과와 보고서 양식(한글/PDF)을 자동 생성하는 시스템 구축",
-                    "의사결정 : 외부 SW 의존도를 낮추기 위해 브라우저 기반 경량 통계 알고리즘을 직접 구현하여 현장 호환성 확보",
-                    "성    과 : 수 시간이 소요되던 분석 및 보고서 작성을 데이터 입력 즉시 완료되도록 개선",
-                    "사용 기술 : Vue.js, Tailwind CSS, ECharts, 통계 분석 로직(Custom)"
+                    "해결 방안 : 역학조사관 인터뷰를 통해 요구사항을 파악하고, 데이터 입력 즉시 통계 분석 및 보고서(한글/PDF)를 자동 생성하는 웹 기반 시스템 구축. 현장 피드백을 반영하여 v1.0에서 v2.0까지 단계적으로 기능 확장",
+                    "의사결정 : 외부 SW 의존도를 낮추기 위해 브라우저 기반 경량 통계 알고리즘을 직접 구현. TypeScript 전환 및 3차 QC를 통해 시스템 안정성 확보",
+                    "성    과 : 수 시간이 소요되던 분석 및 보고서 작성을 데이터 입력 즉시 완료. 보건소 배포 및 실무 교육 실시",
+                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, 통계 분석 로직(Custom)"
                 ]
             },
             {
@@ -157,55 +157,77 @@ export const RESUME_DATA_V2 = {
     ...RESUME_DATA,
     ko: {
         ...RESUME_DATA.ko,
-        about: "**비즈니스 흐름을 읽고, 기술로 답을 찾는 '솔루션 빌더'**\n\n• **업무 흐름 분석을 통한 프로세스 효율화** : 14개 통계집 작성 과정을 분석·자동화하여, 3개월의 업무를 1개월로 66% 단축했습니다. 기술 도입에 앞서 업무의 본질적인 흐름을 먼저 이해하는 것이 저의 해결 방식입니다.\n\n• **AI 툴 기반의 생산성 극대화와 검증 중심의 개발** : AI와 최신 도구들을 전략적으로 활용해 개발 생산성을 극대화합니다. 이를 통해 확보한 시간은 오로지 시스템의 안정성과 현장 사용자의 편의성을 철저히 검증하는 데 투자합니다.\n\n• **기획부터 배포까지 책임지는 탄탄한 실행력** : 1인 개발로 서비스 기획부터 운영까지 전 과정을 직접 관리한 경험이 있습니다. 단순히 코드만 짜는 것에 그치지 않고, 실무자의 관점에서 운영 비용을 줄이는 실질적인 결과를 만드는 데 집중합니다.",
+        about: "**비즈니스 흐름을 읽고, 기술로 답을 찾는 '솔루션 빌더'**\n14개 통계집 작성 프로세스를 분석·자동화하여 3개월 업무를 1개월로 단축했습니다. AI와 최신 도구로 개발 생산성을 극대화하고, 확보한 시간은 시스템 안정성과 사용자 편의성 검증에 투자합니다. 1인 개발 경험을 토대로 기획부터 운영까지 전 과정을 이해하며, 현장의 운영 비용을 실질적으로 줄이는 결과를 만듭니다.",
         experience: [
             {
                 company: "전남대학교 의과대학 예방의학교실",
                 position: "연구원 (공공 보건 사업 PM 및 시스템 개발)",
                 period: "2022. 08 - 2025. 12 (3년 4개월)",
                 description: [
-                    "담당 직무 : 공공 보건 사업 (지역사회건강조사 등) 기획 지원 및 현장 운영 실무 전담, 업무 시스템 개발"
+                    "공공 보건 사업(지역사회건강조사, 남원 코호트, 소지역 건강조사 등) 기획 지원 및 현장 운영 실무 전담, 업무 시스템 개발"
                 ],
                 projects: [
                     {
                         title: "지역사회건강조사 (전남 14개 시·군, 연 1.2만명 규모)",
                         details: [
-                            "사업 관리(PM) 및 운영 : 연간 사업 계획 수립, 예산 집행 관리 및 조사원 56명 채용·직무 교육 및 인력 운영 전담",
-                            "현장 업무 자동화 : 복잡한 수동 입력 프로세스 자동화를 위한 [Chrome Extension 및 Android 앱](https://sites.google.com/view/jnupreventautomation/%ED%99%88) 개발/전국 배포",
-                            "보고서 작성 자동화 : SAS 분석 결과를 기반으로 Python/VBA를 활용해 차트 생성 및 HWPX 입력을 수행하는 후처리 파이프라인 구축 (3개월→1개월)",
-                            "공통 업무 자동화 툴 제작 및 공유 : 반복 통계표 작성 VBA 개발 및 실무 매뉴얼 배포",
-                            "프로세스 시스템화 : 인력 교체 시 업무 단절 방지를 위한 단계별 매뉴얼(Protocol) 구축 및 구글 시트 기반 업무 시스템화",
-                            "조사 품질 관리(QC) : 실시간 모니터링 및 주기적인 이상치 점검으로 데이터 정합성을 확보하고 최종 결과보고서 작성 담당"
+                            "사업 관리(PM) : 연간 사업 계획 수립, 예산 집행 관리, 조사원 56명 채용 및 직무 교육",
+                            "현장 업무 자동화 : [Chrome Extension 및 Android 앱](https://sites.google.com/view/jnupreventautomation/%ED%99%88) 개발 및 배포(전국)로 복잡한 수동 입력 프로세스 제거",
+                            "보고서 작성 자동화 : SAS 분석 결과를 Python/VBA로 차트 생성 및 HWPX 자동 입력하는 파이프라인 구축, 14개 통계집 작성 기간 66% 단축 (3개월→1개월)",
+                            "품질 관리(QC) : 실시간 데이터 모니터링 및 주기적 이상치 점검, 최종 결과보고서 작성"
                         ]
                     },
                     {
                         title: "남원 코호트 연구 (심뇌혈관질환 R&D)",
                         details: [
-                            "현장 운영 및 일정 관리 : 전체 검진 일정 수립, 검진 예약 관리(연 200명 규모) 및 보조 인력교육 담당",
-                            "데이터 정밀 관리 및 아카이빙 : 검진 결과지 스캔 및 라벨링(파일명 규칙화), 연구 실물 자료 정리 및 보관 관리",
-                            "데이터 정합성 검증 : Pandas를 활용한 데이터 이상치 점검 및 정제",
-                            "현장 운영 시스템 세팅 : 수기 관리 방식을 실시간 관제 시스템으로 교체, 시스템 흐름에 맞춰 현장 동선을 다시 배치하여 회차당 소요 시간 15% 단축"
+                            "현장 운영 : 검진 일정 수립 및 예약 관리(연 200명 규모), 보조 인력 교육",
+                            "데이터 관리 : 검진 결과지 스캔·라벨링, 연구 실물 자료 정리 및 보관, Pandas 기반 이상치 점검 및 정제",
+                            "시스템 구축 : AppSheet-Firebase 연동 실시간 관제 시스템 구축 및 Google TTS 자동 호명, 회차당 소요 시간 15% 단축"
                         ]
                     },
                     {
                         title: "해남군 계곡면 소지역 건강조사",
                         details: [
-                            "DX(디지털 전환) : 수기 설문을 Google Forms 기반 모바일 조사 시스템으로 전면 전환 및 교육",
-                            "GIS 분석 : R을 활용한 공간정보(GIS) 시각화 및 사업계획서 기술 지원",
-                            "조사 품질 관리 : 실시간 데이터 모니터링 및 조사원 피드백(1:1 코칭)을 통한 조사 정확도 유지 관리"
+                            "디지털 전환 : 수기 설문을 Google Forms 기반 모바일 시스템으로 전환 및 조사원 교육",
+                            "공간 분석 : R을 활용한 GIS 시각화 및 사업계획서 작성 지원",
+                            "품질 관리 : 실시간 데이터 모니터링 및 조사원 1:1 코칭"
                         ]
                     },
                     {
-                        title: "역학조사 통합 분석 솔루션 (Easy-Epidemiology) 개발 및 운영",
+                        title: "역학조사 솔루션 및 업무 도구 개발",
                         details: [
-                            "현장 밀착형 개발 : 역학조사관 인터뷰를 통해 파편화된 도구의 비효율을 파악하고, 웹 기반 자동화 도구로 구현",
-                            "사용자 확산 및 관리 : 보건소 담당자 대상 교육 실시, 운영 매뉴얼 배포 및 실무 피드백 기반 UI/UX 개선",
-                            "품질 및 안정성 : 3차에 걸친 품질 관리(QC)와 TypeScript 전환 및 리팩토링을 통해 시스템 안정성 확보"
+                            "역학조사 통합 분석 솔루션(Easy-Epidemiology) 개발 및 보건소 배포",
+                            "공통 업무 자동화 툴 제작 및 실무 매뉴얼 배포"
                         ]
                     }
                 ]
             },
-            RESUME_DATA.ko.experience[1] // Keep other experience same
+            {
+                company: "프리랜서 솔루션 개발",
+                position: "1인 개발 및 운영",
+                period: "2024. 10 - 현재",
+                description: [
+                    "제조업 ERP, 이벤트 관리 솔루션 등 고객사 맞춤형 업무 자동화 시스템 설계·개발·운영"
+                ]
+            }
+        ],
+        skills: [
+            {
+                category: "주력 기술 스택",
+                items: [
+                    "TypeScript/React/Next.js : 타입 안정성 기반의 프로덕션 웹 애플리케이션 개발",
+                    "Firebase/Supabase : 서버리스 인프라로 빠른 MVP 구축 및 실시간 데이터 처리",
+                    "Python(Flask) + Google Cloud : 비즈니스 로직 서버 구축 및 API 연동 자동화",
+                    "Google Apps Script/AppSheet : 현장 친화적 업무 자동화 및 저비용 DX 구현"
+                ]
+            },
+            {
+                category: "업무 자동화 및 데이터 처리",
+                items: [
+                    "프로세스 분석 → 병목 지점 파악 → 자동화 시스템 설계 및 구현",
+                    "SAS, Python(Pandas), R 기반 통계 분석 및 보고서 생성 파이프라인 구축",
+                    "외부 API 연동(세금계산서, 결제, 알림톡 등) 및 레거시 시스템 통합"
+                ]
+            }
         ]
     },
     en: {
@@ -213,7 +235,7 @@ export const RESUME_DATA_V2 = {
         birthYear: "Born in 1998",
         role: "Business Solution Engineer",
         location: "Gwangju, South Korea",
-        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\n\n• **Process Efficiency through Workflow Analysis**: Analyzed and automated the process of creating 14 statistical reports, reducing a 3-month workload to 1 month (66% reduction). My approach is to understand the essential flow of work before introducing technology.\n\n• **Maximizing Productivity with AI Tools & Verification-Centric Development**: Strategically utilize AI and modern tools to maximize development productivity. The time saved is invested solely in rigorously verifying system stability and user convenience in the field.\n\n• **Solid Execution from Planning to Deployment**: Experience in managing the entire process from service planning to operation as a solo developer. I focus on creating tangible results that reduce operating costs from a practitioner's perspective, rather than just writing code.",
+        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\nAnalyzed and automated 14 statistical report processes, reducing 3-month work to 1 month. I maximize development productivity with AI and modern tools, investing the saved time in system stability and usability verification. With solo development experience, I understand the entire process from planning to operation, creating tangible results that reduce operating costs.",
         education: [
             {
                 school: "Korea National Open University",
@@ -274,7 +296,7 @@ export const RESUME_DATA_V2 = {
             {
                 company: "Personal Projects & Consulting",
                 position: "Solution Builder (Solo Dev & Ops)",
-                period: "2025. 10 - Present",
+                period: "2024. 10 - Present",
                 description: [
                     "BPA Consulting: Diagnosed manual bottlenecks via client interviews & proposed DX roadmaps.",
                     "Logic Optimization: Designed & delivered management systems for complex operation logic (Party/Dating SaaS).",
@@ -296,7 +318,7 @@ export const RESUME_DATA_V2 = {
             },
             {
                 name: "[Easy-Epidemiology (Analysis Solution)](/portfolio/easy-epidemiology)",
-                period: "2024. 11 - 2025. 07",
+                period: "2024. 11 - 2025. 12",
                 description: [
                     "Problem: Time bottlenecks due to manual case-control analysis by health officers.",
                     "Solution: Built a system that auto-generates stats & reports (HWP/PDF) upon data entry.",
@@ -330,24 +352,20 @@ export const RESUME_DATA_V2 = {
         ],
         skills: [
             {
-                category: "Web & Frontend Engineering",
+                category: "Core Tech Stack",
                 items: [
-                    "Next.js, React, Vue.js, TypeScript: Building high-performance, user-centric interactive UI/UX.",
-                    "Firebase, Supabase: Rapid deployment & operations based on serverless infrastructure."
+                    "TypeScript/React/Next.js: Building production web applications with type safety.",
+                    "Firebase/Supabase: Rapid MVP development and real-time data processing with serverless infrastructure.",
+                    "Python(Flask) + Google Cloud: Building business logic servers and API integration automation.",
+                    "Google Apps Script/AppSheet: Field-friendly workflow automation and low-cost DX implementation."
                 ]
             },
             {
-                category: "Business Process Automation (BPA)",
+                category: "Workflow Automation & Data Processing",
                 items: [
-                    "AppSheet, Google Apps Script: Diagnosing manual workflows & designing app-based DX systems.",
-                    "Python(Flask), Google Cloud Run: Building custom backend servers for business logic & integration."
-                ]
-            },
-            {
-                category: "Integration & Data Analysis",
-                items: [
-                    "API Integration: Integrating external services (Tax, Payments, AlimTalk) into business flows.",
-                    "SAS, Python, R: Automating data preprocessing, statistical analysis, and reporting processes."
+                    "Process analysis → Bottleneck identification → Automation system design and implementation.",
+                    "Statistical analysis and report generation pipelines using SAS, Python(Pandas), R.",
+                    "External API integration (Tax invoices, Payments, AlimTalk) and legacy system consolidation."
                 ]
             }
         ]

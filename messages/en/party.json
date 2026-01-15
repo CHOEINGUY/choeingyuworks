@@ -1,7 +1,7 @@
 {
     "Hero": {
         "title": "All of Event Business,<br>in <span>One Single Solution</span>.",
-        "description": "From application to payment verification, SMS sending, QR entry, and result aggregation.<br>Integrate tasks scattered across multiple tools into <strong>one, reducing operational resources by 90%</strong>.",
+        "description": "Application, deposit verification, SMS, QR issuance, on-site check-in.<br>We consolidated tasks scattered across 5 tools <strong>into one unified system</strong>.",
         "cta": "Request Service"
     },
     "Infrastructure": {
@@ -69,13 +69,13 @@
     },
     "PremiumCTA": {
         "title": "Systematize Your Business,<br>Start Now.",
-        "description": "Even events with hundreds of people can be operated by one person.<br>Reduce unnecessary operation time and focus on more important planning and strategy.",
+        "description": "Manage events with hundreds of people solo,<br>and invest the saved time in planning and growth.",
         "button": "Inquire about Solution"
     },
     "DeepDive": {
         "Dashboard": {
             "title": "From deposit check to participant management and SMS,<br>Done in a single click.",
-            "description": "Solve everything from the dashboard without complex Excel work.<br>The system assists with auto-verification of deposits, profile checks, selection, and result notification."
+            "description": "Instantly processed with real-time auto-matching, no complex Excel work needed.<br>The system assists with auto-verification of deposits, profile checks, selection, and result notification."
         },
         "FormBuilder": {
             "title": "Built-in Form Builder &<br>Auto Data Integration",

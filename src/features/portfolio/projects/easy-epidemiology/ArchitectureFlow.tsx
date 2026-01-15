@@ -68,6 +68,7 @@ export function ArchitectureFlow() {
                              <div className="flex gap-2 text-xs font-mono text-slate-500">
                                 <span className="bg-slate-900 px-2 py-1 rounded">Pinia</span>
                                 <span className="bg-slate-900 px-2 py-1 rounded">WebWorker</span>
+                                <span className="bg-blue-900/30 text-blue-300 px-2 py-1 rounded">Zero Server Cost</span>
                             </div>
                         </motion.div>
 
@@ -86,9 +87,15 @@ export function ArchitectureFlow() {
                             <p className="text-slate-400 text-sm leading-relaxed mb-4 break-keep">
                                 {t('step3.desc')}
                             </p>
-                            <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold mt-2">
-                                <WifiOff className="w-3 h-3" />
-                                Offline Ready
+                            <div className="flex flex-wrap gap-2 mt-2">
+                                <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold">
+                                    <WifiOff className="w-3 h-3" />
+                                    Offline Ready
+                                </div>
+                                <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold">
+                                    <ShieldCheck className="w-3 h-3" />
+                                    No Installation
+                                </div>
                             </div>
                         </motion.div>
                     </div>

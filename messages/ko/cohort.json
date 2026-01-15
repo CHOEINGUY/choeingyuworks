@@ -36,7 +36,7 @@
             ]
         },
         "results": {
-            "time": "결과 1: 전체 운영 시간 <span class='text-emerald-600 font-extrabold'>1시간 이상</span> 단축 (매일)",
+            "time": "결과 1: 전체 운영 시간 <span class='text-emerald-600 font-extrabold'>1시간 이상</span> 단축 (회차당 15% 효율 개선)",
             "satisfaction": "결과 2: 실시간 순서 배정으로 <span class='text-emerald-600 font-extrabold'>참여자 항의 및 대기 피로도</span> 감소"
         },
         "exams": {

@@ -27,10 +27,10 @@ const PROJECTS: Project[] = [
     {
         id: "easy-epidemiology",
         subtitle: "Browser-based High Performance Analytics",
-        title: "웹 브라우저의 한계를 넘는 대용량 역학 분석 도구",
+        title: "설치 없이 브라우저만으로\n대용량 역학 데이터 완벽 분석",
         description: "별도의 통계 프로그램 설치 없이 웹 브라우저에서 대용량 역학 데이터를 즉시 입력하고 분석하는 고성능 도구입니다.\n\n웹 워커와 가상 스크롤 기술을 적용하여 수만 건의 데이터도 지연 없이 처리합니다. 현장에 익숙한 스프레드시트 UX를 제공하며, 유행 곡선 등 핵심 지표 시각화부터 최종 결과보고서 작성까지 원클릭으로 자동화했습니다.",
         tags: ["Vue.js 3", "Web Worker", "Virtual Scroll", "System Architecture"],
-        result: <>서버 전송 없이 <strong>브라우저 내에서 모든 연산을 처리</strong>하는 아키텍처로 데이터 보안을 강화하고 인프라 비용을 제로화했습니다.</>,
+        result: <>수 시간 걸리던 분석을 <strong>데이터 입력 즉시 완료</strong>하고, 외부 프로그램 없이 <strong>브라우저만으로 전문 역학 보고서</strong>를 생성합니다.</>,
         imageColor: "bg-emerald-50",
         detailLink: "/portfolio/easy-epidemiology",
         demoUrl: "https://easy-epi.xyz/"
@@ -41,17 +41,17 @@ const PROJECTS: Project[] = [
         title: "실시간 코호트 검진 시스템",
         description: "검사별 소요 시간 차이로 발생하는 현장의 혼선을 해결하기 위해 개발했습니다. 태블릿과 중앙 상황판을 실시간으로 연동하여, 빈 검사실이 생기면 시스템이 자동으로 다음 대상자를 안내합니다. 복잡한 동선 관리를 자동화하여 연구원들이 오직 검사에만 집중할 수 있도록 도왔습니다.",
         tags: ["AppSheet", "Apps Script", "Firebase"],
-        result: <>수기로 관리하던 <strong>동선 안내를 100% 자동화</strong>하여 대기 시간을 줄이고, <strong>검진 효율을 극대화</strong>했습니다.</>,
+        result: <>수기 관리 방식을 <strong>실시간 자동 배정으로 전환</strong>하여 회차당 소요 시간 <strong>15% 단축</strong> 및 <strong>현장 혼선을 완전히 제거</strong>했습니다.</>,
         imageColor: "bg-slate-50",
         detailLink: "/portfolio/cohort-dashboard"
     },
     {
         id: "solution",
         subtitle: "All-in-One Event SaaS Platform",
-        title: "3가지 이벤트 비즈니스를 하나로, 올인원 운영 솔루션",
-        description: "프라이빗 파티, 로테이션 소개팅, 1:1 매칭 등 서로 다른 3가지 사업 형태를 하나의 관리자 페이지에서 통합 운영할 수 있습니다.\n\n구글 폼의 한계를 넘는 '자체 신청서 빌더'를 내장하여 양식을 자유롭게 수정할 수 있으며, 신청부터 결제, QR 입장, 웹앱 연결까지의 전 과정을 완전 자동화하여 운영 리소스를 획기적으로 절감했습니다.",
+        title: "3가지 비즈니스 모델을 하나의 시스템으로,\n1인 운영을 가능하게 하는 올인원 솔루션",
+        description: "프라이빗 파티, 로테이션 소개팅, 1:1 매칭 등 서로 다른 3가지 사업 형태를 하나의 관리자 페이지에서 통합 운영할 수 있습니다.\n\n자체 신청서 빌더로 양식을 자유롭게 구성하고, 신청부터 결제, QR 입장, 웹앱 연결까지 전 과정을 자동화했습니다.",
         tags: ["Firebase", "Cloudflare R2", "Banking API"],
-        result: <>수작업 입금 확인 <strong>90% 자동화</strong>, 현장 운영 인력 <strong>80% 절감</strong>. 1인 운영자도 수백 명 규모의 이벤트를 무리 없이 관리할 수 있는 시스템을 구축했습니다.</>,
+        result: <>신청·입금·문자·QR·체크인까지 <strong>5개 도구를 하나로 통합</strong>하고, 입금 확인과 현장 운영을 자동화하여 <strong>1인 운영 체제</strong>를 확립했습니다.</>,
         imageColor: "bg-purple-50",
         detailLink: "/portfolio/party-saas"
     },
@@ -149,7 +149,7 @@ export function PortfolioSection() {
                                     <span className="text-gray-500 font-bold tracking-wider text-xs mb-2 md:mb-3 uppercase">
                                         {project.subtitle}
                                     </span>
-                                    <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-5 leading-tight break-keep">
+                                    <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-5 leading-tight break-keep whitespace-pre-line">
                                         {project.title}
                                     </h2>
                                     <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-5 md:mb-6 break-keep">

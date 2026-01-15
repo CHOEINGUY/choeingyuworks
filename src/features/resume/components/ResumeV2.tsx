@@ -71,13 +71,13 @@ export function ResumeV2() {
                     
                     <ResumeAbout about={currentData.about} />
                     
-                    <ResumeEducation education={currentData.education} />
-                    
                     <ResumeExperience experience={currentData.experience} />
                     
                     <ResumeProjects projects={currentData.projects || []} />
                     
                     <ResumeSkills skills={currentData.skills} />
+
+                    <ResumeEducation education={currentData.education} />
                     
                     {currentData.closing && <ResumeClosing closing={currentData.closing} />}
                     

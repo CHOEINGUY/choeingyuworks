@@ -6,7 +6,7 @@
   "backToPortfolio": "Back to Portfolio",
   "CoreDescription": {
     "title": "Real-time One-Stop Epidemiology,<br/>Where Data Entry Becomes Analysis",
-    "description": "Previously, the inefficiency of collecting data in Excel and then moving it to statistical tools or manually drawing graphs was repeated. During this process, data loss or missing analysis timing were frequent problems. We integrated this fragmented process into a single web platform. The moment an epidemiologist enters data, a professional statistical engine within the browser automatically diagnoses outbreak types, calculates risk factors, and completes the final report with one click.",
+    "description": "Previously, the inefficiency of collecting data in Excel and then moving it to statistical tools or manually drawing graphs was repeated. During this process, data loss or missing analysis timing were frequent problems. We integrated this fragmented process into a single web platform. The moment an epidemiologist enters data, professional statistical computations automatically execute, generating everything from outbreak type diagnosis to the final report instantly.",
     "problems": {
       "brokenWorkflow": "Repetitive Dual Work",
       "brokenWorkflowDesc": "Data collection in Excel and analysis in statistical tools were separated, causing repeated inefficiency of converting and moving files every time.",
@@ -17,7 +17,7 @@
     }
   },
   "VirtualScroll": {
-    "title": "Lightweight even with large data,<br/>Proprietary Virtual Scroll Engine",
+    "title": "Tens of Thousands of Records Without Lag,<br/>Proprietary Virtual Scroll Engine",
     "description": "Even tens of thousands of epidemiological investigation data entries must be handled seamlessly in a web browser. With our custom Virtual Scroll logic implemented without relying on libraries, you can smoothly navigate vast amounts of data without memory load.",
     "recyclingTitle": "DOM Element Recycling",
     "recyclingDesc": "Only the DOM elements visible on the screen are created, and when scrolling, those elements are recycled to replace the data. This allows rendering tens of thousands of rows without performance degradation.",
@@ -71,7 +71,7 @@
     "step5": {
       "phase": "Phase 5 (Current)",
       "title": "Platform Upgrade (v2.0)",
-      "desc": "Full migration to TypeScript and component-based refactoring from legacy code. Also modernized the design system by introducing Tailwind CSS."
+      "desc": "JavaScript → TypeScript migration and component refactoring to strengthen maintainability. Modernized the design system with Tailwind CSS."
     }
   }
 }

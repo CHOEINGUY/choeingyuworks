@@ -58,33 +58,15 @@ export function AboutSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            className="p-6 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300 group"
+                            className="p-7 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-0.5 transition-all duration-300 group"
                         >
                             <h3 className="font-bold text-gray-900 mb-2">{feature.title}</h3>
-                            <p className="text-sm text-gray-600 leading-relaxed break-keep">
+                            <p className="text-sm text-gray-500 leading-relaxed break-keep">
                                 {feature.description}
                             </p>
                         </motion.div>
                     ))}
                 </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="mt-12 md:mt-16 text-center"
-                >
-                    <Link href="/resume">
-                        <Button
-                            size="lg"
-                            className="rounded-full px-8 h-12 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
-                        >
-                            {t("buttons.viewResume")}
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                    </Link>
-                </motion.div>
             </div>
         </section>
     );
