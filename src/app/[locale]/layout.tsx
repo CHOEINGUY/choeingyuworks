@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import "../globals.css";
@@ -59,6 +60,7 @@ export default async function LocaleLayout({
                     <Navbar />
                     {children}
                     <Footer />
+                    <Analytics />
                 </NextIntlClientProvider>
             </body>
         </html>
