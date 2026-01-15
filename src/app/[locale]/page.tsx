@@ -15,22 +15,11 @@ export default function Home() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     
-    // Initialize tab based on URL param or pathname
-    const [activeTab, setActiveTab] = useState<TabType>(() => {
-        const isPortfolio = searchParams.get('tab') === 'portfolio' || pathname.endsWith('/portfolio');
-        return isPortfolio ? 'portfolio' : 'about';
-    });
-
-    // Sync tab with URL changes
-    useEffect(() => {
-        const isPortfolio = searchParams.get('tab') === 'portfolio' || pathname.endsWith('/portfolio');
-        setActiveTab(isPortfolio ? 'portfolio' : 'about');
-    }, [searchParams, pathname]);
+    // Derived state from URL
+    const isPortfolio = searchParams.get('tab') === 'portfolio' || pathname.endsWith('/portfolio');
+    const activeTab: TabType = isPortfolio ? 'portfolio' : 'about';
 
     const handleTabChange = (tab: TabType) => {
-        // Optimistic update
-        setActiveTab(tab);
-        
         // Use router for navigation
         if (tab === 'portfolio') {
             router.replace('/portfolio', { scroll: false });

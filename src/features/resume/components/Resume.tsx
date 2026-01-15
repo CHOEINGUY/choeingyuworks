@@ -25,6 +25,7 @@ export function Resume() {
     const [today, setToday] = useState("");
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const date = new Date();
         setToday(`${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.`);

@@ -214,8 +214,9 @@ export function ExamFlowAnimation({
 
     useEffect(() => {
         if (!blinkingStation || !isActive) {
-            setBlinkToggle(false);
-            return;
+            // Avoid synchronous state update in effect
+            const timer = setTimeout(() => setBlinkToggle(false), 0);
+            return () => clearTimeout(timer);
         }
         const interval = setInterval(() => {
             setBlinkToggle(prev => !prev);

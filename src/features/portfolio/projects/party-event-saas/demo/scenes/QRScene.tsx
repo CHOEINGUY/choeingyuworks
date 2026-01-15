@@ -32,7 +32,6 @@ export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
     useEffect(() => {
         const timers: NodeJS.Timeout[] = [];
 
-        // 1. Scroll to bottom (starts rising the handle) (0.6s)
         // 1. Scroll to bottom (starts rising the handle) (0.7s)
         timers.push(setTimeout(() => {
             setScanState('scrolling');
@@ -89,85 +88,6 @@ export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
         if (sheetState === 'peek') return `calc(100% - ${PEER_HEIGHT}px)`;
         return '15%'; // Full
     };
-
-    // Sheet Handle Component
-    const SheetHandle = () => (
-        <div className="px-6 pt-5 pb-3 bg-white rounded-t-[1.5rem]">
-            <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
-            <h3 className="font-bold text-base text-center text-gray-900 flex items-center justify-center gap-2">
-                <Info size={18} className="text-blue-500" />
-                파티 가이드
-            </h3>
-            <p className="text-gray-400 text-[11px] text-center mt-1.5 tracking-tight">즐거운 파티를 위한 안내사항입니다</p>
-        </div>
-    );
-
-    // Sheet Body Content
-    const SheetBody = () => (
-        <div className="space-y-4 text-left px-5 pb-8 pt-2">
-            {/* Notice Section */}
-            <div className="bg-orange-50/50 p-4 rounded-2xl border border-orange-100/80">
-                <h4 className="text-xs font-bold text-orange-900/80 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
-                    <AlertCircle size={14} /> Check List
-                </h4>
-                <ul className="space-y-2 text-gray-600 text-[11px] leading-relaxed tracking-tight">
-                    <li className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-orange-300 mt-1.5 shrink-0"/>
-                        <span>현장 스냅은 공식 SNS에 업로드될 수 있어요.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-orange-400 mt-1.5 shrink-0"/>
-                        <span className="font-bold text-orange-700">18:50까지 도착 부탁드려요! (지각은 손해🥲)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-orange-300 mt-1.5 shrink-0"/>
-                        <span>간단한 핑거푸드만 제공되니 식사는 미리!</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-orange-300 mt-1.5 shrink-0"/>
-                        <span>주차가 어려워요. 대중교통 이용을 권장합니다.</span>
-                    </li>
-                </ul>
-            </div>
-
-            {/* Rules Section */}
-            <div className="bg-gray-50/80 p-4 rounded-2xl border border-gray-100">
-                <h4 className="text-xs font-bold text-gray-800 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
-                    <List size={14} /> Party Rules
-                </h4>
-                <ul className="space-y-2 text-gray-500 text-[11px] leading-relaxed">
-                    <li className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-gray-300 mt-1.5 shrink-0"/>
-                        <span>1시간마다 로테이션으로 자리가 변경됩니다.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-gray-300 mt-1.5 shrink-0"/>
-                        <span>마음에 드는 분께 '익명 편지'를 보내보세요.</span>
-                    </li>
-                </ul>
-            </div>
-
-            {/* Letter Section */}
-            <div className="bg-blue-50/50 p-4 rounded-2xl border border-blue-100/80">
-                <h4 className="text-xs font-bold text-blue-900/80 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
-                    <Mail size={14} /> Message Preview
-                </h4>
-                <div className="bg-white p-3 rounded-xl shadow-sm border border-blue-100 text-[11px] text-gray-600 relative">
-
-                    <p className="italic leading-relaxed">
-                        <span className="font-bold text-blue-600 not-italic mr-1">To. 카리나</span>
-                        이번 주말에 시간 괜찮으시면 같이 카페 가실래요?
-                        <br />
-                        <span className="text-gray-400 text-[10px] mt-1 block text-right">- From. 박서준 -</span>
-                    </p>
-                </div>
-            </div>
-
-            <div className="pt-6 text-center">
-                <p className="text-gray-300 text-[10px] tracking-widest uppercase">Have a Good Time</p>
-            </div>
-        </div>
-    );
 
     return (
         <div className="h-full w-full relative overflow-hidden bg-white text-gray-900 font-sans">
@@ -268,3 +188,82 @@ export const QRScene = ({ onComplete }: { onComplete: () => void }) => {
         </div>
     );
 };
+
+// --- Sub Components (Moved outside) ---
+
+const SheetHandle = () => (
+    <div className="px-6 pt-5 pb-3 bg-white rounded-t-[1.5rem]">
+        <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
+        <h3 className="font-bold text-base text-center text-gray-900 flex items-center justify-center gap-2">
+            <Info size={18} className="text-blue-500" />
+            파티 가이드
+        </h3>
+        <p className="text-gray-400 text-[11px] text-center mt-1.5 tracking-tight">즐거운 파티를 위한 안내사항입니다</p>
+    </div>
+);
+
+const SheetBody = () => (
+    <div className="space-y-4 text-left px-5 pb-8 pt-2">
+        {/* Notice Section */}
+        <div className="bg-orange-50/50 p-4 rounded-2xl border border-orange-100/80">
+            <h4 className="text-xs font-bold text-orange-900/80 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
+                <AlertCircle size={14} /> Check List
+            </h4>
+            <ul className="space-y-2 text-gray-600 text-[11px] leading-relaxed tracking-tight">
+                <li className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-orange-300 mt-1.5 shrink-0"/>
+                    <span>현장 스냅과 공식 SNS에 업로드될 수 있어요!</span>
+                </li>
+                <li className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-orange-400 mt-1.5 shrink-0"/>
+                    <span className="font-bold text-orange-700">18:50까지 현장 부스에 도착해주세요! (지각은 손해임)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-orange-300 mt-1.5 shrink-0"/>
+                    <span>간단한 핑거푸드만 제공되니 식사는 미리!</span>
+                </li>
+                <li className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-orange-300 mt-1.5 shrink-0"/>
+                    <span>주차가 어려워요. 대중교통 이용을 권장합니다.</span>
+                </li>
+            </ul>
+        </div>
+
+        {/* Rules Section */}
+        <div className="bg-gray-50/80 p-4 rounded-2xl border border-gray-100">
+            <h4 className="text-xs font-bold text-gray-800 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
+                <List size={14} /> Party Rules
+            </h4>
+            <ul className="space-y-2 text-gray-500 text-[11px] leading-relaxed">
+                <li className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-gray-300 mt-1.5 shrink-0"/>
+                    <span>1시간마다 로테이션으로 자리가 변경됩니다.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-gray-300 mt-1.5 shrink-0"/>
+                    <span>마음에 드는 분께 '익명 하트'를 보내보세요!</span>
+                </li>
+            </ul>
+        </div>
+
+        {/* Letter Section */}
+        <div className="bg-blue-50/50 p-4 rounded-2xl border border-blue-100/80">
+            <h4 className="text-xs font-bold text-blue-900/80 mb-3 flex items-center gap-1.5 uppercase tracking-wider">
+                <Mail size={14} /> Message Preview
+            </h4>
+            <div className="bg-white p-3 rounded-xl shadow-sm border border-blue-100 text-[11px] text-gray-600 relative">
+
+                <p className="italic leading-relaxed">
+                    <span className="font-bold text-blue-600 not-italic mr-1">To. 카리나</span>
+                    이번 주말에 시간 괜찮으시면 같이 카페 가실래요?
+                    <br />
+                    <span className="text-gray-400 text-[10px] mt-1 block text-right">- From. 박서준 -</span>
+                </p>
+            </div>
+        </div>
+
+        <div className="pt-6 text-center">
+            <p className="text-gray-300 text-[10px] tracking-widest uppercase">Have a Good Time</p>
+        </div>
+    </div>
+);

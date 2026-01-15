@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { LINDY_WORKS_CONTENT } from "@/config/content";
 import { Infinity as InfinityIcon } from "lucide-react";
 import { CURRENT_BRAND } from "@/config/brand";
 

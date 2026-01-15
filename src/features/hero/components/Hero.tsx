@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Rocket, Mail, Check, Copy, ArrowUpRight, FileText } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
+import { Rocket, Mail, Check, Copy, ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { TabType } from "@/app/[locale]/page";
@@ -16,7 +16,6 @@ interface HeroProps {
 
 export function Hero({ activeTab, onTabChange }: HeroProps) {
     const t = useTranslations("Hero");
-    const locale = useLocale();
     const [isExpanded, setIsExpanded] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
 

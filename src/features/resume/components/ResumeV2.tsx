@@ -26,10 +26,11 @@ export function ResumeV2() {
     const [today, setToday] = useState("");
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const date = new Date();
         setToday(new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(date));
-    }, []);
+    }, [locale]);
 
     const handlePrint = () => {
         window.print();

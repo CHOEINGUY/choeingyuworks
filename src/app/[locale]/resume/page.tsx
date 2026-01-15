@@ -3,7 +3,7 @@ import { ResumeV2 } from "@/features/resume/components/ResumeV2";
 import { Metadata, ResolvingMetadata } from "next";
 
 export async function generateMetadata(
-    { params: _params }: { params: Promise<{ locale: string }> },
+    _props: { params: Promise<{ locale: string }> },
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const parentMetadata = await parent;

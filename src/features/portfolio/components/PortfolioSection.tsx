@@ -3,14 +3,26 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/navigation";
-import { ArrowRight, Sparkles, CheckCircle2, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ResumeCallToAction } from "@/features/resume/components/ResumeCallToAction";
 import { PartySolutionDemo } from "@/features/portfolio/projects/party-event-saas";
 import { ExamFlowAnimation } from "@/features/portfolio/projects/namwon-cohort/ExamFlowAnimation";
 import { EpidemiologyDemo } from "@/features/portfolio/projects/easy-epidemiology/EpidemiologyDemo";
 import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 
-const PROJECTS = [
+interface Project {
+    id: string;
+    subtitle: string;
+    title: string;
+    description: string;
+    tags: string[];
+    result: React.ReactNode;
+    imageColor: string;
+    detailLink?: string;
+    demoUrl?: string;
+}
+
+const PROJECTS: Project[] = [
 
     {
         id: "easy-epidemiology",
