@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter, usePathname } from "@/navigation";
-import { useLocale } from "next-intl";
 import { Hero } from "@/features/hero/components/Hero";
 import { PortfolioSection } from "@/features/portfolio/components/PortfolioSection";
 import { AboutSection } from "@/features/hero/components/AboutSection";
@@ -15,7 +14,6 @@ export default function Home() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const _locale = useLocale();
     
     // Initialize tab based on URL param or pathname
     const [activeTab, setActiveTab] = useState<TabType>(() => {

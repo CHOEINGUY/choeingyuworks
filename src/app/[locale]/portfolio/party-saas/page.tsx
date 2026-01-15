@@ -5,10 +5,6 @@ import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import {
     ArrowRight,
-    BarChart3,
-    QrCode,
-    ShieldCheck,
-    CheckCircle2,
     LayoutGrid
 } from "lucide-react";
 import {
@@ -22,13 +18,6 @@ import { Button } from "@/components/ui/button";
 import { useMobile } from "@/hooks/useMobile";
 import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 
-
-const INFRASTRUCTURE = [
-    { name: "React & TS", benefit: "빠르고 안정적인 웹 애플리케이션", detail: "대규모 트래픽에도 끊김 없는 반응성" },
-    { name: "Firebase Auth", benefit: "국제 표준 인증 보안 시스템", detail: "안전한 사용자 데이터 암호화 및 관리" },
-    { name: "Cloudflare R2", benefit: "대용량 미디어 초고속 처리", detail: "현장 사진과 대용량 파일의 즉각적 로딩" },
-    { name: "Banking API", benefit: "실시간 금융 데이터 연동", detail: "오차 없는 입금 확인 및 자동 정산 시스템" }
-];
 
 export default function PartySaaSPage() {
     const t = useTranslations("PartySaaS");

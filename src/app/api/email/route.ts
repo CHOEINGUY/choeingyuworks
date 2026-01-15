@@ -77,7 +77,7 @@ export async function POST(request: Request) {
                     <!-- Attachments -->
                     <div class="label" style="margin-top: 25px;">ATTACHMENTS (${attachments.length})</div>
                     <div style="margin-top: 10px;">
-                        ${attachments.map((file: any) => `
+                        ${attachments.map((file: { fileName: string; fileBase64: string }) => `
                             <div style="margin-bottom: 5px; font-weight: bold; color: #000;">
                                 📎 ${file.fileName}
                             </div>
@@ -103,7 +103,7 @@ export async function POST(request: Request) {
             replyTo: contact, // Allow replying directly to the client
             subject: `[New Request] ${name} - ${painPoint}`,
             html: htmlContent,
-            attachments: attachments ? attachments.map((file: any) => ({
+            attachments: attachments ? attachments.map((file: { fileName: string; fileBase64: string }) => ({
                 filename: file.fileName,
                 path: file.fileBase64
             })) : []

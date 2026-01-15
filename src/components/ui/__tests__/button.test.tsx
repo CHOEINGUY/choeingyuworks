@@ -68,12 +68,12 @@ describe('Button component', () => {
     it('renders as child when asChild is true', () => {
         render(
             <Button asChild>
-                <a href="/test">Link Button</a>
+                <span data-href="/test">Link Button</span>
             </Button>
         );
-        const link = screen.getByRole('link', { name: /link button/i });
-        expect(link).toBeInTheDocument();
-        expect(link).toHaveAttribute('href', '/test');
+        const element = screen.getByText(/link button/i);
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveAttribute('data-href', '/test');
     });
 
     it('forwards additional props', () => {

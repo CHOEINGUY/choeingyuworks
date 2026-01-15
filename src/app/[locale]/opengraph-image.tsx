@@ -30,7 +30,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
       try {
           const localPath = join(process.cwd(), 'public', 'fonts', filename);
           return readFileSync(localPath);
-      } catch (_e) {
+      } catch {
           // Ignore error, try fetch
       }
 
@@ -38,8 +38,8 @@ export default async function Image({ params }: { params: { locale: string } }) 
       try {
           const res = await fetch(url);
           if (res.ok) return await res.arrayBuffer();
-      } catch (_e) {
-          console.error(`Failed to fetch font ${filename}`, _e);
+      } catch (fetchError) {
+          console.error(`Failed to fetch font ${filename}`, fetchError);
       }
 
       return null;
@@ -59,7 +59,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
            // fallback logic requires fs.existsSync check to avoid crash if path changes in future versions
            // using readFileSync in try block is enough.
           fallbackFont = readFileSync(fallbackPath);
-       } catch (_e) {
+       } catch {
           console.warn("Failed to load fallback font");
       }
   }
