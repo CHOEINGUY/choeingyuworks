@@ -1,3 +1,14 @@
+/**
+ * @fileoverview VirtualScrollDemo - Interactive virtual scroll grid demonstration.
+ * 
+ * This component showcases the virtual scrolling technology used in Easy-Epidemiology,
+ * demonstrating how the system handles large epidemiological datasets efficiently
+ * by only rendering visible rows.
+ * 
+ * @module features/portfolio/projects/easy-epidemiology/VirtualScrollDemo
+ * @see {@link https://easy-epi.xyz} - Live Easy-Epidemiology application
+ */
+
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,13 +35,47 @@ import {
 
 import { useMobile } from "@/hooks/useMobile";
 
-export function VirtualScrollDemo() {
-    const t = useTranslations("EasyEpidemiology.VirtualScroll");
-    const containerRef = useRef<HTMLDivElement>(null);
-    const isMobile = useMobile();
-    
-    // "Shell" implementation - Just enough rows to look like a grid
-    const mockRows = Array.from({ length: 20 }).map((_, i) => ({
+/**
+ * Mock row data structure representing epidemiological case data.
+ * Each row contains patient status, clinical symptoms, and dietary intake.
+ */
+interface MockRowData {
+    /** Row index (0-based) */
+    index: number;
+    /** Whether this row is a patient (case) or control */
+    isPatient: boolean;
+    /** Whether case is laboratory confirmed */
+    isConfirmed: boolean;
+    /** Clinical symptoms */
+    hasDiarrhea: boolean;
+    hasVomit: boolean;
+    hasFever: boolean;
+    /** Basic demographic info */
+    grade: number;
+    classNum: number;
+    /** Dietary exposure data (lunch menu) */
+    ateRice: boolean;
+    ateSoup: boolean;
+    atePork: boolean;
+    ateKimchi: boolean;
+    ateRadish: boolean;
+    ateBeanSprout: boolean;
+    ateSpinach: boolean;
+    ateMilk: boolean;
+    ateYogurt: boolean;
+    /** Symptom onset timestamp */
+    onsetDate: string;
+}
+
+/**
+ * Generates mock epidemiological data for demonstration.
+ * Creates realistic case-control study data with symptoms and dietary exposure.
+ * 
+ * @param count - Number of rows to generate
+ * @returns Array of mock row data
+ */
+function generateMockRows(count: number): MockRowData[] {
+    return Array.from({ length: count }).map((_, i) => ({
         index: i,
         isPatient: i < 15 || (i > 50 && i < 65),
         isConfirmed: (i < 15 || (i > 50 && i < 65)) && i % 2 === 0,
@@ -39,8 +84,6 @@ export function VirtualScrollDemo() {
         hasFever: (i < 15 || (i > 50 && i < 65)) && i % 4 === 0,
         grade: (i % 6) + 1,
         classNum: (i % 5) + 1,
-        
-        // Diet Data
         ateRice: true,
         ateSoup: i % 10 !== 0,
         atePork: i % 3 === 0,
@@ -50,10 +93,38 @@ export function VirtualScrollDemo() {
         ateSpinach: i % 5 === 0,
         ateMilk: i % 2 !== 0,
         ateYogurt: i % 5 === 0,
-
-        // Date
         onsetDate: `2023-09-${10 + (i % 5)} 10:00`
     }));
+}
+
+/**
+ * Interactive demo component showcasing virtual scroll grid technology.
+ * 
+ * Features demonstrated:
+ * - Virtual DOM recycling for performance
+ * - Excel-like spreadsheet interface
+ * - Column grouping (Basic Info, Clinical Symptoms, Diet)
+ * - Function bar with filter/toggle controls
+ * 
+ * @component
+ * @example
+ * <VirtualScrollDemo />
+ * 
+ * @remarks
+ * - Mobile: Uses 0.6x scale with inverse sizing for readability
+ * - Desktop: Full-size grid with all columns visible
+ * - The grid shows 20 visible rows but represents a larger dataset
+ */
+export function VirtualScrollDemo() {
+    const t = useTranslations("EasyEpidemiology.VirtualScroll");
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isMobile = useMobile();
+    
+    /**
+     * Shell implementation - Just enough rows to look like a grid.
+     * In production, this uses true virtual scrolling with row recycling.
+     */
+    const mockRows = generateMockRows(20);
 
     return (
         <section className="py-24 bg-white overflow-hidden">

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview PartySolutionDemo - Interactive multi-scene demo for Party Event SaaS.
+ * 
+ * This component orchestrates a multi-step demo showcasing the complete
+ * event management workflow: customer application → admin dashboard → QR check-in.
+ * 
+ * @module features/portfolio/projects/party-event-saas/demo
+ * @see {@link UI_CONSTANTS} - Configuration for scaling and dimensions
+ * @see {@link SCENES} - Scene definitions with components and URLs
+ */
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -10,6 +21,28 @@ import { UI_CONSTANTS, SCENES } from './config';
 import { DemoSceneWrapper } from './components/DemoSceneWrapper';
 import type { PartySolutionDemoProps } from './types';
 
+/**
+ * Multi-scene demo component for Party Event SaaS portfolio.
+ * 
+ * Demonstrates the complete event management workflow:
+ * 1. **Customer View**: Mobile application form with payment
+ * 2. **Admin Dashboard**: Backend management with participant list
+ * 3. **QR Check-in**: Entry verification system
+ * 
+ * @component
+ * @example
+ * // Embedded in portfolio page
+ * <PartySolutionDemo isEmbedded scale={0.8} />
+ * 
+ * @example
+ * // With pause control
+ * <PartySolutionDemo isActive={isPlaying} />
+ * 
+ * @remarks
+ * - Scene transitions happen automatically when each scene calls `onComplete`
+ * - Mobile view uses different scale multiplier for admin scene
+ * - Step indicator shows current scene title
+ */
 export function PartySolutionDemo({
     isEmbedded = false,
     scale,
@@ -21,6 +54,10 @@ export function PartySolutionDemo({
 
     // No auto-reset. Just pause.
     
+    /**
+     * Advances to the next scene in the demo cycle.
+     * Wraps around to first scene after the last.
+     */
     const nextScene = () => setSceneIndex(prev => (prev + 1) % SCENES.length);
     
     // Use current sceneIndex regardless of active state (Pause behavior)

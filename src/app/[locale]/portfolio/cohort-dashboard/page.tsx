@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import { Link } from "@/navigation";
-import { ArrowLeft, Megaphone, CheckCircle2, LayoutGrid } from "lucide-react";
+import { LayoutGrid } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { BottleneckSimulation } from "@/features/portfolio/projects/namwon-cohort/BottleneckSimulation";

@@ -5,9 +5,6 @@ import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import {
     ArrowRight,
-    FileEdit,
-    Zap,
-    Layers,
     BarChart3,
     QrCode,
     ShieldCheck,

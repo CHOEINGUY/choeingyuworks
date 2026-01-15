@@ -1,3 +1,16 @@
+/**
+ * @fileoverview ExamFlowAnimation - Interactive demo of cohort examination flow.
+ * 
+ * This component demonstrates the real-time examination management system used in
+ * the Namwon Cohort Study. It visualizes the flow between tablet input and status
+ * board updates with TTS announcements.
+ * 
+ * @module features/portfolio/projects/namwon-cohort/ExamFlowAnimation
+ * @see {@link StatusBoard} - Real-time examination status display
+ * @see {@link TabletScreen} - Tablet interface for patient selection
+ * @see {@link TTSAnnouncement} - Text-to-speech notification bubble
+ */
+
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
@@ -12,23 +25,46 @@ import { cn } from "@/lib/utils";
 
 // --- Constants & Configuration ---
 
+/**
+ * Configuration constants for animation timings, scaling, and positioning.
+ * All timing values are in milliseconds.
+ */
 const CONSTANTS = {
+    /**
+     * Duration of each animation phase in milliseconds.
+     * Controls the pace of the demo cycle.
+     */
     TIMINGS: {
+        /** Focus on tablet (user looking at tablet) */
         "tablet-focus": 2500,
+        /** Clicking animation on tablet */
         "tablet-clicking": 700,
+        /** Transition focus to status board */
         "statusboard-focus": 1000,
+        /** Blinking indicator on status board */
         "statusboard-blink": 1500,
+        /** Status board data update animation */
         "statusboard-update": 1200,
+        /** TTS announcement display duration */
         "tts-announce": 2500,
     },
+    /**
+     * Scale factors for responsive display.
+     * Mobile uses 0.7x container scale with inverse percentage sizing.
+     */
     SCALE: {
         MOBILE_CONTAINER: 0.7,
         MOBILE_WIDTH: '142.86%',
         MOBILE_HEIGHT: '142.86%',
         DEFAULT_WIDTH: '100%',
         DEFAULT_HEIGHT: '100%',
+        /** Default scale when embedded in other components */
         EMBEDDED_DEFAULT: 0.55,
     },
+    /**
+     * Position and style configurations for tablet/board front/back states.
+     * Uses spring animation for smooth card-flip-like transitions.
+     */
     STYLES: {
         TABLET_FRONT: {
             TOP: '3%', LEFT: '3%', WIDTH: '94%', SCALE: 1, FILTER: 'brightness(1) blur(0px)', Z: 30
@@ -45,7 +81,10 @@ const CONSTANTS = {
     }
 } as const;
 
-// 실제 검진 목업 데이터 - 더 현실적인 이름들이 포함된 원본 리스트
+/**
+ * Mock patient data for demonstration.
+ * Represents realistic cohort study participants with Korean names.
+ */
 const PATIENT_LIST = [
     { id: 'NW240101', name: '김순자', birth: '1945-03-12' },
     { id: 'NW240102', name: '이영수', birth: '1948-07-25' },
@@ -55,6 +94,10 @@ const PATIENT_LIST = [
     { id: 'NW240106', name: '한상철', birth: '1953-06-14' },
 ];
 
+/**
+ * Initial status board state showing SNSB-C rooms and examination stations.
+ * Displays current patient, elapsed time, and next patient for each station.
+ */
 const BOARD_STATE = {
     snsbcRooms: [
         { roomNum: 1, current: '김순자', time: '18:45', next: '정영희' },
@@ -68,6 +111,11 @@ const BOARD_STATE = {
     }
 };
 
+/**
+ * Animation phase states representing the demo cycle.
+ * Progresses: tablet-focus → tablet-clicking → statusboard-focus → 
+ *             statusboard-blink → statusboard-update → tts-announce → (loop)
+ */
 type AnimationPhase = 
     | "tablet-focus" 
     | "tablet-clicking" 
@@ -76,15 +124,39 @@ type AnimationPhase =
     | "statusboard-update"
     | "tts-announce";
 
+/**
+ * Props for ExamFlowAnimation component.
+ */
 interface ExamFlowAnimationProps {
+    /** Whether component is embedded within another container (affects scaling) */
     isEmbedded?: boolean;
+    /** Override scale factor. If not provided, uses EMBEDDED_DEFAULT or 1. */
     scale?: number;
+    /** Additional CSS classes for the container */
     className?: string;
+    /** Whether animation is active. Set false to pause. */
     isActive?: boolean;
-    // isMobile prop deprecated in favor of internal hook
+    /** @deprecated Use internal useMobile hook instead */
     isMobile?: boolean; 
 }
 
+/**
+ * Interactive demo component showcasing the real-time cohort examination flow.
+ * 
+ * Demonstrates the complete workflow:
+ * 1. Staff selects patient on tablet
+ * 2. Status board updates in real-time
+ * 3. TTS announces next patient
+ * 
+ * @component
+ * @example
+ * // Embedded in portfolio page
+ * <ExamFlowAnimation isEmbedded scale={0.8} />
+ * 
+ * @example
+ * // Standalone with pause control
+ * <ExamFlowAnimation isActive={isPlaying} />
+ */
 export function ExamFlowAnimation({
     isEmbedded = false,
     scale,

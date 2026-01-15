@@ -15,7 +15,7 @@ export default function Home() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const locale = useLocale();
+    const _locale = useLocale();
     
     // Initialize tab based on URL param or pathname
     const [activeTab, setActiveTab] = useState<TabType>(() => {
