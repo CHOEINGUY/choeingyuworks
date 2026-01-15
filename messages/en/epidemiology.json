@@ -5,15 +5,15 @@
   },
   "backToPortfolio": "Back to Portfolio",
   "CoreDescription": {
-    "title": "Why was a web-based tool needed?",
-    "description": "In traditional epidemiological investigation sites, the inefficient method of collecting data in Excel and then moving it to statistical programs was repeated. Easy Epidemiology integrates this fragmented process into a single web platform. The moment an investigator enters data, a professional statistical engine automatically analyzes trends and calculates risk factors within the browser, completing the final report with one click.",
+    "title": "Real-time One-Stop Epidemiology,<br/>Where Data Entry Becomes Analysis",
+    "description": "Previously, the inefficiency of collecting data in Excel and then moving it to statistical tools or manually drawing graphs was repeated. During this process, data loss or missing analysis timing were frequent problems. We integrated this fragmented process into a single web platform. The moment an epidemiologist enters data, a professional statistical engine within the browser automatically diagnoses outbreak types, calculates risk factors, and completes the final report with one click.",
     "problems": {
-      "brokenWorkflow": "Disconnected Workflow",
-      "brokenWorkflowDesc": "Data entry (Excel) and analysis tools (SPSS) were separated, so every time there was a revision, files had to be converted and moved.",
-      "securityRisk": "Data Security Risk",
-      "securityRiskDesc": "Files had to be downloaded to a personal PC for analysis, which posed a high risk of data leakage.",
-      "slowProcess": "Slow Decision Making",
-      "slowProcessDesc": "It took a long time to get the final analysis results after data collection, making rapid initial response difficult."
+      "brokenWorkflow": "Repetitive Dual Work",
+      "brokenWorkflowDesc": "Data collection in Excel and analysis in statistical tools were separated, causing repeated inefficiency of converting and moving files every time.",
+      "securityRisk": "Data Integrity Compromise",
+      "securityRiskDesc": "In the process of manually moving data and drawing graphs, data was lost or errors occurred, reducing the reliability of analysis results.",
+      "slowProcess": "Missed Golden Time",
+      "slowProcessDesc": "Analysis was delayed due to complex processes, making it easy to miss the critical moment for immediate decision-making in the early stages of infectious disease spread."
     }
   },
   "VirtualScroll": {

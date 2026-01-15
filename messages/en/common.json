@@ -62,20 +62,20 @@
                 }
             },
             "personal": {
-                "headline": "I can''t just ignore inconveniences in the field.",
-                "description": "I don''t just walk past complex field problems.<line></line>Just like when I <b>reduced a 3-month task to 1 month</b>, if it can be solved with a system, I dig in until it''s done.",
+                "headline": "A 'Solution Builder' who reads business flows and finds answers through technology",
+                "description": "I simplify processes through analysis that grasps the essence of work, and maximize development speed with AI technology.<line></line>With solid execution that takes responsibility from planning to operation, I promise <b>tangible results of 'efficiency' and 'stability'</b>.",
                 "features": {
                     "business": {
-                        "title": "Field-First Thinking",
-                        "description": "Before writing code, I deeply understand the user''s workflow first."
+                        "title": "Workflow Optimization",
+                        "description": "With analytical skills that reduced 3-month work to 1 month, I go beyond simple development to solve workflow bottlenecks."
                     },
                     "asset": {
-                        "title": "AI-Powered Speed",
-                        "description": "I build fast with the latest AI tools, without sacrificing maintainable architecture."
+                        "title": "AI-Based Productivity",
+                        "description": "I quickly implement features with AI tools, investing the saved time entirely into system stability and UX verification."
                     },
                     "stability": {
-                        "title": "Rigorous Verification",
-                        "description": "Build fast, then meticulously verify it works flawlessly in the field."
+                        "title": "A to Z Execution",
+                        "description": "With solo development experience, I manage everything from planning to deployment and operation, minimizing operational costs."
                     }
                 }
             }
