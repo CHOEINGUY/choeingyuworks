@@ -74,9 +74,9 @@ export function TechStackFlow() {
     };
 
     return (
-        <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
+        <section className="py-12 md:py-24 px-6 bg-gray-50 border-y border-gray-100">
             <div className="max-w-5xl mx-auto">
-                <div className="flex flex-col mb-16 items-center text-center max-w-3xl mx-auto">
+                <div className="flex flex-col mb-8 md:mb-16 items-center text-center max-w-3xl mx-auto">
                     <motion.h2
                         className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-keep"
                         initial={{ opacity: 0, y: 10 }}
@@ -96,13 +96,13 @@ export function TechStackFlow() {
                 </div>
 
                 {/* Interactive Pipeline Container */}
-                <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-8 md:gap-16">
                     
                     {/* Top: Progress Bar & Icons */}
                     <div className="px-0 relative w-full">
                         {/* Container with extra padding to prevent clipping of scaled active items and text labels */}
                         {/* MOBILE LAYOUT: Single Focused Step (Carousel) */}
-                        <div className="md:hidden w-full flex flex-col items-center gap-6 mb-8 min-h-[160px] justify-center">
+                        <div className="md:hidden w-full flex flex-col items-center gap-4 mb-4 min-h-[160px] justify-center">
                             {/* Active Icon Body */}
                             <div className="flex flex-col items-center gap-3">
                                 <motion.div 
