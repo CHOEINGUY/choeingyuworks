@@ -198,7 +198,7 @@ function splitCodeIntoChunks(content: string, fileName: string): { text: string;
 
     while ((match = blockRegex.exec(content)) !== null) {
         foundBlocks = true;
-        const [fullMatch, declPrefix, type, name] = match;
+        const [fullMatch, _declPrefix, type, name] = match;
         const blockContent = fullMatch.length > 3000 ? fullMatch.substring(0, 3000) + "\n...(truncated)" : fullMatch;
         
         const smartChunk = `[파일 Context]\n${fileName}\n\n[Imports]\n${imports}\n\n[Code Block: ${name}]\n${blockContent}`;

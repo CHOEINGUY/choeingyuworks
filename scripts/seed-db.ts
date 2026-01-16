@@ -219,7 +219,7 @@ function splitCodeIntoChunks(content: string, fileName: string): { text: string;
 
     while ((match = blockRegex.exec(content)) !== null) {
         foundBlocks = true;
-        const [fullMatch, declPrefix, type, name] = match;
+        const [fullMatch, _declPrefix, type, name] = match;
         
         // Clean up the match (limit length if too huge)
         const blockContent = fullMatch.length > 3000 ? fullMatch.substring(0, 3000) + "\n...(truncated)" : fullMatch;

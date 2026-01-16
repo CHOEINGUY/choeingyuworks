@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter, usePathname } from "@/navigation";
 import { Hero } from "@/features/hero/components/Hero";

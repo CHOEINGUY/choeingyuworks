@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-
-import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { BRAND_CONFIG } from "@/config/brand";

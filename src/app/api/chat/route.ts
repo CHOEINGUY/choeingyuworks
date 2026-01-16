@@ -46,6 +46,7 @@ export async function POST(req: Request) {
 
     // 4. Construct Context
     const contextText = queryResponse.matches
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((match) => (match.metadata as any).text)
       .join('\n\n---\n\n');
 
@@ -91,7 +92,8 @@ ${contextText}
                 });
                 console.log(`✅ Success with ${modelName}`);
                 break; // Success, exit loop
-            } catch (error: any) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
                 const isQuotaError = error.message?.includes('429') || error.message?.includes('Quota') || error.message?.includes('RESOURCE_EXHAUSTED');
                 if (isQuotaError) {
                     console.warn(`⚠️ Quota exceeded for ${modelName}, switching to next...`);
