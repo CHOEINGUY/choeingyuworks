@@ -225,7 +225,7 @@ export function AIChatWidget() {
               <div className="mt-3 text-center">
                 <p className="inline-flex items-center gap-1.5 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
                   <Sparkles size={10} />
-                  Powered by GPT-4o & RAG
+                  Powered by AI & RAG System
                 </p>
               </div>
             </div>
