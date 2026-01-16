@@ -3,9 +3,16 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // 📢 Chat Logs Collection
-    // - Create: Allowed for everyone (Required for the public Chatbot to save logs)
-    // - Read/Update/Delete: Denied (To protect your data & privacy)
+    // 📢 Chat Sessions Collection
+    // - Create: Allowed (To start a session)
+    // - Update: Allowed (To append messages to the stream)
+    // - Read/Delete: Denied
+    match /chat_sessions/{sessionId} {
+      allow create, update: if true;
+      allow read, delete: if false;
+    }
+    
+    // Legacy support (optional, can be removed if not needed)
     match /chat_logs/{logId} {
       allow create: if true;
       allow read, update, delete: if false;

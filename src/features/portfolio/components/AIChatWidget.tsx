@@ -17,6 +17,7 @@ export function AIChatWidget() {
   const [input, setInput] = useState('');
   const [persona, setPersona] = useState<'professional' | 'passionate' | 'friend'>('professional');
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
+  const [sessionId] = useState(() => Date.now().toString()); // Persistent Session ID
   const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini'); // Default to Gemini
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -116,7 +117,8 @@ export function AIChatWidget() {
         body: JSON.stringify({
            messages: [...messages, userMessage].map(m => ({ role: m.role, content: m.content })),
            provider: provider, // Send selected provider
-           persona: persona // Send selected persona
+           persona: persona, // Send selected persona
+           sessionId: sessionId // Send session ID
         }),
       });
 

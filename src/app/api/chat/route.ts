@@ -4,7 +4,7 @@ import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, setDoc, arrayUnion } from 'firebase/firestore';
 
 // Models for Rotation
 const GEMINI_MODELS = [
@@ -115,14 +115,23 @@ ${contextText}
                     messages,
                     onFinish: async ({ text }) => {
                         try {
-                            await addDoc(collection(db, 'chat_logs'), {
-                                question: question,
-                                answer: text,
+                            const sessionId = reqBody.sessionId || 'anonymous_session';
+                            await setDoc(doc(db, 'chat_sessions', sessionId), {
+                                sessionId: sessionId,
                                 persona: reqBody.persona || 'professional',
-                                provider: 'gemini',
                                 model: modelName,
-                                timestamp: serverTimestamp(),
-                            });
+                                provider: 'gemini',
+                                lastUpdated: serverTimestamp(),
+                                messages: arrayUnion({
+                                    role: 'user',
+                                    content: question,
+                                    timestamp: new Date().toISOString()
+                                }, {
+                                    role: 'assistant',
+                                    content: text,
+                                    timestamp: new Date().toISOString()
+                                })
+                            }, { merge: true });
                         } catch (err) {
                             console.error('Failed to log chat to Firebase:', err);
                         }
@@ -149,14 +158,23 @@ ${contextText}
             messages,
              onFinish: async ({ text }) => {
                 try {
-                    await addDoc(collection(db, 'chat_logs'), {
-                        question: question,
-                        answer: text,
+                    const sessionId = reqBody.sessionId || 'anonymous_session';
+                    await setDoc(doc(db, 'chat_sessions', sessionId), {
+                        sessionId: sessionId,
                         persona: reqBody.persona || 'professional',
-                        provider: 'openai',
                         model: 'gpt-4o-mini',
-                        timestamp: serverTimestamp(),
-                    });
+                        provider: 'openai',
+                        lastUpdated: serverTimestamp(),
+                        messages: arrayUnion({
+                            role: 'user',
+                            content: question,
+                            timestamp: new Date().toISOString()
+                        }, {
+                            role: 'assistant',
+                            content: text,
+                            timestamp: new Date().toISOString()
+                        })
+                    }, { merge: true });
                 } catch (err) {
                     console.error('Failed to log chat to Firebase:', err);
                 }
