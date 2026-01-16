@@ -3,10 +3,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Check, X, Clock, Volume2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Candidate } from "@/types";
 
 interface LogicFlowAnimationProps {
     step: number;
-    candidates: any[];
+    candidates: Candidate[];
     room: string;
 }
 

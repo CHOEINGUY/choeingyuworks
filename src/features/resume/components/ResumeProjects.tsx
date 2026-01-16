@@ -2,9 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
+import { Project } from "@/types";
 
 interface ResumeProjectsProps {
-    projects: any[];
+    projects: Project[];
 }
 
 export const ResumeProjects = ({ projects }: ResumeProjectsProps) => {
@@ -19,7 +20,7 @@ export const ResumeProjects = ({ projects }: ResumeProjectsProps) => {
                 </a>
             </h2>
             <div className="space-y-8">
-                {projects?.map((project: any, index: number) => (
+                {projects?.map((project: Project, index: number) => (
                     <div key={index} className="group">
                         <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-1 md:gap-0">
                             <h3 className="text-lg md:text-xl font-bold text-gray-900">

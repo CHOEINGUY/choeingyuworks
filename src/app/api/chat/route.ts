@@ -140,8 +140,9 @@ ${contextText}
                 console.log(`✅ Success with ${modelName}`);
                 break; // Success, exit loop
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-                const isQuotaError = error.message?.includes('429') || error.message?.includes('Quota') || error.message?.includes('RESOURCE_EXHAUSTED');
+    } catch (error: unknown) {
+                const errorMessage = error instanceof Error ? error.message : '';
+                const isQuotaError = errorMessage.includes('429') || errorMessage.includes('Quota') || errorMessage.includes('RESOURCE_EXHAUSTED');
                 if (isQuotaError) {
                     console.warn(`⚠️ Quota exceeded for ${modelName}, switching to next...`);
                     continue; // Try next model

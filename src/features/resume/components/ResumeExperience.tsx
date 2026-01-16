@@ -2,9 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
+import { Experience, ExperienceProject } from "@/types";
 
 interface ResumeExperienceProps {
-    experience: any[]; // Using any[] for flexibility with varying data structures, refined type recommended later
+    experience: Experience[];
 }
 
 export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
@@ -46,7 +47,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('experience')}</h2>
 
             <div className="space-y-8">
-                {experience.map((exp: any, index: number) => (
+                {experience.map((exp: Experience, index: number) => (
                     <div key={index} className="group">
                         <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-1 md:gap-0">
                             <div className="flex flex-col md:flex-row md:items-baseline gap-0 md:gap-2 flex-wrap">
@@ -83,7 +84,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
                         {/* Sub Projects (Job Areas) */}
                         {exp.projects && (
                             <div className="space-y-6 mt-4 pl-1 md:pl-4 border-l-2 border-gray-100">
-                                {exp.projects.map((project: any, pIndex: number) => (
+                                {exp.projects.map((project: ExperienceProject, pIndex: number) => (
                                         <div key={pIndex}>
                                         <div className="flex items-baseline justify-between gap-2 mb-2">
                                             <h4 className="font-bold text-gray-800 text-sm md:text-base flex items-center gap-2">
