@@ -1,10 +1,19 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Requests collection: Public can write (submit form), but cannot read (admin only)
-    match /requests/{request} {
+    
+    // 📢 Chat Logs Collection
+    // - Create: Allowed for everyone (Required for the public Chatbot to save logs)
+    // - Read/Update/Delete: Denied (To protect your data & privacy)
+    match /chat_logs/{logId} {
       allow create: if true;
       allow read, update, delete: if false;
+    }
+
+    // 🔒 Default: Blocks all other access by default
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

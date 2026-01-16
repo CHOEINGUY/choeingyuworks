@@ -3,6 +3,8 @@ import { pinecone } from '@/lib/pinecone';
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 // Models for Rotation
 const GEMINI_MODELS = [
@@ -111,6 +113,20 @@ ${contextText}
                     model: google(modelName),
                     system: systemPrompt,
                     messages,
+                    onFinish: async ({ text }) => {
+                        try {
+                            await addDoc(collection(db, 'chat_logs'), {
+                                question: question,
+                                answer: text,
+                                persona: reqBody.persona || 'professional',
+                                provider: 'gemini',
+                                model: modelName,
+                                timestamp: serverTimestamp(),
+                            });
+                        } catch (err) {
+                            console.error('Failed to log chat to Firebase:', err);
+                        }
+                    },
                 });
                 console.log(`✅ Success with ${modelName}`);
                 break; // Success, exit loop
@@ -131,6 +147,20 @@ ${contextText}
             model: openai('gpt-4o-mini'),
             system: systemPrompt,
             messages,
+             onFinish: async ({ text }) => {
+                try {
+                    await addDoc(collection(db, 'chat_logs'), {
+                        question: question,
+                        answer: text,
+                        persona: reqBody.persona || 'professional',
+                        provider: 'openai',
+                        model: 'gpt-4o-mini',
+                        timestamp: serverTimestamp(),
+                    });
+                } catch (err) {
+                    console.error('Failed to log chat to Firebase:', err);
+                }
+            },
         });
     }
 
