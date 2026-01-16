@@ -185,7 +185,7 @@ export const RESUME_DATA = {
                 name: "[Real-time Cohort Control System](/portfolio/cohort-dashboard)",
                 period: "2024. 01 - 2025. 12",
                 description: [
-                    "Problem: Chaos caused by bottlenecks and lack of wait time management at examination sites.",
+                    "Problem: Confusion and bottlenecks caused by lack of wait time management at examination sites.",
                     "Solution: Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
                     "Decision: Adopted Firebase Realtime DB to resolve Google Sheets delay (5s → <1s).",
                     "Result: Optimized medical exam subject flow and eliminated on-site confusion through automated real-time sequencing.",
@@ -193,13 +193,13 @@ export const RESUME_DATA = {
                 ]
             },
             {
-                name: "[Integrated Event Management Solution (Party/Dating/Unification)](/portfolio/party-saas)",
+                name: "[Integrated Event Management Solution (Party/Dating/1:1 Matching)](/portfolio/party-saas)",
                 period: "2025. 10 - 2025. 12",
                 description: [
                     "Problem: Fragmented operations using separate tools for registration (forms), management (Excel), and attendance (paper), causing data disconnection and resource waste.",
                     "Solution: Consolidated separate tools into a single web solution, building a seamless all-in-one workflow from registration to on-site operations.",
                     "Decision: Designed a flexible structure where planners can directly configure application items to eliminate the need for new coding whenever a business model is added.",
-                    "Result: Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to notification talk dispatch.",
+                    "Result: Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to sending AlimTalk notifications.",
                     "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
             },
@@ -370,6 +370,25 @@ export const RESUME_DATA_V2 = {
                 period: "2024. 10 - Present",
                 description: [
                     "Designed, developed, and operated customized business automation systems for clients, including Manufacturing ERP and Event Management Solutions."
+                ]
+            }
+        ],
+        skills: [
+            {
+                category: "Core Tech Stack",
+                items: [
+                    "TypeScript/React/Next.js: Production web app development with type safety",
+                    "Firebase/Supabase: Rapid MVP deployment and real-time data without dedicated servers",
+                    "Python(Flask) + Google Cloud: Business logic servers and API automation",
+                    "Google Apps Script/AppSheet: Field-friendly automation and low-cost DX"
+                ]
+            },
+            {
+                category: "Automation & Data Processing",
+                items: [
+                    "Process analysis → Bottleneck identification → Automation system design",
+                    "Statistical analysis and reporting pipelines using SAS, Python(Pandas), R",
+                    "External API integration (Tax Invoice, Payment, AlimTalk) and legacy system consolidation"
                 ]
             }
         ]
