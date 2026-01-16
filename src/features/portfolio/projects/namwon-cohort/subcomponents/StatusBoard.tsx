@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+// motion unused
 import { useTranslations } from "next-intl";
 
 interface StatusBoardProps {

@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
     GitMerge,
     Layers,
-    LayoutDashboard,
-    Settings2,
     CreditCard,
     CheckCircle2,
     Send,

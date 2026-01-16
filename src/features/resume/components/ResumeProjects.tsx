@@ -12,7 +12,12 @@ export const ResumeProjects = ({ projects }: ResumeProjectsProps) => {
 
     return (
         <section className="space-y-3">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('projects')}</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">
+                <a href="https://choeingyu.works/ko?tab=portfolio" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">
+                    {t('projects')}
+                    <span className="text-xs relative -top-[2px] opacity-70 whitespace-nowrap">{"\u00A0"}↗</span>
+                </a>
+            </h2>
             <div className="space-y-8">
                 {projects?.map((project: any, index: number) => (
                     <div key={index} className="group">

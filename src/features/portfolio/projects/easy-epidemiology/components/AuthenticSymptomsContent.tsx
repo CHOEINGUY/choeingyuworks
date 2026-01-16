@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Copy, BarChart3, Download, RefreshCcw } from 'lucide-react';
+import { Copy } from 'lucide-react';
 
 export function AuthenticSymptomsContent() {
     // Replica of src/components/ClinicalSymptoms/index.vue

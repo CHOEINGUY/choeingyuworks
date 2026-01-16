@@ -7,8 +7,7 @@ import {
     FileSpreadsheet,
     Server,
     Zap,
-    Monitor,
-    Radio
+    Monitor
 } from "lucide-react";
 
 const PIPELINE_STEPS = [

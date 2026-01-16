@@ -6,13 +6,11 @@ import { useTranslations } from "next-intl";
 
 interface LogicFlowAnimationProps {
     step: number;
-    isPaused: boolean;
-    onResume: () => void;
     candidates: any[];
     room: string;
 }
 
-export function LogicFlowAnimation({ step, isPaused, onResume, candidates, room }: LogicFlowAnimationProps) {
+export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimationProps) {
     const t = useTranslations("CohortDashboard.LogicFlow");
     const winner = candidates.find(c => c.id === 4);
 

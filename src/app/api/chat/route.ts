@@ -4,7 +4,7 @@ import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp, doc, setDoc, arrayUnion } from 'firebase/firestore';
+import { serverTimestamp, doc, setDoc, arrayUnion } from 'firebase/firestore';
 
 // Models for Rotation
 const GEMINI_MODELS = [

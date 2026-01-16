@@ -5,7 +5,7 @@ import { getMessages } from 'next-intl/server';
 import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CURRENT_BRAND } from "@/config/brand";
+// CURRENT_BRAND unused
 import { AIChatWidget } from "@/features/portfolio/components/AIChatWidget";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
