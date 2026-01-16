@@ -126,6 +126,47 @@ async function seed() {
         pageContent: `[프로젝트] ${ghostProject.name}\n설명: ${ghostProject.description.join('\n')}`,
         metadata: { type: 'project', title: ghostProject.name, lang: lang, source: 'ghost-data' }
     }));
+
+    // --- Ghost Data: Project Insights (Philosophy & Problem Solving) ---
+    // Only for Korean for now
+    if (lang === 'ko') {
+        const insights = [
+            {
+                title: "더 나은 시스템을 위한 고민의 기록 (Namwon Cohort)",
+                description: [
+                    "주제: 개발 철학 (Engineering Philosophy)",
+                    "1. 현장의 속도를 무시한 기술은 정답이 아니었습니다: 논리적으로 완벽해도 현장에서 번거로우면 실패합니다. '완료' 버튼 누락 문제를 통해 기술적 정답보다 현장의 해답이 중요함을 깨달았습니다.",
+                    "2. 기능 구현보다 중요한 것은 사용자의 공감을 얻는 것이었습니다: 개발 전 현장을 방문해 '왜 필요한지'를 공유하고 사용자를 동료로 만들었을 때 비로소 협조를 얻을 수 있었습니다.",
+                    "3. 사용자의 신뢰가 있을 때 기술은 비로소 완성됩니다: 신뢰가 쌓이자 데이터 입력이 정확해지고 알고리즘이 동작했습니다. 시스템 효율은 알고리즘 성능보다 사용자 신뢰도에 비례합니다."
+                ]
+            },
+            {
+                title: "데이터 입력이 곧 분석이 되는 원스톱 시스템 (Easy Epidemiology)",
+                description: [
+                    "주제: 문제 해결 (Problem Solving)",
+                    "1. 파편화된 워크플로우 통합: 엑셀 취합 → 통계 툴 이동 → 그래프 작성의 반복 비효율과 데이터 유실 위험을 웹 기반 원스톱 시스템으로 해결했습니다.",
+                    "2. 골든타임 확보: 복잡한 감염병 분석 과정을 데이터 입력 즉시 완료되도록 자동화하여 초기 의사결정 속도를 획기적으로 높였습니다.",
+                    "3. Zero Infrastructure: '내 PC가 곧 서버'라는 개념으로 브라우저 자원만 활용하여 별도 서버 구축 비용 없이 전문 시스템을 배포했습니다."
+                ]
+            },
+            {
+                title: "이벤트 운영의 시스템화 (Party SaaS)",
+                description: [
+                    "주제: 효율성 혁신 (Efficiency)",
+                    "1. 휴먼 에러 원천 차단: 엑셀 복사/붙여넣기 실수와 수기 입금 확인의 부정확성을 시스템화하여 데이터 무결성을 보장했습니다.",
+                    "2. 압도적 효율 개선: 행사 마감 후 정산까지 3시간 소요되던 업무를 실시간 데이터 연동을 통해 3초로 단축했습니다.",
+                    "3. 비즈니스 로직의 유연성: 노코드 폼 빌더를 직접 구현하여 파티, 소개팅, 매칭 등 다양한 비즈니스 모델 변화에 코드 수정 없이 즉시 대응할 수 있게 만들었습니다."
+                ]
+            }
+        ];
+
+        insights.forEach(insight => {
+             chunks.push(new Document({
+                pageContent: `[프로젝트 인사이트] ${insight.title}\n내용: ${insight.description.join('\n')}`,
+                metadata: { type: 'insight', title: insight.title, lang: lang, source: 'ghost-data' }
+            }));
+        });
+    }
     }
 
     // --- B. Codebase Indexing (New) ---

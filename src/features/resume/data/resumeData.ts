@@ -181,7 +181,7 @@ export const RESUME_DATA_V2 = {
                         details: [
                             "현장 운영 : 검진 일정 수립 및 예약 관리(연 200명 규모), 보조 인력 교육",
                             "데이터 관리 : 검진 결과지 스캔·라벨링, 연구 실물 자료 정리 및 보관, Pandas 기반 이상치 점검 및 정제",
-                            "시스템 구축 : AppSheet-Firebase 연동 실시간 관제 시스템 구축 및 Google TTS 자동 호명, 회차당 소요 시간 15% 단축"
+                            "시스템 구축 : 실시간 검진 시스템 도입으로 현장 병목 제거 및 회차당 소요 시간 15% 단축"
                         ]
                     },
                     {
@@ -195,7 +195,7 @@ export const RESUME_DATA_V2 = {
                     {
                         title: "역학조사 솔루션 및 업무 도구 개발",
                         details: [
-                            "역학조사 통합 분석 솔루션(Easy-Epidemiology) 개발 및 보건소 배포",
+                            "역학조사 통합 분석 솔루션 개발 및 보건소 배포",
                             "공통 업무 자동화 툴 제작 및 실무 매뉴얼 배포"
                         ]
                     }
@@ -231,23 +231,7 @@ export const RESUME_DATA_V2 = {
         ]
     },
     en: {
-        name: "Ingyu Choe",
-        birthYear: "Born in 1998",
-        role: "Business Solution Engineer",
-        location: "Gwangju, South Korea",
-        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\nAnalyzed and automated 14 statistical report processes, reducing 3-month work to 1 month. I maximize development productivity with AI and modern tools, investing the saved time in system stability and usability verification. With solo development experience, I understand the entire process from planning to operation, creating tangible results that reduce operating costs.",
-        education: [
-            {
-                school: "Korea National Open University",
-                major: "Computer Science (In Progress)",
-                period: "2024. 03 - Present",
-            },
-            {
-                school: "Chonnam National University",
-                major: "Dept. of Biology Education (Graduated)",
-                period: "2017. 03 - 2021. 08",
-            }
-        ],
+        ...RESUME_DATA.en,
         experience: [
             {
                 company: "JNU Preventive Medicine",
@@ -271,7 +255,7 @@ export const RESUME_DATA_V2 = {
                         title: "Namwon Cohort Study (Cardiovascular R&D)",
                         details: [
                             "Operations Management: Scheduled yearly exams (200+ participants), managed support staff.",
-                            "Digital Transition: Replaced manual tracking with real-time dashboard & auto-calling system, reducing wait times by 15%.",
+                            "System Construction: Eliminated on-site bottlenecks and reduced time per session by 15% by introducing a real-time examination system.",
                             "Data QC: Automated data verification using Python/Pandas to ensure long-term study data reliability."
                         ]
                     },
@@ -301,71 +285,6 @@ export const RESUME_DATA_V2 = {
                     "BPA Consulting: Diagnosed manual bottlenecks via client interviews & proposed DX roadmaps.",
                     "Logic Optimization: Designed & delivered management systems for complex operation logic (Party/Dating SaaS).",
                     "Achievement: Transformed manual quoting at LunaTech (Manufacturing) to ERP with e-Tax API integration."
-                ]
-            }
-        ],
-        projects: [
-            {
-                name: "[Event Management SaaS (Party/Dating/1:1)](/portfolio/party-saas)",
-                period: "2025. 10 - 2025. 12",
-                description: [
-                    "Problem: Inefficiency of building separate logic for different business models.",
-                    "Solution: Designed a dynamic JSON-engine structure to handle new models without code changes.",
-                    "Decision: Empowered planners to configure forms directly, maximizing operational efficiency.",
-                    "Result: Automated everything from payment check to notifications, enabling 1-person operation.",
-                    "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
-                ]
-            },
-            {
-                name: "[Easy-Epidemiology (Analysis Solution)](/portfolio/easy-epidemiology)",
-                period: "2024. 11 - 2025. 12",
-                description: [
-                    "Problem: Time bottlenecks due to manual case-control analysis by health officers.",
-                    "Solution: Built a system that auto-generates stats & reports (HWP/PDF) upon data entry.",
-                    "Decision: Implemented lightweight browser-based stats algorithms to reduce external SW dependency.",
-                    "Result: Reduced analysis & reporting time from hours/days to instant completion.",
-                    "Tech Stack: Vue.js, Tailwind CSS, ECharts, Custom Stats Logic"
-                ]
-            },
-            {
-                name: "[Real-time Cohort Dashboard](/portfolio/cohort-dashboard)",
-                period: "2024. 01 - 2025. 12",
-                description: [
-                    "Problem: Chaos & waiting time management issues at examination sites.",
-                    "Solution: Real-time AppSheet-Firebase integration & Google TTS-based auto-calling.",
-                    "Decision: Adopted Firebase Realtime DB to solve Google Sheets' 5s latency (reduced to <1s).",
-                    "Result: Optimized participant flow & eliminated on-site confusion via auto-assignment.",
-                    "Tech Stack: AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
-                ]
-            },
-            {
-                name: "LunaTech ERP (Manufacturing)",
-                period: "2024. 10 - Present",
-                description: [
-                    "Problem: Redundant admin work due to fragmented manual quoting/ordering/tax data.",
-                    "Solution: Integrated automation combining auto-tax invoice (Flask) & high-quality PDF engine.",
-                    "Decision: Kept familiar Google Sheets interface while using Cloud Run for complex backend logic.",
-                    "Result: Integrated quoting, PDF generation, and tax invoicing into 'One-Click', eliminating errors.",
-                    "Tech Stack: Next.js, Python(Flask), Google Cloud Run, AppSheet, Tax Invoice API"
-                ]
-            }
-        ],
-        skills: [
-            {
-                category: "Core Tech Stack",
-                items: [
-                    "TypeScript/React/Next.js: Building production web applications with type safety.",
-                    "Firebase/Supabase: Rapid MVP development and real-time data processing with serverless infrastructure.",
-                    "Python(Flask) + Google Cloud: Building business logic servers and API integration automation.",
-                    "Google Apps Script/AppSheet: Field-friendly workflow automation and low-cost DX implementation."
-                ]
-            },
-            {
-                category: "Workflow Automation & Data Processing",
-                items: [
-                    "Process analysis → Bottleneck identification → Automation system design and implementation.",
-                    "Statistical analysis and report generation pipelines using SAS, Python(Pandas), R.",
-                    "External API integration (Tax invoices, Payments, AlimTalk) and legacy system consolidation."
                 ]
             }
         ]
