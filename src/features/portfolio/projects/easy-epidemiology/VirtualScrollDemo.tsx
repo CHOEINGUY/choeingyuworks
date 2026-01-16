@@ -11,26 +11,17 @@
 
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { 
-    Layers, 
-    MousePointerClick, 
     Filter, 
-    CheckCircle2, 
-    Zap,
-    Lock,
     ArrowRight,
     Undo2,
     Redo2,
-    Clock,
-    FileDown,
-    FileText,
     Copy,
-    RefreshCw,
     Trash2,
-    Upload
+    Lock,
+    CheckCircle2
 } from "lucide-react";
 
 import { useMobile } from "@/hooks/useMobile";

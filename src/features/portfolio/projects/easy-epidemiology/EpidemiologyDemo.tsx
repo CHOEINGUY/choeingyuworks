@@ -64,8 +64,8 @@ const TABS: TabConfig[] = [
     { id: 'HomePage', label: '웹페이지 정보', icon: Info, disabled: true },
 ];
 
-const TAB_IDS = TABS.map(t => t.id);
-const TAB_IDS = TABS.map(t => t.id);
+// TAB_IDS removed as unused
+// TAB_IDS removed as unused
 
 // Manual override for specific flow if needed, or use the auto-generated map above.
 // The original code had a specific sequence:

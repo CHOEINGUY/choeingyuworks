@@ -170,10 +170,10 @@ export function PortfolioSection() {
                                         ))}
                                     </div>
                                     <div className="flex flex-col items-start gap-2">
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                         {(project as any).detailLink && (
                                             <Link
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                                 href={(project as any).detailLink}
                                                 className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
                                             >
@@ -181,10 +181,10 @@ export function PortfolioSection() {
                                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                             </Link>
                                         )}
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                         {(project as any).demoUrl && (
                                             <a
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                                 href={(project as any).demoUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
