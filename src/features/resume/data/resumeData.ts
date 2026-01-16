@@ -97,7 +97,7 @@ export const RESUME_DATA = {
                 description: [
                     "문제 상황 : 검진 현장의 병목 현상 및 대기 시간 관리 부재로 인한 혼선 발생",
                     "해결 방안 : AppSheet-Firebase 실시간 연동 및 Google TTS 기반 자동 음성 호명 시스템 구축",
-                    "의사결정 : Google Sheets의 5초 지연 문제를 해결하기 위해 Firebase Realtime DB를 도입, 반응 속도를 1초 미만으로 개선",
+                    "의사결정 : Google Sheets 지연(5초) 해결을 위해 Firebase Realtime DB 도입, 반응 속도 1초 미만으로 개선",
                     "성    과 : 실시간 순서 배정 자동화로 검진 대상자 동선 최적화 및 현장 혼선 제거",
                     "사용 기술 : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
                 ]
@@ -119,7 +119,7 @@ export const RESUME_DATA = {
                 description: [
                     "문제 상황 : 견적-발주-세금계산서 업무의 수기 관리 및 데이터 파편화로 인한 중복 행정 발생",
                     "해결 방안 : 세금계산서 자동 발행(Flask/Cloud Run)과 고품질 PDF 견적 엔진(Next.js)을 결합한 통합 업무 자동화 환경 구축",
-                    "의사결정 : 사용자가 이미 익숙한 Google Sheets 환경은 유지하면서, 세금계산서 및 PDF 발행 등 기술적 구현을 필요한 구간만 클라우드 기술로 정밀하게 연결하여 현장 도입 장벽 최소화",
+                    "의사결정 : 기존 엑셀 기반 수기 관리를 AppSheet 앱으로 전환하고, 세금계산서·PDF 발행 등 고도화 영역만 클라우드 API로 연결하여 도입 장벽 최소화",
                     "성    과 : 파편화되어 있던 견적 산출, PDF 발행, 세금계산서 전송 과정을 '원클릭'으로 통합하여 수기 행정 업무 및 데이터 중복 입력 원천 제거",
                     "사용 기술 : Next.js, Python(Flask), Google Cloud Run, AppSheet, 전자세금계산서 API"
                 ]
@@ -187,7 +187,7 @@ export const RESUME_DATA = {
                 description: [
                     "Problem: Chaos caused by bottlenecks and lack of wait time management at examination sites.",
                     "Solution: Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
-                    "Decision: Adopted Firebase Realtime DB to solve Google Sheets' 5-second delay, improving response speed to under 1 second.",
+                    "Decision: Adopted Firebase Realtime DB to resolve Google Sheets delay (5s → <1s).",
                     "Result: Optimized medical exam subject flow and eliminated on-site confusion through automated real-time sequencing.",
                     "Tech Stack: AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
                 ]
@@ -209,7 +209,7 @@ export const RESUME_DATA = {
                 description: [
                     "Problem: Duplicate administration due to manual management of Quote-Order-Tax Invoice tasks and data fragmentation.",
                     "Solution: Built an integrated work automation environment combining automatic tax invoice issuance (Flask/Cloud Run) and high-quality PDF quote engine (Next.js).",
-                    "Decision: Maintained the familiar Google Sheets environment for users while precisely connecting only sections requiring technical implementation like tax invoices and PDF issuance with cloud technology to minimize adoption barriers.",
+                    "Decision: Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
                     "Result: Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
                     "Tech Stack: Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
                 ]
