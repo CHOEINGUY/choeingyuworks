@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { BRAND_CONFIG } from "@/config/brand";
 
 export function AboutSection() {
