@@ -22,6 +22,7 @@ async function preview() {
     // Data Check
     if (!RESUME_DATA_V2) throw new Error('Resume data not loaded');
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const chunks: any[] = [];
 
     // --- A. Resume Data ---
@@ -160,6 +161,7 @@ async function preview() {
     
     console.log(`✅ Preview saved to: ${outputPath}`);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error(err);
     process.exit(1);
@@ -198,7 +200,7 @@ function splitCodeIntoChunks(content: string, fileName: string): { text: string;
 
     while ((match = blockRegex.exec(content)) !== null) {
         foundBlocks = true;
-        const [fullMatch, _declPrefix, type, name] = match;
+        const [fullMatch, , type, name] = match;
         const blockContent = fullMatch.length > 3000 ? fullMatch.substring(0, 3000) + "\n...(truncated)" : fullMatch;
         
         const smartChunk = `[파일 Context]\n${fileName}\n\n[Imports]\n${imports}\n\n[Code Block: ${name}]\n${blockContent}`;

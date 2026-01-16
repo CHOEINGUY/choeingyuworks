@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link } from "@/navigation";
-import { Button } from "@/components/ui/button";
 import { BRAND_CONFIG } from "@/config/brand";
 
 export function AboutSection() {

@@ -181,6 +181,7 @@ async function seed() {
 
     console.log('✅ Seeding complete!');
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error(err);
     process.exit(1);
@@ -219,7 +220,7 @@ function splitCodeIntoChunks(content: string, fileName: string): { text: string;
 
     while ((match = blockRegex.exec(content)) !== null) {
         foundBlocks = true;
-        const [fullMatch, _declPrefix, type, name] = match;
+        const [fullMatch, , type, name] = match;
         
         // Clean up the match (limit length if too huge)
         const blockContent = fullMatch.length > 3000 ? fullMatch.substring(0, 3000) + "\n...(truncated)" : fullMatch;
