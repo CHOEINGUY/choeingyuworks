@@ -1,7 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { Project } from "@/types";
 
 interface ResumeProjectsProps {
@@ -10,6 +9,7 @@ interface ResumeProjectsProps {
 
 export const ResumeProjects = ({ projects }: ResumeProjectsProps) => {
     const t = useTranslations("Resume");
+    const locale = useLocale();
 
     return (
         <section className="space-y-3">
@@ -29,15 +29,17 @@ export const ResumeProjects = ({ projects }: ResumeProjectsProps) => {
                                     if (match) {
                                         const isInternal = match[2].startsWith('/');
                                         if (isInternal) {
+                                            // 새 창에서 열면서 현재 언어 유지
+                                            const localizedUrl = `/${locale}${match[2]}`;
                                             return (
-                                                    <Link key={i} href={match[2] as any} className="text-gray-900 hover:text-blue-600 transition-colors inline">
+                                                    <a key={i} href={localizedUrl} target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-blue-600 transition-colors inline">
                                                         {match[1].split(/(\(.+?\))/).map((subPart, j) => 
                                                             subPart.startsWith('(') && subPart.endsWith(')') ? (
                                                                 <span key={j} className="relative -top-[0.5px]">{subPart}</span>
                                                             ) : subPart
                                                         )}
                                                         <span className="text-xs relative -top-[2px] opacity-70 whitespace-nowrap">{"\u00A0"}↗</span>
-                                                    </Link>
+                                                    </a>
                                             );
                                         }
                                         return (

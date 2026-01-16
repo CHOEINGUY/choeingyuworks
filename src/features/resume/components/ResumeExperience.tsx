@@ -1,7 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { Experience, ExperienceProject } from "@/types";
 
 interface ResumeExperienceProps {
@@ -10,6 +9,7 @@ interface ResumeExperienceProps {
 
 export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
     const t = useTranslations("Resume");
+    const locale = useLocale();
 
     const renderRichText = (text: string) => {
         return text.split(/(\[[^\]]+\]\([^)]+\))/).map((part, i) => {
@@ -17,11 +17,13 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
             if (linkMatch) {
                 const isInternal = linkMatch[2].startsWith('/');
                 if (isInternal) {
+                    // 새 창에서 열면서 현재 언어 유지
+                    const localizedUrl = `/${locale}${linkMatch[2]}`;
                     return (
-                        <Link key={i} href={linkMatch[2] as any} className="text-gray-700 hover:text-blue-600 transition-colors font-medium inline">
+                        <a key={i} href={localizedUrl} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600 transition-colors font-medium inline">
                             {linkMatch[1]}
                             <span className="text-[10px] relative -top-[1.5px] opacity-70 whitespace-nowrap">{"\u00A0"}↗</span>
-                        </Link>
+                        </a>
                     );
                 }
                 return (

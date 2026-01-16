@@ -131,7 +131,7 @@ export const RESUME_DATA = {
                 category: "웹 & 프론트엔드 엔지니어링",
                 items: [
                     "Next.js, React, Vue.js, TypeScript : 고성능 서비스 구축 및 사용자 중심의 인터랙티브 UI/UX 구현",
-                    "Firebase, Supabase : 실시간 데이터 및 서버리스 인프라 기반 빠른 서비스 배포 및 운영"
+                    "Firebase, Supabase : 별도 서버 구축 없이 빠른 서비스 배포 및 실시간 데이터 처리"
                 ]
             },
             {
@@ -220,7 +220,7 @@ export const RESUME_DATA = {
                 category: "Web & Frontend Engineering",
                 items: [
                     "Next.js, React, Vue.js, TypeScript : Building high-performance services and interactive UI/UX.",
-                    "Firebase, Supabase : Rapid service deployment and operation based on serverless infrastructure."
+                    "Firebase, Supabase : Rapid MVP deployment and real-time data handling without dedicated server setup."
                 ]
             },
             {
@@ -304,7 +304,7 @@ export const RESUME_DATA_V2 = {
                 category: "주력 기술 스택",
                 items: [
                     "TypeScript/React/Next.js : 타입 안정성 기반의 프로덕션 웹 애플리케이션 개발",
-                    "Firebase/Supabase : 서버리스 인프라로 빠른 MVP 구축 및 실시간 데이터 처리",
+                    "Firebase/Supabase : 별도 서버 구축 없이 빠른 MVP 배포 및 실시간 데이터 처리",
                     "Python(Flask) + Google Cloud : 비즈니스 로직 서버 구축 및 API 연동 자동화",
                     "Google Apps Script/AppSheet : 현장 친화적 업무 자동화 및 저비용 DX 구현"
                 ]
