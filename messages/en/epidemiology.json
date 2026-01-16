@@ -1,0 +1,77 @@
+{
+  "Hero": {
+    "title": "From Data Input to Analysis,<br/>All on the Web",
+    "description": "Easy Epidemiology is a tool that allows you to collect data and analyze it in real-time using only a web browser, without installing any separate programs. We have reflected the voice of the field to unfold complex statistical processes into an intuitive UI."
+  },
+  "backToPortfolio": "Back to Portfolio",
+  "CoreDescription": {
+    "title": "Real-time One-Stop Epidemiology,<br/>Where Data Entry Becomes Analysis",
+    "description": "Previously, the inefficiency of collecting data in Excel and then moving it to statistical tools or manually drawing graphs was repeated. During this process, data loss or missing analysis timing were frequent problems. We integrated this fragmented process into a single web platform. The moment an epidemiologist enters data, professional statistical computations automatically execute, generating everything from outbreak type diagnosis to the final report instantly.",
+    "problems": {
+      "brokenWorkflow": "Repetitive Dual Work",
+      "brokenWorkflowDesc": "Data collection in Excel and analysis in statistical tools were separated, causing repeated inefficiency of converting and moving files every time.",
+      "securityRisk": "Data Integrity Compromise",
+      "securityRiskDesc": "In the process of manually moving data and drawing graphs, data was lost or errors occurred, reducing the reliability of analysis results.",
+      "slowProcess": "Missed Golden Time",
+      "slowProcessDesc": "Analysis was delayed due to complex processes, making it easy to miss the critical moment for immediate decision-making in the early stages of infectious disease spread."
+    }
+  },
+  "VirtualScroll": {
+    "title": "Tens of Thousands of Records Without Lag,<br/>Proprietary Virtual Scroll Engine",
+    "description": "Even tens of thousands of epidemiological investigation data entries must be handled seamlessly in a web browser. With our custom Virtual Scroll logic implemented without relying on libraries, you can smoothly navigate vast amounts of data without memory load.",
+    "recyclingTitle": "DOM Element Recycling",
+    "recyclingDesc": "Only the DOM elements visible on the screen are created, and when scrolling, those elements are recycled to replace the data. This allows rendering tens of thousands of rows without performance degradation.",
+    "performanceTitle": "Memory Optimization",
+    "performanceDesc": "Maintains constant browser memory usage, providing a pleasant user experience even on low-spec laptops or tablet environments."
+  },
+  "Architecture": {
+    "title": "Zero Infrastructure, Start Instantly",
+    "description": "Forget server setup, database planning, and network configuration. A professional epidemiological system runs instantly the moment you open the page.",
+    "step1": {
+      "title": "Your PC is the Server",
+      "desc": "Your browser serves as the database. No external storage setup required—zero cost, zero maintenance."
+    },
+    "step2": {
+      "title": "100% Client Resources",
+      "desc": "Fully utilizes your computer's power without server bottlenecks, ensuring stable and consistent performance."
+    },
+    "step3": {
+      "title": "No Prep, Just Analysis",
+      "desc": "No sign-up, no login required. Your work begins the second the file opens."
+    }
+  },
+  "Performance": {
+    "title": "Overwhelming Work Efficiency Improvement",
+    "manualLabel": "Conventional Method (Manual)",
+    "smartLabel": "Easy Epidemiology",
+    "disclaimer": "* Based on internal tests; results may vary depending on data scale and environment."
+  },
+  "Timeline": {
+    "title": "Development Timeline",
+    "step1": {
+      "phase": "Phase 1",
+      "title": "Requirements Analysis & Prototype",
+      "desc": "We identified practical problems through interviews with field epidemiologists and specialist doctors, and verified usability by creating a UI prototype similar to Excel."
+    },
+    "step2": {
+      "phase": "Phase 2",
+      "title": "Core Engine Development (v1.0)",
+      "desc": "Implemented and deployed virtual scroll grid and basic Epidemic Curve analysis functions based on JavaScript."
+    },
+    "step3": {
+      "phase": "Phase 3",
+      "title": "Feature Expansion (v1.2)",
+      "desc": "Added managed confirmation status and suspect exposure time designation to improve investigation precision."
+    },
+    "step4": {
+      "phase": "Phase 4",
+      "title": "Report Generation (v1.4)",
+      "desc": "Implemented automated report generation based on analysis results to reduce documentation time."
+    },
+    "step5": {
+      "phase": "Phase 5 (Current)",
+      "title": "Platform Upgrade (v2.0)",
+      "desc": "JavaScript → TypeScript migration and component refactoring to strengthen maintainability. Modernized the design system with Tailwind CSS."
+    }
+  }
+}

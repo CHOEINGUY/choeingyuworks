@@ -1,0 +1,181 @@
+{
+    "Hero": {
+        "title": "Judged and Called by System,<br><span>Real-time Integrated Management System</span>",
+        "description": "We wanted to reduce the meaningless wasted time in complex examination processes.<br>By switching from human intuition to <strong>algorithms</strong> for order assignment, we reduced unnecessary waiting time by over 1 hour daily."
+    },
+    "BusinessContext": {
+        "title": "What is the Cohort Project?",
+        "description": "A large-scale health checkup project where 10 researchers conduct <strong>5+ examinations</strong> for 15~20 participants within a limited time daily.",
+        "problemTitle": "What was the problem?",
+        "problemDesc": "Proceeding in A→B→C order caused <strong>long lines at specific stations</strong> while others were empty. Assistants were confused trying to find the next participant from piled charts whenever a station became free.",
+        "solutionTitle": "Solution Direction",
+        "solutionDesc": "<strong>\"First arrived, first available test\"</strong> — We envisioned a flexible first-come-first-served system. When a station opens, the system automatically calls the next participant to minimize waiting time."
+    },
+    "backToPortfolio": "Back to Portfolio",
+    "Bottleneck": {
+        "title": "Optimizing Exam Flow",
+        "description": "Abandoned the <b>'Single Line'</b> method where you wait for the person ahead, <br>and introduced <b>'Real-time Assignment'</b> to guide people to empty rooms immediately.",
+        "before": {
+            "title": "Legacy System",
+            "subtitle": "Single Line (Bottleneck)",
+            "problems": [
+                "Cannot enter until Dementia Screening (60m) finishes",
+                "Start delayed even if front exams are fast",
+                "Empty rooms unusable due to fixed order"
+            ]
+        },
+        "after": {
+            "title": "New System",
+            "subtitle": "Priority Assignment to Empty Slots",
+            "engine": "Real-time Assignment Engine",
+            "solutions": [
+                "Instant guide to empty exams",
+                "Parallel processing regardless of order",
+                "Maximize utilization of all rooms",
+                "Strict arrival order (FIFO) to prevent complaints"
+            ]
+        },
+        "results": {
+            "time": "Result 1: Reduced total operation time by <span class='text-emerald-600 font-extrabold'>over 1 hour</span> (15% efficiency improvement per session)",
+            "satisfaction": "Result 2: Reduced <span class='text-emerald-600 font-extrabold'>complaints & fatigue</span> via real-time assignment"
+        },
+        "exams": {
+            "blood": "Blood Test",
+            "body": "Body Func",
+            "ecg": "ECG",
+            "dementia": "Dementia"
+        }
+    },
+    "TechStack": {
+        "title": "Data Flow & Architecture",
+        "description": "Uses familiar tools (Google Sheets) as DB, <br>combining Firebase (Cloud DB) and Apps Script for real-time performance.",
+        "steps": {
+            "appsheet": { "label": "On-site Input (Tablet)", "title": "Tablet Reception System", "desc": "No more complex paper forms. Just a few touches on a tablet. Easy for both seniors and researchers." },
+            "sheets": { "label": "Google Sheets (DB)", "title": "Familiar Excel (Google Sheets)", "desc": "We didn't use expensive DBs. Leverage Excel that researchers are most familiar with, reducing training costs to zero." },
+            "appsscript": { "label": "Apps Script (Logic)", "title": "Smart Traffic Control (Algorithm)", "desc": "As soon as 'Exam Complete' is pressed, the system recognizes empty seats and calls the next candidate. No more shouting to find people." },
+            "firebase": { "label": "Firebase (Real-time)", "title": "Firebase: Trigger-based Real-time Sync", "desc": "Data changes in Apps Script trigger a push to Firebase Realtime Database. Stable real-time sync with just cloud services (Apps Script & Firebase) without a dedicated server." },
+            "dashboard": { "label": "Web Dashboard", "title": "Voice Assistant", "desc": "When the voice says 'Mr. Kim, your next exam is ECG', assistants recognize the participant and guide them immediately." }
+        }
+    },
+    "Logic": {
+        "title": "\"Zero Human Error\" <br><span class='text-blue-600'>Optimal Flow</span>",
+        "description": "Field operations are complex. The system aggregates real-time data<br>to select the most efficient and fair next candidate.",
+        "steps": {
+            "1": { "title": "1. Check Availability", "desc": "Exclude those currently testing or already finished." },
+            "2": { "title": "2. Check Prerequisites", "desc": "Ex: ECG is only available after 'Body Function' is complete." },
+            "3": { "title": "3. Assign by Arrival (FIFO)", "desc": "Prioritize the earliest arrival among remaining candidates." },
+            "4": { "title": "4. Text-To-Speech (Auto-Call)", "desc": "Automatically calls the target via Google TTS service." }
+        },
+        "status": {
+            "active": "In Progress",
+            "waiting": "Next Priority (Late)",
+            "selected": "Selected (FIFO)",
+            "prereq": "Prereq Not Met"
+        }
+    },
+    "LogicFlow": {
+        "header": "Real-time Assignment Engine",
+        "phase": "Phase",
+        "status": {
+            "active": "Active",
+            "locked": "Locked",
+            "waiting": "Waiting"
+        },
+        "ttsLabel": "Auto Voice System",
+        "ttsMessage": "<span class='text-yellow-300'>{name}</span>, your next exam is <span class='text-yellow-300'>{room}</span>.",
+        "ttsActive": "Voice Active",
+        "resume": "Replay"
+    },
+    "Insight": {
+        "title": "Record of Thoughts for a Better System",
+        "description": "Beyond technical implementation, this contains practical concerns faced on-site <br>and insights gained while solving them.",
+        "cards": {
+            "speed": { "title": "Technology ignoring on-site speed was not the answer", "content": "I thought it was logically flawless. But for researchers, the 'Complete' button was just an annoying extra task. They didn't sympathize with how critical that data was for clearing the queue, so they often forgot to press it. I learned the hard way that the technological answer is not always the on-site solution." },
+            "empathy": { "title": "Gaining user empathy was more important than features", "content": "I went to the field before fixing code. I explained 'why this system is needed' and shared the goal that it's a 'tool to increase participant satisfaction and minimize human error', not just a work order. Once users understood the system's value and felt like colleagues, complex exceptions started to be resolved with their willing cooperation." },
+            "trust": { "title": "Technology is complete only with user trust", "content": "As trust built up, a virtuous cycle of data occurred. Missing inputs disappeared, the algorithm functioned properly, and the morning bottlenecks resolved naturally. I learned the essential value that system efficiency is proportional to user trust, not algorithm performance." }
+        }
+    },
+    "ExamFlow": {
+        "title": "Real-time Sync: Tablet → Board → TTS",
+        "description": "This simulates the process where pressing <strong>\"Complete\"</strong> on a tablet instantly updates the status board and triggers the automated voice guidance system.",
+        "StatusBoard": {
+            "header": "Real-time Status Board (TV Screen)",
+            "next": "Next",
+            "roomSuffix": " Room",
+            "noSubject": "None"
+        },
+        "Tablet": {
+            "headerTitle": "Lab Tablet",
+            "today": "Today",
+            "id": "ID",
+            "name": "Name",
+            "birth": "DOB",
+            "statusing": "Testing",
+            "complete": "Complete",
+            "birthLabel": "Birth Date",
+            "progress": "Status"
+        },
+        "TTS": {
+            "label": "TTS Voice System",
+            "message": "{name}, {name}, your next exam is {room}."
+        },
+        "automationLabel": "Automation Flow",
+        "boardLabel": "Real-time Dashboard"
+    },
+    "LogicFlow": {
+        "header": "Real-time Assignment Engine",
+        "phase": "Phase",
+        "status": {
+            "active": "Testing",
+            "locked": "Locked",
+            "waiting": "Waiting"
+        },
+        "ttsLabel": "Voice Assistant",
+        "ttsMessage": "{name}, {name}, your next exam is {room}.",
+        "ttsActive": "Speaking",
+        "resume": "Resume Simulation"
+    },
+    "Monitor": {
+        "Sidebar": {
+            "title": "FieldMgr",
+            "menu": {
+                "dashboard": "Dashboard",
+                "map": "Live Map",
+                "orders": "Work Orders",
+                "team": "Team",
+                "reports": "Reports",
+                "settings": "Settings"
+            },
+            "user": {
+                "name": "Admin User",
+                "role": "Manager"
+            }
+        },
+        "Header": {
+            "status": "System Operational",
+            "region": "Global Region"
+        },
+        "Stats": {
+            "active": "Active Workers",
+            "pending": "Tasks Pending",
+            "completed": "Completed Today",
+            "latency": "Avg API Latency",
+            "stable": "Stable"
+        },
+        "Map": {
+            "title": "LIVE TRACKING",
+            "workerParams": "Worker"
+        },
+        "Feed": {
+            "title": "Live Operations",
+            "badge": "Real-time",
+            "items": [
+                { "time": "Just now", "msg": "Worker #104 arrived at Site A", "status": "Arrived" },
+                { "time": "2m ago", "msg": "Material request: Cement x50", "status": "Pending" },
+                { "time": "5m ago", "msg": "Safety checklist verified", "status": "Verified" },
+                { "time": "12m ago", "msg": "Worker #102 started Shift", "status": "Active" },
+                { "time": "24m ago", "msg": "Site B inspection completed", "status": "Done" }
+            ]
+        }
+    }
+}

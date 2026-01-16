@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Requests collection: Public can write (submit form), but cannot read (admin only)
+    match /requests/{request} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+  }
+}

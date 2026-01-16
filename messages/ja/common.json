@@ -1,0 +1,81 @@
+{
+    "Navbar": {
+        "title": "Lindy Works",
+        "links": {
+            "process": "プロセス",
+            "projects": "プロジェクト",
+            "services": "サービス",
+            "about": "私について"
+        },
+        "viewResume": "履歴書を見る"
+    },
+    "ResumeCTA": {
+        "text1": "ビジネスの複雑さを解決する経験を",
+        "text2": " 履歴書に詳しく記載しました。",
+        "button": "履歴書全文を見る"
+    },
+    "_comment_Resume": "Resume section is intentionally omitted for Japanese.",
+    "Hero": {
+        "agency": {
+            "title": "複雑な現場を圧倒的な効率で",
+            "subtitle": "派手な機能よりも現場で生き残る<b>リンディ（Lindy）なロジック</b>を構築します。\n単なる構築を超え、<strong>不要な固定費と時間を画期的に削減し</strong>\n開発費以上の<strong>圧倒的な成果</strong>をお返しします。"
+        },
+        "personal": {
+            "title": "速く作り、綿密に検証する",
+            "subtitle": "AIと最新ツールで開発速度を最大化し、<line></line>節約した時間をシステムの安定性検証に投資します。<line></line><b>「迅速な開発と綿密な検証」</b>、これが私の方法論です。"
+        },
+        "buttons": {
+            "requestService": "サービス依頼",
+            "contactMe": "お問い合わせ"
+        },
+        "dock": {
+            "write": "執筆",
+            "feedback": "フィードバック",
+            "applyJob": "求人応募"
+        },
+        "aboutSection": {
+            "agency": {
+                "headline": "机の上ではなく、<line></line>熾烈な現場で答えを見つけました。",
+                "description": "既存のツールでは解決できない現場の隙間、予測不可能な突発的な変数。<line></line>コードを書く前に、<b>運営プロセスを先に深く理解し、<line></line>その呼吸をそのままプログラムに込めました。</b>",
+                "features": {
+                    "business": {
+                        "title": "ビジネス最適化設計",
+                        "description": "単なる機能実装ではありません。収益構造と運営動線を考慮し、ビジネスに最も最適化されたロジックを設計します。"
+                    },
+                    "asset": {
+                        "title": "資産となるデータ",
+                        "description": "流れて消えるエクセルファイルではありません。着実に積み上がり、事業の方向性を提示する御社の核心資産となります。"
+                    },
+                    "stability": {
+                        "title": "妥協のない安定性",
+                        "description": "お金と人が動く現場です。1%のエラーも許容しない堅牢な防御ロジックで事故を未然に防ぎます。"
+                    }
+                }
+            },
+            "personal": {
+                "headline": "ビジネスの流れを読み、<line></line>技術で答えを見つける「ソリューションビルダー」",
+                "description": "業務の本質を捉える分析でプロセスを単純化し、AI技術で開発速度を最大化します。<line></line>企画から運営まで責任を持つ堅実な実行力で、<b>「効率」と「安定」という具体的な成果を作ります。</b>",
+                "features": {
+                    "business": {
+                        "title": "ワークフロー最適化",
+                        "description": "3ヶ月の作業を1ヶ月に短縮した分析力で、単なる開発を超えて業務のボトルネックを解決します。"
+                    },
+                    "asset": {
+                        "title": "AIベースの生産性",
+                        "description": "AIツールで機能を迅速に実装し、残りの時間を品質検証に集中させます。"
+                    },
+                    "stability": {
+                        "title": "全工程を担当する実行力",
+                        "description": "企画から運営まで全過程を理解し、運営コストの実質的な削減を実現します。"
+                    }
+                }
+            }
+        }
+    },
+    "Footer": {
+        "brand": "Lindy Works",
+        "copyright": "© 2026 Lindy Works. All rights reserved.",
+        "address": "大韓民国 光州広域市",
+        "businessNo": "事業者登録番号 123-45-67890"
+    }
+}

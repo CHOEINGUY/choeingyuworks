@@ -1,0 +1,89 @@
+{
+    "Hero": {
+        "title": "All of Event Business,<br>in <span>One Single Solution</span>.",
+        "description": "Application, deposit verification, SMS, QR issuance, on-site check-in.<br>We consolidated tasks scattered across 5 tools <strong>into one unified system</strong>.",
+        "cta": "Request Service"
+    },
+    "Infrastructure": {
+            "react": { "name": "React & TS", "benefit": "Fast & Stable Web App", "detail": "Seamless responsiveness even with high traffic" },
+            "firebase": { "name": "Firebase Auth", "benefit": "Global Standard Security", "detail": "Secure user data encryption and management" },
+            "cloudflare": { "name": "Cloudflare R2", "benefit": "High-speed Media Processing", "detail": "Instant loading of field photos and large files" },
+            "banking": { "name": "Banking API", "benefit": "Real-time Financial Data", "detail": "Error-free deposit verification and auto-settlement" }
+    },
+    "backToPortfolio": "Back to Portfolio",
+    "Pipeline": {
+        "title": "From Application to Settlement & Matching.<br>In One Flow.",
+        "description": "Stop using Excel, SMS, and Google Forms separately. The system handles everything seamlessly from reception to result delivery.",
+        "steps": {
+            "form": { "label": "Application", "title": "No-Code Form Builder", "desc": "Forget Google Forms. Build applications that fit your brand perfectly with drag & drop." },
+            "banking": { "label": "Auto-Deposit Check", "title": "Real-time Deposit Matching", "desc": "Real-time verification of orders against actual bank transactions. Auto-approved in 1 second upon match." },
+            "admin": { "label": "Admin Approval", "title": "One-Click Approval & Filtering", "desc": "Automatically filters blacklists, and schedules the next step (SMS sending) with a single approval button." },
+            "invite": { "label": "Send Invite", "title": "Personalized Invite Sending", "desc": "Upon approval, AlimTalk/SMS with individual QR codes and entry guides are sent immediately." },
+            "event": { "label": "On-site QR Entry", "title": "1-Second QR Check-in", "desc": "Don't search for names on paper lists. Just scan the QR with a reader (phone) to verify attendance and launch the web app instantly." },
+            "result": { "label": "Final Result/Match", "title": "Data Aggregation & Match Report", "desc": "After the event, rotation results and couple matching status are automatically generated." }
+        }
+    },
+    "Tools": {
+        "sectionTitle": "Powerful Operation Tools",
+        "sectionDesc": "Dedicated tools prepared to perfectly execute business logic.",
+        "builder": { "title": "Precision Custom Builder", "desc": "Not just a simple form. Design complex data structures like rotation dating questions and 1:1 matching profiles without code." },
+        "qr": { "title": "One-Pass QR System", "desc": "From check-in to redirecting to session pages. Connect the participant's offline and online experience with a single QR scan." },
+        "dashboard": { "title": "Real-time Operation Dashboard", "desc": "Monitor and control participant attendance, ongoing round time, and matching vote status in real-time." },
+        "notification": { "title": "Context-Based Auto-Notification", "desc": "Approval SMS on deposit, reminder before party, matching result notification. Messages sent automatically fitting the context." }
+    },
+    "Benefits": {
+        "sectionTitle": "Focus on What Matters",
+        "sectionDesc": "Complex Excel, repetitive contacts, missing names...<br>Let the system handle it now.",
+        "automation": { "title": "0% Manual Work", "desc": "From application check to deposit verification and guide SMS. All processes are automated seamlessly without human intervention." },
+        "accuracy": { "title": "Zero Human Error", "desc": "No more copy/paste mistakes in Excel. The system guarantees data integrity." },
+        "speed": { "title": "3 Hours → 3 Seconds", "desc": "Time taken for settlement after event close. Finished before you brew a cup of coffee." },
+        "custom": { "title": "Custom Logic for You", "desc": "Don't force yourself into generic tools.<br>We design it exactly like your workflow, fitting like a tailored suit." }
+    },
+    "Comparison": {
+        "title": "Tailored Features for Every Service",
+        "description": "The system flexibly adapts to any type of gathering.",
+        "headers": {
+            "category": "Feature Category",
+            "party": "Private Party",
+            "rotation": "Rotation Dating",
+            "match": "1:1 Premium Match"
+        },
+        "Categories": {
+            "automation": "Core Automation",
+            "onsite": "On-site Flow",
+            "logic": "Specialized Logic"
+        },
+        "Features": {
+            "form": "Custom Application Form",
+            "invite": "Auto-Send Invites/SMS",
+            "deposit": "Auto-Verify Deposit",
+            "qr": "QR Check-in",
+            "profile": "Mobile Profile Creation",
+            "preview": "Profile Preview",
+            "timer": "Round Timer & Progress",
+            "vote": "Real-time Matching Vote",
+            "pool": "Member Pool Management",
+            "arrange": "Matching Arrangement",
+            "filter": "Lifestyle/Preference Filter"
+        }
+    },
+    "PremiumCTA": {
+        "title": "Systematize Your Business,<br>Start Now.",
+        "description": "Manage events with hundreds of people solo,<br>and invest the saved time in planning and growth.",
+        "button": "Inquire about Solution"
+    },
+    "DeepDive": {
+        "Dashboard": {
+            "title": "From deposit check to participant management and SMS,<br>Done in a single click.",
+            "description": "Instantly processed with real-time auto-matching, no complex Excel work needed.<br>The system assists with auto-verification of deposits, profile checks, selection, and result notification."
+        },
+        "FormBuilder": {
+            "title": "Built-in Form Builder &<br>Auto Data Integration",
+            "description": "Stop switching between Google Forms and Excel.<br>Design applications that fit your brand with our built-in builder,<br>and incoming data is instantly integrated into the management system in real-time."
+        },
+        "QrSystem": {
+            "title": "From Invitation to Entry,<br>Perfect Participant Experience",
+            "description": "Manage the entire participant journey with data, from branded invitations via SMS to detailed event guides.<br>On-site QR scan goes beyond simple attendance check, instantly connecting to a personalized web app in 1 second, maximizing immersion."
+        }
+    }
+}

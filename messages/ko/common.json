@@ -1,0 +1,90 @@
+{
+    "Navbar": {
+        "title": "Lindy Works",
+        "links": {
+            "process": "Process",
+            "projects": "Projects",
+            "services": "Services",
+            "about": "About"
+        },
+        "viewResume": "이력서 보기",
+        "backToPortfolio": "포트폴리오로 돌아가기"
+    },
+    "ResumeCTA": {
+        "text1": "비즈니스의 복잡함을 해결하는 경험을",
+        "text2": " 이력서에 자세히 담았습니다.",
+        "button": "전체 이력서 보기"
+    },
+    "Resume": {
+        "about": "소개",
+        "skills": "핵심 역량",
+        "education": "학력",
+        "experience": "경력",
+        "projects": "주요 프로젝트",
+        "contact": "연락처"
+    },
+    "Hero": {
+        "agency": {
+            "title": "복잡한 현장을 압도적 효율로",
+            "subtitle": "화려한 기능보다 현장에서 살아남는 <b>린디(Lindy)한 로직</b>을 짭니다.\n단순한 구축을 넘어, <strong>불필요한 고정비와 시간을 획기적으로 줄여</strong>\n개발비 그 이상의 <strong>압도적인 성과</strong>를 돌려드립니다."
+        },
+        "personal": {
+            "title": "빠르게 만들고, 꼼꼼하게 검증합니다",
+            "subtitle": "AI와 최신 도구로 <b>개발 속도를 극대화</b>하고,\n확보한 시간은 <strong>시스템 안정성 검증</strong>에 투자합니다.\n<strong>빠른 구축과 꼼꼼한 검증</strong>, 이것이 저의 개발 방식입니다."
+        },
+        "buttons": {
+            "requestService": "서비스 의뢰",
+            "contactMe": "연락하기",
+            "viewResume": "이력서 보기"
+        },
+        "dock": {
+            "write": "Write",
+            "feedback": "Feedback",
+            "applyJob": "Apply Job"
+        },
+        "aboutSection": {
+            "agency": {
+                "headline": "책상이 아닌, 치열한 현장에서 답을 찾았습니다.",
+                "description": "시중의 툴이 해결해주지 못하는 현장의 빈틈, 예측 불가능한 돌발 변수들.<line></line>코드를 작성하기 전에 <b>운영 프로세스를 먼저 깊이 이해하고,<line></line>그 호흡을 그대로 프로그램에 담았습니다.</b>",
+                "features": {
+                    "business": {
+                        "title": "비즈니스 최적화 설계",
+                        "description": "단순한 기능 구현이 아닙니다. 수익 구조와 운영 동선을 고려하여 비즈니스에 가장 최적화된 로직을 설계합니다."
+                    },
+                    "asset": {
+                        "title": "자산이 되는 데이터",
+                        "description": "흘러가면 사라지는 엑셀 파일이 아닙니다. 차곡차곡 쌓여 사업의 방향성을 제시하는 귀사의 핵심 자산이 됩니다."
+                    },
+                    "stability": {
+                        "title": "타협 없는 안정성",
+                        "description": "돈과 사람이 오가는 현장입니다. 1%의 오류도 허용하지 않는 견고한 방어 로직으로 사고를 미연에 방지합니다."
+                    }
+                }
+            },
+            "personal": {
+                "headline": "비즈니스 흐름을 읽고, 기술로 답을 찾는 '솔루션 빌더'",
+                "description": "업무의 본질을 꿰뚫는 분석으로 프로세스를 단순화하고, AI 기술로 개발 속도를 극대화합니다.<line></line>기획부터 운영까지 전 과정을 책임지는 탄탄한 실행력으로, <b>'효율'과 '안정성'이라는 실질적인 결과</b>를 만들어냅니다.",
+                "features": {
+                    "business": {
+                        "title": "업무 흐름 최적화",
+                        "description": "3개월 업무를 1개월로 줄인 분석력으로, 단순 개발을 넘어 업무의 병목을 시원하게 해결합니다."
+                    },
+                    "asset": {
+                        "title": "AI 기반 생산성",
+                        "description": "AI 도구로 빠르게 기능을 구현하고, 남은 시간은 품질 검증에 집중합니다."
+                    },
+                    "stability": {
+                        "title": "전 과정을 책임지는 실행력",
+                        "description": "1인 개발의 경험으로 기획부터 배포, 운영까지 빈틈없이 관리하며 운영 비용을 최소화합니다."
+                    }
+                }
+            }
+        }
+    },
+    "Footer": {
+        "brand": "Lindy Works",
+        "copyright": "© 2026 Lindy Works. All rights reserved.",
+        "address": "대한민국 광주광역시",
+        "businessNo": "사업자 등록번호 123-45-67890"
+    }
+}

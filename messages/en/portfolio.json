@@ -1,0 +1,24 @@
+{
+    "easy-epidemiology": {
+        "subtitle": "Browser-based High Performance Analytics",
+        "title": "From Data Input to Analysis,\nAll on the Web",
+        "description": "Easy Epidemiology is a tool that allows you to collect data and analyze it in real-time using only a web browser, without installing any separate programs.\n\nApplying Web Worker and Virtual Scroll technologies, it handles tens of thousands of records without lag. We provide a familiar Spreadsheet UX and automate everything from visualization of key indicators like Epidemic Curves to the final report with a single click.",
+        "result": "Analysis that took hours is <strong>completed instantly upon data entry</strong>, generating <strong>professional epidemiology reports directly in the browser</strong> without external programs."
+    },
+    "field": {
+        "subtitle": "Real-time Cohort Management",
+        "title": "Real-time Integrated Cohort Management System",
+        "description": "Developed to resolve on-site confusion caused by varying test durations. By linking tablets and a central status board in real-time, the system automatically guides the next participant whenever a test room becomes free. We automated complex flow management so researchers can focus solely on examinations.",
+        "result": "Converted manual management to <strong>real-time automatic assignment</strong>, reducing session duration by <strong>15%</strong> and <strong>completely eliminating on-site confusion</strong>."
+    },
+    "solution": {
+        "subtitle": "All-in-One Event SaaS Platform",
+        "title": "All-in-One Solution Unifying 3 Business Models into One System for Solo Operation",
+        "description": "Operate three different business types—Private Party, Rotation Dating, and 1:1 Matching—integrated within a single admin page.\n\nFreely configure forms with a custom builder, and automate the entire process from application to payment, QR entry, and web app connection.",
+        "result": "Integrated <strong>5 tools including application, deposit, SMS, QR, and check-in into one</strong>, establishing a <strong>solo operation system</strong> by automating deposit verification and on-site management."
+    },
+    "buttons": {
+        "detail": "View Details",
+        "demo": "View Demo"
+    }
+}

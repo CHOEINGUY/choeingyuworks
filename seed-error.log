@@ -1,0 +1,13 @@
+❌ CRITICAL ERROR: {
+  "name": "InsufficientQuotaError"
+}
+InsufficientQuotaError: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+
+Troubleshooting URL: https://docs.langchain.com/oss/javascript/langchain/errors/MODEL_RATE_LIMIT/
+
+    at AsyncCaller.defaultFailedAttemptHandler (C:\Users\46464\OneDrive\바탕 화면\DEV\choeingyu\node_modules\@langchain\core\src\utils\async_caller.ts:67:17)
+    at Object.onFailedAttempt (C:\Users\46464\OneDrive\바탕 화면\DEV\choeingyu\node_modules\@langchain\core\src\utils\async_caller.ts:155:50)
+    at onAttemptFailure (C:\Users\46464\OneDrive\바탕 화면\DEV\choeingyu\node_modules\@langchain\core\src\utils\p-retry\index.js:114:17)
+    at Object.pRetry (C:\Users\46464\OneDrive\바탕 화면\DEV\choeingyu\node_modules\@langchain\core\src\utils\p-retry\index.js:243:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async run (C:\Users\46464\OneDrive\바탕 화면\DEV\choeingyu\node_modules\p-queue\dist\index.js:163:29)
