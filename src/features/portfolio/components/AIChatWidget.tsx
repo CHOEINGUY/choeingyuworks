@@ -118,7 +118,7 @@ export function AIChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: 20, scale: 0.95, filter: 'blur(10px)' }}
             transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
-            className="mb-6 flex h-[600px] w-full max-w-[400px] flex-col overflow-hidden rounded-[20px] bg-white shadow-2xl ring-1 ring-black/5 sm:w-[400px]"
+            className="mb-6 flex h-[600px] max-h-[70vh] w-[calc(100vw-48px)] sm:w-[400px] flex-col overflow-hidden rounded-[20px] bg-white shadow-2xl ring-1 ring-black/5"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-gray-100 bg-white/80 p-5 backdrop-blur-md sticky top-0 z-10">
