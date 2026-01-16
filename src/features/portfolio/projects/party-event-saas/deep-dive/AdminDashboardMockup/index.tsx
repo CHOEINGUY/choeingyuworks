@@ -79,6 +79,7 @@ export function AdminDashboardMockup() {
         setSelectedGuest(prev => prev ? { ...prev, status: 'approved', isNew: false } : null);
     }, [selectedGuest]);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleSendInvites = useCallback((templateId: string) => {
         setMsgSelectModalOpen(false);
         setLoadingDockAction(true);

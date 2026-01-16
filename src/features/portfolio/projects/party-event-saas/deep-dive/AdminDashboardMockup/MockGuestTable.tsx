@@ -1,6 +1,6 @@
 "use client";
 
-import { Square, CheckSquare, CheckCircle2 } from 'lucide-react';
+import { Square, CheckSquare } from 'lucide-react';
 import type { MockGuest } from './types';
 
 interface MockGuestTableProps {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { Moon, Sun, Palette, ChevronRight, Type, Square, GripHorizontal, Check } from "lucide-react";
+import { Moon, Sun, Palette, ChevronRight, Type, Square, Check } from "lucide-react";
 
 interface PreviewViewProps {
     themeKey: number;
