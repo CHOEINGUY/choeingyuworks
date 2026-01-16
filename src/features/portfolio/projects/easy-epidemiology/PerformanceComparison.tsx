@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Timer, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 export function PerformanceComparison() {
     const t = useTranslations("EasyEpidemiology.Performance");

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
     Table, 
     BarChart3, 
@@ -65,15 +65,7 @@ const TABS: TabConfig[] = [
 ];
 
 const TAB_IDS = TABS.map(t => t.id);
-const NEXT_TAB_MAP = TAB_IDS.reduce((acc, currentId, index) => {
-    // Find next non-disabled tab
-    let nextIndex = (index + 1) % TABS.length;
-    while (TABS[nextIndex].disabled && nextIndex !== index) {
-        nextIndex = (nextIndex + 1) % TABS.length;
-    }
-    acc[currentId] = TABS[nextIndex].id;
-    return acc;
-}, {} as Record<string, string>);
+const TAB_IDS = TABS.map(t => t.id);
 
 // Manual override for specific flow if needed, or use the auto-generated map above.
 // The original code had a specific sequence:

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { XCircle, ArrowRight, ShieldAlert, Clock } from "lucide-react";
+import { XCircle, ShieldAlert, Clock } from "lucide-react";
 
 export function CoreDescription() {
     const t = useTranslations("EasyEpidemiology.CoreDescription");

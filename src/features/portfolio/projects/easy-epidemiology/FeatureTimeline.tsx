@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { CheckCircle2, Circle } from "lucide-react";
 
 export function FeatureTimeline() {
     const t = useTranslations("EasyEpidemiology.Timeline");
