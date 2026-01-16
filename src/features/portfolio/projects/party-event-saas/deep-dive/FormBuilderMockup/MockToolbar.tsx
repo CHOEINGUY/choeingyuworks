@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Plus,
     Type,
     Calendar,
     CheckSquare,

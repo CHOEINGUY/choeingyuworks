@@ -17,6 +17,7 @@ export const ConfettiFireworks = () => {
             rotate: Math.random() * 360,
             delay: Math.random() * 0.2
         }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const bursts = useMemo(() => {
@@ -27,6 +28,7 @@ export const ConfettiFireworks = () => {
             top: `${20 + Math.random() * 60}%`,
             delay: 0.5 + Math.random() * 0.5
         }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

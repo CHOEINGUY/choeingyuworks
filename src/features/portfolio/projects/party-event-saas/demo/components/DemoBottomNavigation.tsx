@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp, ChevronDown, ArrowRight, Check, Sparkles } from 'lucide-react';
+import { ChevronUp, ChevronDown, ArrowRight, Check } from 'lucide-react';
 
 interface DemoBottomNavigationProps {
     currentStepIndex: number; // 0-based index for progress
     totalSteps: number;
-    stepName: string;
+    stepName: string; // kept for interface compatibility
     onNext: () => void;
-    onPrev?: () => void; // Optional if we want to allow going back
+    onPrev?: () => void;
     isNextDisabled?: boolean;
-    isClicking?: boolean; // For simulating button press visual
+    isClicking?: boolean;
     mainButtonLabel?: string;
     showMainButton?: boolean;
 }
@@ -17,6 +17,7 @@ interface DemoBottomNavigationProps {
 export const DemoBottomNavigation: React.FC<DemoBottomNavigationProps> = ({
     currentStepIndex,
     totalSteps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     stepName,
     onNext,
     onPrev,

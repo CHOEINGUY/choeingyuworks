@@ -2,9 +2,10 @@
 
 import React, { useEffect, useRef } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const QRCodeGenerator = ({ data }: { data: string }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const qrCode = useRef<any>(null);
+    const qrCode = useRef<InstanceType<typeof import('qr-code-styling').default> | null>(null);
 
     useEffect(() => {
         let mounted = true;
