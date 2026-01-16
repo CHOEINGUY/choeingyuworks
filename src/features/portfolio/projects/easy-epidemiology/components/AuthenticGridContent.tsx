@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// motion, AnimatePresence removed as unused
 import { Undo2, Redo2, Filter, CheckCircle2, Clock, FileDown, FileText, Copy, RefreshCw, Trash2, Upload } from 'lucide-react';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function AuthenticGridContent({ isActive }: Props) {
-    const [selectedCells] = useState<string[]>(['4_2']);
+    // selectedCells removed as unused
     const gridBodyRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

@@ -8,6 +8,7 @@
  * @module features/portfolio/projects/easy-epidemiology/VirtualScrollDemo
  * @see {@link https://easy-epi.xyz} - Live Easy-Epidemiology application
  */
+// Force Rebuild
 
 "use client";
 
@@ -21,7 +22,9 @@ import {
     Copy,
     Trash2,
     Lock,
-    CheckCircle2
+    CheckCircle2,
+    Zap,
+    Layers
 } from "lucide-react";
 
 import { useMobile } from "@/hooks/useMobile";

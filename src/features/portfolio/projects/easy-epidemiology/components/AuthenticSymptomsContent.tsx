@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Copy, BarChart3, Download, RefreshCcw } from 'lucide-react';
 

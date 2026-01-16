@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+// motion, AnimatePresence removed as unused
 import { useState, useRef, useEffect } from "react";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
     isEmbedded?: boolean;
 }
 
-export function VirtualScrollVisual({ isActive = true, scale = 1, isEmbedded = false }: Props) {
+export function VirtualScrollVisual({ isActive = true, scale = 1 }: Props) {
     const [scrollPos, setScrollPos] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const [autoScroll, setAutoScroll] = useState(true);

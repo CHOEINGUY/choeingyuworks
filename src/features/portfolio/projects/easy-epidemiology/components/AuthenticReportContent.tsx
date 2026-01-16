@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, CheckCircle2, AlertCircle, Download, FileBarChart } from 'lucide-react';
+import { FileText, CheckCircle2, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function AuthenticReportContent() {

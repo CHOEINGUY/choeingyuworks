@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, ArrowUpDown, Filter, Copy, Check } from 'lucide-react';
+import { HelpCircle, ArrowUpDown, Copy, Check } from 'lucide-react';
 
 export function AuthenticCohortContent() {
     const [useYates, setUseYates] = useState(false);
@@ -197,9 +197,4 @@ export function AuthenticCohortContent() {
     );
 }
 
-// Add these to global styles or inject them
-const styles = `
-  .mask-gradient-b {
-    mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
-  }
-`;
+// styles variable removed as unused
