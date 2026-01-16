@@ -1,6 +1,6 @@
 "use client";
 
-// motion, AnimatePresence removed as unused
+import { AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
 interface Props {

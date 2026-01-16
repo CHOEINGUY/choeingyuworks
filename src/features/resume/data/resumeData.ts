@@ -81,17 +81,6 @@ export const RESUME_DATA = {
         ],
         projects: [
             {
-                name: "[3가지 사업 모델 (파티/소개팅/1:1) 통합 이벤트 관리 솔루션](/portfolio/party-saas)",
-                period: "2025. 10 - 2025. 12",
-                description: [
-                    "문제 상황 : 사업 모델별로 다른 신청 양식과 운영 로직을 개별 구축해야 하는 개발 비효율 발생",
-                    "해결 방안 : JSON 엔진 기반의 동적 신청서 구조를 설계하여 코드 수정 없이 신규 사업 모델 즉시 대응",
-                    "의사결정 : 사업 모델이 추가될 때마다 코딩을 새로 하는 번거로움을 없애기 위해, 기획자가 직접 신청 항목을 설정할 수 있는 유연한 구조를 설계하여 운영 효율 극대화",
-                    "성    과 : 입금 확인부터 알림톡 발송까지 전 과정 자동화로 1인 운영 체제 확립 및 휴먼 에러 최소화",
-                    "사용 기술 : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
-                ]
-            },
-            {
                 name: "[역학조사 통합 분석 솔루션 (Easy-Epidemiology)](/portfolio/easy-epidemiology)",
                 period: "2024. 11 - 2025. 12",
                 description: [
@@ -99,7 +88,7 @@ export const RESUME_DATA = {
                     "해결 방안 : 역학조사관 인터뷰를 통해 요구사항을 파악하고, 데이터 입력 즉시 통계 분석 및 보고서(한글/PDF)를 자동 생성하는 웹 기반 시스템 구축. 현장 피드백을 반영하여 v1.0에서 v2.0까지 단계적으로 기능 확장",
                     "의사결정 : 외부 SW 의존도를 낮추기 위해 브라우저 기반 경량 통계 알고리즘을 직접 구현. TypeScript 전환 및 3차 QC를 통해 시스템 안정성 확보",
                     "성    과 : 수 시간이 소요되던 분석 및 보고서 작성을 데이터 입력 즉시 완료. 보건소 배포 및 실무 교육 실시",
-                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, 통계 분석 로직(Custom)"
+                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, 역학 통계 로직(Custom)"
                 ]
             },
             {
@@ -108,9 +97,20 @@ export const RESUME_DATA = {
                 description: [
                     "문제 상황 : 검진 현장의 병목 현상 및 대기 시간 관리 부재로 인한 혼선 발생",
                     "해결 방안 : AppSheet-Firebase 실시간 연동 및 Google TTS 기반 자동 음성 호명 시스템 구축",
-                    "의사결정 : Google Sheets의 5초 지연 문제를 해결하기 위해 Firebase Realtime DB를 도입, 반응 속도를 1초 미만으로 개선",
+                    "의사결정 : Google Sheets 지연(5초) 해결을 위해 Firebase Realtime DB 도입, 반응 속도 1초 미만으로 개선",
                     "성    과 : 실시간 순서 배정 자동화로 검진 대상자 동선 최적화 및 현장 혼선 제거",
                     "사용 기술 : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "[3가지 사업 모델 (파티/소개팅/1:1) 통합 이벤트 관리 솔루션](/portfolio/party-saas)",
+                period: "2025. 10 - 2025. 12",
+                description: [
+                    "문제 상황 : 신청(폼)·관리(엑셀)·출석(종이) 등 파편화된 도구로 운영하여, 데이터 단절 및 리소스 낭비 발생",
+                    "해결 방안 : 개별 도구들을 하나의 웹 솔루션으로 통합하여, 신청부터 현장 운영까지 끊김 없는 올인원 워크플로우 구축",
+                    "의사결정 : 사업 모델이 추가될 때마다 코딩을 새로 하는 번거로움을 없애기 위해, 기획자가 직접 신청 항목을 설정할 수 있는 유연한 구조를 설계하여 운영 효율 극대화",
+                    "성    과 : 입금 확인부터 알림톡 발송까지 전 과정 자동화로 1인 운영 체제 확립 및 휴먼 에러 최소화",
+                    "사용 기술 : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
             },
             {
@@ -119,7 +119,7 @@ export const RESUME_DATA = {
                 description: [
                     "문제 상황 : 견적-발주-세금계산서 업무의 수기 관리 및 데이터 파편화로 인한 중복 행정 발생",
                     "해결 방안 : 세금계산서 자동 발행(Flask/Cloud Run)과 고품질 PDF 견적 엔진(Next.js)을 결합한 통합 업무 자동화 환경 구축",
-                    "의사결정 : 사용자가 이미 익숙한 Google Sheets 환경은 유지하면서, 세금계산서 및 PDF 발행 등 기술적 구현이 필요한 구간만 클라우드 기술로 정밀하게 연결하여 현장 도입 장벽 최소화",
+                    "의사결정 : 기존 엑셀 기반 수기 관리를 AppSheet 앱으로 전환하고, 세금계산서·PDF 발행 등 고도화 영역만 클라우드 API로 연결하여 도입 장벽 최소화",
                     "성    과 : 파편화되어 있던 견적 산출, PDF 발행, 세금계산서 전송 과정을 '원클릭'으로 통합하여 수기 행정 업무 및 데이터 중복 입력 원천 제거",
                     "사용 기술 : Next.js, Python(Flask), Google Cloud Run, AppSheet, 전자세금계산서 API"
                 ]
@@ -131,7 +131,7 @@ export const RESUME_DATA = {
                 category: "웹 & 프론트엔드 엔지니어링",
                 items: [
                     "Next.js, React, Vue.js, TypeScript : 고성능 서비스 구축 및 사용자 중심의 인터랙티브 UI/UX 구현",
-                    "Firebase, Supabase : 실시간 데이터 및 서버리스 인프라 기반 빠른 서비스 배포 및 운영"
+                    "Firebase, Supabase : 별도 서버 구축 없이 빠른 서비스 배포 및 실시간 데이터 처리"
                 ]
             },
             {
@@ -146,6 +146,95 @@ export const RESUME_DATA = {
                 items: [
                     "API 연동 : 외부 서비스(세금계산서, 결제, 알림톡 등)를 비즈니스 흐름에 유연하게 통합",
                     "SAS, Python, R : 데이터 전처리, 통계 분석 및 업무용 보고서 생성 프로세스 자동화"
+                ]
+            }
+        ]
+    },
+    en: {
+        name: "Choe In-gyu",
+        birthYear: "1998",
+        role: "Business Solution Engineer",
+        location: "Gwangju, South Korea",
+        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\nI analyzed and automated the process of creating 14 statistical books, reducing 3 months of work to 1 month. I maximize development speed with AI and the latest tools, investing the saved time into verifying system stability and user convenience. Based on my experience in solo development from planning to operation, I create tangible results that substantially reduce operational costs in the field.",
+        education: [
+            {
+                school: "Korea National Open University",
+                major: "Computer Science (In Progress)",
+                period: "2024. 03 - Present",
+            },
+            {
+                school: "Chonnam National University",
+                major: "Biology Education (Graduated)",
+                period: "2017. 03 - 2021. 08",
+            }
+        ],
+        experience: [],
+        projects: [
+             {
+                name: "[Easy-Epidemiology Solution](/portfolio/easy-epidemiology)",
+                period: "2024. 11 - 2025. 12",
+                description: [
+                    "Problem: Time bottleneck caused by manual analysis of patient control groups and epidemic curve generation by public health officers.",
+                    "Solution: Built a web-based system that automatically generates statistical analyses and reports (HWPX/PDF) immediately upon data entry. Expanded features from v1.0 to v2.0 based on field feedback.",
+                    "Decision: Directly implemented lightweight browser-based statistical algorithms to reduce dependency on external SW. Ensured system stability through TypeScript migration and 3 rounds of QC.",
+                    "Result: Completed analysis and reporting, which used to take hours, immediately upon data entry. Deployed to public health centers and conducted training.",
+                    "Tech Stack: Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
+                ]
+            },
+            {
+                name: "[Real-time Cohort Control System](/portfolio/cohort-dashboard)",
+                period: "2024. 01 - 2025. 12",
+                description: [
+                    "Problem: Chaos caused by bottlenecks and lack of wait time management at examination sites.",
+                    "Solution: Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
+                    "Decision: Adopted Firebase Realtime DB to resolve Google Sheets delay (5s → <1s).",
+                    "Result: Optimized medical exam subject flow and eliminated on-site confusion through automated real-time sequencing.",
+                    "Tech Stack: AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "[Integrated Event Management Solution (Party/Dating/Unification)](/portfolio/party-saas)",
+                period: "2025. 10 - 2025. 12",
+                description: [
+                    "Problem: Fragmented operations using separate tools for registration (forms), management (Excel), and attendance (paper), causing data disconnection and resource waste.",
+                    "Solution: Consolidated separate tools into a single web solution, building a seamless all-in-one workflow from registration to on-site operations.",
+                    "Decision: Designed a flexible structure where planners can directly configure application items to eliminate the need for new coding whenever a business model is added.",
+                    "Result: Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to notification talk dispatch.",
+                    "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
+                ]
+            },
+            {
+                name: "Manufacturing (LunaTech) Light ERP & Automation System",
+                period: "2024. 10 - Present",
+                description: [
+                    "Problem: Duplicate administration due to manual management of Quote-Order-Tax Invoice tasks and data fragmentation.",
+                    "Solution: Built an integrated work automation environment combining automatic tax invoice issuance (Flask/Cloud Run) and high-quality PDF quote engine (Next.js).",
+                    "Decision: Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
+                    "Result: Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
+                    "Tech Stack: Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
+                ]
+            }
+        ],
+        skills: [
+            {
+                category: "Web & Frontend Engineering",
+                items: [
+                    "Next.js, React, Vue.js, TypeScript : Building high-performance services and interactive UI/UX.",
+                    "Firebase, Supabase : Rapid MVP deployment and real-time data handling without dedicated server setup."
+                ]
+            },
+            {
+                category: "Business Process Automation (BPA)",
+                items: [
+                    "AppSheet, Google Apps Script : Diagnosing manual workflows and designing DX via app-based systems.",
+                    "Python(Flask), Google Cloud Run : Building custom backend servers for business logic and system integration."
+                ]
+            },
+            {
+                category: "Integration & Data Analysis",
+                items: [
+                    "API Integration : Flexible integration of external services (Tax Invoice, Payment, AlimTalk) into business flows.",
+                    "SAS, Python, R : Automating data preprocessing, statistical analysis, and reporting processes."
                 ]
             }
         ]
@@ -181,7 +270,7 @@ export const RESUME_DATA_V2 = {
                         details: [
                             "현장 운영 : 검진 일정 수립 및 예약 관리(연 200명 규모), 보조 인력 교육",
                             "데이터 관리 : 검진 결과지 스캔·라벨링, 연구 실물 자료 정리 및 보관, Pandas 기반 이상치 점검 및 정제",
-                            "시스템 구축 : AppSheet-Firebase 연동 실시간 관제 시스템 구축 및 Google TTS 자동 호명, 회차당 소요 시간 15% 단축"
+                            "시스템 구축 : 실시간 검진 시스템 도입으로 현장 병목 제거 및 회차당 소요 시간 15% 단축"
                         ]
                     },
                     {
@@ -195,7 +284,7 @@ export const RESUME_DATA_V2 = {
                     {
                         title: "역학조사 솔루션 및 업무 도구 개발",
                         details: [
-                            "역학조사 통합 분석 솔루션(Easy-Epidemiology) 개발 및 보건소 배포",
+                            "역학조사 통합 분석 솔루션 개발 및 보건소 배포",
                             "공통 업무 자동화 툴 제작 및 실무 매뉴얼 배포"
                         ]
                     }
@@ -215,7 +304,7 @@ export const RESUME_DATA_V2 = {
                 category: "주력 기술 스택",
                 items: [
                     "TypeScript/React/Next.js : 타입 안정성 기반의 프로덕션 웹 애플리케이션 개발",
-                    "Firebase/Supabase : 서버리스 인프라로 빠른 MVP 구축 및 실시간 데이터 처리",
+                    "Firebase/Supabase : 별도 서버 구축 없이 빠른 MVP 배포 및 실시간 데이터 처리",
                     "Python(Flask) + Google Cloud : 비즈니스 로직 서버 구축 및 API 연동 자동화",
                     "Google Apps Script/AppSheet : 현장 친화적 업무 자동화 및 저비용 DX 구현"
                 ]
@@ -231,141 +320,56 @@ export const RESUME_DATA_V2 = {
         ]
     },
     en: {
-        name: "Ingyu Choe",
-        birthYear: "Born in 1998",
-        role: "Business Solution Engineer",
-        location: "Gwangju, South Korea",
-        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\nAnalyzed and automated 14 statistical report processes, reducing 3-month work to 1 month. I maximize development productivity with AI and modern tools, investing the saved time in system stability and usability verification. With solo development experience, I understand the entire process from planning to operation, creating tangible results that reduce operating costs.",
-        education: [
-            {
-                school: "Korea National Open University",
-                major: "Computer Science (In Progress)",
-                period: "2024. 03 - Present",
-            },
-            {
-                school: "Chonnam National University",
-                major: "Dept. of Biology Education (Graduated)",
-                period: "2017. 03 - 2021. 08",
-            }
-        ],
+        ...RESUME_DATA.en,
         experience: [
             {
                 company: "JNU Preventive Medicine",
                 position: "Research Associate (Public Health PM & System Dev)",
                 period: "2022. 08 - 2025. 12 (3y 4m)",
                 description: [
-                    "Role: Public Health Project (Community Health Survey, etc.) Planning Support & Field Operations Management, System Development"
+                    "Dedicated to planning support and field operations management for public health projects (Community Health Survey, Namwon Cohort, Small Area Survey, etc.) and developing business systems."
                 ],
                 projects: [
                     {
                         title: "Community Health Survey (Jeonnam 14 Cities/Counties, 12k participants/yr)",
                         details: [
-                            "PM & Operations: Annual planning, budget management, recruited & trained 56 interviewers.",
-                            "Field Automation: Developed & deployed [Chrome Extension & Android App](https://sites.google.com/view/jnupreventautomation/%ED%99%88) to resolve bottlenecks in complex manual entry processes.",
-                            "Analysis Automation: Automating SAS/Python/VBA reporting reduced workload by 66% (3mo → 1mo).",
-                            "Systematization: Built step-by-step manuals (Protocols) and Google Sheet-based workflow systems.",
-                            "QC: Real-time monitoring & surveyor feedback to ensure data integrity & final reporting."
+                            "Project Management (PM): Annual business planning, budget execution management, recruitment and job training of 56 interviewers.",
+                            "Field Work Automation: Developed and deployed [Chrome Extension & Android App](https://sites.google.com/view/jnupreventautomation/%ED%99%88) (nationwide) to eliminate complex manual entry processes.",
+                            "Report Automation: Built a pipeline to generate charts from SAS analysis results using Python/VBA and automatically input them into HWPX, reducing the preparation period for 14 statistical books by 66% (3 months → 1 month).",
+                            "Quality Control (QC): Real-time data monitoring, periodic outlier checks, and final result report preparation."
                         ]
                     },
                     {
                         title: "Namwon Cohort Study (Cardiovascular R&D)",
                         details: [
-                            "Operations Management: Scheduled yearly exams (200+ participants), managed support staff.",
-                            "Digital Transition: Replaced manual tracking with real-time dashboard & auto-calling system, reducing wait times by 15%.",
-                            "Data QC: Automated data verification using Python/Pandas to ensure long-term study data reliability."
+                            "Field Operations: Examination schedule planning and reservation management (200 people/year), support staff training.",
+                            "Data Management: Scanning/labeling examination results, organizing/storing physical study materials, checking outliers and cleaning data based on Pandas.",
+                            "System Construction: Eliminated on-site bottlenecks and reduced time per session by 15% by introducing a real-time examination system."
                         ]
                     },
                     {
                         title: "Haenam Gyegok-myeon Small Area Survey",
                         details: [
-                            "DX: Transitioned manual surveys to Google Forms-based mobile system.",
-                            "GIS Analysis: Visualized spatial data using R for project planning support.",
-                            "QC: Real-time monitoring & 1:1 coaching for interviewers to maintain accuracy."
+                            "Digital Transformation: Transitioned manual surveys to Google Forms-based mobile system and trained interviewers.",
+                            "Spatial Analysis: Visualized GIS using R and supported business plan writing.",
+                            "Quality Control: Real-time data monitoring and 1:1 coaching for interviewers."
                         ]
                     },
                     {
-                        title: "Easy-Epidemiology Solution Development",
+                        title: "Development of Epidemiology Solutions & Business Tools",
                         details: [
-                            "Development: Built web-based automation tools to replace manual analysis (see Projects).",
-                            "Operations: Conducted user training for public health officers and distributed manuals.",
-                            "QC: Improved UI/UX based on field feedback and ensured 3rd-round QC stability."
+                            "Developed integrated epidemiology analysis solution and deployed to public health centers.",
+                            "Created common business automation tools and distributed operational manuals."
                         ]
                     }
                 ]
             },
             {
-                company: "Personal Projects & Consulting",
-                position: "Solution Builder (Solo Dev & Ops)",
+                company: "Freelance Solution Development",
+                position: "Solo Developer & Operator",
                 period: "2024. 10 - Present",
                 description: [
-                    "BPA Consulting: Diagnosed manual bottlenecks via client interviews & proposed DX roadmaps.",
-                    "Logic Optimization: Designed & delivered management systems for complex operation logic (Party/Dating SaaS).",
-                    "Achievement: Transformed manual quoting at LunaTech (Manufacturing) to ERP with e-Tax API integration."
-                ]
-            }
-        ],
-        projects: [
-            {
-                name: "[Event Management SaaS (Party/Dating/1:1)](/portfolio/party-saas)",
-                period: "2025. 10 - 2025. 12",
-                description: [
-                    "Problem: Inefficiency of building separate logic for different business models.",
-                    "Solution: Designed a dynamic JSON-engine structure to handle new models without code changes.",
-                    "Decision: Empowered planners to configure forms directly, maximizing operational efficiency.",
-                    "Result: Automated everything from payment check to notifications, enabling 1-person operation.",
-                    "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
-                ]
-            },
-            {
-                name: "[Easy-Epidemiology (Analysis Solution)](/portfolio/easy-epidemiology)",
-                period: "2024. 11 - 2025. 12",
-                description: [
-                    "Problem: Time bottlenecks due to manual case-control analysis by health officers.",
-                    "Solution: Built a system that auto-generates stats & reports (HWP/PDF) upon data entry.",
-                    "Decision: Implemented lightweight browser-based stats algorithms to reduce external SW dependency.",
-                    "Result: Reduced analysis & reporting time from hours/days to instant completion.",
-                    "Tech Stack: Vue.js, Tailwind CSS, ECharts, Custom Stats Logic"
-                ]
-            },
-            {
-                name: "[Real-time Cohort Dashboard](/portfolio/cohort-dashboard)",
-                period: "2024. 01 - 2025. 12",
-                description: [
-                    "Problem: Chaos & waiting time management issues at examination sites.",
-                    "Solution: Real-time AppSheet-Firebase integration & Google TTS-based auto-calling.",
-                    "Decision: Adopted Firebase Realtime DB to solve Google Sheets' 5s latency (reduced to <1s).",
-                    "Result: Optimized participant flow & eliminated on-site confusion via auto-assignment.",
-                    "Tech Stack: AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
-                ]
-            },
-            {
-                name: "LunaTech ERP (Manufacturing)",
-                period: "2024. 10 - Present",
-                description: [
-                    "Problem: Redundant admin work due to fragmented manual quoting/ordering/tax data.",
-                    "Solution: Integrated automation combining auto-tax invoice (Flask) & high-quality PDF engine.",
-                    "Decision: Kept familiar Google Sheets interface while using Cloud Run for complex backend logic.",
-                    "Result: Integrated quoting, PDF generation, and tax invoicing into 'One-Click', eliminating errors.",
-                    "Tech Stack: Next.js, Python(Flask), Google Cloud Run, AppSheet, Tax Invoice API"
-                ]
-            }
-        ],
-        skills: [
-            {
-                category: "Core Tech Stack",
-                items: [
-                    "TypeScript/React/Next.js: Building production web applications with type safety.",
-                    "Firebase/Supabase: Rapid MVP development and real-time data processing with serverless infrastructure.",
-                    "Python(Flask) + Google Cloud: Building business logic servers and API integration automation.",
-                    "Google Apps Script/AppSheet: Field-friendly workflow automation and low-cost DX implementation."
-                ]
-            },
-            {
-                category: "Workflow Automation & Data Processing",
-                items: [
-                    "Process analysis → Bottleneck identification → Automation system design and implementation.",
-                    "Statistical analysis and report generation pipelines using SAS, Python(Pandas), R.",
-                    "External API integration (Tax invoices, Payments, AlimTalk) and legacy system consolidation."
+                    "Designed, developed, and operated customized business automation systems for clients, including Manufacturing ERP and Event Management Solutions."
                 ]
             }
         ]

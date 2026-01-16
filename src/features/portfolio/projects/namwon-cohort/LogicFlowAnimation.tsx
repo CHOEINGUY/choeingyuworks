@@ -3,16 +3,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Check, X, Clock, Volume2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Candidate } from "@/types";
 
 interface LogicFlowAnimationProps {
     step: number;
-    isPaused: boolean;
-    onResume: () => void;
-    candidates: any[];
+    candidates: Candidate[];
     room: string;
 }
 
-export function LogicFlowAnimation({ step, isPaused, onResume, candidates, room }: LogicFlowAnimationProps) {
+export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimationProps) {
     const t = useTranslations("CohortDashboard.LogicFlow");
     const winner = candidates.find(c => c.id === 4);
 

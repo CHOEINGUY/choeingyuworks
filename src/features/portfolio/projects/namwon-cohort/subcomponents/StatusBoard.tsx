@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { BoardState, ExamEvent, SnsbcRoom } from "@/types";
 
 interface StatusBoardProps {
-    boardState: any;
+    boardState: BoardState;
     blinkingStation: string | null;
     blinkToggle: boolean;
     showNextUpdate: boolean;
-    currentExam: any;
+    currentExam: ExamEvent;
 }
 
 export function StatusBoard({ 
@@ -42,7 +42,7 @@ export function StatusBoard({
 
             {/* Exam Rooms Section (SNSB-C 1, 2, 3) */}
             <div className="flex border-b-2 border-gray-200 shrink-0" style={{ height: '32%' }}>
-                {boardState.snsbcRooms.map((room: any) => {
+                {boardState.snsbcRooms.map((room: SnsbcRoom) => {
                     const roomId = `snsbc-${room.roomNum}`;
                     const isBlinking = blinkingStation === roomId;
                     const showAsActive = isBlinking ? blinkToggle : true;

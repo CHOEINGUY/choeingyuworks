@@ -1,14 +1,15 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { Experience, ExperienceProject } from "@/types";
 
 interface ResumeExperienceProps {
-    experience: any[]; // Using any[] for flexibility with varying data structures, refined type recommended later
+    experience: Experience[];
 }
 
 export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
     const t = useTranslations("Resume");
+    const locale = useLocale();
 
     const renderRichText = (text: string) => {
         return text.split(/(\[[^\]]+\]\([^)]+\))/).map((part, i) => {
@@ -16,11 +17,13 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
             if (linkMatch) {
                 const isInternal = linkMatch[2].startsWith('/');
                 if (isInternal) {
+                    // 새 창에서 열면서 현재 언어 유지
+                    const localizedUrl = `/${locale}${linkMatch[2]}`;
                     return (
-                        <Link key={i} href={linkMatch[2] as any} className="text-gray-700 hover:text-blue-600 transition-colors font-medium inline">
+                        <a key={i} href={localizedUrl} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600 transition-colors font-medium inline">
                             {linkMatch[1]}
                             <span className="text-[10px] relative -top-[1.5px] opacity-70 whitespace-nowrap">{"\u00A0"}↗</span>
-                        </Link>
+                        </a>
                     );
                 }
                 return (
@@ -46,7 +49,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('experience')}</h2>
 
             <div className="space-y-8">
-                {experience.map((exp: any, index: number) => (
+                {experience.map((exp: Experience, index: number) => (
                     <div key={index} className="group">
                         <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-1 md:gap-0">
                             <div className="flex flex-col md:flex-row md:items-baseline gap-0 md:gap-2 flex-wrap">
@@ -83,7 +86,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
                         {/* Sub Projects (Job Areas) */}
                         {exp.projects && (
                             <div className="space-y-6 mt-4 pl-1 md:pl-4 border-l-2 border-gray-100">
-                                {exp.projects.map((project: any, pIndex: number) => (
+                                {exp.projects.map((project: ExperienceProject, pIndex: number) => (
                                         <div key={pIndex}>
                                         <div className="flex items-baseline justify-between gap-2 mb-2">
                                             <h4 className="font-bold text-gray-800 text-sm md:text-base flex items-center gap-2">

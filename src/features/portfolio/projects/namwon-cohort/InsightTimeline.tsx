@@ -49,7 +49,15 @@ export function InsightTimeline() {
     );
 }
 
-function ReflectionCard({ icon: Icon, title, content, color, bgColor }: any) {
+interface ReflectionCardProps {
+    icon: React.ComponentType<{ className?: string }>;
+    title: string;
+    content: string;
+    color: string;
+    bgColor: string;
+}
+
+function ReflectionCard({ icon: Icon, title, content, color, bgColor }: ReflectionCardProps) {
     return (
         <motion.div 
             initial={{ opacity: 0, y: 20 }}

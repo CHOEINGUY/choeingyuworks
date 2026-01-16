@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { ExamEvent, PatientListItem } from "@/types";
 
 interface TabletScreenProps {
-    currentExam: any;
-    patientList: any[];
+    currentExam: ExamEvent & { examRoom: string; currentPerson: string };
+    patientList: PatientListItem[];
     phase: string;
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, AlertCircle, Zap } from "lucide-react";
+import { AlertCircle, Zap } from "lucide-react";
 
 import { useTranslations } from "next-intl";
 

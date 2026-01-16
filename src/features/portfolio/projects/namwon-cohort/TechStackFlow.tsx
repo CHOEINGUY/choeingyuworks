@@ -6,7 +6,6 @@ import {
   Smartphone,
   FileSpreadsheet,
   Server,
-  Zap,
   Monitor,
   Database,
 } from "lucide-react";

@@ -13,7 +13,7 @@ export const ResumeAbout = ({ about }: ResumeAboutProps) => {
         <section className="space-y-3">
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('about')}</h2>
             <div className="text-gray-600 leading-relaxed text-sm md:text-base space-y-4">
-                {about.split('\n\n').map((paragraph: string, index: number) => {
+                {about && about.split('\n\n').map((paragraph: string, index: number) => {
                     const cleanParagraph = paragraph.trim();
                     const isBullet = cleanParagraph.startsWith('•');
                     

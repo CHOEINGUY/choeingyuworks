@@ -1,4 +1,10 @@
 {
+    "Metadata": {
+        "home": "Portfolio & Introduction",
+        "resume": "Web Resume",
+        "request": "Project Request",
+        "default": "Portfolio & Solution Engineer"
+    },
     "Navbar": {
         "title": "Lindy Works",
         "links": {

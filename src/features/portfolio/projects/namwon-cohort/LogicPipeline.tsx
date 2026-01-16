@@ -139,8 +139,6 @@ export function LogicPipeline() {
                     <div>
                         <LogicFlowAnimation 
                             step={step} 
-                            isPaused={isPaused} 
-                            onResume={() => setIsPaused(false)} 
                             candidates={SCENARIOS[scenarioIdx].candidates}
                             room={SCENARIOS[scenarioIdx].room}
                         />
