@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
-import { MessageCircle, X, Bot, Sparkles, ArrowUp, Briefcase, Zap, Coffee } from 'lucide-react';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import { MessageCircle, X, Bot, Sparkles, ArrowUp, Briefcase, Zap, Coffee, History, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
@@ -12,6 +12,18 @@ type Message = {
   content: string;
 };
 
+// Chat Session Type for History
+type ChatSession = {
+  id: string;
+  persona: 'professional' | 'passionate' | 'friend';
+  messages: Message[];
+  firstQuestion: string;
+  createdAt: string; // ISO string
+};
+
+const CHAT_HISTORY_KEY = 'choeingyu-chat-history';
+const MAX_HISTORY_COUNT = 10;
+
 export function AIChatWidget() {
   const t = useTranslations('chatbot');
   
@@ -20,17 +32,86 @@ export function AIChatWidget() {
   const [input, setInput] = useState('');
   const [persona, setPersona] = useState<'professional' | 'passionate' | 'friend'>('professional');
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
-  const [sessionId] = useState(() => Date.now().toString()); // Persistent Session ID
-  const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini'); // Default to Gemini
+  const [sessionId, setSessionId] = useState(() => Date.now().toString());
+  const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini');
+  const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
   
   // Initialize messages with translated welcome message
-  const getInitialMessages = (): Message[] => [{
+  const getInitialMessages = useCallback((): Message[] => [{
     id: 'welcome',
     role: 'assistant',
     content: t('chat.welcome'),
-  }];
+  }], [t]);
   
   const [messages, setMessages] = useState<Message[]>(getInitialMessages);
+
+  // Load chat history from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CHAT_HISTORY_KEY);
+      if (saved) {
+        setChatHistory(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.error('Failed to load chat history:', e);
+    }
+  }, []);
+
+  // Save current session to history when closing chat (if has meaningful conversation)
+  const saveCurrentSession = useCallback(() => {
+    const userMessages = messages.filter(m => m.role === 'user');
+    if (userMessages.length === 0) return; // No user messages, don't save
+
+    const firstQuestion = userMessages[0]?.content || '';
+    const newSession: ChatSession = {
+      id: sessionId,
+      persona,
+      messages,
+      firstQuestion,
+      createdAt: new Date().toISOString(),
+    };
+
+    setChatHistory(prev => {
+      // Check if session already exists (update) or new
+      const existingIndex = prev.findIndex(s => s.id === sessionId);
+      let updated;
+      if (existingIndex >= 0) {
+        updated = [...prev];
+        updated[existingIndex] = newSession;
+      } else {
+        updated = [newSession, ...prev].slice(0, MAX_HISTORY_COUNT);
+      }
+      // Save to localStorage
+      try {
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(updated));
+      } catch (e) {
+        console.error('Failed to save chat history:', e);
+      }
+      return updated;
+    });
+  }, [messages, sessionId, persona]);
+
+  // Load a previous session
+  const loadSession = (session: ChatSession) => {
+    setSessionId(session.id);
+    setPersona(session.persona);
+    setMessages(session.messages);
+    setHasSelectedPersona(true);
+  };
+
+  // Delete a session from history
+  const deleteSession = (sessionIdToDelete: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setChatHistory(prev => {
+      const updated = prev.filter(s => s.id !== sessionIdToDelete);
+      try {
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(updated));
+      } catch (err) {
+        console.error('Failed to update chat history:', err);
+      }
+      return updated;
+    });
+  };
 
   // Persona config with i18n
   const personaConfig = useMemo(() => ({
@@ -83,19 +164,21 @@ export function AIChatWidget() {
     }
   }, [isOpen, hasSelectedPersona]);
 
-  // Reset selection AND messages on close (FIX: Message reset issue)
+  // Save session and reset on close
   useEffect(() => {
     if (!isOpen) {
+        // Save current session before closing
+        saveCurrentSession();
         setTimeout(() => {
           setHasSelectedPersona(false);
-          // Reset messages to initial state when chat is closed
-          setMessages(getInitialMessages());
-        }, 300); // Reset after animation
+        }, 300);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handlePersonaSelect = (selectedPersona: 'professional' | 'passionate' | 'friend') => {
+    // Start a NEW session
+    setSessionId(Date.now().toString());
     setPersona(selectedPersona);
     setMessages([{
         id: 'welcome',
@@ -178,20 +261,25 @@ export function AIChatWidget() {
     }
   };
 
-  // Mobile Check (Simple innerWidth check for initial rendering logic if needed, but CSS media queries are better)
-  // We'll rely on CSS constraints for mobile layout.
+
+
+  // Handle new conversation
+  const handleNewConversation = () => {
+    setMessages(getInitialMessages());
+    setHasSelectedPersona(false);
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end sm:bottom-10 sm:right-10 font-[family-name:var(--font-sans)] pointer-events-none">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: '100%', scale: 1, filter: 'blur(0px)' }} // Default mobile transition (Slide Up)
-            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: '100%', scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+            initial={{ opacity: 0, scale: 0.9, y: 20, originX: 1, originY: 1 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
             // Responsive Styling: Fixed Fullscreen on Mobile vs Floating Card on Desktop
-            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-20 sm:right-0 sm:mb-0 sm:h-[600px] sm:max-h-[70vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
+            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-0 sm:right-0 sm:mb-0 sm:h-[700px] sm:max-h-[75vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
           >
             {/* Header */}
             <div className="border-b border-gray-100 bg-white/80 p-4 backdrop-blur-md sticky top-0 z-10 flex flex-col gap-3 shrink-0">
@@ -253,10 +341,61 @@ export function AIChatWidget() {
             {!hasSelectedPersona ? (
                 // --- SCREEN 1: PERSONA SELECTION ---
                 <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50 overflow-y-auto">
-                    <div className="text-center mb-8">
+                    <div className="text-center mb-6">
                         <h2 className="text-xl font-bold text-gray-900 mb-2">{t('personaSelection.title')}</h2>
                         <p className="text-sm text-gray-500">{t('personaSelection.description')}</p>
                     </div>
+                    
+                    {/* Chat History List */}
+                    {chatHistory.length > 0 && (
+                      <div className="mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <History size={14} className="text-gray-400" />
+                          <span className="text-xs font-medium text-gray-500">이전 대화</span>
+                        </div>
+                        <div className="space-y-2 max-h-[150px] overflow-y-auto">
+                          {chatHistory.map((session) => {
+                            const date = new Date(session.createdAt);
+                            const dateStr = `${date.getMonth() + 1}.${date.getDate()}`;
+                            const personaLabel = personaConfig[session.persona]?.label || session.persona;
+                            const preview = session.firstQuestion.length > 20 
+                              ? session.firstQuestion.substring(0, 20) + '...' 
+                              : session.firstQuestion;
+                            
+                            return (
+                              <div
+                                key={session.id}
+                                onClick={() => loadSession(session)}
+                                className="w-full flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all text-left group cursor-pointer"
+                              >
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 text-[11px] text-gray-400 mb-0.5">
+                                    <span>{dateStr}</span>
+                                    <span>·</span>
+                                    <span>{personaLabel}</span>
+                                  </div>
+                                  <p className="text-sm text-gray-700 truncate">{preview}</p>
+                                </div>
+                                <button
+                                  onClick={(e) => deleteSession(session.id, e)}
+                                  className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-md opacity-0 group-hover:opacity-100 transition-all"
+                                >
+                                  <Trash2 size={14} />
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {chatHistory.length > 0 && (
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex-1 h-px bg-gray-200" />
+                        <span className="text-xs text-gray-400">새로 시작</span>
+                        <div className="flex-1 h-px bg-gray-200" />
+                      </div>
+                    )}
                     
                     <div className="space-y-3">
                         {(Object.keys(personaConfig) as Array<keyof typeof personaConfig>).map((mode) => {
@@ -376,40 +515,23 @@ export function AIChatWidget() {
         )}
       </AnimatePresence>
 
-      <motion.button
-        layout
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl transition-all hover:bg-gray-900 ring-1 ring-white/20 pointer-events-auto"
-      >
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X size={24} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <MessageCircle size={24} fill="currentColor" className="text-white" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
-        {/* Notification Badge */}
-
-      </motion.button>
+      {/* Chat Button - Hidden when open, scale from origin animation */}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsOpen(true)}
+            className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl transition-all hover:bg-gray-900 ring-1 ring-white/20 pointer-events-auto"
+          >
+            <MessageCircle size={24} fill="currentColor" className="text-white" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

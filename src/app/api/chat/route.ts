@@ -5,6 +5,7 @@ import { streamText } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { db } from '@/lib/firebase';
 import { serverTimestamp, doc, setDoc, arrayUnion } from 'firebase/firestore';
+import { CohereClient } from 'cohere-ai';
 
 // Models for Rotation
 const GEMINI_MODELS = [
@@ -12,6 +13,11 @@ const GEMINI_MODELS = [
     'gemini-2.5-flash-lite', 
     'gemini-2.5-flash'
 ];
+
+// Initialize Cohere Client for Reranking
+const cohere = new CohereClient({
+  token: process.env.COHERE_API_KEY || '',
+});
 
 // OpenAI streaming is Edge compatible, but LangChain/Pinecone might prefer Node env
 // For simplicity in this RAG setup, we'll use Node runtime
@@ -37,21 +43,48 @@ export async function POST(req: Request) {
     
     const vector = await embeddings.embedQuery(question);
 
-    // 3. Query Pinecone
+    // 3. Query Pinecone (Dense Search)
     const indexName = process.env.PINECONE_INDEX_NAME || 'resume-chatbot';
     const index = pinecone.Index(indexName);
 
     const queryResponse = await index.query({
       vector: vector,
-      topK: 15, // Increased to 15 to handle mixed code/resume chunks
+      topK: 20, // Increased to 20 for reranking pool
       includeMetadata: true,
     });
 
-    // 4. Construct Context
-    const contextText = queryResponse.matches
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .map((match) => (match.metadata as any).text)
-      .join('\n\n---\n\n');
+    // 4. Rerank with Cohere (Cascading Retrieval)
+    let contextText = '';
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const documents = queryResponse.matches.map((match) => (match.metadata as any).text as string).filter(Boolean);
+    
+    if (process.env.COHERE_API_KEY && documents.length > 0) {
+      try {
+        console.log(`🔄 Reranking ${documents.length} documents with Cohere...`);
+        
+        const reranked = await cohere.rerank({
+          query: question,
+          documents: documents,
+          topN: 7, // Return top 7 most relevant
+          model: 'rerank-v3.5',
+        });
+        
+        // Use reranked results
+        contextText = reranked.results
+          .map((r) => documents[r.index])
+          .join('\n\n---\n\n');
+        
+        console.log(`✅ Reranked! Top scores: ${reranked.results.slice(0, 3).map(r => r.relevanceScore.toFixed(3)).join(', ')}`);
+      } catch (rerankError) {
+        console.warn('⚠️ Cohere rerank failed, falling back to dense search:', rerankError);
+        // Fallback to original method
+        contextText = documents.slice(0, 10).join('\n\n---\n\n');
+      }
+    } else {
+      // No Cohere API key, use original dense search
+      contextText = documents.slice(0, 15).join('\n\n---\n\n');
+    }
 
     console.log(`🔍 Retrieved Context for "${question}":\n`, contextText.substring(0, 100) + '...');
 

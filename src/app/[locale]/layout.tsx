@@ -63,7 +63,7 @@ export default async function LocaleLayout({
                     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
                 />
             </head>
-            <body className="antialiased">
+            <body className="antialiased" suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
                     <Navbar />
                     {children}
