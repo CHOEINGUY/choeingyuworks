@@ -4,7 +4,7 @@
 
 **비즈니스 흐름을 읽고, 기술로 답을 찾는 솔루션 빌더**
 
-[![CI](https://github.com/CHOEINGUY/choeingyu/actions/workflows/ci.yml/badge.svg)](https://github.com/CHOEINGUY/choeingyu/actions/workflows/ci.yml)
+[![CI](https://github.com/CHOEINGUY/choeingyuworks/actions/workflows/ci.yml/badge.svg)](https://github.com/CHOEINGUY/choeingyuworks/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -109,8 +109,8 @@ src/
 
 ```bash
 # 저장소 클론
-git clone https://github.com/CHOEINGUY/choeingyu.git
-cd choeingyu
+git clone https://github.com/CHOEINGUY/choeingyuworks.git
+cd choeingyuworks
 
 # 의존성 설치
 npm install
@@ -138,14 +138,6 @@ npm run test
 | **자동화**    | SAS/Python/VBA + AI    | 14개 통계집 보고서 자동 생성 (3개월 → 1개월)            |
 
 **핵심 철학**: AI로 개발 속도를 높이고, 확보한 시간은 **현장 검증과 안정성 테스트**에 투자
-
----
-
-## 📸 미리보기
-
-<div align="center">
-  <img src="./public/og-image.png" alt="Portfolio Preview" width="600" />
-</div>
 
 ---
 
