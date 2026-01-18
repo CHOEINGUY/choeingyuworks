@@ -17,8 +17,8 @@
         "backToPortfolio": "Back to Portfolio"
     },
     "ResumeCTA": {
-        "text1": "The experience of solving business complexities",
-        "text2": " is detailed in the resume.",
+        "text1": "The journey and results of solving business complexities",
+        "text2": " are detailed in the resume.",
         "button": "View Full Resume"
     },
     "Resume": {
@@ -35,8 +35,8 @@
             "subtitle": "We build <b>Lindy logic</b> that survives in the field rather than flashy features. Beyond simple construction, we <strong>drastically reduce unnecessary fixed costs and time</strong> to return <strong>overwhelming results</strong> worthy of more than the development cost."
         },
         "personal": {
-            "title": "Build Fast, Verify Meticulously",
-            "subtitle": "I maximize development speed with AI and the latest tools,<line></line>investing the saved time into system stability verification.<line></line><b>Fast development and meticulous verification</b> — this is my methodology."
+            "title": "Build Fast, Verify Relentlessly",
+            "subtitle": "I maximize development speed with AI and the latest tools,<line></line>investing the saved time into system stability and completeness.<line></line><b>Coexistence of 'Speed' and 'Quality'</b> — this is my methodology."
         },
         "buttons": {
             "requestService": "Request Service",
@@ -69,7 +69,7 @@
             },
             "personal": {
                 "headline": "A ''Solution Builder'' who reads business flows<line></line>and finds answers through technology",
-                "description": "I simplify processes through analysis that grasps the essence of work, and maximize development speed with AI technology.<line></line>With solid execution that takes responsibility from planning to operation, I <b>create tangible results of ''efficiency'' and ''stability''</b>.",
+                "description": "I simplify processes through analysis that grasps the core of the business, and maximize development speed with AI technology.<line></line>With solid execution that takes responsibility from planning to operation, I <b>create tangible results of 'efficiency' and 'stability'</b>.",
                 "features": {
                     "business": {
                         "title": "Workflow Optimization",
@@ -80,8 +80,8 @@
                         "description": "I quickly implement features with AI tools, focusing the remaining time on quality verification."
                     },
                     "stability": {
-                        "title": "Execution Responsible for Every Stage",
-                        "description": "With solo development experience, I understand the entire process from planning to operation, delivering practical reductions in operational costs."
+                        "title": "End-to-End Execution",
+                        "description": "With solo development experience, I understand the entire process from planning to operation, delivering tangible reductions in operational costs."
                     }
                 }
             }
