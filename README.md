@@ -32,7 +32,7 @@
 
 ## 🚀 프로젝트 하이라이트
 
-### 1. 통합 이벤트 관리 SaaS
+### 1. 통합 이벤트 관리 솔루션
 
 > 파티/소개팅/1:1 등 다양한 사업 모델을 JSON 엔진으로 동적 처리
 
@@ -144,7 +144,7 @@ npm run test
 ## 📸 미리보기
 
 <div align="center">
-  <img src="https://choeingyu.vercel.app/og-image.png" alt="Portfolio Preview" width="600" />
+  <img src="./public/og-image.png" alt="Portfolio Preview" width="600" />
 </div>
 
 ---
