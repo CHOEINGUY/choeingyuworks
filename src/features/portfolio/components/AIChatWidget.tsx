@@ -83,13 +83,12 @@ export function AIChatWidget() {
     }
   }, [isOpen, hasSelectedPersona]);
 
-  // Reset selection AND messages on close (FIX: Message reset issue)
+  // Reset selection on close but KEEP messages for "continue" feature
   useEffect(() => {
     if (!isOpen) {
         setTimeout(() => {
           setHasSelectedPersona(false);
-          // Reset messages to initial state when chat is closed
-          setMessages(getInitialMessages());
+          // Don't reset messages - allow user to continue conversation
         }, 300); // Reset after animation
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,20 +177,31 @@ export function AIChatWidget() {
     }
   };
 
-  // Mobile Check (Simple innerWidth check for initial rendering logic if needed, but CSS media queries are better)
-  // We'll rely on CSS constraints for mobile layout.
+  // Check if there's a previous conversation to continue
+  const hasPreviousConversation = messages.length > 1;
+
+  // Handle continue conversation
+  const handleContinueConversation = () => {
+    setHasSelectedPersona(true);
+  };
+
+  // Handle new conversation
+  const handleNewConversation = () => {
+    setMessages(getInitialMessages());
+    setHasSelectedPersona(false);
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end sm:bottom-10 sm:right-10 font-[family-name:var(--font-sans)] pointer-events-none">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: '100%', scale: 1, filter: 'blur(0px)' }} // Default mobile transition (Slide Up)
-            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: '100%', scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+            initial={{ opacity: 0, scale: 0.9, y: 20, originX: 1, originY: 1 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
             // Responsive Styling: Fixed Fullscreen on Mobile vs Floating Card on Desktop
-            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-20 sm:right-0 sm:mb-0 sm:h-[600px] sm:max-h-[70vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
+            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-0 sm:right-0 sm:mb-0 sm:h-[700px] sm:max-h-[75vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
           >
             {/* Header */}
             <div className="border-b border-gray-100 bg-white/80 p-4 backdrop-blur-md sticky top-0 z-10 flex flex-col gap-3 shrink-0">
@@ -253,10 +263,29 @@ export function AIChatWidget() {
             {!hasSelectedPersona ? (
                 // --- SCREEN 1: PERSONA SELECTION ---
                 <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50 overflow-y-auto">
-                    <div className="text-center mb-8">
+                    <div className="text-center mb-6">
                         <h2 className="text-xl font-bold text-gray-900 mb-2">{t('personaSelection.title')}</h2>
                         <p className="text-sm text-gray-500">{t('personaSelection.description')}</p>
                     </div>
+                    
+                    {/* Continue Previous Conversation Button */}
+                    {hasPreviousConversation && (
+                      <button
+                        onClick={handleContinueConversation}
+                        className="mb-4 w-full flex items-center justify-center gap-2 p-4 bg-black text-white rounded-xl shadow-sm hover:bg-gray-800 transition-all text-sm font-bold"
+                      >
+                        <MessageCircle size={18} />
+                        이어서 대화하기
+                      </button>
+                    )}
+                    
+                    {hasPreviousConversation && (
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex-1 h-px bg-gray-200" />
+                        <span className="text-xs text-gray-400">또는 새로 시작</span>
+                        <div className="flex-1 h-px bg-gray-200" />
+                      </div>
+                    )}
                     
                     <div className="space-y-3">
                         {(Object.keys(personaConfig) as Array<keyof typeof personaConfig>).map((mode) => {
@@ -376,40 +405,23 @@ export function AIChatWidget() {
         )}
       </AnimatePresence>
 
-      <motion.button
-        layout
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl transition-all hover:bg-gray-900 ring-1 ring-white/20 pointer-events-auto"
-      >
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X size={24} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <MessageCircle size={24} fill="currentColor" className="text-white" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
-        {/* Notification Badge */}
-
-      </motion.button>
+      {/* Chat Button - Hidden when open, scale from origin animation */}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsOpen(true)}
+            className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl transition-all hover:bg-gray-900 ring-1 ring-white/20 pointer-events-auto"
+          >
+            <MessageCircle size={24} fill="currentColor" className="text-white" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
