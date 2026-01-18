@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo } from 'react';
-import { MessageCircle, X, Bot, Sparkles, ArrowUp, Briefcase, Zap, Coffee } from 'lucide-react';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import { MessageCircle, X, Bot, Sparkles, ArrowUp, Briefcase, Zap, Coffee, History, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
@@ -12,6 +12,18 @@ type Message = {
   content: string;
 };
 
+// Chat Session Type for History
+type ChatSession = {
+  id: string;
+  persona: 'professional' | 'passionate' | 'friend';
+  messages: Message[];
+  firstQuestion: string;
+  createdAt: string; // ISO string
+};
+
+const CHAT_HISTORY_KEY = 'choeingyu-chat-history';
+const MAX_HISTORY_COUNT = 10;
+
 export function AIChatWidget() {
   const t = useTranslations('chatbot');
   
@@ -20,17 +32,86 @@ export function AIChatWidget() {
   const [input, setInput] = useState('');
   const [persona, setPersona] = useState<'professional' | 'passionate' | 'friend'>('professional');
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
-  const [sessionId] = useState(() => Date.now().toString()); // Persistent Session ID
-  const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini'); // Default to Gemini
+  const [sessionId, setSessionId] = useState(() => Date.now().toString());
+  const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini');
+  const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
   
   // Initialize messages with translated welcome message
-  const getInitialMessages = (): Message[] => [{
+  const getInitialMessages = useCallback((): Message[] => [{
     id: 'welcome',
     role: 'assistant',
     content: t('chat.welcome'),
-  }];
+  }], [t]);
   
   const [messages, setMessages] = useState<Message[]>(getInitialMessages);
+
+  // Load chat history from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CHAT_HISTORY_KEY);
+      if (saved) {
+        setChatHistory(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.error('Failed to load chat history:', e);
+    }
+  }, []);
+
+  // Save current session to history when closing chat (if has meaningful conversation)
+  const saveCurrentSession = useCallback(() => {
+    const userMessages = messages.filter(m => m.role === 'user');
+    if (userMessages.length === 0) return; // No user messages, don't save
+
+    const firstQuestion = userMessages[0]?.content || '';
+    const newSession: ChatSession = {
+      id: sessionId,
+      persona,
+      messages,
+      firstQuestion,
+      createdAt: new Date().toISOString(),
+    };
+
+    setChatHistory(prev => {
+      // Check if session already exists (update) or new
+      const existingIndex = prev.findIndex(s => s.id === sessionId);
+      let updated;
+      if (existingIndex >= 0) {
+        updated = [...prev];
+        updated[existingIndex] = newSession;
+      } else {
+        updated = [newSession, ...prev].slice(0, MAX_HISTORY_COUNT);
+      }
+      // Save to localStorage
+      try {
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(updated));
+      } catch (e) {
+        console.error('Failed to save chat history:', e);
+      }
+      return updated;
+    });
+  }, [messages, sessionId, persona]);
+
+  // Load a previous session
+  const loadSession = (session: ChatSession) => {
+    setSessionId(session.id);
+    setPersona(session.persona);
+    setMessages(session.messages);
+    setHasSelectedPersona(true);
+  };
+
+  // Delete a session from history
+  const deleteSession = (sessionIdToDelete: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setChatHistory(prev => {
+      const updated = prev.filter(s => s.id !== sessionIdToDelete);
+      try {
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(updated));
+      } catch (err) {
+        console.error('Failed to update chat history:', err);
+      }
+      return updated;
+    });
+  };
 
   // Persona config with i18n
   const personaConfig = useMemo(() => ({
@@ -83,18 +164,21 @@ export function AIChatWidget() {
     }
   }, [isOpen, hasSelectedPersona]);
 
-  // Reset selection on close but KEEP messages for "continue" feature
+  // Save session and reset on close
   useEffect(() => {
     if (!isOpen) {
+        // Save current session before closing
+        saveCurrentSession();
         setTimeout(() => {
           setHasSelectedPersona(false);
-          // Don't reset messages - allow user to continue conversation
-        }, 300); // Reset after animation
+        }, 300);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handlePersonaSelect = (selectedPersona: 'professional' | 'passionate' | 'friend') => {
+    // Start a NEW session
+    setSessionId(Date.now().toString());
     setPersona(selectedPersona);
     setMessages([{
         id: 'welcome',
@@ -177,13 +261,7 @@ export function AIChatWidget() {
     }
   };
 
-  // Check if there's a previous conversation to continue
-  const hasPreviousConversation = messages.length > 1;
 
-  // Handle continue conversation
-  const handleContinueConversation = () => {
-    setHasSelectedPersona(true);
-  };
 
   // Handle new conversation
   const handleNewConversation = () => {
@@ -268,21 +346,53 @@ export function AIChatWidget() {
                         <p className="text-sm text-gray-500">{t('personaSelection.description')}</p>
                     </div>
                     
-                    {/* Continue Previous Conversation Button */}
-                    {hasPreviousConversation && (
-                      <button
-                        onClick={handleContinueConversation}
-                        className="mb-4 w-full flex items-center justify-center gap-2 p-4 bg-black text-white rounded-xl shadow-sm hover:bg-gray-800 transition-all text-sm font-bold"
-                      >
-                        <MessageCircle size={18} />
-                        이어서 대화하기
-                      </button>
+                    {/* Chat History List */}
+                    {chatHistory.length > 0 && (
+                      <div className="mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <History size={14} className="text-gray-400" />
+                          <span className="text-xs font-medium text-gray-500">이전 대화</span>
+                        </div>
+                        <div className="space-y-2 max-h-[150px] overflow-y-auto">
+                          {chatHistory.map((session) => {
+                            const date = new Date(session.createdAt);
+                            const dateStr = `${date.getMonth() + 1}.${date.getDate()}`;
+                            const personaLabel = personaConfig[session.persona]?.label || session.persona;
+                            const preview = session.firstQuestion.length > 20 
+                              ? session.firstQuestion.substring(0, 20) + '...' 
+                              : session.firstQuestion;
+                            
+                            return (
+                              <div
+                                key={session.id}
+                                onClick={() => loadSession(session)}
+                                className="w-full flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all text-left group cursor-pointer"
+                              >
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 text-[11px] text-gray-400 mb-0.5">
+                                    <span>{dateStr}</span>
+                                    <span>·</span>
+                                    <span>{personaLabel}</span>
+                                  </div>
+                                  <p className="text-sm text-gray-700 truncate">{preview}</p>
+                                </div>
+                                <button
+                                  onClick={(e) => deleteSession(session.id, e)}
+                                  className="p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-md opacity-0 group-hover:opacity-100 transition-all"
+                                >
+                                  <Trash2 size={14} />
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
                     )}
                     
-                    {hasPreviousConversation && (
+                    {chatHistory.length > 0 && (
                       <div className="flex items-center gap-3 mb-4">
                         <div className="flex-1 h-px bg-gray-200" />
-                        <span className="text-xs text-gray-400">또는 새로 시작</span>
+                        <span className="text-xs text-gray-400">새로 시작</span>
                         <div className="flex-1 h-px bg-gray-200" />
                       </div>
                     )}
