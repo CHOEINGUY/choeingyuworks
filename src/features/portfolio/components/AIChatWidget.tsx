@@ -164,19 +164,23 @@ export function AIChatWidget() {
     }
   };
 
+  // Mobile Check (Simple innerWidth check for initial rendering logic if needed, but CSS media queries are better)
+  // We'll rely on CSS constraints for mobile layout.
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end sm:bottom-10 sm:right-10 font-[family-name:var(--font-sans)]">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end sm:bottom-10 sm:right-10 font-[family-name:var(--font-sans)] pointer-events-none">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95, filter: 'blur(10px)' }}
+            initial={{ opacity: 0, y: '100%', scale: 1, filter: 'blur(0px)' }} // Default mobile transition (Slide Up)
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: 20, scale: 0.95, filter: 'blur(10px)' }}
-            transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
-            className="mb-6 flex h-[600px] max-h-[70vh] w-[calc(100vw-48px)] sm:w-[400px] flex-col overflow-hidden rounded-[20px] bg-white shadow-2xl ring-1 ring-black/5"
+            exit={{ opacity: 0, y: '100%', scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+            // Responsive Styling: Fixed Fullscreen on Mobile vs Floating Card on Desktop
+            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-20 sm:right-0 sm:mb-0 sm:h-[600px] sm:max-h-[70vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
           >
             {/* Header */}
-            <div className="border-b border-gray-100 bg-white/80 p-4 backdrop-blur-md sticky top-0 z-10 flex flex-col gap-3">
+            <div className="border-b border-gray-100 bg-white/80 p-4 backdrop-blur-md sticky top-0 z-10 flex flex-col gap-3 shrink-0">
               <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-white">
@@ -189,21 +193,34 @@ export function AIChatWidget() {
                   </div>
                   <div className="flex items-center gap-2">
                     {/* Model Switcher - Always visible */}
-                     <button 
-                      onClick={() => setProvider(prev => prev === 'openai' ? 'gemini' : 'openai')}
-                      className={`text-[10px] font-bold px-1.5 py-0.5 rounded transition-colors ${
-                        provider === 'openai' 
-                          ? 'bg-blue-50 text-blue-600' 
-                          : 'bg-purple-50 text-purple-600'
-                      }`}
-                    >
-                      {provider === 'openai' ? 'GPT-4o' : 'Gemini'}
-                    </button>
+                    {/* Model Switcher - Toggle Style */}
+                    <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
+                        <button 
+                            onClick={() => setProvider('gemini')}
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
+                                provider === 'gemini' 
+                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5' 
+                                : 'text-gray-400 hover:text-gray-600'
+                            }`}
+                        >
+                            Gemini
+                        </button>
+                        <button 
+                            onClick={() => setProvider('openai')}
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
+                                provider === 'openai' 
+                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5' 
+                                : 'text-gray-400 hover:text-gray-600'
+                            }`}
+                        >
+                            GPT-4o
+                        </button>
+                    </div>
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                        className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-900 bg-gray-50 sm:bg-transparent"
                     >
-                        <X size={18} />
+                        <X size={20} />
                     </button>
                   </div>
               </div>
@@ -221,7 +238,7 @@ export function AIChatWidget() {
 
             {!hasSelectedPersona ? (
                 // --- SCREEN 1: PERSONA SELECTION ---
-                <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50">
+                <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50 overflow-y-auto">
                     <div className="text-center mb-8">
                         <h2 className="text-xl font-bold text-gray-900 mb-2">대화 스타일 선택</h2>
                         <p className="text-sm text-gray-500">어떤 스타일로 대화하시겠어요?</p>
@@ -255,7 +272,7 @@ export function AIChatWidget() {
                 // --- SCREEN 2: CHAT INTERFACE ---
                 <>
                 {/* Messages */}
-                <div className="flex-1 overflow-y-auto bg-[#fafafa] p-5 scrollbar-thin">
+                <div className="flex-1 overflow-y-auto bg-[#fafafa] p-5 scrollbar-thin pb-20 sm:pb-5">
                 <div className="space-y-6">
                     {messages.map((m) => (
                     <div
@@ -311,14 +328,14 @@ export function AIChatWidget() {
                 </div>
 
                 {/* Input */}
-                <div className="p-4 bg-white border-t border-gray-100">
+                <div className="p-4 pb-4 sm:pb-4 bg-white border-t border-gray-100 shrink-0 safe-area-bottom" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
                 <form
                     onSubmit={handleSendMessage}
                     className={`relative flex items-center rounded-[24px] bg-gray-50 ring-1 ring-gray-200 focus-within:ring-2 focus-within:bg-white transition-all overflow-hidden ${personaConfig[persona].ring}`}
                 >
                     <input
                     ref={inputRef}
-                    className="flex-1 bg-transparent px-5 py-4 text-[14px] outline-none placeholder:text-gray-400 text-gray-900 font-medium"
+                    className="flex-1 bg-transparent pl-5 pr-12 py-4 text-[14px] outline-none placeholder:text-gray-400 text-gray-900 font-medium"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="무엇이든 물어보세요..."
@@ -326,13 +343,13 @@ export function AIChatWidget() {
                     <button
                     type="submit"
                     disabled={isLoading || !input.trim()}
-                    className={`mr-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400 disabled:hover:scale-100 ${personaConfig[persona].button}`}
+                    className={`absolute right-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white transition-all active:scale-95 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400 ${personaConfig[persona].button}`}
                     >
                     <ArrowUp size={16} strokeWidth={3} />
                     </button>
                 </form>
                 
-                  <div className="mt-3 text-center">
+                  <div className="mt-3 text-center sm:block hidden">
                     <p className="inline-flex items-center gap-1.5 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
                       <Sparkles size={10} />
                       Powered by AI & RAG System
@@ -350,7 +367,7 @@ export function AIChatWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl transition-all hover:bg-gray-900 ring-1 ring-white/20"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-2xl transition-all hover:bg-gray-900 ring-1 ring-white/20 pointer-events-auto"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

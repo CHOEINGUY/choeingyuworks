@@ -1,14 +1,14 @@
 {
     "easy-epidemiology": {
         "subtitle": "Browser-based High Performance Analytics",
-        "title": "From Data Input to Analysis,\nAll on the Web",
-        "description": "Easy Epidemiology is a tool that allows you to collect data and analyze it in real-time using only a web browser, without installing any separate programs.\n\nApplying Web Worker and Virtual Scroll technologies, it handles tens of thousands of records without lag. We provide a familiar Spreadsheet UX and automate everything from visualization of key indicators like Epidemic Curves to the final report with a single click.",
+        "title": "Browser-based\nLarge-scale Epidemiology Data Analytics",
+        "description": "A high-performance tool that allows you to instantly input and analyze large-scale epidemiology data in a web browser without installing any software.\n\nApplying Web Worker and Virtual Scroll technologies, it handles tens of thousands of records without lag. We provide a familiar Spreadsheet UX and automate everything from visualization of key indicators like Epidemic Curves to the final report with a single click.",
         "result": "Analysis that took hours is <strong>completed instantly upon data entry</strong>, generating <strong>professional epidemiology reports directly in the browser</strong> without external programs."
     },
     "field": {
         "subtitle": "Real-time Cohort Management",
         "title": "Real-time Integrated Cohort Management System",
-        "description": "Developed to resolve on-site confusion caused by varying test durations. By linking tablets and a central status board in real-time, the system automatically guides the next participant whenever a test room becomes free. We automated complex flow management so researchers can focus solely on examinations.",
+        "description": "Developed to resolve on-site confusion caused by varying test durations. By linking tablets and a central status board in real-time, the system automatically guides the next participant whenever a test room becomes free. By automating complex flow management, we enabled researchers to focus solely on examinations.",
         "result": "Converted manual management to <strong>real-time automatic assignment</strong>, reducing session duration by <strong>15%</strong> and <strong>completely eliminating on-site confusion</strong>."
     },
     "solution": {

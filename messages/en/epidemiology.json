@@ -17,7 +17,7 @@
     }
   },
   "VirtualScroll": {
-    "title": "Tens of Thousands of Records Without Lag,<br/>Proprietary Virtual Scroll Engine",
+    "title": "Seamless Processing of Tens of Thousands of Records,<br/>Proprietary Virtual Scroll Engine",
     "description": "Even tens of thousands of epidemiological investigation data entries must be handled seamlessly in a web browser. With our custom Virtual Scroll logic implemented without relying on libraries, you can smoothly navigate vast amounts of data without memory load.",
     "recyclingTitle": "DOM Element Recycling",
     "recyclingDesc": "Only the DOM elements visible on the screen are created, and when scrolling, those elements are recycled to replace the data. This allows rendering tens of thousands of rows without performance degradation.",

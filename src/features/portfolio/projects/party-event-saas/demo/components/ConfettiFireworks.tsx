@@ -5,10 +5,12 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 export const ConfettiFireworks = () => {
+    const [particles, setParticles] = React.useState<any[]>([]);
+    const [bursts, setBursts] = React.useState<any[]>([]);
     const colors = ['#ff9a9e', '#a1c4fd', '#f6d365', '#84fab0'];
 
-    const particles = useMemo(() => {
-        return [...Array(30)].map((_, i) => ({
+    React.useEffect(() => {
+        const newParticles = [...Array(30)].map((_, i) => ({
             id: i,
             color: colors[i % colors.length],
             x: (Math.random() - 0.5) * 600,
@@ -17,19 +19,19 @@ export const ConfettiFireworks = () => {
             rotate: Math.random() * 360,
             delay: Math.random() * 0.2
         }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        setParticles(newParticles);
 
-    const bursts = useMemo(() => {
-        return [...Array(30)].map((_, i) => ({
+        const newBursts = [...Array(30)].map((_, i) => ({
             id: `burst-${i}`,
             color: colors[i % colors.length],
             left: `${20 + Math.random() * 60}%`,
             top: `${20 + Math.random() * 60}%`,
             delay: 0.5 + Math.random() * 0.5
         }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        setBursts(newBursts);
     }, []);
+
+    if (particles.length === 0) return null;
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-[100]">
