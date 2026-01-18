@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { MessageCircle, X, Bot, Sparkles, ArrowUp, Briefcase, Zap, Coffee } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 // Manual Message Type Definition
 type Message = {
@@ -12,6 +13,8 @@ type Message = {
 };
 
 export function AIChatWidget() {
+  const t = useTranslations('chatbot');
+  
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState('');
@@ -19,46 +22,49 @@ export function AIChatWidget() {
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
   const [sessionId] = useState(() => Date.now().toString()); // Persistent Session ID
   const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini'); // Default to Gemini
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'welcome',
-      role: 'assistant',
-      content: '안녕하세요. 최인규의 AI 어시스턴트입니다.\n이력서와 포트폴리오에 대해 무엇이든 물어보세요.',
-    },
-  ]);
+  
+  // Initialize messages with translated welcome message
+  const getInitialMessages = (): Message[] => [{
+    id: 'welcome',
+    role: 'assistant',
+    content: t('chat.welcome'),
+  }];
+  
+  const [messages, setMessages] = useState<Message[]>(getInitialMessages);
 
-  const personaConfig = {
+  // Persona config with i18n
+  const personaConfig = useMemo(() => ({
     professional: {
-        label: 'Professional',
+        label: t('personas.professional.label'),
         Icon: Briefcase,
-        desc: '정중하고 명확하게',
-        greeting: '안녕하세요. 최인규의 포트폴리오 AI 어시스턴트입니다.\n비즈니스 관점에서 정중하고 명확하게 답변해 드리겠습니다.',
+        desc: t('personas.professional.desc'),
+        greeting: t('personas.professional.greeting'),
         color: 'bg-black',
         bubble: 'bg-black text-white',
         button: 'bg-black hover:bg-gray-800',
         ring: 'focus-within:ring-black'
     },
     passionate: {
-        label: 'Passionate',
+        label: t('personas.passionate.label'),
         Icon: Zap,
-        desc: '열정적이고 에너지 넘치게',
-        greeting: '반갑습니다! 🔥\n문제 해결에 진심인 개발자 최인규의 열정을 담아 에너제틱하게 답변드릴게요!',
+        desc: t('personas.passionate.desc'),
+        greeting: t('personas.passionate.greeting'),
         color: 'text-orange-500',
         bubble: 'bg-orange-500 text-white',
         button: 'bg-orange-500 hover:bg-orange-600',
         ring: 'focus-within:ring-orange-500'
     },
     friend: {
-        label: 'Coffee Chat',
+        label: t('personas.friend.label'),
         Icon: Coffee,
-        desc: '편안한 동료 모드',
-        greeting: '안녕? 반가워! ☕\n가벼운 커피챗 하듯이 편하게 물어봐줘. 친절하게 알려줄게!',
+        desc: t('personas.friend.desc'),
+        greeting: t('personas.friend.greeting'),
         color: 'text-emerald-500',
         bubble: 'bg-emerald-500 text-white',
         button: 'bg-emerald-500 hover:bg-emerald-600',
         ring: 'focus-within:ring-emerald-500'
     }
-  };
+  }), [t]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -77,11 +83,16 @@ export function AIChatWidget() {
     }
   }, [isOpen, hasSelectedPersona]);
 
-  // Reset selection on close
+  // Reset selection AND messages on close (FIX: Message reset issue)
   useEffect(() => {
     if (!isOpen) {
-        setTimeout(() => setHasSelectedPersona(false), 300); // Reset after animation
+        setTimeout(() => {
+          setHasSelectedPersona(false);
+          // Reset messages to initial state when chat is closed
+          setMessages(getInitialMessages());
+        }, 300); // Reset after animation
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handlePersonaSelect = (selectedPersona: 'professional' | 'passionate' | 'friend') => {
@@ -123,7 +134,10 @@ export function AIChatWidget() {
       });
 
       if (!response.ok) throw new Error('Network response was not ok');
-      if (!response.body) return;
+      if (!response.body) {
+        setIsLoading(false);
+        return;
+      }
 
       // 3. Prepare Assistant Message Placeholder
       const assistantMessageId = (Date.now() + 1).toString();
@@ -157,7 +171,7 @@ export function AIChatWidget() {
       console.error('Chat error:', error);
       setMessages((prev) => [
         ...prev,
-        { id: Date.now().toString(), role: 'assistant', content: '죄송합니다. 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' },
+        { id: Date.now().toString(), role: 'assistant', content: t('chat.error') },
       ]);
     } finally {
       setIsLoading(false);
@@ -187,8 +201,8 @@ export function AIChatWidget() {
                       <Bot size={16} strokeWidth={2} />
                     </div>
                     <div>
-                      <h3 className="text-sm font-bold text-gray-900 leading-tight">AI Assistant</h3>
-                      <p className="text-[10px] font-medium text-gray-400 tracking-wide uppercase">Choeingyu Works</p>
+                      <h3 className="text-sm font-bold text-gray-900 leading-tight">{t('header.title')}</h3>
+                      <p className="text-[10px] font-medium text-gray-400 tracking-wide">{t('header.subtitle')}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -231,7 +245,7 @@ export function AIChatWidget() {
                     onClick={() => setHasSelectedPersona(false)}
                     className="flex items-center gap-1 text-[11px] text-gray-400 hover:text-black transition-colors"
                  >
-                    <span className="text-xs">←</span> 스타일 변경하기
+                    <span className="text-xs">←</span> {t('chat.changeStyle')}
                  </button>
               )}
             </div>
@@ -240,8 +254,8 @@ export function AIChatWidget() {
                 // --- SCREEN 1: PERSONA SELECTION ---
                 <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50 overflow-y-auto">
                     <div className="text-center mb-8">
-                        <h2 className="text-xl font-bold text-gray-900 mb-2">대화 스타일 선택</h2>
-                        <p className="text-sm text-gray-500">어떤 스타일로 대화하시겠어요?</p>
+                        <h2 className="text-xl font-bold text-gray-900 mb-2">{t('personaSelection.title')}</h2>
+                        <p className="text-sm text-gray-500">{t('personaSelection.description')}</p>
                     </div>
                     
                     <div className="space-y-3">
@@ -338,7 +352,7 @@ export function AIChatWidget() {
                     className="flex-1 bg-transparent pl-5 pr-12 py-4 text-[14px] outline-none placeholder:text-gray-400 text-gray-900 font-medium"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="무엇이든 물어보세요..."
+                    placeholder={t('chat.placeholder')}
                     />
                     <button
                     type="submit"
@@ -352,7 +366,7 @@ export function AIChatWidget() {
                   <div className="mt-3 text-center sm:block hidden">
                     <p className="inline-flex items-center gap-1.5 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
                       <Sparkles size={10} />
-                      Powered by AI & RAG System
+                      {t('chat.poweredBy')}
                     </p>
                   </div>
                 </div>
@@ -382,7 +396,7 @@ export function AIChatWidget() {
             </motion.div>
           ) : (
             <motion.div
-              key="close"
+              key="open"
               initial={{ rotate: 90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: -90, opacity: 0 }}
