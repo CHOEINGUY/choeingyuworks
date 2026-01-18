@@ -12,7 +12,7 @@
 [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![Vitest](https://img.shields.io/badge/Vitest-Tested-6E9F18?style=flat-square&logo=vitest&logoColor=white)](https://vitest.dev/)
 
-[Live Demo](https://choeingyu.vercel.app) · [이력서](https://choeingyu.vercel.app/resume) · [Contact](mailto:chldlsrb07@gmail.com)
+[이력서 및 포트폴리오 보러가기](https://choeingyu.works/ko)
 
 </div>
 
