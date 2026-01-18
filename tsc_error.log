@@ -1,1 +1,0 @@
-src/features/portfolio/projects/easy-epidemiology/components/AuthenticGridContent.tsx(57,17): error TS2454: Variable 'animationFrameId' is used before being assigned.
