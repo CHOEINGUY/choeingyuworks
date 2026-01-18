@@ -1,0 +1,34 @@
+{
+  "header": {
+    "title": "AI Assistant",
+    "subtitle": "Choeingyu Portfolio"
+  },
+  "personaSelection": {
+    "title": "Choose Your Chat Style",
+    "description": "How would you like to chat?"
+  },
+  "personas": {
+    "professional": {
+      "label": "Business",
+      "desc": "Formal and clear",
+      "greeting": "Hello. I'm Ingyu Choe's portfolio AI assistant.\nI'll provide clear and professional answers from a business perspective."
+    },
+    "passionate": {
+      "label": "Passionate",
+      "desc": "Energetic and inspiring",
+      "greeting": "Nice to meet you! 🔥\nI'm excited to share the passion of Ingyu Choe, a developer who truly cares about solving problems!"
+    },
+    "friend": {
+      "label": "Casual",
+      "desc": "Friendly colleague mode",
+      "greeting": "Hey there! ☕\nFeel free to ask me anything like we're having a casual coffee chat. I'm here to help!"
+    }
+  },
+  "chat": {
+    "placeholder": "Ask me anything...",
+    "welcome": "Hello! I'm Ingyu Choe's AI assistant.\nFeel free to ask anything about my resume and portfolio.",
+    "error": "Sorry, an error occurred. Please try again later.",
+    "changeStyle": "Change Style",
+    "poweredBy": "Powered by AI & RAG System"
+  }
+}

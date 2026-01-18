@@ -14,6 +14,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     const cohort = (await import(`../messages/${locale}/cohort.json`)).default;
     const epidemiology = (await import(`../messages/${locale}/epidemiology.json`)).default;
     const portfolio = (await import(`../messages/${locale}/portfolio.json`)).default;
+    const chatbot = (await import(`../messages/${locale}/chatbot.json`)).default;
 
     return {
         locale,
@@ -22,7 +23,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
             PartySaaS: party,
             CohortDashboard: cohort,
             EasyEpidemiology: epidemiology,
-            Portfolio: portfolio
+            Portfolio: portfolio,
+            chatbot: chatbot
         }
     };
 });
+
