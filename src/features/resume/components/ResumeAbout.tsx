@@ -36,7 +36,7 @@ export const ResumeAbout = ({ about }: ResumeAboutProps) => {
                     }
 
                     return (
-                        <p key={index} className="whitespace-pre-line">
+                        <p key={index} className="whitespace-pre-line break-keep">
                             {paragraph.split(/(\*\*.*?\*\*)/).map((part, i) => 
                                 part.startsWith('**') && part.endsWith('**') ? (
                                     <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>
