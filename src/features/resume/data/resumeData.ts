@@ -247,7 +247,7 @@ export const RESUME_DATA_V2 = {
     ko: {
         ...RESUME_DATA.ko,
         role: "Product Engineer",
-        about: "**언어와 프레임워크의 경계를 넘어, 문제의 본질에 가장 적합한 기술을 설계합니다.**\n\n특정 기술 스택을 고집하지 않습니다. 프로젝트의 요구사항에 맞춰 AI Agent와 아키텍처를 논의하고, 최적의 도구를 선정하여 유연하게 개발합니다. AI Agent를 파트너 삼아 기능 구현 시간을 최소화하고, **'무엇을, 왜 만들어야 하는가'**에 대한 기획과 비즈니스 로직 설계에 몰입합니다. 1인 개발의 한계를 기술적 유연함과 AI 협업으로 극복하며, 기획부터 배포까지 전 과정을 주도적으로 수행합니다.",
+        about: "**언어와 프레임워크의 경계를 넘어, 문제해결에 가장 적합한 기술을 설계합니다.**\n\n특정 기술 스택을 고집하지 않습니다. 프로젝트의 요구사항에 맞춰 AI Agent와 아키텍처를 논의하고, 최적의 도구를 선정하여 유연하게 개발합니다. AI Agent를 파트너 삼아 기능 구현 시간을 최소화하고, **'무엇을, 왜 만들어야 하는가'**에 대한 기획과 비즈니스 로직 설계에 몰입합니다. 1인 개발의 한계를 기술적 유연함과 AI 협업으로 극복하며, 기획부터 배포까지 전 과정을 주도적으로 수행합니다.",
         experience: [
             {
                 company: "전남대학교 의과대학 예방의학교실",
@@ -376,7 +376,7 @@ export const RESUME_DATA_V2 = {
     en: {
         ...RESUME_DATA.en,
         role: "Product Engineer",
-        about: "**Going beyond languages and frameworks, I design technologies best suited to the essence of the problem.**\n\nI do not stick to a specific tech stack. I discuss architectures with AI Agents appropriate for the project requirements and select optimal tools for flexible development. Partnering with AI Agents, I minimize feature implementation time and immerse myself in planning and business logic design—**'what to build and why'**. Overcoming the limits of solo development with technical flexibility and AI collaboration, I lead the entire process from planning to deployment.",
+        about: "**Going beyond languages and frameworks, I design technologies best suited to solving the problem.**\n\nI do not stick to a specific tech stack. I discuss architectures with AI Agents appropriate for the project requirements and select optimal tools for flexible development. Partnering with AI Agents, I minimize feature implementation time and immerse myself in planning and business logic design—**'what to build and why'**. Overcoming the limits of solo development with technical flexibility and AI collaboration, I lead the entire process from planning to deployment.",
         experience: [
             {
                 company: "JNU Preventive Medicine",
