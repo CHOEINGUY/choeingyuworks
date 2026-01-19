@@ -175,7 +175,7 @@ export const RESUME_DATA = {
                 period: "2024. 11 - 2025. 12",
                 description: [
                     "Problem : Time bottleneck caused by manual analysis of patient control groups and epidemic curve generation by public health officers.",
-                    "Solution : Built a web-based system that automatically generates statistical analyses and reports (HWPX/PDF) immediately upon data entry. Expanded features from v1.0 to v2.0 based on field feedback.",
+                    "Solution : Built a web-based integration analysis pipeline that completes statistical analysis and report (HWPX) generation immediately upon data entry. Expanded features from v1.0 to v2.0 based on field feedback.",
                     "Decision : Directly implemented lightweight browser-based statistical algorithms to reduce dependency on external SW. Ensured system stability through TypeScript migration and 3 rounds of QC.",
                     "Result : Completed analysis and reported, which used to take hours, immediately upon data entry. Deployed to public health centers and conducted training.",
                     "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
@@ -375,6 +375,8 @@ export const RESUME_DATA_V2 = {
     },
     en: {
         ...RESUME_DATA.en,
+        role: "Product Engineer",
+        about: "**Going beyond languages and frameworks, I design technologies best suited to the essence of the problem.**\n\nI do not stick to a specific tech stack. I discuss architectures with AI Agents appropriate for the project requirements and select optimal tools for flexible development. Partnering with AI Agents, I minimize feature implementation time and immerse myself in planning and business logic design—**'what to build and why'**. Overcoming the limits of solo development with technical flexibility and AI collaboration, I lead the entire process from planning to deployment.",
         experience: [
             {
                 company: "JNU Preventive Medicine",
@@ -427,7 +429,60 @@ export const RESUME_DATA_V2 = {
                 ]
             }
         ],
+        projects: [
+             {
+                name: "[Easy-Epidemiology Solution](/portfolio/easy-epidemiology)",
+                period: "2024. 11 - 2025. 12",
+                description: [
+                    "Problem : Time bottleneck caused by manual analysis of patient control groups and epidemic curve generation by public health officers.",
+                    "Solution : Built a web-based integrated analysis pipeline that completes statistical analysis and report (HWPX) generation immediately upon data entry.",
+                    "Decision : Considering the closed network environment, adopted a Browser-Client 100% computation method after architectural review with AI. Utilized a lightweight statistical library (jStat) to ensure both ease of deployment and execution speed.",
+                    "Result : Improved analysis and reporting, which used to take hours, to be completed 'immediately upon data entry', resolving field bottlenecks. Adopted as a practical tool for Gwangju/Jeonnam public health centers.",
+                    "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
+                ]
+            },
+            {
+                name: "[Real-time Cohort Control System](/portfolio/cohort-dashboard)",
+                period: "2024. 01 - 2025. 12",
+                description: [
+                    "Problem : Confusion and bottlenecks caused by lack of wait time management at examination sites.",
+                    "Solution : Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
+                    "Decision : Introduced Google TTS-based automated voice calling so support staff can immediately engage in tasks without constantly watching the screen.",
+                    "Result : Immediately resolved bottlenecks and dispersed waiting crowds, reducing time per session by 15%. Reduced operational staff by 2.",
+                    "Tech Stack : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "[Integrated Event Management Solution (Party/Dating/1:1 Matching)](/portfolio/party-saas)",
+                period: "2025. 10 - 2025. 12",
+                description: [
+                    "Problem : Data disconnection and resource waste due to fragmented tools: Application (Form) - Management (Excel) - Operation (Paper).",
+                    "Solution : Consolidated separate tools into a single web solution, building a seamless all-in-one workflow from registration to on-site operations.",
+                    "Decision : Delegated repetitive core feature implementation to AI to shorten development speed. Focused secured time on developing a 'Form Builder engine allowing planners to create products/forms directly', ensuring operational scalability without developer intervention.",
+                    "Result : Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to sending AlimTalk notifications.",
+                    "Tech Stack : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
+                ]
+            },
+            {
+                name: "Manufacturing (LunaTech) Light ERP & Automation System",
+                period: "2024. 10 - Present",
+                description: [
+                    "Problem : Duplicate administration and inefficiency due to manual management and data fragmentation of Quote-Order-Tax Invoice tasks.",
+                    "Solution : Built a hybrid business automation system combining field-friendly AppSheet (Front) and flexible Python Server (Back).",
+                    "Decision : Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
+                    "Result : Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
+                    "Tech Stack : Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
+                ]
+            }
+        ],
         skills: [
+            {
+                category: "AI Collaboration Tools",
+                items: [
+                    "AI Tools : Google Antigravity (Main), Claude Code, Cursor",
+                    "Workflow : Hyper-speed iteration of 'Planning-Design-Implementation' and business logic-centered development using AI Agents"
+                ]
+            },
             {
                 category: "Core Tech Stack",
                 items: [
