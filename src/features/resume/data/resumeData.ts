@@ -98,12 +98,12 @@ export const RESUME_DATA = {
                     "문제 상황 : 검진 현장의 병목 현상 및 대기 시간 관리 부재로 인한 혼선 발생",
                     "해결 방안 : AppSheet-Firebase 실시간 연동 및 Google TTS 기반 자동 음성 호명 시스템 구축",
                     "의사결정 : Google Sheets 지연(5초) 해결을 위해 Firebase Realtime DB 도입, 반응 속도 1초 미만으로 개선",
-                    "성    과 : 실시간 순서 배정 자동화로 검진 대상자 동선 최적화 및 현장 혼선 제거",
+                    "성    과 : 실시간 순서 배정 자동화로 검진 대상자 동선 최적화, 현장 혼선 제거 및 회차당 소요 시간 15% 단축",
                     "사용 기술 : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
                 ]
             },
             {
-                name: "[3가지 사업 모델 (파티/소개팅/1:1) 통합 이벤트 관리 솔루션 ↗](/portfolio/party-saas)",
+                name: "[3가지 사업 모델 (파티/소개팅/1:1) 통합 이벤트 관리 솔루션](/portfolio/party-saas)",
                 period: "2025. 10 - 2025. 12",
                 description: [
                     "문제 상황 : 신청(폼)·관리(엑셀)·출석(종이) 등 파편화된 도구로 운영하여, 데이터 단절 및 리소스 낭비 발생",
@@ -174,44 +174,44 @@ export const RESUME_DATA = {
                 name: "[Easy-Epidemiology Solution](/portfolio/easy-epidemiology)",
                 period: "2024. 11 - 2025. 12",
                 description: [
-                    "Problem: Time bottleneck caused by manual analysis of patient control groups and epidemic curve generation by public health officers.",
-                    "Solution: Built a web-based system that automatically generates statistical analyses and reports (HWPX/PDF) immediately upon data entry. Expanded features from v1.0 to v2.0 based on field feedback.",
-                    "Decision: Directly implemented lightweight browser-based statistical algorithms to reduce dependency on external SW. Ensured system stability through TypeScript migration and 3 rounds of QC.",
-                    "Result: Completed analysis and reporting, which used to take hours, immediately upon data entry. Deployed to public health centers and conducted training.",
-                    "Tech Stack: Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
+                    "Problem : Time bottleneck caused by manual analysis of patient control groups and epidemic curve generation by public health officers.",
+                    "Solution : Built a web-based system that automatically generates statistical analyses and reports (HWPX/PDF) immediately upon data entry. Expanded features from v1.0 to v2.0 based on field feedback.",
+                    "Decision : Directly implemented lightweight browser-based statistical algorithms to reduce dependency on external SW. Ensured system stability through TypeScript migration and 3 rounds of QC.",
+                    "Result : Completed analysis and reported, which used to take hours, immediately upon data entry. Deployed to public health centers and conducted training.",
+                    "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
                 ]
             },
             {
                 name: "[Real-time Cohort Control System](/portfolio/cohort-dashboard)",
                 period: "2024. 01 - 2025. 12",
                 description: [
-                    "Problem: Confusion and bottlenecks caused by lack of wait time management at examination sites.",
-                    "Solution: Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
-                    "Decision: Adopted Firebase Realtime DB to resolve Google Sheets delay (5s → <1s).",
-                    "Result: Optimized medical exam subject flow and eliminated on-site confusion through automated real-time sequencing.",
-                    "Tech Stack: AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                    "Problem : Confusion and bottlenecks caused by lack of wait time management at examination sites.",
+                    "Solution : Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
+                    "Decision : Adopted Firebase Realtime DB to resolve Google Sheets delay (5s → <1s).",
+                    "Result : Optimized medical exam subject flow and eliminated on-site confusion through automated real-time sequencing.",
+                    "Tech Stack : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
                 ]
             },
             {
                 name: "[Integrated Event Management Solution (Party/Dating/1:1 Matching)](/portfolio/party-saas)",
                 period: "2025. 10 - 2025. 12",
                 description: [
-                    "Problem: Fragmented operations using separate tools for registration (forms), management (Excel), and attendance (paper), causing data disconnection and resource waste.",
-                    "Solution: Consolidated separate tools into a single web solution, building a seamless all-in-one workflow from registration to on-site operations.",
-                    "Decision: Designed a flexible structure where planners can directly configure application items to eliminate the need for new coding whenever a business model is added.",
-                    "Result: Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to sending AlimTalk notifications.",
-                    "Tech Stack: React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
+                    "Problem : Fragmented operations using separate tools for registration (forms), management (Excel), and attendance (paper), causing data disconnection and resource waste.",
+                    "Solution : Consolidated separate tools into a single web solution, building a seamless all-in-one workflow from registration to on-site operations.",
+                    "Decision : Designed a flexible structure where planners can directly configure application items to eliminate the need for new coding whenever a business model is added.",
+                    "Result : Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to sending AlimTalk notifications.",
+                    "Tech Stack : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
             },
             {
                 name: "Manufacturing (LunaTech) Light ERP & Automation System",
                 period: "2024. 10 - Present",
                 description: [
-                    "Problem: Duplicate administration due to manual management of Quote-Order-Tax Invoice tasks and data fragmentation.",
-                    "Solution: Built an integrated work automation environment combining automatic tax invoice issuance (Flask/Cloud Run) and high-quality PDF quote engine (Next.js).",
-                    "Decision: Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
-                    "Result: Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
-                    "Tech Stack: Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
+                    "Problem : Duplicate administration due to manual management of Quote-Order-Tax Invoice tasks and data fragmentation.",
+                    "Solution : Built an integrated work automation environment combining automatic tax invoice issuance (Flask/Cloud Run) and high-quality PDF quote engine (Next.js).",
+                    "Decision : Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
+                    "Result : Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
+                    "Tech Stack : Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
                 ]
             }
         ],

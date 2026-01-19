@@ -279,7 +279,7 @@ export function AIChatWidget() {
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
             // Responsive Styling: Fixed Fullscreen on Mobile vs Floating Card on Desktop
-            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-0 sm:right-0 sm:mb-0 sm:h-[700px] sm:max-h-[75vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
+            className="fixed inset-0 h-[100dvh] z-[60] flex flex-col overflow-hidden overscroll-y-none bg-white shadow-2xl sm:absolute sm:inset-auto sm:bottom-0 sm:right-0 sm:mb-0 sm:h-[700px] sm:max-h-[75vh] sm:w-[400px] sm:rounded-[20px] sm:ring-1 sm:ring-black/5 pointer-events-auto"
           >
             {/* Header */}
             <div className="border-b border-gray-100 bg-white/80 p-4 backdrop-blur-md sticky top-0 z-10 flex flex-col gap-3 shrink-0">
@@ -340,7 +340,7 @@ export function AIChatWidget() {
 
             {!hasSelectedPersona ? (
                 // --- SCREEN 1: PERSONA SELECTION ---
-                <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50 overflow-y-auto">
+                <div className="flex-1 p-5 flex flex-col justify-center bg-gray-50/50 overflow-y-auto overscroll-y-contain">
                     <div className="text-center mb-6">
                         <h2 className="text-xl font-bold text-gray-900 mb-2">{t('personaSelection.title')}</h2>
                         <p className="text-sm text-gray-500">{t('personaSelection.description')}</p>
@@ -425,7 +425,7 @@ export function AIChatWidget() {
                 // --- SCREEN 2: CHAT INTERFACE ---
                 <>
                 {/* Messages */}
-                <div className="flex-1 overflow-y-auto bg-[#fafafa] p-5 scrollbar-thin pb-20 sm:pb-5">
+                <div className="flex-1 overflow-y-auto overscroll-y-contain bg-[#fafafa] p-5 scrollbar-thin pb-20 sm:pb-5">
                 <div className="space-y-6">
                     {messages.map((m) => (
                     <div
