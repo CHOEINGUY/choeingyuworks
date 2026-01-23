@@ -33,7 +33,7 @@ export function AIChatWidget() {
   const [persona, setPersona] = useState<'professional' | 'passionate' | 'friend'>('professional');
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
   const [sessionId, setSessionId] = useState(() => Date.now().toString());
-  const [provider, setProvider] = useState<'openai' | 'gemini'>('openai');
+  const [provider, setProvider] = useState<'openai' | 'claude'>('openai');
   const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
   
   // Initialize messages with translated welcome message
@@ -297,7 +297,29 @@ export function AIChatWidget() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {/* Model Switcher - Always visible */}
+                    {/* Model Switcher */}
+                    <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
+                        <button 
+                            onClick={() => setProvider('openai')}
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
+                                provider === 'openai' 
+                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5' 
+                                : 'text-gray-400 hover:text-gray-600'
+                            }`}
+                        >
+                            GPT-4o
+                        </button>
+                        <button 
+                            onClick={() => setProvider('claude')}
+                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
+                                provider === 'claude' 
+                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5' 
+                                : 'text-gray-400 hover:text-gray-600'
+                            }`}
+                        >
+                            Claude
+                        </button>
+                    </div>
 
                     <button
                         onClick={() => setIsOpen(false)}
