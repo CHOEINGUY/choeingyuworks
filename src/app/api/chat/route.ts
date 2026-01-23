@@ -121,22 +121,20 @@ CONTEXT:
 ${contextText}
 `;
 
-    // 6. Call AI Streaming
-    console.log(`9. Calling AI Stream (Provider: Timely GPT Bridge)...`);
-    console.log(`Resource Config: URL=${process.env.TIMELY_BASE_URL}, Model=${targetModel}`);
-    console.log(`Debug Check: API Key Exists? ${!!process.env.TIMELY_API_KEY}`);
-
-    // Determine Model ID
-    const provider = reqBody.provider || 'openai';
+    // 6. Determine Model ID based on provider selection
+    // Note: 'provider' is already destructured from reqBody at the top of the function
+    const selectedProvider = provider || 'openai';
     
-    // Check if user requested Claude, otherwise default to configured TIMELY_MODEL (usually gpt-4o)
-    // Note: User reported 'anthropic/claude-4.5-opus' works with Timely bridge.
     let targetModel = TIMELY_MODEL;
-    if (provider === 'claude') {
+    if (selectedProvider === 'claude') {
         targetModel = 'anthropic/claude-4.5-opus'; 
     } else {
         targetModel = 'openai/gpt-4o';
     }
+    
+    // 7. Call AI Streaming
+    console.log(`Calling AI Stream (Provider: Timely GPT Bridge, Model: ${targetModel})...`);
+    console.log(`Debug Check: API Key Exists? ${!!process.env.TIMELY_API_KEY}`);
 
     try {
         const response = await timelyAI.chat.completions.create({
