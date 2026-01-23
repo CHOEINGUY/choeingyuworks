@@ -1,18 +1,11 @@
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { pinecone } from '@/lib/pinecone';
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { timelyAI, TIMELY_MODEL } from '@/lib/timely-ai';
+// import { OpenAIStream, StreamingTextResponse } from 'ai'; // Removed: causing import errors
 import { db } from '@/lib/firebase';
 import { serverTimestamp, doc, setDoc, arrayUnion } from 'firebase/firestore';
 import { CohereClient } from 'cohere-ai';
-
-// Models for Rotation
-const GEMINI_MODELS = [
-    'gemini-3-flash-preview', 
-    'gemini-2.5-flash-lite', 
-    'gemini-2.5-flash'
-];
+import { sendErrorAlert } from '@/lib/discord';
 
 // Initialize Cohere Client for Reranking
 const cohere = new CohereClient({
@@ -129,103 +122,97 @@ ${contextText}
 `;
 
     // 6. Call AI Streaming
-    console.log(`9. Calling AI Stream (Provider: ${provider || 'openai'})...`);
-    
-    let result;
+    console.log(`9. Calling AI Stream (Provider: Timely GPT Bridge)...`);
+    console.log(`Resource Config: URL=${process.env.TIMELY_BASE_URL}, Model=${TIMELY_MODEL}`);
+    console.log(`Debug Check: API Key Exists? ${!!process.env.TIMELY_API_KEY}`);
 
-    if (provider === 'gemini') {
-        const google = createGoogleGenerativeAI({
-            apiKey: process.env.GEMINI_API_KEY, // Manual Key Usage
+    try {
+        const response = await timelyAI.chat.completions.create({
+            model: TIMELY_MODEL,
+            messages: [
+                { role: 'system', content: systemPrompt },
+                ...messages.map((m: any) => ({
+                    role: m.role,
+                    content: m.content
+                }))
+            ],
+            stream: true,
         });
 
-        // --- Gemini Model Rotation Logic ---
-        for (const modelName of GEMINI_MODELS) {
-            try {
-                console.log(`Attempting Gemini Model: ${modelName}`);
-                result = await streamText({
-                    model: google(modelName),
-                    system: systemPrompt,
-                    messages,
-                    onFinish: async ({ text }) => {
-                        try {
-                            const sessionId = reqBody.sessionId || 'anonymous_session';
-                            await setDoc(doc(db, 'chat_sessions', sessionId), {
-                                sessionId: sessionId,
-                                persona: reqBody.persona || 'professional',
-                                model: modelName,
-                                provider: 'gemini',
-                                lastUpdated: serverTimestamp(),
-                                messages: arrayUnion({
-                                    role: 'user',
-                                    content: question,
-                                    timestamp: new Date().toISOString()
-                                }, {
-                                    role: 'assistant',
-                                    content: text,
-                                    timestamp: new Date().toISOString()
-                                })
-                            }, { merge: true });
-                        } catch (err) {
-                            console.error('Failed to log chat to Firebase:', err);
-                        }
-                    },
-                });
-                console.log(`✅ Success with ${modelName}`);
-                break; // Success, exit loop
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: unknown) {
-                const errorMessage = error instanceof Error ? error.message : '';
-                const isQuotaError = errorMessage.includes('429') || errorMessage.includes('Quota') || errorMessage.includes('RESOURCE_EXHAUSTED');
-                if (isQuotaError) {
-                    console.warn(`⚠️ Quota exceeded for ${modelName}, switching to next...`);
-                    continue; // Try next model
-                }
-                throw error; // Other errors, crash
-            }
-        }
-        if (!result) throw new Error('All Gemini models exhausted (Quota Exceeded)');
-    } else {
-        // --- OpenAI Default ---
-        result = await streamText({
-            model: openai('gpt-4o-mini'),
-            system: systemPrompt,
-            messages,
-             onFinish: async ({ text }) => {
+        console.log('✅ Timely GPT Bridge Response Received (Stream Started)');
+
+        const stream = new ReadableStream({
+            async start(controller) {
+                const encoder = new TextEncoder();
+                let accumulatedText = '';
+
                 try {
-                    const sessionId = reqBody.sessionId || 'anonymous_session';
-                    await setDoc(doc(db, 'chat_sessions', sessionId), {
-                        sessionId: sessionId,
-                        persona: reqBody.persona || 'professional',
-                        model: 'gpt-4o-mini',
-                        provider: 'openai',
-                        lastUpdated: serverTimestamp(),
-                        messages: arrayUnion({
-                            role: 'user',
-                            content: question,
-                            timestamp: new Date().toISOString()
-                        }, {
-                            role: 'assistant',
-                            content: text,
-                            timestamp: new Date().toISOString()
-                        })
-                    }, { merge: true });
+                    console.log('🚀 Stream started flowing to client');
+                    
+                    for await (const chunk of response) {
+                        const content = chunk.choices[0]?.delta?.content || '';
+                        if (content) {
+                            accumulatedText += content;
+                            controller.enqueue(encoder.encode(content));
+                        }
+                    }
+                    
+                    console.log(`🏁 Stream completed. Length: ${accumulatedText.length} chars`);
+                    controller.close();
+
+                    // Log to Firebase after stream ends
+                    try {
+                        const sessionId = reqBody.sessionId || 'anonymous_session';
+                        await setDoc(doc(db, 'chat_sessions', sessionId), {
+                            sessionId: sessionId,
+                            persona: reqBody.persona || 'professional',
+                            model: TIMELY_MODEL,
+                            provider: 'timely-openai',
+                            lastUpdated: serverTimestamp(),
+                            messages: arrayUnion({
+                                role: 'user',
+                                content: question,
+                                timestamp: new Date().toISOString()
+                            }, {
+                                role: 'assistant',
+                                content: accumulatedText,
+                                timestamp: new Date().toISOString()
+                            })
+                        }, { merge: true });
+                    } catch (err) {
+                        console.error('Failed to log chat to Firebase:', err);
+                    }
+
                 } catch (err) {
-                    console.error('Failed to log chat to Firebase:', err);
+                    console.error('Stream processing error:', err);
+                    controller.error(err);
                 }
+            }
+        });
+
+        return new Response(stream, {
+            headers: {
+                'Content-Type': 'text/plain; charset=utf-8',
             },
         });
+
+    } catch (apiError) {
+        console.error('❌ Timely Bridge API Error Details:', apiError);
+        throw apiError; // Re-throw to be caught by outer handler
     }
 
-    // Return raw text stream for simplified manual client
-    return new Response(result.textStream, {
-        headers: {
-            'Content-Type': 'text/plain; charset=utf-8',
-        },
-    });
+
 
   } catch (error) {
     console.error('❌ Chat API Error:', error);
-    return new Response(JSON.stringify({ error: 'Failed to process chat' }), {
+
+    // Send alert to Discord
+    await sendErrorAlert(error, 'Chat API Critical Failure');
+
+    return new Response(JSON.stringify({ 
+        error: error instanceof Error ? error.message : 'Unknown Server Error',
+        details: 'Check server terminal for full logs'
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

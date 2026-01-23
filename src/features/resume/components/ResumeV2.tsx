@@ -16,11 +16,16 @@ import { ResumeClosing } from "./ResumeClosing";
 import { ResumeQRCode } from "./ResumeQRCode";
 import { ResumeShareModal } from "./ResumeShareModal";
 
-export function ResumeV2() {
+interface ResumeV2Props {
+    data?: any;
+}
+
+export function ResumeV2({ data }: ResumeV2Props) {
     const locale = useLocale();
-    // Use RESUME_DATA_V2 if available for locale, fall back to base English data if strictly needed (though likely RESUME_DATA_V2 has it via spread)
-    const currentData = (RESUME_DATA_V2 as any)[locale as 'ko' | 'en'] || RESUME_DATA.en || RESUME_DATA.ko;
-    const commonData = RESUME_DATA.common;
+    const sourceData = data || RESUME_DATA_V2;
+    // Use sourceData if available for locale, fall back to base English data if strictly needed
+    const currentData = (sourceData as any)[locale as 'ko' | 'en'] || sourceData.en || sourceData.ko;
+    const commonData = sourceData.common;
     
     const resumeRef = useRef<HTMLDivElement>(null);
     const [today, setToday] = useState("");
