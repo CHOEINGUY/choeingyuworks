@@ -33,7 +33,7 @@ export function AIChatWidget() {
   const [persona, setPersona] = useState<'professional' | 'passionate' | 'friend'>('professional');
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
   const [sessionId, setSessionId] = useState(() => Date.now().toString());
-  const [provider, setProvider] = useState<'openai' | 'gemini'>('gemini');
+  const [provider, setProvider] = useState<'openai' | 'gemini'>('openai');
   const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
   
   // Initialize messages with translated welcome message
@@ -216,7 +216,10 @@ export function AIChatWidget() {
         }),
       });
 
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Server Error: ${response.status}`);
+      }
       if (!response.body) {
         setIsLoading(false);
         return;
@@ -295,29 +298,7 @@ export function AIChatWidget() {
                   </div>
                   <div className="flex items-center gap-2">
                     {/* Model Switcher - Always visible */}
-                    {/* Model Switcher - Toggle Style */}
-                    <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
-                        <button 
-                            onClick={() => setProvider('gemini')}
-                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
-                                provider === 'gemini' 
-                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5' 
-                                : 'text-gray-400 hover:text-gray-600'
-                            }`}
-                        >
-                            Gemini
-                        </button>
-                        <button 
-                            onClick={() => setProvider('openai')}
-                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${
-                                provider === 'openai' 
-                                ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5' 
-                                : 'text-gray-400 hover:text-gray-600'
-                            }`}
-                        >
-                            GPT-4o
-                        </button>
-                    </div>
+
                     <button
                         onClick={() => setIsOpen(false)}
                         className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-900 bg-gray-50 sm:bg-transparent"

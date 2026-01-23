@@ -1,16 +1,38 @@
-import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { RESUME_DATA_V2 } from '../src/features/resume/data/resumeData';
+// Manually load .env.local to avoid import hoisting issues
+try {
+  const envPath = path.join(process.cwd(), '.env.local');
+  if (fs.existsSync(envPath)) {
+    const envData = fs.readFileSync(envPath, 'utf8');
+    envData.split('\n').forEach(line => {
+      const match = line.match(/^([^=]+)=(.*)$/);
+      if (match) {
+        let value = match[2].trim();
+        if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
+         if (!process.env[match[1].trim()]) {
+             process.env[match[1].trim()] = value;
+         }
+      }
+    });
+    console.log('✅ .env.local loaded manually');
+  }
+} catch (e) {
+  console.warn('Failed to load .env.local manually', e);
+}
+
+// import * as dotenv from 'dotenv'; // Removed
+// dotenv.config({ path: '.env.local' }); // Removed
+
+import { JAEIL_RESUME_DATA } from '../src/features/resume/data/jaeilResumeData';
 import { Pinecone } from '@pinecone-database/pinecone';
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { Document } from '@langchain/core/documents';
 
 // Usage: npx tsx scripts/seed-db.ts
 
-const SEED_DATA = RESUME_DATA_V2;
+const SEED_DATA = JAEIL_RESUME_DATA;
 
 // Define project directories to scan
 const PROJECT_DIRS = [
@@ -29,7 +51,7 @@ async function seed() {
     console.log('✅ Env vars present');
 
     // 2. Data Check
-    if (!RESUME_DATA_V2) throw new Error('Resume data not loaded');
+    if (!SEED_DATA) throw new Error('Resume data not loaded');
 
     const chunks: Document[] = [];
 
