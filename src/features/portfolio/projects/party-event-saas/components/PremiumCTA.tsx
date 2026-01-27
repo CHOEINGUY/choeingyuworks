@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link } from "@/navigation";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+
 import { useTranslations } from "next-intl";
 
 export function PremiumCTA() {
@@ -27,14 +25,7 @@ export function PremiumCTA() {
                         dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
 
-                    <div className="flex justify-center">
-                        <Link href="/request">
-                            <Button size="lg" className="h-16 px-12 rounded-full bg-[#111827] hover:bg-[#1E293B] text-white text-lg font-bold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gray-200">
-                                {t('button')}
-                                <ArrowRight className="ml-2 w-5 h-5" />
-                            </Button>
-                        </Link>
-                    </div>
+
                 </motion.div>
 
             </div>

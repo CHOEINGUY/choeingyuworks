@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import {
-    ArrowRight,
     LayoutGrid
 } from "lucide-react";
 import {
@@ -52,14 +51,7 @@ export default function PartySaaSClient() {
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.description') }}
                                 />
 
-                                <div className="flex flex-wrap gap-4 mb-4">
-                                    <Link href="/request">
-                                        <Button size="lg" className="rounded-full bg-black text-white px-8 h-12 text-base font-semibold shadow-lg hover:bg-gray-800 transition-all">
-                                            {t('Hero.cta')}
-                                            <ArrowRight className="ml-2 w-4 h-4" />
-                                        </Button>
-                                    </Link>
-                                </div>
+
                             </motion.div>
                         </div>
 
@@ -86,10 +78,10 @@ export default function PartySaaSClient() {
 
             {/* E2E Flow (Stripped Pipeline) - RESTORED */}
             <E2EFlowBento />
-            
+
             {/* DEEP DIVE FEATURES (Visual Showcase - CORE) */}
             <DeepDiveFeatures />
-            
+
             {/* Feature Comparison Matrix (Detailed Specs - NEW) */}
             <FeatureComparisonMatrix />
 
@@ -100,7 +92,7 @@ export default function PartySaaSClient() {
 
             {/* Footer Global Link (Compact) */}
             <div className="py-24 bg-gray-50 border-t border-gray-100 text-center">
-                 <Link href="/?tab=portfolio">
+                <Link href="/?tab=portfolio">
                     <Button variant="outline" className="h-14 px-8 rounded-full border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-400 hover:bg-white hover:shadow-sm transition-all duration-300 group text-base font-medium">
                         <LayoutGrid className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform text-gray-400 group-hover:text-gray-900" />
                         {t('backToPortfolio')}
