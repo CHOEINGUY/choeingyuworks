@@ -7,13 +7,13 @@ export const RESUME_DATA = {
     ko: {
         name: "최인규",
         birthYear: "1998년생",
-        role: "Business Solution Engineer",
+        role: "DX & Automation Engineer",
         location: "광주광역시 광산구",
-        about: "**비즈니스 흐름을 읽고, 기술로 답을 찾습니다.**\n저는 단순히 코드를 짜는 개발자를 넘어, 현장과 소통하고 복잡하게 얽힌 업무 프로세스를 분석하여 최적의 자동화 흐름을 설계하는 '솔루션 빌더' 어려운 기술을 뽐내기보다 '현장의 병목 현상 해결', '실질적인 운영 비용과 시간 절감'을 최우선으로 고민합니다. \"업무 구조에 대한 이해가 효율화의 시작이었습니다.\" 14개 통계집의 공통된 작성 흐름을 파악하여 자동화 설계를 마쳤습니다. 기술 이전에 업무 본질을 먼저 이해함으로써 3개월의 소요 시간을 1개월로 줄이는 결과를 얻었습니다.\n\n**빠르게 구현하고, 꼼꼼하게 검증합니다.**\n특정 언어의 문법에 매몰되기보다 AI와 최신 도구를 영리하게 활용해 구현 속도를 비약적으로 높입니다. 그렇게 확보한 시간은 오로지 '이 시스템이 현장에서 오류 없이 잘 돌아가는지', '사용자가 쓰는 데 불편함은 없는지'를 한 번 더 체크하는 데 투자합니다. 1인 개발로 기획부터 배포까지 전 과정을 책임져 본 경험을 바탕으로, 어느 곳에서든 실질적인 변화를 만들어내는 든든한 일잘러가 되겠습니다.",
+        about: "**책상 위 정답보다 현장의 해답을 찾는 '실무형 AI 파트너'**\n\n\"기술은 사람이 쓰기 편해야 완성된다\"는 믿음으로, 현장의 페인포인트(Pain Point)를 가장 실용적인 기술로 해결합니다. 수작업이 만연했던 보건 통계 업무와 제조 현장 행정 업무를 Python과 노코드(No-code)로 시스템화하여, 업무 속도를 3배 이상 높인 경험이 있습니다.\n\n논리적으로 완벽한 코드보다, 현장 실무자의 목소리를 반영한 설계를 최우선으로 합니다. 이러한 현장 이해도를 바탕으로, 데이터가 끊기지 않는 자동화 파이프라인을 구축하고 'AI First' 비전을 현실로 만드는 엔지니어가 되겠습니다.",
         education: [
             {
                 school: "한국방송통신대학교",
-                major: "컴퓨터과학과 (재학중)",
+                major: "컴퓨터과학과 (편입/재학중)",
                 period: "2024. 03 - 현재",
             },
             {
@@ -71,7 +71,7 @@ export const RESUME_DATA = {
             {
                 company: "개인 프로젝트 및 솔루션 컨설팅",
                 position: "솔루션 빌더 (1인 개발 및 운영)",
-                period: "2024. 10 - 현재",
+                period: "2024. 10 - 2025. 12",
                 description: [
                     "업무 프로세스 진단 및 구현 : 고객사 인터뷰를 통해 수기 업무의 병목 구간을 파악하고, 요구사항을 시스템으로 구현 및 피드백 반영",
                     "비즈니스 로직 최적화 : 파티/소개팅 등 복잡한 운영 로직을 가진 고객사를 대상으로, 데이터 흐름을 시각화하고 1인 운영이 가능한 형태의 관리 시스템 설계 및 납품",
@@ -88,18 +88,29 @@ export const RESUME_DATA = {
                     "해결 방안 : 역학조사관 인터뷰를 통해 요구사항을 파악하고, 데이터 입력 즉시 통계 분석 및 보고서(한글/PDF)를 자동 생성하는 웹 기반 시스템 구축. 현장 피드백을 반영하여 v1.0에서 v2.0까지 단계적으로 기능 확장",
                     "의사결정 : 외부 SW 의존도를 낮추기 위해 브라우저 기반 경량 통계 알고리즘을 직접 구현. TypeScript 전환 및 3차 QC를 통해 시스템 안정성 확보",
                     "성    과 : 수 시간이 소요되던 분석 및 보고서 작성을 데이터 입력 즉시 완료. 보건소 배포 및 실무 교육 실시",
-                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, 역학 통계 로직(Custom)"
+                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat"
                 ]
             },
             {
                 name: "[실시간 코호트 검진 현장 관제 시스템](/portfolio/cohort-dashboard)",
-                period: "2024. 01 - 2025. 12",
+                period: "2024. 01 - 2025. 10",
                 description: [
                     "문제 상황 : 검진 현장의 병목 현상 및 대기 시간 관리 부재로 인한 혼선 발생",
                     "해결 방안 : AppSheet-Firebase 실시간 연동 및 Google TTS 기반 자동 음성 호명 시스템 구축",
                     "의사결정 : Google Sheets 지연(5초) 해결을 위해 Firebase Realtime DB 도입, 반응 속도 1초 미만으로 개선",
                     "성    과 : 실시간 순서 배정 자동화로 검진 대상자 동선 최적화, 현장 혼선 제거 및 회차당 소요 시간 15% 단축",
                     "사용 기술 : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "제조업(루나테크) 경량 ERP 및 사내 교육 평가 시스템",
+                period: "2024. 10 - 2025. 12",
+                description: [
+                    "문제 상황 : 견적-발주-세금계산서 업무의 수기 관리로 인한 비효율 및 교육생 평가 데이터의 체계적 관리 부재",
+                    "해결 방안 : AppSheet+Python 하이브리드 ERP 구축으로 업무 자동화, 교육생 평가/관리 앱(AppSheet) 추가 개발로 인력 양성 프로세스 디지털화",
+                    "의사결정 : 빠른 개발 속도와 높은 시스템 안정성을 동시에 확보하기 위해, 프론트엔드는 AppSheet(No-code)로 구축하고 핵심 로직은 Python 서버로 분리하여 설계",
+                    "성    과 : 현장에서 즉시 견적 산출, PDF 발행, 세금계산서 전송까지 '원클릭'으로 통합하여 수기 행정 업무 및 데이터 중복 입력 원천 제거",
+                    "사용 기술 : Python(Flask), Google Cloud Run, AppSheet, 전자세금계산서 API"
                 ]
             },
             {
@@ -111,17 +122,6 @@ export const RESUME_DATA = {
                     "의사결정 : 사업 모델이 추가될 때마다 코딩을 새로 하는 번거로움을 없애기 위해, 기획자가 직접 신청 항목을 설정할 수 있는 유연한 구조를 설계하여 운영 효율 극대화",
                     "성 과 : 입금 확인부터 알림톡 발송까지 전 과정 자동화로 1인 운영 체제 확립 및 휴먼 에러 최소화 (현재 부산 소재 업체 사용 중)",
                     "사용 기술 : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
-                ]
-            },
-            {
-                name: "제조업(루나테크) 경량 ERP 및 업무 자동화 시스템",
-                period: "2024. 10 - 현재",
-                description: [
-                    "문제 상황 : 견적-발주-세금계산서 업무의 수기 관리 및 데이터 파편화로 인한 중복 행정 발생",
-                    "해결 방안 : 세금계산서 자동 발행(Flask/Cloud Run)과 고품질 PDF 견적 엔진(Next.js)을 결합한 통합 업무 자동화 환경 구축",
-                    "의사결정 : 기존 엑셀 기반 수기 관리를 AppSheet 앱으로 전환하고, 세금계산서·PDF 발행 등 고도화 영역만 클라우드 API로 연결하여 도입 장벽 최소화",
-                    "성    과 : 파편화되어 있던 견적 산출, PDF 발행, 세금계산서 전송 과정을 '원클릭'으로 통합하여 수기 행정 업무 및 데이터 중복 입력 원천 제거",
-                    "사용 기술 : Next.js, Python(Flask), Google Cloud Run, AppSheet, 전자세금계산서 API"
                 ]
             }
         ],
@@ -153,13 +153,13 @@ export const RESUME_DATA = {
     en: {
         name: "Choe In-gyu",
         birthYear: "1998",
-        role: "Business Solution Engineer",
+        role: "DX & Automation Engineer",
         location: "Gwangju, South Korea",
-        about: "**'Solution Builder' who reads business flows and finds answers with technology.**\nI analyzed and automated the process of creating 14 statistical books, reducing 3 months of work to 1 month. I maximize development speed with AI and the latest tools, investing the saved time into verifying system stability and user convenience. Based on my experience in solo development from planning to operation, I create tangible results that substantially reduce operational costs in the field.",
+        about: "**'Practical AI Partner' finding real-world solutions rather than textbook answers.**\n\nWith the belief that \"a technology is complete only when it is easy for people to use,\" I solve field pain points with the most practical technology. I have experience in systemizing public health statistics and manufacturing administrative tasks, which were rampant with manual work, using Python and No-code, increasing work speed by more than 3 times.\n\nI prioritize design that reflects the voices of field practitioners over logically perfect code. Based on this understanding of the field, I aspire to be an engineer who builds automation pipelines where data does not break and turns the 'AI First' vision into reality.",
         education: [
             {
                 school: "Korea National Open University",
-                major: "Computer Science (In Progress)",
+                major: "Computer Science (Transfer/In Progress)",
                 period: "2024. 03 - Present",
             },
             {
@@ -170,7 +170,7 @@ export const RESUME_DATA = {
         ],
         experience: [],
         projects: [
-             {
+            {
                 name: "[Easy-Epidemiology Solution](/portfolio/easy-epidemiology)",
                 period: "2024. 11 - 2025. 12",
                 description: [
@@ -178,7 +178,7 @@ export const RESUME_DATA = {
                     "Solution : Built a web-based integration analysis pipeline that completes statistical analysis and report (HWPX) generation immediately upon data entry. Expanded features from v1.0 to v2.0 based on field feedback.",
                     "Decision : Directly implemented lightweight browser-based statistical algorithms to reduce dependency on external SW. Ensured system stability through TypeScript migration and 3 rounds of QC.",
                     "Result : Completed analysis and reported, which used to take hours, immediately upon data entry. Deployed to public health centers and conducted training.",
-                    "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
+                    "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat"
                 ]
             },
             {
@@ -193,6 +193,17 @@ export const RESUME_DATA = {
                 ]
             },
             {
+                name: "Manufacturing (LunaTech) Light ERP & Trainee Evaluation System",
+                period: "2024. 10 - 2025. 12",
+                description: [
+                    "Problem : Inefficiency due to manual management of Quote-Order-Tax Invoice tasks and lack of systematic management for trainee evaluation data.",
+                    "Solution : Automating work with AppSheet+Python Hybrid ERP, Digitalizing talent training process by developing Trainee Evaluation/Management App (AppSheet).",
+                    "Decision : Designed frontend with AppSheet (No-code) and separated business logic to Python Server to ensure both rapid development speed and high system stability.",
+                    "Result : Integrated 'One Click' process for quote calculation, PDF issuance, and tax invoice transmission, eliminating manual admin work and duplicate data entry.",
+                    "Tech Stack : Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
+                ]
+            },
+            {
                 name: "[Integrated Event Management Solution (Party/Dating/1:1 Matching)](/portfolio/party-saas)",
                 period: "2025. 10 - 2025. 12",
                 description: [
@@ -201,17 +212,6 @@ export const RESUME_DATA = {
                     "Decision : Designed a flexible structure where planners can directly configure application items to eliminate the need for new coding whenever a business model is added.",
                     "Result : Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to sending AlimTalk notifications.",
                     "Tech Stack : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
-                ]
-            },
-            {
-                name: "Manufacturing (LunaTech) Light ERP & Automation System",
-                period: "2024. 10 - Present",
-                description: [
-                    "Problem : Duplicate administration due to manual management of Quote-Order-Tax Invoice tasks and data fragmentation.",
-                    "Solution : Built an integrated work automation environment combining automatic tax invoice issuance (Flask/Cloud Run) and high-quality PDF quote engine (Next.js).",
-                    "Decision : Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
-                    "Result : Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
-                    "Tech Stack : Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
                 ]
             }
         ],
@@ -246,8 +246,8 @@ export const RESUME_DATA_V2 = {
     ...RESUME_DATA,
     ko: {
         ...RESUME_DATA.ko,
-        role: "Product Engineer",
-        about: "**언어와 프레임워크의 경계를 넘어, 문제의 해결에 가장 적합한 기술을 설계합니다.**\n\n특정 기술 스택을 고집하지 않습니다. 프로젝트의 요구사항에 맞춰 AI Agent와 아키텍처를 논의하고, 최적의 도구를 선정하여 유연하게 개발합니다. AI Agent를 파트너 삼아 기능 구현 시간을 최소화하고, **'무엇을, 왜 만들어야 하는가'**에 대한 기획과 비즈니스 로직 설계에 몰입합니다. 기획부터 배포까지 전 과정을 주도하며, 3개월 내 개발하여 실사용 검증까지 완료합니다.",
+        role: "DX & Automation Engineer",
+        about: "**책상 위 정답보다 현장의 해답을 찾는 '실무형 AI 파트너'**\n\n\"기술은 사람이 쓰기 편해야 완성된다\"는 믿음으로, 현장의 페인포인트(Pain Point)를 가장 실용적인 기술로 해결합니다. 수작업이 만연했던 보건 통계 업무와 제조 현장 행정 업무를 Python과 노코드(No-code)로 시스템화하여, 업무 속도를 3배 이상 높인 경험이 있습니다.\n\n논리적으로 완벽한 코드보다, 현장 실무자의 목소리를 반영한 설계를 최우선으로 합니다. 이러한 현장 이해도를 바탕으로, 데이터가 끊기지 않는 자동화 파이프라인을 구축하고 'AI First' 비전을 현실로 만드는 엔지니어가 되겠습니다.",
         experience: [
             {
                 company: "전남대학교 의과대학 예방의학교실",
@@ -285,8 +285,7 @@ export const RESUME_DATA_V2 = {
                     {
                         title: "역학조사 솔루션 및 업무 도구 개발",
                         details: [
-                            "역학조사 통합 분석 솔루션 개발 및 보건소 배포",
-                            "공통 업무 자동화 툴 제작 및 실무 매뉴얼 배포"
+                            "역학조사 통합 분석 솔루션 개발 및 실무 교육 (광주/전남 보건소 현장 적용)"
                         ]
                     }
                 ]
@@ -294,7 +293,7 @@ export const RESUME_DATA_V2 = {
             {
                 company: "프리랜서 솔루션 개발",
                 position: "1인 개발 및 운영",
-                period: "2024. 10 - 현재",
+                period: "2024. 10 - 2025. 12",
                 description: [
                     "제조업 ERP, 이벤트 관리 솔루션 등 고객사 맞춤형 업무 자동화 시스템 설계·개발·운영"
                 ]
@@ -307,20 +306,31 @@ export const RESUME_DATA_V2 = {
                 description: [
                     "문제 상황 : 보건소 담당자가 환자 대조군 분석 및 유행곡선 생성을 수작업으로 진행하여 발생하는 심각한 시간 병목 및 업무 과부하",
                     "해결 방안 : 데이터 입력 즉시 통계 분석과 보고서(HWPX) 생성이 완료되는 웹 기반 올인원 분석 파이프라인 구축",
-                    "의사결정 : 폐쇄망 환경의 특성을 고려하여, AI와의 아키텍처 검토를 거쳐 외부 서버 통신이 없는 Browser-Client 100% 연산 방식 채택. 경량 통계 라이브러리(jStat)를 활용해 배포 용이성과 실행 속도 동시 확보",
+                    "의사결정 : 폐쇄망 환경의 특성을 고려하여, AI와의 아키텍처 검토를 거쳐 외부 서버 통신이 없는 브라우저 자체 연산 방식 채택. 경량 통계 라이브러리(jStat)를 활용해 배포 용이성과 실행 속도 동시 확보",
                     "성    과 : 수 시간이 걸리던 분석 및 보고서 작성을 '데이터 입력 즉시' 완료하도록 개선하여 실무 병목 해소. 광주/전남 보건소 실무 도구로 채택",
-                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, 역학 통계 로직(Custom)"
+                    "사용 기술 : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat"
                 ]
             },
             {
                 name: "[실시간 코호트 검진 현장 관제 시스템](/portfolio/cohort-dashboard)",
-                period: "2024. 01 - 2025. 12",
+                period: "2024. 01 - 2025. 10",
                 description: [
                     "문제 상황 : 검진 현장에서 대기 순서를 수기로 관리하며 발생하는 동선 혼선 및 민원 증가",
-                    "해결 방안 : 태블릿 기반의 접수-검사-완료 실시간 동기화 시스템 구축. AppSheet와 Firebase를 연동하여 별도 서버 개발 없이 현장 맞춤형 관제 대시보드 구축",
+                    "해결 방안 : 태블릿 기반의 접수-검사-완료 실시간 동기화 시스템 구축. AppSheet와 Firebase를 연동하여 별도의 백엔드 구축 없이 현장 맞춤형 관제 대시보드 구현",
                     "의사결정 : 보조원들이 화면을 계속 주시하지 않아도 즉시 업무에 투입될 수 있도록 Google TTS 기반 자동 음성 호출 기능 도입",
-                    "성    과 : 대기 인원 분산 및 병목 구간 즉시 해소, 검진 회차당 소요 시간 15% 단축 달성. 운영 인력 2명 감축 효과",
+                    "성    과 : 대기 인원 분산 및 병목 구간 해소, 검진 회차당 소요 시간 15% 단축 달성. 운영 인력 1명 감축 효과",
                     "사용 기술 : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "제조업(루나테크) 경량 ERP 및 사내 교육 평가 시스템",
+                period: "2024. 10 - 2025. 12",
+                description: [
+                    "문제 상황 : 견적-발주-세금계산서 업무의 수기 관리로 인한 비효율 및 교육생 평가 데이터의 체계적 관리 부재",
+                    "해결 방안 : AppSheet+Python 하이브리드 ERP 구축으로 업무 자동화, 교육생 평가/관리 앱(AppSheet) 추가 개발로 인력 양성 프로세스 디지털화",
+                    "의사결정 : 빠른 개발 속도와 높은 시스템 안정성을 동시에 확보하기 위해, 프론트엔드는 AppSheet(No-code)로 구축하고 핵심 로직은 Python 서버로 분리하여 설계",
+                    "성    과 : 현장에서 즉시 견적 산출, PDF 발행, 세금계산서 전송까지 '원클릭'으로 통합하여 수기 행정 업무 및 데이터 중복 입력 원천 제거",
+                    "사용 기술 : Python(Flask), Google Cloud Run, AppSheet, 전자세금계산서 API"
                 ]
             },
             {
@@ -329,29 +339,18 @@ export const RESUME_DATA_V2 = {
                 description: [
                     "문제 상황 : 신청(폼)-관리(엑셀)-운영(종이)로 파편화된 도구 때문에 데이터 단절 및 운영 리소스 낭비 발생",
                     "해결 방안 : 신청 접수부터 QR 체크인, 정산까지 데이터 흐름이 끊기지 않는 All-in-One 운영 플랫폼 개발",
-                    "의사결정 : 반복적인 기본 기능 구현은 AI에게 위임하여 개발 속도를 단축. 확보된 시간을 활용해 '기획자가 직접 상품/신청폼을 생성할 수 있는 Form Builder 엔진' 개발에 집중하여, 개발자 개입 없는 운영 확장성 확보",
+                    "의사결정 : 사업 모델이 추가될 때마다 코딩을 새로 하는 번거로움을 없애기 위해, 기획자가 직접 신청 항목을 설정할 수 있는 유연한 구조를 설계하여 운영 효율 극대화",
                     "성 과 : 입금 확인부터 알림톡 발송까지 전 과정 자동화로 1인 운영 체제 확립 및 휴먼 에러 최소화 (현재 부산 소재 업체 사용 중)",
                     "사용 기술 : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
             },
-            {
-                name: "제조업(루나테크) 경량 ERP 및 업무 자동화 시스템",
-                period: "2024. 10 - 현재",
-                description: [
-                    "문제 상황 : 견적-발주-세금계산서 업무의 수기 관리 및 데이터 파편화로 인한 중복 행정 및 비효율",
-                    "해결 방안 : 현장 친화적인 AppSheet(Front)와 유연한 Python Server(Back)를 결합한 하이브리드 업무 자동화 시스템 구축",
-                    "의사결정 : '현장 작업자가 즉시 사용할 수 있어야 한다'는 목표 하에, 개발 복잡도가 높은 일반 웹 대신 AppSheet(No-code)를 프론트엔드로 선정하는 과감한 기술적 타협. 반면, 복잡한 세금계산서 로직은 Cloud Run(Python)으로 처리하여 유연성과 안정성을 동시에 잡는 실용적 아키텍처 설계",
-                    "성    과 : 파편화되어 있던 견적 산출, PDF 발행, 세금계산서 전송 과정을 '원클릭'으로 통합하여 수기 행정 업무 및 데이터 중복 입력 원천 제거",
-                    "사용 기술 : Next.js, Python(Flask), Google Cloud Run, AppSheet, 전자세금계산서 API"
-                ]
-            }
         ],
         skills: [
             {
-                category: "AI Collaboration Tools",
+                category: "AI 협업 도구",
                 items: [
-                    "AI Tools : Google Antigravity (Main), Claude Code, Cursor",
-                    "Workflow : AI Agent를 활용한 '기획-설계-구현'의 초고속 이터레이션 및 비즈니스 로직 중심 개발"
+                    "AI Tools : Google Antigravity, Claude Code, Cursor",
+                    "Workflow : AI Agent와 함께 '기획부터 구현까지 빠르게 실행'하며, 단순 코딩보다 핵심 기능 개발에 집중",
                 ]
             },
             {
@@ -375,8 +374,8 @@ export const RESUME_DATA_V2 = {
     },
     en: {
         ...RESUME_DATA.en,
-        role: "Product Engineer",
-        about: "**Going beyond languages and frameworks, I design technologies best suited to solving the problem.**\n\nI do not stick to a specific tech stack. I discuss architectures with AI Agents appropriate for the project requirements and select optimal tools for flexible development. Partnering with AI Agents, I minimize feature implementation time and immerse myself in planning and business logic design—**'what to build and why'**. Leading the entire process from planning to deployment, I complete development within 3 months and verify it in real-world usage.",
+        role: "DX & Automation Engineer",
+        about: "**'Practical AI Partner' finding real-world solutions rather than textbook answers.**\n\nWith the belief that \"a technology is complete only when it is easy for people to use,\" I solve field pain points with the most practical technology. I have experience in systemizing public health statistics and manufacturing administrative tasks, which were rampant with manual work, using Python and No-code, increasing work speed by more than 3 times.\n\nI prioritize design that reflects the voices of field practitioners over logically perfect code. Based on this understanding of the field, I aspire to be an engineer who builds automation pipelines where data does not break and turns the 'AI First' vision into reality.",
         experience: [
             {
                 company: "JNU Preventive Medicine",
@@ -423,14 +422,14 @@ export const RESUME_DATA_V2 = {
             {
                 company: "Freelance Solution Development",
                 position: "Solo Developer & Operator",
-                period: "2024. 10 - Present",
+                period: "2024. 10 - 2025. 12",
                 description: [
                     "Designed, developed, and operated customized business automation systems for clients, including Manufacturing ERP and Event Management Solutions."
                 ]
             }
         ],
         projects: [
-             {
+            {
                 name: "[Easy-Epidemiology Solution](/portfolio/easy-epidemiology)",
                 period: "2024. 11 - 2025. 12",
                 description: [
@@ -438,18 +437,29 @@ export const RESUME_DATA_V2 = {
                     "Solution : Built a web-based integrated analysis pipeline that completes statistical analysis and report (HWPX) generation immediately upon data entry.",
                     "Decision : Considering the closed network environment, adopted a Browser-Client 100% computation method after architectural review with AI. Utilized a lightweight statistical library (jStat) to ensure both ease of deployment and execution speed.",
                     "Result : Improved analysis and reporting, which used to take hours, to be completed 'immediately upon data entry', resolving field bottlenecks. Adopted as a practical tool for Gwangju/Jeonnam public health centers.",
-                    "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat, Custom Epidemiology Logic"
+                    "Tech Stack : Vue.js, TypeScript, Tailwind CSS, ECharts, jStat"
                 ]
             },
             {
                 name: "[Real-time Cohort Control System](/portfolio/cohort-dashboard)",
-                period: "2024. 01 - 2025. 12",
+                period: "2024. 01 - 2025. 10",
                 description: [
                     "Problem : Confusion and bottlenecks caused by lack of wait time management at examination sites.",
                     "Solution : Built an automated voice calling system using AppSheet-Firebase real-time integration and Google TTS.",
                     "Decision : Introduced Google TTS-based automated voice calling so support staff can immediately engage in tasks without constantly watching the screen.",
-                    "Result : Immediately resolved bottlenecks and dispersed waiting crowds, reducing time per session by 15%. Reduced operational staff by 2.",
+                    "Result : Immediately resolved bottlenecks and dispersed waiting crowds, reducing time per session by 15%. Reduced operational staff by 1.",
                     "Tech Stack : AppSheet, Google Apps Script, Firebase Realtime DB, Google TTS API"
+                ]
+            },
+            {
+                name: "Manufacturing (LunaTech) Light ERP & Trainee Evaluation System",
+                period: "2024. 10 - 2025. 12",
+                description: [
+                    "Problem : Inefficiency due to manual management of Quote-Order-Tax Invoice tasks and lack of systematic management for trainee evaluation data.",
+                    "Solution : Automating work with AppSheet+Python Hybrid ERP, Digitalizing talent training process by developing Trainee Evaluation/Management App (AppSheet).",
+                    "Decision : Designed frontend with AppSheet (No-code) and separated business logic to Python Server to ensure both rapid development speed and high system stability.",
+                    "Result : Integrated 'One Click' process for quote calculation, PDF issuance, and tax invoice transmission, eliminating manual admin work and duplicate data entry.",
+                    "Tech Stack : Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
                 ]
             },
             {
@@ -462,24 +472,13 @@ export const RESUME_DATA_V2 = {
                     "Result : Established a one-person operation system and minimized human error by automating the entire process from deposit confirmation to sending AlimTalk notifications.",
                     "Tech Stack : React, TypeScript, Firebase, Cloudflare R2, Tailwind CSS"
                 ]
-            },
-            {
-                name: "Manufacturing (LunaTech) Light ERP & Automation System",
-                period: "2024. 10 - Present",
-                description: [
-                    "Problem : Duplicate administration and inefficiency due to manual management and data fragmentation of Quote-Order-Tax Invoice tasks.",
-                    "Solution : Built a hybrid business automation system combining field-friendly AppSheet (Front) and flexible Python Server (Back).",
-                    "Decision : Migrated legacy Excel workflows to an AppSheet app, integrating only advanced features (tax invoices, PDF) via Cloud API to minimize adoption barriers.",
-                    "Result : Integrated fragmented quote calculation, PDF issuance, and tax invoice transmission processes into 'One Click', eliminating manual admin work and duplicate data entry.",
-                    "Tech Stack : Next.js, Python(Flask), Google Cloud Run, AppSheet, Electronic Tax Invoice API"
-                ]
             }
         ],
         skills: [
             {
                 category: "AI Collaboration Tools",
                 items: [
-                    "AI Tools : Google Antigravity (Main), Claude Code, Cursor",
+                    "AI Tools : Google Antigravity, Claude Code, Cursor",
                     "Workflow : Hyper-speed iteration of 'Planning-Design-Implementation' and business logic-centered development using AI Agents"
                 ]
             },
