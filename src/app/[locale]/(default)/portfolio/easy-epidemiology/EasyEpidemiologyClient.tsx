@@ -14,10 +14,14 @@ import { FeatureTimeline } from "@/features/portfolio/projects/easy-epidemiology
 
 // Re-using the animation component from Party SaaS or similar if available, 
 // or just using a placeholder visual for the Hero. 
-import { EpidemiologyDemo } from "@/features/portfolio/projects/easy-epidemiology/EpidemiologyDemo"; 
-import { useResponsiveScale } from "@/hooks/useResponsiveScale"; 
+import { EpidemiologyDemo } from "@/features/portfolio/projects/easy-epidemiology/EpidemiologyDemo";
+import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 
-export default function EasyEpidemiologyClient() {
+interface Props {
+    backLink?: string;
+}
+
+export default function EasyEpidemiologyClient({ backLink }: Props) {
     const t = useTranslations("EasyEpidemiology");
     const scale = useResponsiveScale();
 
@@ -33,27 +37,28 @@ export default function EasyEpidemiologyClient() {
 
                 <div className="w-full md:w-[93%] max-w-[77rem] mx-auto relative z-20">
                     <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-                        
+
                         {/* Left Content */}
-                        <div className="lg:col-span-5 flex flex-col items-start text-left order-1">
+                        <div className="lg:col-span-5 flex flex-col items-start text-left order-1 min-w-0">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
+                                className="w-full min-w-0"
                             >
 
-                                <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-keep tracking-tight text-gray-900"
+                                <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-words tracking-tight text-gray-900"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.title') }}
                                 />
 
-                                <p className="text-base md:text-lg font-normal text-gray-600 leading-relaxed mb-8 break-keep max-w-xl"
+                                <p className="text-base md:text-lg font-normal text-gray-600 leading-relaxed mb-8 break-words"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.description') }}
                                 />
-                                
+
                                 <div className="flex items-center gap-4">
-                                    <a 
-                                        href="https://easy-epi.xyz/" 
-                                        target="_blank" 
+                                    <a
+                                        href="https://easy-epi.xyz/"
+                                        target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
                                     >
@@ -84,18 +89,18 @@ export default function EasyEpidemiologyClient() {
             </section>
 
             <CoreDescription />
-            
-            <VirtualScrollDemo />
-            
-            <ArchitectureFlow />
-            
 
-            
+            <VirtualScrollDemo />
+
+            <ArchitectureFlow />
+
+
+
             <FeatureTimeline />
 
             {/* Footer */}
             <div className="py-24 bg-gray-50 border-t border-gray-100 text-center">
-                 <Link href="/?tab=portfolio">
+                <Link href={backLink || "/?tab=portfolio"}>
                     <Button variant="outline" className="h-14 px-8 rounded-full border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-400 hover:bg-white hover:shadow-sm transition-all duration-300 group text-base font-medium">
                         <LayoutGrid className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform text-gray-400 group-hover:text-gray-900" />
                         {t('backToPortfolio')}

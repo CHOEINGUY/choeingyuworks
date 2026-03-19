@@ -3,106 +3,107 @@
 import { useRef, useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 
-import { RESUME_DATA_V2, RESUME_DATA } from "../data/resumeData";
+import { RESUME_DATA_V2 } from "../data/resumeData";
 import { ResumeNavbar } from "./ResumeNavbar";
 import { ResumeHeader } from "./ResumeHeader";
-import { ResumeAbout } from "./ResumeAbout";
-import { ResumeEducation } from "./ResumeEducation";
+import { ResumeSectionBlock } from "./ResumeSectionBlock";
+import { ResumeCoverLetter } from "./ResumeCoverLetter";
 import { ResumeExperience } from "./ResumeExperience";
 import { ResumeProjects } from "./ResumeProjects";
 import { ResumeSkills } from "./ResumeSkills";
-import { ResumeContact } from "./ResumeContact";
-import { ResumeClosing } from "./ResumeClosing";
+import { ResumeCareerDesc } from "./ResumeCareerDesc";
+import { ResumeQuestions } from "./ResumeQuestions";
 import { ResumeQRCode } from "./ResumeQRCode";
 import { ResumeShareModal } from "./ResumeShareModal";
 
 interface ResumeV2Props {
     data?: any;
+    targetCompany?: string;
 }
 
-export function ResumeV2({ data }: ResumeV2Props) {
+export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
     const locale = useLocale();
     const sourceData = data || RESUME_DATA_V2;
-    // Use sourceData if available for locale, fall back to base English data if strictly needed
     const currentData = (sourceData as any)[locale as 'ko' | 'en'] || sourceData.en || sourceData.ko;
     const commonData = sourceData.common;
-    
+
     const resumeRef = useRef<HTMLDivElement>(null);
     const [today, setToday] = useState("");
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const date = new Date();
         setToday(new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(date));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locale]);
 
-    const handlePrint = () => {
-        window.print();
-    };
+    const handlePrint = () => window.print();
 
     const handleShare = () => {
-        // Check if mobile device
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
         const shareData = {
             title: `${currentData.name} - ${currentData.role}`,
-            text: currentData.about.split('\n')[0], // First line of about
+            text: currentData.role,
             url: window.location.href
         };
-
-        // Try native share ONLY on mobile
         if (isMobile && navigator.share) {
             navigator.share(shareData).catch(console.error);
             return;
         }
-        
-        // Desktop: Show custom modal
         setIsShareModalOpen(true);
     };
 
     return (
         <div className="min-h-screen bg-white print:bg-white font-sans text-gray-900 selection:bg-gray-100 relative">
-            
-            <ResumeNavbar 
-                onShareClick={handleShare} 
-                onPrintClick={handlePrint} 
+
+            <ResumeNavbar
+                onShareClick={handleShare}
+                onPrintClick={handlePrint}
+                targetCompany={targetCompany}
             />
 
             <div className="pt-10 pb-20 px-4 md:px-12 print:p-0 print:pt-4">
-                <div ref={resumeRef} className="max-w-4xl mx-auto space-y-12 bg-white p-4 md:p-12 print:p-0 print:max-w-none print:space-y-8">
+                <div ref={resumeRef} className="max-w-4xl mx-auto space-y-16 bg-white p-4 md:p-12 print:p-0 print:max-w-none print:space-y-12">
 
+                    {/* 헤더 - 모든 섹션 공통 */}
                     <ResumeHeader data={currentData} commonData={commonData} />
-                    
-                    <ResumeAbout about={currentData.about} />
-                    
-                    <ResumeExperience experience={currentData.experience} />
-                    
-                    <ResumeProjects projects={currentData.projects || []} />
-                    
-                    <ResumeSkills skills={currentData.skills} />
 
-                    <ResumeEducation education={currentData.education} />
-                    
-                    {currentData.closing && <ResumeClosing closing={currentData.closing} />}
-                    
-                    <ResumeContact commonData={commonData} />
+                    {/* 1. 커버레터 */}
+                    <ResumeSectionBlock number={1} title="커버레터">
+                        <ResumeCoverLetter content={currentData.coverLetter} />
+                    </ResumeSectionBlock>
+
+                    {/* 2. 이력서 */}
+                    <ResumeSectionBlock number={2} title="이력서">
+                        <div className="space-y-12">
+                            <ResumeExperience experience={currentData.experience} />
+                            <ResumeProjects projects={currentData.projects || []} />
+                            <ResumeSkills skills={currentData.skills} />
+                        </div>
+                    </ResumeSectionBlock>
+
+                    {/* 3. 경력기술서 */}
+                    <ResumeSectionBlock number={3} title="경력기술서">
+                        <ResumeCareerDesc projects={currentData.careerDesc || []} />
+                    </ResumeSectionBlock>
+
+                    {/* 4. 질문 */}
+                    <ResumeSectionBlock number={4} title="질문">
+                        <ResumeQuestions questions={currentData.questions || []} />
+                    </ResumeSectionBlock>
 
                 </div>
-                
-                {/* Print Footer */}
-                <div className="hidden print:flex w-full flex-col justify-center items-center mt-8 mb-8 text-sm text-black font-medium">
-                    {/* Date - Centered */}
-                    <span className="mb-6">{today}</span>
 
-                    {/* QR Code */}
+                {/* 인쇄 푸터 */}
+                <div className="hidden print:flex w-full flex-col justify-center items-center mt-8 mb-8 text-sm text-black font-medium">
+                    <span className="mb-6">{today}</span>
                     <ResumeQRCode />
                 </div>
             </div>
 
-            <ResumeShareModal 
-                isOpen={isShareModalOpen} 
-                onClose={() => setIsShareModalOpen(false)} 
+            <ResumeShareModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
                 data={{ name: currentData.name, role: currentData.role }}
             />
         </div>

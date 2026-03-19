@@ -53,14 +53,14 @@ export function E2EFlowBento() {
             <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col mb-16 items-center text-center max-w-3xl mx-auto">
                     <motion.h2
-                        className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-keep"
+                        className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-words"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                     />
                     <motion.p
-                        className="text-gray-600 text-lg break-keep leading-relaxed"
+                        className="text-gray-600 text-lg break-words leading-relaxed"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -71,16 +71,16 @@ export function E2EFlowBento() {
 
                 {/* Interactive Pipeline Container */}
                 <div className="flex flex-col gap-16">
-                    
+
                     {/* Top: Progress Bar & Icons */}
                     {/* Top: Progress Bar & Icons */}
                     <div className="px-0 relative w-full">
-                        
+
                         {/* MOBILE LAYOUT: Single Focused Step (Carousel) */}
                         <div className="md:hidden w-full flex flex-col items-center gap-6 mb-8 min-h-[160px] justify-center">
                             {/* Active Icon Body */}
                             <div className="flex flex-col items-center gap-3">
-                                <motion.div 
+                                <motion.div
                                     key={activeStep}
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
@@ -122,24 +122,24 @@ export function E2EFlowBento() {
                                 return (
                                     <div key={step.id} className="contents">
                                         {/* Step Node */}
-                                        <div 
+                                        <div
                                             className="flex flex-col items-center gap-6 cursor-pointer group relative z-10 shrink-0"
                                             onClick={() => handleStepClick(index)}
                                             style={{ width: '80px' }}
                                         >
-                                            <motion.div 
+                                            <motion.div
                                                 className={`relative w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-500 ease-out z-20
-                                                    ${isActive ? "bg-neutral-900 border-[3px] border-white shadow-xl shadow-neutral-400/50 scale-125" : 
-                                                      isCompleted ? "bg-white border-2 border-gray-900" : "bg-white border-2 border-gray-300 group-hover:border-gray-400"}`}
+                                                    ${isActive ? "bg-neutral-900 border-[3px] border-white shadow-xl shadow-neutral-400/50 scale-125" :
+                                                        isCompleted ? "bg-white border-2 border-gray-900" : "bg-white border-2 border-gray-300 group-hover:border-gray-400"}`}
                                             >
-                                                <Icon 
+                                                <Icon
                                                     className={`w-5 h-5 md:w-6 md:h-6 transition-colors duration-500
-                                                        ${isActive ? "text-white" : isCompleted ? "text-gray-900" : "text-gray-400"}`} 
+                                                        ${isActive ? "text-white" : isCompleted ? "text-gray-900" : "text-gray-400"}`}
                                                     strokeWidth={2}
                                                 />
                                             </motion.div>
-                                            
-                                            <span className={`absolute top-full mt-5 w-32 text-[11px] md:text-sm font-semibold break-keep text-center transition-colors duration-500 ${isActive ? "text-neutral-900" : "text-gray-400"}`}>
+
+                                            <span className={`absolute top-full mt-5 w-32 text-[11px] md:text-sm font-semibold break-words text-center transition-colors duration-500 ${isActive ? "text-neutral-900" : "text-gray-400"}`}>
                                                 {step.label}
                                             </span>
                                         </div>
@@ -148,7 +148,7 @@ export function E2EFlowBento() {
                                         {!isLast && (
                                             <div className="flex-1 h-[2px] bg-gray-200 mx-2 relative overflow-hidden shrink-0 min-w-[40px] rounded-full">
                                                 {/* Fill line */}
-                                                <motion.div 
+                                                <motion.div
                                                     className="absolute inset-y-0 left-0 bg-black"
                                                     initial={{ width: "0%" }}
                                                     animate={{ width: index < activeStep ? "100%" : "0%" }}
@@ -173,11 +173,11 @@ export function E2EFlowBento() {
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.4, ease: "easeOut" }}
                             >
-                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 break-keep tracking-tight">
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 break-words tracking-tight">
                                     {steps[activeStep].title}
                                 </h3>
-                                
-                                <p className="text-gray-500 text-base md:text-lg leading-relaxed break-keep max-w-xl">
+
+                                <p className="text-gray-500 text-base md:text-lg leading-relaxed break-words max-w-xl">
                                     {steps[activeStep].desc}
                                 </p>
                             </motion.div>

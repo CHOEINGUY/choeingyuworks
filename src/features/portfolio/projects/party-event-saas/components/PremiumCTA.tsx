@@ -17,11 +17,11 @@ export function PremiumCTA() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#111827] mb-8 tracking-tight break-keep leading-[1.15]"
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#111827] mb-8 tracking-tight break-words leading-[1.15]"
                         dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                     />
 
-                    <p className="text-lg md:text-xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed break-keep"
+                    <p className="text-lg md:text-xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed break-words"
                         dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
 

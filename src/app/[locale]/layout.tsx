@@ -3,16 +3,12 @@ import { Analytics } from "@vercel/analytics/react";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import "../globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-// CURRENT_BRAND unused
-import { AIChatWidget } from "@/features/portfolio/components/AIChatWidget";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
-    const titlePrefix = locale === 'ko' ? '최인규의' : 'Choeingyu';
-    const defaultTitle = locale === 'ko' ? `${titlePrefix} 포트폴리오 & 솔루션 엔지니어` : `${titlePrefix} Portfolio & Solution Engineer`;
-    
+    const titlePrefix = '최인규의';
+    const defaultTitle = `${titlePrefix} 포트폴리오 & 솔루션 엔지니어`;
+
     return {
         metadataBase: new URL("https://choeingyu.works"),
         title: {
@@ -65,10 +61,7 @@ export default async function LocaleLayout({
             </head>
             <body className="antialiased" suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
-                    <Navbar />
                     {children}
-                    <Footer />
-                    <AIChatWidget />
                     <Analytics />
                 </NextIntlClientProvider>
             </body>

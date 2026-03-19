@@ -73,7 +73,7 @@ export function ArchitectureDiagram() {
             <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col mb-16 items-center text-center max-w-3xl mx-auto">
                     <motion.h2
-                        className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-keep"
+                        className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-words"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -81,20 +81,20 @@ export function ArchitectureDiagram() {
                         데이터 흐름과 시스템 구조
                     </motion.h2>
                     <motion.p
-                        className="text-gray-600 text-lg break-keep leading-relaxed"
+                        className="text-gray-600 text-lg break-words leading-relaxed"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                     >
-                        현장에 익숙한 도구(Google Sheets)를 DB로 사용하면서도,<br className="hidden md:block"/>
+                        현장에 익숙한 도구(Google Sheets)를 DB로 사용하면서도,<br className="hidden md:block" />
                         실시간성(Real-time)을 확보하기 위해 Apps Script를 미들웨어로 활용한 하이브리드 아키텍처입니다.
                     </motion.p>
                 </div>
 
                 {/* Interactive Pipeline Container */}
                 <div className="flex flex-col gap-16">
-                    
+
                     {/* Top: Progress Bar & Icons */}
                     <div className="px-0 relative w-full">
                         {/* Container with extra padding to prevent clipping of scaled active items */}
@@ -108,24 +108,24 @@ export function ArchitectureDiagram() {
                                 return (
                                     <div key={step.id} className="contents">
                                         {/* Step Node */}
-                                        <div 
+                                        <div
                                             className="flex flex-col items-center gap-6 cursor-pointer group relative z-10 shrink-0"
                                             onClick={() => handleStepClick(index)}
                                             style={{ width: '100px' }} // 아이콘 간격 조금 더 확보
                                         >
-                                            <motion.div 
+                                            <motion.div
                                                 className={`relative w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ease-out z-20
-                                                    ${isActive ? "bg-blue-600 shadow-xl shadow-blue-200 scale-110 rotate-3" : 
-                                                      isCompleted ? "bg-white border-2 border-blue-600" : "bg-white border-2 border-gray-200 group-hover:border-gray-400"}`}
+                                                    ${isActive ? "bg-blue-600 shadow-xl shadow-blue-200 scale-110 rotate-3" :
+                                                        isCompleted ? "bg-white border-2 border-blue-600" : "bg-white border-2 border-gray-200 group-hover:border-gray-400"}`}
                                             >
-                                                <Icon 
+                                                <Icon
                                                     className={`w-6 h-6 md:w-7 md:h-7 transition-colors duration-500
-                                                        ${isActive ? "text-white" : isCompleted ? "text-blue-600" : "text-gray-400"}`} 
+                                                        ${isActive ? "text-white" : isCompleted ? "text-blue-600" : "text-gray-400"}`}
                                                     strokeWidth={2}
                                                 />
                                             </motion.div>
-                                            
-                                            <span className={`absolute top-full mt-5 w-32 text-xs md:text-sm font-bold break-keep text-center transition-colors duration-500 ${isActive ? "text-blue-700" : "text-gray-500"}`}>
+
+                                            <span className={`absolute top-full mt-5 w-32 text-xs md:text-sm font-bold break-words text-center transition-colors duration-500 ${isActive ? "text-blue-700" : "text-gray-500"}`}>
                                                 {step.label}
                                             </span>
                                         </div>
@@ -134,7 +134,7 @@ export function ArchitectureDiagram() {
                                         {!isLast && (
                                             <div className="flex-1 h-[2px] bg-gray-200 mx-2 relative overflow-hidden shrink-0 min-w-[40px] rounded-full">
                                                 {/* Fill line */}
-                                                <motion.div 
+                                                <motion.div
                                                     className="absolute inset-y-0 left-0 bg-blue-500"
                                                     initial={{ width: "0%" }}
                                                     animate={{ width: index < activeStep ? "100%" : "0%" }}
@@ -162,11 +162,11 @@ export function ArchitectureDiagram() {
                                 <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">
                                     Step {activeStep + 1}
                                 </div>
-                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 break-keep tracking-tight">
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 break-words tracking-tight">
                                     {PIPELINE_STEPS[activeStep].title}
                                 </h3>
-                                
-                                <p className="text-gray-600 text-base md:text-lg leading-relaxed break-keep max-w-2xl">
+
+                                <p className="text-gray-600 text-base md:text-lg leading-relaxed break-words max-w-2xl">
                                     {PIPELINE_STEPS[activeStep].desc}
                                 </p>
                             </motion.div>

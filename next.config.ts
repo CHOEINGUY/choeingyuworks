@@ -15,7 +15,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:locale(ko|en|ja)/portfolio',
+        source: '/:locale(ko)/portfolio',
         destination: '/:locale?tab=portfolio',
       },
       {
@@ -23,7 +23,7 @@ const nextConfig = {
         destination: '/?tab=portfolio',
       },
       {
-        source: '/:locale(ko|en|ja)',
+        source: '/:locale(ko)',
         destination: '/:locale?tab=about',
       },
     ];

@@ -23,7 +23,11 @@ interface Project {
     demoUrl?: string;
 }
 
-export function PortfolioSection() {
+interface PortfolioSectionProps {
+    targetCompany?: string;
+}
+
+export function PortfolioSection({ targetCompany }: PortfolioSectionProps) {
     const t = useTranslations("Portfolio");
 
     const PROJECTS: Project[] = [
@@ -57,7 +61,7 @@ export function PortfolioSection() {
             subtitle: t("solution.subtitle"),
             title: t("solution.title"),
             description: t("solution.description"),
-            tags: ["Firebase", "Cloudflare R2", "Banking API"],
+            tags: ["Firebase", "Cloudflare R2", "API"],
             result: t.rich("solution.result", {
                 strong: (chunks) => <strong>{chunks}</strong>
             }),
@@ -136,131 +140,128 @@ export function PortfolioSection() {
             <div className="flex flex-col">
                 {PROJECTS.map((project, idx) => {
                     const isActive = project.id === activeProjectId;
+                    const detailLink = project.detailLink ? (targetCompany ? `/${targetCompany}${project.detailLink}` : project.detailLink) : undefined;
+
                     return (
-                        <div 
-                            key={project.id} 
+                        <div
+                            key={project.id}
                             data-project-id={project.id}
                             className="project-card w-full border-t border-gray-200 first:border-t-0"
                         >
-                        {/* 1. Feature Detail (Centered Content) */}
-                        <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
-                            <motion.div
-                                initial={idx === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                                whileInView={idx === 0 ? undefined : { opacity: 1, y: 0 }}
-                                viewport={idx === 0 ? undefined : { once: true, margin: "-100px" }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
-                                className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-start"
-                            >
-                                {/* Left Column: Text (40%) */}
-                                <div className="lg:col-span-5 flex flex-col pt-4 order-2 lg:order-1">
-                                    <span className="text-gray-500 font-bold tracking-wider text-xs mb-2 md:mb-3 uppercase">
-                                        {project.subtitle}
-                                    </span>
-                                    <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-5 leading-tight whitespace-pre-line">
-                                        {project.title}
-                                    </h2>
-                                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-5 md:mb-6">
-                                        {project.description}
-                                    </p>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-5">
-                                        {project.tags.map(tag => (
-                                            <span key={tag} className="bg-gray-100 text-gray-600 px-2.5 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium">
-                                                {tag}
-                                            </span>
-                                        ))}
+                            {/* 1. Feature Detail (Centered Content) */}
+                            <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
+                                <motion.div
+                                    initial={idx === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                                    whileInView={idx === 0 ? undefined : { opacity: 1, y: 0 }}
+                                    viewport={idx === 0 ? undefined : { once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.6, ease: "easeOut" }}
+                                    className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-start"
+                                >
+                                    {/* Left Column: Text (40%) */}
+                                    <div className="lg:col-span-5 flex flex-col pt-4 order-2 lg:order-1">
+                                        <span className="text-gray-500 font-bold tracking-wider text-xs mb-2 md:mb-3 uppercase">
+                                            {project.subtitle}
+                                        </span>
+                                        <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-5 leading-tight whitespace-pre-line">
+                                            {project.title}
+                                        </h2>
+                                        <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-5 md:mb-6">
+                                            {project.description}
+                                        </p>
+                                        <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-5">
+                                            {project.tags.map(tag => (
+                                                <span key={tag} className="bg-gray-100 text-gray-600 px-2.5 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div className="flex flex-col items-start gap-2">
+                                            {detailLink && (
+                                                <Link
+                                                    href={detailLink}
+                                                    className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
+                                                >
+                                                    {t("buttons.detail")}
+                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                </Link>
+                                            )}
+                                            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                            {(project as any).demoUrl && (
+                                                <a
+                                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                                    href={(project as any).demoUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
+                                                >
+                                                    {t("buttons.demo")}
+                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col items-start gap-2">
-                                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                                        {(project as any).detailLink && (
-                                            <Link
-                                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                                href={(project as any).detailLink}
-                                                className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
-                                            >
-                                                {t("buttons.detail")}
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                            </Link>
-                                        )}
-                                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                                        {(project as any).demoUrl && (
-                                            <a
-                                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                                href={(project as any).demoUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                onClick={(e) => e.stopPropagation()}
-                                                className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
-                                            >
-                                                {t("buttons.demo")}
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
 
-                                {/* Right Column: Visual (60%) */}
-                                <div className={`lg:col-span-7 w-full ${project.id === "solution" ? "aspect-square" : "aspect-[16/12]"} lg:aspect-[16/11] rounded-2xl lg:rounded-3xl ${project.id === "solution" ? "bg-[#F6F5FB]" : project.imageColor} flex items-center justify-center overflow-hidden relative order-1 lg:order-2`}>
-                                    {project.id === "solution" ? (
-                                        <>
-                                            <div className="absolute inset-0 z-0 bg-gradient-to-br from-violet-50 via-purple-50/50 to-slate-50/80" />
-                                            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.08),transparent)]" />
-                                            <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-purple-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
-                                                <PartySolutionDemo
-                                                    isEmbedded
-                                                    scale={isMobile ? scale * 0.45 : scale * 0.55}
-                                                    isActive={isActive}
-                                                    isMobile={isMobile}
-                                                />
-                                            </div>
-                                        </>
-                                    ) : project.id === "field" ? (
-                                        <>
-                                            <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-100 via-blue-50/50 to-slate-100/80" />
-                                            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent)]" />
-                                            <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-slate-200/50 rounded-2xl lg:rounded-3xl">
-                                                <div className="absolute inset-0 w-[125%] h-[125%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                                                    <ExamFlowAnimation
+                                    {/* Right Column: Visual (60%) */}
+                                    <div className={`lg:col-span-7 w-full ${project.id === "solution" ? "aspect-square" : "aspect-[16/12]"} lg:aspect-[16/11] rounded-2xl lg:rounded-3xl ${project.id === "solution" ? "bg-[#F6F5FB]" : project.imageColor} flex items-center justify-center overflow-hidden relative order-1 lg:order-2`}>
+                                        {project.id === "solution" ? (
+                                            <>
+                                                <div className="absolute inset-0 z-0 bg-gradient-to-br from-violet-50 via-purple-50/50 to-slate-50/80" />
+                                                <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(167,139,250,0.08),transparent)]" />
+                                                <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-purple-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
+                                                    <PartySolutionDemo
                                                         isEmbedded
-                                                        scale={scale * 0.8}
+                                                        scale={isMobile ? scale * 0.45 : scale * 0.55}
                                                         isActive={isActive}
-                                                        isMobile={isMobile}
                                                     />
                                                 </div>
+                                            </>
+                                        ) : project.id === "field" ? (
+                                            <>
+                                                <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-100 via-blue-50/50 to-slate-100/80" />
+                                                <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent)]" />
+                                                <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-slate-200/50 rounded-2xl lg:rounded-3xl">
+                                                    <div className="absolute inset-0 w-[125%] h-[125%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                                                        <ExamFlowAnimation
+                                                            isEmbedded
+                                                            scale={scale * 0.8}
+                                                            isActive={isActive}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </>
+                                        ) : project.id === "easy-epidemiology" ? (
+                                            <>
+                                                <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-emerald-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
+                                                    <EpidemiologyDemo
+                                                        isEmbedded
+                                                        scale={scale * 0.95}
+                                                        isActive={isActive}
+                                                    />
+                                                </div>
+                                            </>
+                                        ) : (
+                                            /* Placeholder for other visuals */
+                                            <div className="text-center p-8">
+                                                <div className="w-16 h-16 bg-white rounded-2xl shadow-sm mx-auto mb-4 flex items-center justify-center">
+                                                    <span className="text-2xl font-bold text-gray-300">{idx + 1}</span>
+                                                </div>
+                                                <p className="text-gray-500 font-medium">Project Visual Area</p>
+                                                <p className="text-sm text-gray-400 mt-2">({project.subtitle})</p>
                                             </div>
-                                        </>
-                                    ) : project.id === "easy-epidemiology" ? (
-                                        <>
-                                            <div className="absolute inset-0 z-10 overflow-hidden ring-1 ring-emerald-200/50 rounded-2xl lg:rounded-3xl flex items-center justify-center">
-                                                <EpidemiologyDemo
-                                                    isEmbedded
-                                                    scale={scale * 0.95}
-                                                    isActive={isActive}
-                                                    isMobile={isMobile}
-                                                />
-                                            </div>
-                                        </>
-                                    ) : (
-                                        /* Placeholder for other visuals */
-                                        <div className="text-center p-8">
-                                            <div className="w-16 h-16 bg-white rounded-2xl shadow-sm mx-auto mb-4 flex items-center justify-center">
-                                                <span className="text-2xl font-bold text-gray-300">{idx + 1}</span>
-                                            </div>
-                                            <p className="text-gray-500 font-medium">Project Visual Area</p>
-                                            <p className="text-sm text-gray-400 mt-2">({project.subtitle})</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </motion.div>
-                        </div>
-
-                        {/* 2. Result Summary (Full-width light background with borders) */}
-                        <div className="w-full border-y border-gray-200">
-                            <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 min-h-[100px] md:min-h-[110px] flex items-center">
-                                <p className="text-lg md:text-xl text-[#333] subpixel-antialiased font-normal leading-relaxed break-keep">
-                                    {project.result}
-                                </p>
+                                        )}
+                                    </div>
+                                </motion.div>
                             </div>
-                        </div>
+
+                            {/* 2. Result Summary (Full-width light background with borders) */}
+                            <div className="w-full border-y border-gray-200">
+                                <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 min-h-[100px] md:min-h-[110px] flex items-center">
+                                    <p className="text-lg md:text-xl text-[#333] subpixel-antialiased font-normal leading-relaxed break-keep">
+                                        {project.result}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     );
                 })}
@@ -268,7 +269,7 @@ export function PortfolioSection() {
 
 
             {/* 2. Resume Call To Action */}
-            <ResumeCallToAction />
+            <ResumeCallToAction targetCompany={targetCompany} />
         </section >
     );
 }

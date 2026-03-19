@@ -9,19 +9,32 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export type TabType = "about" | "portfolio";
 
-export default function HomeClient() {
+interface Props {
+    targetCompany?: string;
+}
+
+export default function HomeClient({ targetCompany }: Props) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    
+
     // Derived state from URL
     const isPortfolio = searchParams.get('tab') === 'portfolio' || pathname.endsWith('/portfolio');
     const activeTab: TabType = isPortfolio ? 'portfolio' : 'about';
 
     const handleTabChange = (tab: TabType) => {
-        // Use router for navigation
+        // Use query params to avoid page re-mount (prevents Hero animation replay)
+        if (targetCompany) {
+            if (tab === 'portfolio') {
+                router.replace(`/${targetCompany}?tab=portfolio`, { scroll: false });
+            } else {
+                router.replace(`/${targetCompany}`, { scroll: false });
+            }
+            return;
+        }
+
         if (tab === 'portfolio') {
-            router.replace('/portfolio', { scroll: false });
+            router.replace('/?tab=portfolio', { scroll: false });
         } else {
             router.replace('/', { scroll: false });
         }
@@ -52,7 +65,7 @@ export default function HomeClient() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <PortfolioSection />
+                            <PortfolioSection targetCompany={targetCompany} />
                         </motion.div>
                     )}
                 </AnimatePresence>

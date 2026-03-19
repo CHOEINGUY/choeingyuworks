@@ -17,6 +17,8 @@ export interface Experience {
     period: string;
     description: string[];
     projects?: ExperienceProject[];
+    leaveReason?: string;      // 퇴사 사유 (Voithru)
+    isGapPeriod?: boolean;     // 공백기 여부 (Voithru)
 }
 
 export interface Project {

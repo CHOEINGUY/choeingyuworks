@@ -18,7 +18,11 @@ import { useMobile } from "@/hooks/useMobile";
 import { useResponsiveScale } from "@/hooks/useResponsiveScale";
 
 
-export default function PartySaaSClient() {
+interface Props {
+    backLink?: string;
+}
+
+export default function PartySaaSClient({ backLink }: Props) {
     const t = useTranslations("PartySaaS");
     const scale = useResponsiveScale();
     const isMobile = useMobile();
@@ -37,17 +41,18 @@ export default function PartySaaSClient() {
                     <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-center">
 
                         {/* Left Content (Text) */}
-                        <div className="lg:col-span-5 flex flex-col items-start text-left order-1">
+                        <div className="lg:col-span-5 flex flex-col items-start text-left order-1 min-w-0">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
+                                className="w-full min-w-0"
                             >
-                                <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-keep tracking-tight text-gray-900"
+                                <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-words tracking-tight text-gray-900"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.title') }}
                                 />
 
-                                <p className="text-base md:text-lg font-normal text-gray-600 leading-relaxed mb-8 break-keep max-w-xl"
+                                <p className="text-base md:text-lg font-normal text-gray-600 leading-relaxed mb-8 break-words"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.description') }}
                                 />
 
@@ -92,7 +97,7 @@ export default function PartySaaSClient() {
 
             {/* Footer Global Link (Compact) */}
             <div className="py-24 bg-gray-50 border-t border-gray-100 text-center">
-                <Link href="/?tab=portfolio">
+                <Link href={backLink || "/?tab=portfolio"}>
                     <Button variant="outline" className="h-14 px-8 rounded-full border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-400 hover:bg-white hover:shadow-sm transition-all duration-300 group text-base font-medium">
                         <LayoutGrid className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform text-gray-400 group-hover:text-gray-900" />
                         {t('backToPortfolio')}

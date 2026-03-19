@@ -42,21 +42,21 @@ export function FeatureComparisonMatrix() {
         {
             key: 'party',
             title: t('headers.party'),
-            features: comparisonData.flatMap(cat => 
+            features: comparisonData.flatMap(cat =>
                 cat.features.filter(f => f.party).map(f => f.name)
             )
         },
         {
             key: 'rotation',
             title: t('headers.rotation'),
-            features: comparisonData.flatMap(cat => 
+            features: comparisonData.flatMap(cat =>
                 cat.features.filter(f => f.rotation).map(f => f.name)
             )
         },
         {
             key: 'match',
             title: t('headers.match'),
-            features: comparisonData.flatMap(cat => 
+            features: comparisonData.flatMap(cat =>
                 cat.features.filter(f => f.match).map(f => f.name)
             )
         }
@@ -66,10 +66,10 @@ export function FeatureComparisonMatrix() {
         <section className="py-24 px-4 md:px-6 bg-white">
             <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col mb-12 md:mb-16 items-center text-center max-w-3xl mx-auto">
-                    <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 md:mb-6 tracking-tight break-keep">
+                    <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 md:mb-6 tracking-tight break-words">
                         {t('title')}
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg break-keep leading-relaxed font-medium">
+                    <p className="text-gray-600 text-base md:text-lg break-words leading-relaxed font-medium">
                         {t('description')}
                     </p>
                 </div>
@@ -78,7 +78,7 @@ export function FeatureComparisonMatrix() {
                 {isMobile ? (
                     <div className="flex flex-col gap-4">
                         {serviceCards.map((service) => (
-                            <div 
+                            <div
                                 key={service.key}
                                 className="bg-gray-50 rounded-2xl p-5 border border-gray-100"
                             >
@@ -102,16 +102,16 @@ export function FeatureComparisonMatrix() {
                         <div className="min-w-[800px] border-t border-gray-200">
                             {/* Table Header */}
                             <div className="grid grid-cols-12 border-b border-gray-200 bg-white">
-                                <div className="col-span-4 p-6 text-sm font-semibold text-gray-500">
+                                <div className="col-span-4 p-6 text-sm font-semibold text-gray-500 min-w-0">
                                     {t('headers.category')}
                                 </div>
-                                <div className="col-span-2 p-6 text-center text-sm font-bold text-gray-900">
+                                <div className="col-span-2 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-words">
                                     {t('headers.party')}
                                 </div>
-                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900">
+                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-words">
                                     {t('headers.rotation')}
                                 </div>
-                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900">
+                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-words">
                                     {t('headers.match')}
                                 </div>
                             </div>
@@ -124,17 +124,17 @@ export function FeatureComparisonMatrix() {
                                         <div className="px-6 py-3 bg-gray-50 border-b border-gray-100">
                                             <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{category.category}</span>
                                         </div>
-                                        
+
                                         {/* Feature Rows */}
                                         {category.features.map((feature, fIdx) => (
-                                            <div 
-                                                key={fIdx} 
+                                            <div
+                                                key={fIdx}
                                                 className="grid grid-cols-12 border-b border-gray-100 items-center hover:bg-gray-50 transition-colors duration-150"
                                             >
-                                                <div className="col-span-4 px-6 py-4">
-                                                    <span className="text-[15px] font-medium text-gray-700">{feature.name}</span>
+                                                <div className="col-span-4 px-6 py-4 min-w-0">
+                                                    <span className="text-[15px] font-medium text-gray-700 break-words">{feature.name}</span>
                                                 </div>
-                                                
+
                                                 {/* Columns */}
                                                 <div className="col-span-2 px-6 py-4 flex justify-center border-l border-gray-50 min-h-[60px] items-center">
                                                     {feature.party && (
