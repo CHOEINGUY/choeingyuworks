@@ -7,6 +7,8 @@ interface ResumeCoverLetterProps {
     storageKey?: string;
 }
 
+const isDev = process.env.NODE_ENV === "development";
+
 export const ResumeCoverLetter = ({ content, storageKey = "cover-letter-draft" }: ResumeCoverLetterProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [savedText, setSavedText] = useState<string | null>(null);
@@ -67,8 +69,8 @@ export const ResumeCoverLetter = ({ content, storageKey = "cover-letter-draft" }
 
     return (
         <div className="space-y-3">
-            {/* 툴바 — 인쇄 시 숨김 */}
-            <div className="flex gap-2 print:hidden">
+            {/* 툴바 — 인쇄 시 숨김, 개발환경에서만 노출 */}
+            <div className={`flex gap-2 print:hidden ${!isDev ? "hidden" : ""}`}>
                 {!isEditing ? (
                     <button
                         onClick={() => setIsEditing(true)}
@@ -120,8 +122,8 @@ export const ResumeCoverLetter = ({ content, storageKey = "cover-letter-draft" }
                 </div>
             )}
 
-            {/* 하단 툴바 */}
-            <div className="flex gap-2 items-center print:hidden pt-1">
+            {/* 하단 툴바 — 개발환경에서만 노출 */}
+            <div className={`flex gap-2 items-center print:hidden pt-1 ${!isDev ? "hidden" : ""}`}>
                 <span className="text-xs text-gray-400">{charCount.toLocaleString()}자</span>
                 {!isEditing ? (
                     <button
