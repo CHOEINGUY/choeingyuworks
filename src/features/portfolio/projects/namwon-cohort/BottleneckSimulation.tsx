@@ -14,34 +14,34 @@ export function BottleneckSimulation() {
                     <h2 className="text-3xl font-bold text-gray-900 mb-3">
                         {t('title')}
                     </h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto break-keep"
-                       dangerouslySetInnerHTML={{ __html: t.raw('description') }}
+                    <p className="text-gray-500 max-w-2xl mx-auto break-words"
+                        dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
                 </div>
 
                 {/* Comparison Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-                    
+
                     {/* LEFT: Before (Problem) */}
-                    <div className="bg-red-50/50 rounded-2xl p-6 border border-red-100 flex flex-col">
+                    <div className="bg-red-50/50 rounded-2xl p-6 border border-red-100 flex flex-col min-w-0">
                         <div className="flex items-center gap-3 mb-5">
                             <div className="w-9 h-9 rounded-full bg-red-100 flex items-center justify-center">
                                 <AlertTriangle className="w-4 h-4 text-red-600" />
                             </div>
                             <div>
                                 <h3 className="font-bold text-gray-900">{t('before.title')}</h3>
-                                <p className="text-xs text-red-600 break-keep">{t('before.subtitle')}</p>
+                                <p className="text-xs text-red-600 break-words">{t('before.subtitle')}</p>
                             </div>
                         </div>
 
                         {/* Flow Diagram Container */}
                         <div className="bg-white rounded-xl p-4 mb-5 border border-red-100 flex flex-col justify-center min-h-[240px]">
-                            
+
                             {/* MOBILE LAYOUT: 2x2 Grid with Bent Connector */}
                             <div className="md:hidden relative grid grid-cols-2 gap-x-6 gap-y-10 px-2 py-6">
                                 {/* SVG Connector Layer for 2->3 Step */}
                                 <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" preserveAspectRatio="none" viewBox="0 0 100 100">
-                                     <defs>
+                                    <defs>
                                         <marker id="arrowhead-mobile" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
                                             <polyline points="1 1 5 3 1 5" fill="none" stroke="#D1D5DB" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                                         </marker>
@@ -55,24 +55,24 @@ export function BottleneckSimulation() {
                                     <ExamBox label={t('exams.blood')} time="10m" />
                                     <ArrowRight className="absolute top-1/2 -right-5 -translate-y-1/2 w-3 h-3 text-gray-300" />
                                 </div>
-                                
+
                                 {/* 2. Body */}
                                 <div className="relative z-10">
                                     <ExamBox label={t('exams.body')} time="20m" />
                                 </div>
-                                
+
                                 {/* 3. ECG */}
                                 <div className="relative z-10">
                                     <ExamBox label={t('exams.ecg')} time="15m" />
                                     <ArrowRight className="absolute top-1/2 -right-5 -translate-y-1/2 w-3 h-3 text-gray-300" />
                                 </div>
-                                
+
                                 {/* 4. Dementia */}
                                 <div className="relative z-10">
                                     <div className="relative">
                                         <ExamBox label={t('exams.dementia')} time="60m" isBottleneck />
                                         <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-20">
-                                             <div className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold shadow-sm border border-red-200">
+                                            <div className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold shadow-sm border border-red-200">
                                                 ⚠️ Bottleneck
                                             </div>
                                         </div>
@@ -109,14 +109,14 @@ export function BottleneckSimulation() {
                     </div>
 
                     {/* RIGHT: After (Solution) - The Height Reference */}
-                    <div className="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 flex flex-col">
+                    <div className="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 flex flex-col min-w-0">
                         <div className="flex items-center gap-3 mb-5">
                             <div className="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center">
                                 <Zap className="w-4 h-4 text-emerald-600" />
                             </div>
                             <div>
                                 <h3 className="font-bold text-gray-900">{t('after.title')}</h3>
-                                <p className="text-xs text-emerald-600 break-keep">{t('after.subtitle')}</p>
+                                <p className="text-xs text-emerald-600 break-words">{t('after.subtitle')}</p>
                             </div>
                         </div>
 
@@ -205,15 +205,15 @@ export function BottleneckSimulation() {
                 <div className="mt-8 bg-slate-50 rounded-xl p-5 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 md:gap-8 text-sm shadow-sm border border-slate-100">
                     <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                        <span className="text-gray-700 font-medium break-keep"
-                              dangerouslySetInnerHTML={{ __html: t.raw('results.time') }}
+                        <span className="text-gray-700 font-medium break-words"
+                            dangerouslySetInnerHTML={{ __html: t.raw('results.time') }}
                         />
                     </div>
                     <div className="hidden md:block w-px h-4 bg-slate-300" />
                     <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                        <span className="text-gray-700 font-medium break-keep"
-                              dangerouslySetInnerHTML={{ __html: t.raw('results.satisfaction') }}
+                        <span className="text-gray-700 font-medium break-words"
+                            dangerouslySetInnerHTML={{ __html: t.raw('results.satisfaction') }}
                         />
                     </div>
                 </div>
@@ -224,9 +224,9 @@ export function BottleneckSimulation() {
 
 // --- Sub Components ---
 
-function ExamBox({ label, time, isBottleneck, isActive }: { 
-    label: string; 
-    time: string; 
+function ExamBox({ label, time, isBottleneck, isActive }: {
+    label: string;
+    time: string;
     isBottleneck?: boolean;
     isActive?: boolean;
 }) {
@@ -254,7 +254,7 @@ function ProblemItem({ text }: { text: string }) {
     return (
         <div className="flex items-start gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
-            <span className="text-xs text-gray-600 leading-tight break-keep">{text}</span>
+            <span className="text-xs text-gray-600 leading-tight break-words">{text}</span>
         </div>
     );
 }
@@ -263,7 +263,7 @@ function SolutionItem({ text }: { text: string }) {
     return (
         <div className="flex items-start gap-2">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0" />
-            <span className="text-xs text-gray-600 leading-tight break-keep">{text}</span>
+            <span className="text-xs text-gray-600 leading-tight break-words">{text}</span>
         </div>
     );
 }

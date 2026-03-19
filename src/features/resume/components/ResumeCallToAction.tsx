@@ -1,14 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslations, useLocale } from "next-intl";
+import Image from "next/image";
 
-export function ResumeCallToAction() {
+interface ResumeCallToActionProps {
+    targetCompany?: string;
+}
+
+export function ResumeCallToAction({ targetCompany }: ResumeCallToActionProps) {
     const t = useTranslations("ResumeCTA");
     const locale = useLocale();
+
+    // targetCompany가 있으면 회사별 경로, 없으면 기본 /resume
+    const resumeLink = targetCompany ? `/${targetCompany}/resume` : "/resume";
     const isEnglish = locale === "en";
 
     return (
@@ -27,11 +35,12 @@ export function ResumeCallToAction() {
                     <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-60 h-60 bg-gradient-to-tr from-purple-50 to-blue-50 rounded-full blur-3xl opacity-40 pointer-events-none" />
 
                     {/* Profile Photo (Larger) */}
-                    <div className="w-28 h-28 md:w-32 md:h-32 aspect-square shrink-0 rounded-full bg-gray-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden mb-6 z-10">
-                        <img 
-                            src="/profile.jpg" 
-                            alt="Choe In-gyu" 
-                            className="w-full h-full object-cover"
+                    <div className="w-28 h-28 md:w-32 md:h-32 aspect-square shrink-0 rounded-full bg-gray-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden mb-6 z-10 relative">
+                        <Image
+                            src="/profile.jpg"
+                            alt="Choe In-gyu"
+                            fill
+                            className="object-cover"
                         />
                     </div>
 
@@ -50,7 +59,7 @@ export function ResumeCallToAction() {
                     </p>
 
                     {/* CTA Button */}
-                    <Link href="/resume" className="z-10">
+                    <Link href={resumeLink} className="z-10">
                         <Button size="lg" className="rounded-full bg-black text-white hover:bg-gray-800 px-10 h-14 text-base font-bold shadow-lg hover:shadow-xl transition-all group">
                             {t("button")}
                             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

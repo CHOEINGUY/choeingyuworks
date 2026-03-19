@@ -76,7 +76,7 @@ export function TechStackFlow() {
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col mb-8 md:mb-16 items-center text-center max-w-3xl mx-auto">
           <motion.h2
-            className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-keep"
+            className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-words"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -84,7 +84,7 @@ export function TechStackFlow() {
             {t("title")}
           </motion.h2>
           <motion.p
-            className="text-gray-600 text-lg break-keep leading-relaxed"
+            className="text-gray-600 text-lg break-words leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -132,11 +132,10 @@ export function TechStackFlow() {
                     key={idx}
                     onClick={() => handleStepClick(idx)}
                     className={`w-2 h-2 rounded-full transition-all duration-300 
-                                            ${
-                                              idx === activeStep
-                                                ? "bg-blue-600 w-6"
-                                                : "bg-gray-300"
-                                            }`}
+                                            ${idx === activeStep
+                        ? "bg-blue-600 w-6"
+                        : "bg-gray-300"
+                      }`}
                   />
                 ))}
               </div>
@@ -159,34 +158,31 @@ export function TechStackFlow() {
                     >
                       <motion.div
                         className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ease-out z-20 shrink-0
-                                                    ${
-                                                      isActive
-                                                        ? "bg-blue-600 shadow-xl shadow-blue-200 scale-110"
-                                                        : isCompleted
-                                                        ? "bg-white border-2 border-blue-600"
-                                                        : "bg-white border-2 border-gray-200 group-hover:border-gray-400"
-                                                    }`}
+                                                    ${isActive
+                            ? "bg-blue-600 shadow-xl shadow-blue-200 scale-110"
+                            : isCompleted
+                              ? "bg-white border-2 border-blue-600"
+                              : "bg-white border-2 border-gray-200 group-hover:border-gray-400"
+                          }`}
                       >
                         <Icon
                           className={`w-7 h-7 transition-colors duration-500
-                                                        ${
-                                                          isActive
-                                                            ? "text-white"
-                                                            : isCompleted
-                                                            ? "text-blue-600"
-                                                            : "text-gray-400"
-                                                        }`}
+                                                        ${isActive
+                              ? "text-white"
+                              : isCompleted
+                                ? "text-blue-600"
+                                : "text-gray-400"
+                            }`}
                           strokeWidth={2}
                         />
                       </motion.div>
 
                       <span
                         className={`absolute top-full left-1/2 -translate-x-1/2 mt-5 w-48 text-center text-sm font-bold transition-colors duration-500
-                                                ${
-                                                  isActive
-                                                    ? "text-blue-700"
-                                                    : "text-gray-500"
-                                                }`}
+                                                ${isActive
+                            ? "text-blue-700"
+                            : "text-gray-500"
+                          }`}
                       >
                         {step.label}
                       </span>
@@ -225,7 +221,7 @@ export function TechStackFlow() {
                 <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide">
                   Step {activeStep + 1}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 break-keep tracking-tight">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 break-words tracking-tight">
                   {PIPELINE_STEPS[activeStep].title}
                 </h3>
 

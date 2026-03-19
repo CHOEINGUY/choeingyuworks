@@ -33,7 +33,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
                     </a>
                 );
             }
-            
+
             // Handle bold text parsing for non-link parts
             return part.split(/(\*\*.*?\*\*)/).map((subPart, j) => {
                 if (subPart.startsWith('**') && subPart.endsWith('**')) {
@@ -50,15 +50,24 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
 
             <div className="space-y-8">
                 {experience.map((exp: Experience, index: number) => (
-                    <div key={index} className="group">
+                    <div key={index} className={`group ${exp.isGapPeriod ? 'opacity-80' : ''}`}>
                         <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-1 md:gap-0">
                             <div className="flex flex-col md:flex-row md:items-baseline gap-0 md:gap-2 flex-wrap">
-                                <h3 className="text-lg md:text-xl font-bold text-gray-900">{exp.company}</h3>
+                                <h3 className={`text-lg md:text-xl font-bold ${exp.isGapPeriod ? 'text-gray-600' : 'text-gray-900'}`}>
+                                    {exp.company}
+                                </h3>
                                 <span className="hidden md:inline text-gray-400">|</span>
                                 <span className="text-sm md:text-base font-medium text-gray-500">{exp.position}</span>
                             </div>
                             <span className="text-xs md:text-sm text-gray-500 md:text-gray-400 font-mono whitespace-nowrap">{exp.period}</span>
                         </div>
+
+                        {/* 퇴사 사유 (Voithru) */}
+                        {exp.leaveReason && (
+                            <div className="text-sm text-gray-500 mb-3 pl-1">
+                                <span className="text-gray-600 font-medium">퇴사 사유:</span> {exp.leaveReason}
+                            </div>
+                        )}
 
                         {/* Main Description */}
                         {exp.description && exp.description.length > 0 && (
@@ -67,7 +76,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
                                     const parts = item.split(" : ");
                                     const title = parts[0];
                                     const content = parts.slice(1).join(" : ");
-                                    
+
                                     return (
                                         <li key={i} className="pl-1">
                                             {content ? (
@@ -87,7 +96,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
                         {exp.projects && (
                             <div className="space-y-6 mt-4 pl-1 md:pl-4 border-l-2 border-gray-100">
                                 {exp.projects.map((project: ExperienceProject, pIndex: number) => (
-                                        <div key={pIndex}>
+                                    <div key={pIndex}>
                                         <div className="flex items-baseline justify-between gap-2 mb-2">
                                             <h4 className="font-bold text-gray-800 text-sm md:text-base flex items-center gap-2">
                                                 <span className="w-1 h-1 rounded-full bg-gray-400"></span>
@@ -106,13 +115,12 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
                                                 const content = parts.slice(1).join(" : ");
 
                                                 return (
-                                                    <li 
-                                                        key={dIndex} 
-                                                        className={`relative pl-4 before:absolute before:left-0 before:text-gray-400 ${
-                                                            isSubItem 
-                                                                ? "ml-4 before:content-['◦'] before:font-bold" // Indented sub-item with hollow bullet
-                                                                : "before:content-['-']" // Standard item
-                                                        }`}
+                                                    <li
+                                                        key={dIndex}
+                                                        className={`relative pl-4 before:absolute before:left-0 before:text-gray-400 ${isSubItem
+                                                            ? "ml-4 before:content-['◦'] before:font-bold" // Indented sub-item with hollow bullet
+                                                            : "before:content-['-']" // Standard item
+                                                            }`}
                                                     >
                                                         {content ? (
                                                             <>

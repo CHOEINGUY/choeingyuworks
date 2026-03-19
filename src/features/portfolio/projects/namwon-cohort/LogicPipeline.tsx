@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { LogicFlowAnimation } from "./LogicFlowAnimation";
 import { useTranslations } from "next-intl";
+import { Candidate } from "@/types";
 
 export function LogicPipeline() {
     const t = useTranslations("CohortDashboard");
@@ -12,7 +13,7 @@ export function LogicPipeline() {
     const [isPaused, setIsPaused] = useState(false);
 
     // 시나리오 데이터 (ExamFlowAnimation과 동기화)
-    const SCENARIOS = [
+    const SCENARIOS: { room: string; winner: string; candidates: Candidate[] }[] = [
         {
             room: t('Bottleneck.exams.body'),
             winner: "한상철",
@@ -66,7 +67,7 @@ export function LogicPipeline() {
                 }
                 return prev + 1;
             });
-        }, 4000); 
+        }, 4000);
         return () => clearInterval(timer);
     }, [isPaused, SCENARIOS.length]);
 
@@ -81,31 +82,31 @@ export function LogicPipeline() {
     return (
         <section className="py-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
-                
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-end">
-                    
+
                     {/* Left: Logic Steps */}
-                    <div>
+                    <div className="min-w-0">
                         <div className="mb-10">
                             <h2 className="text-3xl font-bold text-gray-900 mb-6"
                                 dangerouslySetInnerHTML={{ __html: t.raw('Logic.title') }}
                             />
-                            <p className="text-gray-600 leading-relaxed break-keep"
-                               dangerouslySetInnerHTML={{ __html: t.raw('Logic.description') }}
+                            <p className="text-gray-600 leading-relaxed break-words"
+                                dangerouslySetInnerHTML={{ __html: t.raw('Logic.description') }}
                             />
                         </div>
 
                         <div className="space-y-4">
                             {steps.map((item, i) => (
-                                <button 
+                                <button
                                     key={i}
                                     onClick={() => {
                                         setStep(i + 1);
                                         setIsPaused(true);
                                     }}
                                     className={`w-full text-left p-6 rounded-2xl border-2 transition-all duration-300 relative group
-                                        ${step === i + 1 
-                                            ? "bg-blue-50 border-blue-500 shadow-md transform scale-[1.02]" 
+                                        ${step === i + 1
+                                            ? "bg-blue-50 border-blue-500 shadow-md transform scale-[1.02]"
                                             : "bg-white border-gray-100 hover:border-blue-200"}`}
                                 >
                                     <div className="flex items-start gap-4">
@@ -117,13 +118,13 @@ export function LogicPipeline() {
                                             <h3 className={`font-bold text-base mb-1 ${step === i + 1 ? "text-blue-900" : "text-gray-900"}`}>
                                                 {item.title.split('. ')[1] || item.title}
                                             </h3>
-                                            <p className={`text-sm leading-relaxed break-keep ${step === i + 1 ? "text-blue-700/70" : "text-gray-500"}`}>
+                                            <p className={`text-sm leading-relaxed break-words ${step === i + 1 ? "text-blue-700/70" : "text-gray-500"}`}>
                                                 {item.desc}
                                             </p>
                                         </div>
                                     </div>
                                     {step === i + 1 && (
-                                        <motion.div 
+                                        <motion.div
                                             layoutId="active-indicator"
                                             className="absolute right-6 top-1/2 -translate-y-1/2"
                                         >
@@ -137,8 +138,8 @@ export function LogicPipeline() {
 
                     {/* Right: Decision Engine Dashboard (Extracted) */}
                     <div>
-                        <LogicFlowAnimation 
-                            step={step} 
+                        <LogicFlowAnimation
+                            step={step}
                             candidates={SCENARIOS[scenarioIdx].candidates}
                             room={SCENARIOS[scenarioIdx].room}
                         />

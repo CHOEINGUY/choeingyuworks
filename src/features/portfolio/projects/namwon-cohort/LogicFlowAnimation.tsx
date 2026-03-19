@@ -18,8 +18,8 @@ export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimatio
     return (
         <div className="bg-slate-50 rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 border border-slate-200 relative h-[500px] md:h-[580px] flex flex-col shadow-inner overflow-hidden transition-all duration-300">
             {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-                 style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
             <div className="relative z-10 flex flex-col h-full">
                 {/* Header */}
@@ -40,7 +40,7 @@ export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimatio
                             const isBlockedByStatus = step >= 1 && person.status === "Active";
                             const isBlockedByPrereq = step >= 2 && !isBlockedByStatus && !person.prereq;
                             const isWinner = person.id === 4;
-                            
+
                             // In step 4, we only show the winner
                             if (step === 4 && !isWinner) return null;
 
@@ -49,25 +49,25 @@ export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimatio
                                     key={person.id}
                                     layout
                                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                                    animate={{ 
+                                    animate={{
                                         opacity: (isBlockedByStatus || isBlockedByPrereq) ? 0.4 : 1,
-                                        scale: 1, 
+                                        scale: 1,
                                         y: 0,
                                         filter: (isBlockedByStatus || isBlockedByPrereq) ? "grayscale(0.4)" : "none"
                                     }}
                                     exit={{ opacity: 0, scale: 0.8, x: -20 }}
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     className={`bg-white items-center justify-between border-2
-                                        ${(step === 4 && isWinner) 
-                                            ? "p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border-blue-500 shadow-xl flex" 
+                                        ${(step === 4 && isWinner)
+                                            ? "p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border-blue-500 shadow-xl flex"
                                             : "p-3 md:p-4 rounded-xl md:rounded-2xl border-slate-100 shadow-sm flex"}
                                         ${(isBlockedByStatus || isBlockedByPrereq) ? "bg-slate-50/50" : "bg-white"}
                                     `}
                                 >
                                     <div className="flex items-center gap-3 md:gap-5">
                                         <div className={`flex items-center justify-center font-bold shrink-0 transition-colors duration-300
-                                            ${(step === 4 && isWinner) 
-                                                ? "w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl text-lg md:text-xl bg-blue-100 text-blue-700" 
+                                            ${(step === 4 && isWinner)
+                                                ? "w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl text-lg md:text-xl bg-blue-100 text-blue-700"
                                                 : "w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl text-xs md:text-sm bg-slate-100 text-slate-400"}`}>
                                             {step >= 3 && isWinner ? "1st" : <User className="w-4 h-4 md:w-5 md:h-5 text-slate-400" />}
                                         </div>
@@ -101,7 +101,7 @@ export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimatio
                         })}
 
                         {step === 4 && winner && (
-                            <motion.div 
+                            <motion.div
                                 layout
                                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -113,7 +113,7 @@ export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimatio
                                     {/* Animated Waves */}
                                     <div className="absolute top-0 right-0 p-8 flex gap-1 items-end h-full opacity-20 group">
                                         {[0.4, 0.7, 0.5, 0.9, 0.6].map((h, i) => (
-                                            <motion.div 
+                                            <motion.div
                                                 key={i}
                                                 className="w-2 bg-white rounded-full"
                                                 animate={{ height: ['20%', '80%', '20%'] }}
@@ -127,7 +127,9 @@ export function LogicFlowAnimation({ step, candidates, room }: LogicFlowAnimatio
                                             <Volume2 className="w-5 h-5" />
                                             <span className="text-xs font-bold tracking-widest uppercase">{t('ttsLabel')}</span>
                                         </div>
-                                        <h4 className="text-2xl font-black mb-2 leading-tight" dangerouslySetInnerHTML={{ __html: t('ttsMessage', {name: winner.name, room: room}) }} />
+                                        <h4 className="text-2xl font-black mb-2 leading-tight">
+                                            {t('ttsMessage', { name: winner.name, room: room })}
+                                        </h4>
                                         <div className="inline-block px-3 py-1 bg-white/20 rounded-full text-[10px] font-bold">
                                             {t('ttsActive')}
                                         </div>

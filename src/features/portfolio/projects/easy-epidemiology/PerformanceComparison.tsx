@@ -15,7 +15,7 @@ export function PerformanceComparison() {
                 </h2>
 
                 <div className="space-y-8">
-                    
+
                     {/* Conventional Workflow */}
                     <div>
                         <div className="flex justify-between text-sm font-medium text-gray-500 mb-2">
@@ -49,23 +49,23 @@ export function PerformanceComparison() {
                             <span className="font-bold">~1 min</span>
                         </div>
                         <div className="h-14 bg-emerald-50 rounded-xl overflow-hidden flex relative border border-emerald-100">
-                             <motion.div 
+                            <motion.div
                                 initial={{ width: 0 }}
                                 whileInView={{ width: '5%' }}
                                 transition={{ duration: 1, delay: 0.5 }}
                                 className="bg-emerald-500 h-full flex items-center justify-center text-xs font-bold text-white whitespace-nowrap overflow-hidden px-2"
-                             >
+                            >
                                 Auto-Analysis
-                             </motion.div>
-                             <div className="flex-1 flex items-center pl-4 text-sm text-gray-400 font-mono">
-                                 Ready for decision making...
-                             </div>
+                            </motion.div>
+                            <div className="flex-1 flex items-center pl-4 text-sm text-gray-400 font-mono">
+                                Ready for decision making...
+                            </div>
                         </div>
                     </motion.div>
 
                 </div>
 
-                <div className="mt-12 text-center text-gray-500 text-sm leading-relaxed max-w-2xl mx-auto break-keep">
+                <div className="mt-12 text-center text-gray-500 text-sm leading-relaxed max-w-2xl mx-auto break-words">
                     {t('disclaimer')}
                 </div>
             </div>

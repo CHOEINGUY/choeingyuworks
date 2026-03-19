@@ -36,7 +36,7 @@
         },
         "personal": {
             "title": "Build Fast, Verify Relentlessly",
-            "subtitle": "I maximize development speed with AI and the latest tools,<line></line>investing the saved time into system stability and completeness.<line></line><b>Coexistence of 'Speed' and 'Quality'</b> — this is my methodology."
+            "subtitle": "I maximize development speed with AI and the latest tools, investing the saved time into system stability and completeness. Coexistence of Speed and Quality - this is my methodology."
         },
         "buttons": {
             "requestService": "Request Service",
@@ -50,8 +50,8 @@
         },
         "aboutSection": {
             "agency": {
-                "headline": "We found the answer not at the desk,<line></line>but in the intense field.",
-                "description": "Gaps in the field that commercial tools cannot fill, unpredictable variables.<line></line>Before writing code, <b>we first deeply understood the operational workflow,<line></line>and captured that rhythm in the program.</b>",
+                "headline": "We found the answer not at the desk, but in the intense field.",
+                "description": "Gaps in the field that commercial tools cannot fill, unpredictable variables. Before writing code, we first deeply understood the operational workflow, and captured that rhythm in the program.",
                 "features": {
                     "business": {
                         "title": "Business Optimization Design",
@@ -68,8 +68,8 @@
                 }
             },
             "personal": {
-                "headline": "A ''Solution Builder'' who reads business flows<line></line>and finds answers through technology",
-                "description": "I simplify processes through analysis that grasps the core of the business, and maximize development speed with AI technology.<line></line>With solid execution that takes responsibility from planning to operation, I <b>create tangible results of 'efficiency' and 'stability'</b>.",
+                "headline": "A 'Solution Builder' who reads business flows and finds answers through technology",
+                "description": "I simplify processes through analysis that grasps the core of the business, and maximize development speed with AI technology. With solid execution that takes responsibility from planning to operation, I create tangible results of 'efficiency' and 'stability'.",
                 "features": {
                     "business": {
                         "title": "Workflow Optimization",

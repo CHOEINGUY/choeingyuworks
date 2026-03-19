@@ -5,39 +5,103 @@
         "cta": "Request Service"
     },
     "Infrastructure": {
-            "react": { "name": "React & TS", "benefit": "Fast & Stable Web App", "detail": "Seamless responsiveness even with high traffic" },
-            "firebase": { "name": "Firebase Auth", "benefit": "Global Standard Security", "detail": "Secure user data encryption and management" },
-            "cloudflare": { "name": "Cloudflare R2", "benefit": "High-speed Media Processing", "detail": "Instant loading of field photos and large files" },
-            "banking": { "name": "Banking API", "benefit": "Real-time Financial Data", "detail": "Error-free deposit verification and auto-settlement" }
+        "react": {
+            "name": "React & TS",
+            "benefit": "Fast & Stable Web App",
+            "detail": "Seamless responsiveness even with high traffic"
+        },
+        "firebase": {
+            "name": "Firebase Auth",
+            "benefit": "Global Standard Security",
+            "detail": "Secure user data encryption and management"
+        },
+        "cloudflare": {
+            "name": "Cloudflare R2",
+            "benefit": "High-speed Media Processing",
+            "detail": "Instant loading of field photos and large files"
+        },
+        "banking": {
+            "name": "API",
+            "benefit": "Real-time Financial Data",
+            "detail": "Error-free deposit verification and auto-settlement"
+        }
     },
     "backToPortfolio": "Back to Portfolio",
     "Pipeline": {
         "title": "From Application to Settlement & Matching.<br>In One Flow.",
         "description": "Stop using Excel, SMS, and Google Forms separately. The system handles everything seamlessly from reception to result delivery.",
         "steps": {
-            "form": { "label": "Application", "title": "No-Code Form Builder", "desc": "Forget Google Forms. Build applications that fit your brand perfectly with drag & drop." },
-            "banking": { "label": "Auto-Deposit Check", "title": "Real-time Deposit Matching", "desc": "Real-time verification of orders against actual bank transactions. Auto-approved in 1 second upon match." },
-            "admin": { "label": "Admin Approval", "title": "One-Click Approval & Filtering", "desc": "Automatically filters blacklists, and schedules the next step (SMS sending) with a single approval button." },
-            "invite": { "label": "Send Invite", "title": "Personalized Invite Sending", "desc": "Upon approval, AlimTalk/SMS with individual QR codes and entry guides are sent immediately." },
-            "event": { "label": "On-site QR Entry", "title": "1-Second QR Check-in", "desc": "Don't search for names on paper lists. Just scan the QR with a reader (phone) to verify attendance and launch the web app instantly." },
-            "result": { "label": "Final Result/Match", "title": "Data Aggregation & Match Report", "desc": "After the event, rotation results and couple matching status are automatically generated." }
+            "form": {
+                "label": "Application",
+                "title": "No-Code Form Builder",
+                "desc": "Forget Google Forms. Build applications that fit your brand perfectly with drag & drop."
+            },
+            "banking": {
+                "label": "Auto-Deposit Check",
+                "title": "Real-time Deposit Matching",
+                "desc": "Real-time verification of orders against actual bank transactions. Auto-approved in 1 second upon match."
+            },
+            "admin": {
+                "label": "Admin Approval",
+                "title": "One-Click Approval & Filtering",
+                "desc": "Automatically filters blacklists, and schedules the next step (SMS sending) with a single approval button."
+            },
+            "invite": {
+                "label": "Send Invite",
+                "title": "Personalized Invite Sending",
+                "desc": "Upon approval, AlimTalk/SMS with individual QR codes and entry guides are sent immediately."
+            },
+            "event": {
+                "label": "On-site QR Entry",
+                "title": "1-Second QR Check-in",
+                "desc": "Don't search for names on paper lists. Just scan the QR with a reader (phone) to verify attendance and launch the web app instantly."
+            },
+            "result": {
+                "label": "Final Result/Match",
+                "title": "Data Aggregation & Match Report",
+                "desc": "After the event, rotation results and couple matching status are automatically generated."
+            }
         }
     },
     "Tools": {
         "sectionTitle": "Powerful Operation Tools",
         "sectionDesc": "Dedicated tools prepared to perfectly execute business logic.",
-        "builder": { "title": "Precision Custom Builder", "desc": "Not just a simple form. Design complex data structures like rotation dating questions and 1:1 matching profiles without code." },
-        "qr": { "title": "One-Pass QR System", "desc": "From check-in to redirecting to session pages. Connect the participant's offline and online experience with a single QR scan." },
-        "dashboard": { "title": "Real-time Operation Dashboard", "desc": "Monitor and control participant attendance, ongoing round time, and matching vote status in real-time." },
-        "notification": { "title": "Context-Based Auto-Notification", "desc": "Approval SMS on deposit, reminder before party, matching result notification. Messages sent automatically fitting the context." }
+        "builder": {
+            "title": "Precision Custom Builder",
+            "desc": "Not just a simple form. Design complex data structures like rotation dating questions and 1:1 matching profiles without code."
+        },
+        "qr": {
+            "title": "One-Pass QR System",
+            "desc": "From check-in to redirecting to session pages. Connect the participant's offline and online experience with a single QR scan."
+        },
+        "dashboard": {
+            "title": "Real-time Operation Dashboard",
+            "desc": "Monitor and control participant attendance, ongoing round time, and matching vote status in real-time."
+        },
+        "notification": {
+            "title": "Context-Based Auto-Notification",
+            "desc": "Approval SMS on deposit, reminder before party, matching result notification. Messages sent automatically fitting the context."
+        }
     },
     "Benefits": {
         "sectionTitle": "Focus on What Matters",
         "sectionDesc": "Complex Excel, repetitive contacts, missing names...<br>Let the system handle it now.",
-        "automation": { "title": "0% Manual Work", "desc": "From application check to deposit verification and guide SMS. All processes are automated seamlessly without human intervention." },
-        "accuracy": { "title": "Zero Human Error", "desc": "No more copy/paste mistakes in Excel. The system guarantees data integrity." },
-        "speed": { "title": "3 Hours → 3 Seconds", "desc": "Time taken for settlement after event close. Finished before you brew a cup of coffee." },
-        "custom": { "title": "Custom Logic for You", "desc": "Don't force yourself into generic tools.<br>We design it exactly like your workflow, fitting like a tailored suit." }
+        "automation": {
+            "title": "0% Manual Work",
+            "desc": "From application check to deposit verification and guide SMS. All processes are automated seamlessly without human intervention."
+        },
+        "accuracy": {
+            "title": "Zero Human Error",
+            "desc": "No more copy/paste mistakes in Excel. The system guarantees data integrity."
+        },
+        "speed": {
+            "title": "3 Hours → 3 Seconds",
+            "desc": "Time taken for settlement after event close. Finished before you brew a cup of coffee."
+        },
+        "custom": {
+            "title": "Custom Logic for You",
+            "desc": "Don't force yourself into generic tools.<br>We design it exactly like your workflow, fitting like a tailored suit."
+        }
     },
     "Comparison": {
         "title": "Tailored Features for Every Service",

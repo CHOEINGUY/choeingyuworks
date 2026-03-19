@@ -12,17 +12,17 @@ export function QrSystemFeature() {
 
             {/* Text Section (Left, matching Dashboard layout) */}
             <motion.div
-                className="lg:col-span-3 space-y-5 order-2 lg:order-1"
+                className="lg:col-span-3 space-y-5 order-2 lg:order-1 min-w-0"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-keep"
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-words"
                     dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                 />
-                <p className="text-sm text-gray-600 leading-relaxed break-keep"
-                   dangerouslySetInnerHTML={{ __html: t.raw('description') }}
+                <p className="text-sm text-gray-600 leading-relaxed break-words"
+                    dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                 />
             </motion.div>
 

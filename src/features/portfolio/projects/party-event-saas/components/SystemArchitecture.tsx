@@ -33,7 +33,7 @@ const PIPELINE_STEPS = [
         id: "audit",
         icon: RefreshCw,
         label: "Verification",
-        sub: "Real-time Banking API",
+        sub: "Real-time API",
         color: "text-emerald-600",
         bg: "bg-emerald-50",
         border: "border-emerald-100"
