@@ -138,6 +138,12 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@media print {
+  .fixed {
+    display: none !important;
+  }
+}
+
 @layer utilities {
   @keyframes smoothFlow {
     0% {
