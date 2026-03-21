@@ -1,46 +1,24 @@
-<div align="center">
-
 # 최인규 | Ingyu Choe
 
-**비즈니스 흐름을 읽고, 기술로 답을 찾는 솔루션 빌더**
-
-[![CI](https://github.com/CHOEINGUY/choeingyuworks/actions/workflows/ci.yml/badge.svg)](https://github.com/CHOEINGUY/choeingyuworks/actions/workflows/ci.yml)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Vitest](https://img.shields.io/badge/Vitest-Tested-6E9F18?style=flat-square&logo=vitest&logoColor=white)](https://vitest.dev/)
+비효율을 발견하면 구조와 흐름을 파악하고 자동화로 해결합니다.
 
 [이력서 및 포트폴리오 보러가기](https://choeingyu.works/ko)
 
-</div>
+---
+
+## 주요 특징
+
+| 기능               | 설명                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| **인터랙티브 데모** | 각 프로젝트의 핵심 로직을 실시간으로 시연하는 자동 재생 데모 |
+| **반응형 디자인**   | 모바일부터 데스크톱까지 최적화된 UX                          |
+| **프린트 최적화**   | 이력서 페이지 인쇄 시 깔끔한 레이아웃 유지                   |
 
 ---
 
-## ✨ 주요 특징
+## 프로젝트 하이라이트
 
-| 기능                   | 설명                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| 🎭 **인터랙티브 데모** | 각 프로젝트의 핵심 로직을 실시간으로 시연하는 자동 재생 데모 |
-| 🌍 **다국어 지원**     | 한국어/영어 완벽 지원 (next-intl)                            |
-| 📱 **반응형 디자인**   | 모바일부터 데스크톱까지 최적화된 UX                          |
-| 🖨️ **프린트 최적화**   | 이력서 페이지 인쇄 시 깔끔한 레이아웃 유지                   |
-| ⚡ **최신 기술 스택**  | Next.js 16, React 19, Tailwind v4 적용                       |
-
----
-
-## 🚀 프로젝트 하이라이트
-
-### 1. 통합 이벤트 관리 솔루션
-
-> 파티/소개팅/1:1 등 다양한 사업 모델을 JSON 엔진으로 동적 처리
-
-- **문제**: 사업 모델마다 별도 개발 필요
-- **해결**: 동적 폼 빌더 + 입금 자동 확인 + 알림톡 발송 자동화
-- **성과**: 1인 운영 체제 확립, 휴먼 에러 최소화
-
-### 2. 역학조사 통합 분석 솔루션 (Easy-Epidemiology)
+### 1. 역학조사 통합 분석 솔루션 (Easy-Epidemiology)
 
 > 보건소 담당자의 수작업 분석을 즉시 자동화
 
@@ -48,7 +26,7 @@
 - **해결**: 브라우저 기반 경량 통계 알고리즘 + 한글/PDF 자동 생성
 - **성과**: 분석 시간을 '즉시 완료' 수준으로 단축
 
-### 3. 실시간 코호트 검진 관제 시스템
+### 2. 실시간 코호트 검진 관제 시스템
 
 > 검진 현장 병목 해소 및 대기 시간 최적화
 
@@ -56,9 +34,33 @@
 - **해결**: Firebase 실시간 연동 + Google TTS 자동 호명
 - **성과**: 검진 회차당 소요 시간 15% 단축
 
+### 3. 출강 업체 강의 관리 시스템
+
+> 구글 시트만으로 운영하던 CPR 출강 업체의 전 업무 자동화
+
+- **문제**: 강의 공고·강사 배정·현장 운영·정산을 수작업으로 처리
+- **해결**: 앱시트·웹앱·구글 챗·AI를 연결한 통합 운영 시스템 구축
+- **성과**: 1인 운영 체제 확립, 반복 행정업무 제거
+
+### 4. 현장 직원 안전점검 관리 시스템
+
+> 수백 명 현장 직원의 일일 안전점검 자동화
+
+- **문제**: 수작업 수집으로 인한 누락·지연
+- **해결**: 모바일 웹 제출 → 근무계획 매칭 → 미제출자 자동 식별 및 문자 발송
+- **성과**: 담당자 수작업 대폭 감소, 미제출 실시간 파악
+
+### 5. 지역사회건강조사 통계집 자동화
+
+> 전남 14개 시군 통계집 수작업 반복을 Python·Excel VBA로 해결
+
+- **문제**: 3명이 2개월 이상 소요되는 엑셀·한글 반복작업
+- **해결**: Python + VBA 기반 자동화 파이프라인 구축
+- **성과**: 혼자 3주 만에 완료
+
 ---
 
-## 🛠️ 기술 스택
+## 기술 스택
 
 ### Frontend
 
@@ -83,7 +85,7 @@ next-intl (i18n) · react-hook-form
 
 ---
 
-## 📁 프로젝트 구조
+## 프로젝트 구조
 
 ```
 src/
@@ -105,56 +107,31 @@ src/
 
 ---
 
-## 🚀 빠른 시작
+## 빠른 시작
 
 ```bash
-# 저장소 클론
 git clone https://github.com/CHOEINGUY/choeingyuworks.git
 cd choeingyuworks
-
-# 의존성 설치
 npm install
-
-# 개발 서버 실행
 npm run dev
-
-# 테스트 실행
-npm run test
 ```
 
-**http://localhost:3000** 에서 확인
+---
+
+## AI 도구 활용
+
+| 활용 영역     | 도구                  | 적용 사례                                               |
+| ------------- | --------------------- | ------------------------------------------------------- |
+| **코드 생성** | Google Antigravity, Claude Code   | 복잡한 애니메이션 로직, 데모 컴포넌트 빠른 프로토타이핑 |
+| **디버깅**    | Claude Code, Google Antigravity   | 에러 트러블슈팅, 성능 최적화 분석                       |
+| **자동화**    | AppSheet, Apps Script + AI | 업무 흐름 자동화, 현장 운영 시스템 구축                |
+
+AI로 개발 속도를 높이고, 확보한 시간은 현장 검증과 안정성 테스트에 투자
 
 ---
 
-## 🤖 AI 도구 활용
+## 연락처
 
-> 바이브코딩 / AI Workflow 직렬 지원자로서의 역량
-
-| 활용 영역     | 도구                   | 적용 사례                                               |
-| ------------- | ---------------------- | ------------------------------------------------------- |
-| **코드 생성** | Cursor, GitHub Copilot | 복잡한 애니메이션 로직, 데모 컴포넌트 빠른 프로토타이핑 |
-| **디버깅**    | Claude, ChatGPT        | 에러 트러블슈팅, 성능 최적화 분석                       |
-| **문서화**    | AI 어시스턴트          | 코드 주석, README 작성, 번역                            |
-| **자동화**    | SAS/Python/VBA + AI    | 14개 통계집 보고서 자동 생성 (3개월 → 1개월)            |
-
-**핵심 철학**: AI로 개발 속도를 높이고, 확보한 시간은 **현장 검증과 안정성 테스트**에 투자
-
----
-
-## 📬 연락처
-
-- **Email**: chldlsrb07@gmail.com
-- **GitHub**: [@CHOEINGUY](https://github.com/CHOEINGUY)
-- **Phone**: 010-3323-7008
-
----
-
-## 📄 라이선스
-
-이 프로젝트는 개인 포트폴리오 용도로 제작되었습니다.
-
----
-
-<div align="center">
-  <sub>Built with ❤️ by Ingyu Choe</sub>
-</div>
+- Email: chldlsrb07@gmail.com
+- GitHub: [@CHOEINGUY](https://github.com/CHOEINGUY)
+- Phone: 010-3323-7008

@@ -12,7 +12,6 @@ export const ResumeSkills = ({ skills }: ResumeSkillsProps) => {
 
     return (
         <section className="space-y-3">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('skills')}</h2>
             <div className="space-y-6">
                 {skills.map((skill: Skill, index: number) => (
                     <div key={index} className="flex flex-col md:flex-row md:items-start gap-1 md:gap-4">

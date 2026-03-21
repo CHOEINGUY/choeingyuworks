@@ -69,7 +69,7 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                     <ResumeHeader data={currentData} commonData={commonData} />
 
                     {/* 1. 커버레터 */}
-                    <ResumeSectionBlock number={1} title="커버레터">
+                    <ResumeSectionBlock number={1} title="커버레터" pageBreak={false}>
                         <ResumeCoverLetter content={currentData.coverLetter} />
                     </ResumeSectionBlock>
 
@@ -77,7 +77,6 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                     <ResumeSectionBlock number={2} title="이력서">
                         <div className="space-y-12">
                             <ResumeExperience experience={currentData.experience} />
-                            <ResumeProjects projects={currentData.projects || []} />
                             <ResumeSkills skills={currentData.skills} />
                         </div>
                     </ResumeSectionBlock>
@@ -90,6 +89,30 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                     {/* 4. 질문 */}
                     <ResumeSectionBlock number={4} title="질문">
                         <ResumeQuestions questions={currentData.questions || []} />
+                    </ResumeSectionBlock>
+
+                    {/* 5. 연락처 */}
+                    <ResumeSectionBlock number={5} title="연락처">
+                        <div className="grid grid-cols-2 gap-6 text-sm md:text-base text-gray-700">
+                            {[
+                                { label: "Email", href: `mailto:${commonData.email}`, text: commonData.email },
+                                { label: "Phone", href: null, text: commonData.phone },
+                                { label: "GitHub", href: commonData.github, text: commonData.github },
+                                { label: "홈페이지", href: (commonData as any).homepage, text: (commonData as any).homepage },
+                                { label: "크몽", href: (commonData as any).kmong, text: (commonData as any).kmong },
+                            ].filter(item => item.text).map((item, i) => (
+                                <div key={i}>
+                                    <p className="font-semibold text-gray-900 mb-1">{item.label}</p>
+                                    {item.href ? (
+                                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">
+                                            {item.text} ↗
+                                        </a>
+                                    ) : (
+                                        <p>{item.text}</p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
                     </ResumeSectionBlock>
 
                 </div>

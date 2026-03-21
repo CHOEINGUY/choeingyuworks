@@ -46,8 +46,6 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
 
     return (
         <section className="space-y-3">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-300 pb-2">{t('experience')}</h2>
-
             <div className="space-y-8">
                 {experience.map((exp: Experience, index: number) => (
                     <div key={index} className={`group ${exp.isGapPeriod ? 'opacity-80' : ''}`}>
