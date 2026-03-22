@@ -518,12 +518,6 @@ export function AIChatWidget() {
                     </button>
                   </form>
 
-                  <div className="mt-3 text-center sm:block hidden">
-                    <p className="inline-flex items-center gap-1.5 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
-                      <Sparkles size={10} />
-                      {t('chat.poweredBy')}
-                    </p>
-                  </div>
                 </div>
               </>
             )}
