@@ -3,7 +3,8 @@ import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
     locales: ['ko'],
-    defaultLocale: 'ko'
+    defaultLocale: 'ko',
+    localePrefix: 'never'
 });
 
 export const { Link, redirect, usePathname, useRouter } =

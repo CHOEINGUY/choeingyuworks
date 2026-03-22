@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     const filePath = path.join(process.cwd(), "job-applications", "cover-letter-draft.md");
     const raw = await readFile(filePath, "utf-8");

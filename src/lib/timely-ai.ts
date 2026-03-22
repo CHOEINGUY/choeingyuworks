@@ -7,4 +7,4 @@ export const timelyAI = new OpenAI({
 });
 
 // Default model from env or fallback
-export const TIMELY_MODEL = process.env.TIMELY_MODEL || "openai/gpt-4o";
+export const TIMELY_MODEL = process.env.TIMELY_MODEL || "gpt-5.1";

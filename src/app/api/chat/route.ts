@@ -27,14 +27,22 @@ export async function POST(req: Request) {
     const lastMessage = messages[messages.length - 1];
     const question = lastMessage.content;
 
+    // Build retrieval query using recent conversation context (last 3 user messages)
+    // This improves retrieval accuracy for follow-up questions like "그거 더 자세히"
+    const recentUserMessages = messages
+      .filter((m: { role: string; content: string }) => m.role === 'user')
+      .slice(-3)
+      .map((m: { role: string; content: string }) => m.content);
+    const retrievalQuery = recentUserMessages.join(' ');
+
     // 2. Embed the question
     // Important: Use same model as seeding (text-embedding-3-small)
     const embeddings = new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
       modelName: 'text-embedding-3-small',
     });
-    
-    const vector = await embeddings.embedQuery(question);
+
+    const vector = await embeddings.embedQuery(retrievalQuery);
 
     // 3. Query Pinecone (Dense Search)
     const indexName = process.env.PINECONE_INDEX_NAME || 'resume-chatbot';
@@ -57,7 +65,7 @@ export async function POST(req: Request) {
         console.log(`🔄 Reranking ${documents.length} documents with Cohere...`);
         
         const reranked = await cohere.rerank({
-          query: question,
+          query: retrievalQuery,
           documents: documents,
           topN: 7, // Return top 7 most relevant
           model: 'rerank-v3.5',
@@ -79,7 +87,7 @@ export async function POST(req: Request) {
       contextText = documents.slice(0, 15).join('\n\n---\n\n');
     }
 
-    console.log(`🔍 Retrieved Context for "${question}":\n`, contextText.substring(0, 100) + '...');
+    console.log(`🔍 Retrieved Context for "${retrievalQuery.substring(0, 80)}...":\n`, contextText.substring(0, 100) + '...');
 
     // 5. Create System Prompt based on Persona
     const personaParams = {
@@ -122,15 +130,9 @@ ${contextText}
 `;
 
     // 6. Determine Model ID based on provider selection
-    // Note: 'provider' is already destructured from reqBody at the top of the function
+    // Timely GPT SDK v2 uses gpt-5.1 as the primary model
     const selectedProvider = provider || 'openai';
-    
-    let targetModel = TIMELY_MODEL;
-    if (selectedProvider === 'claude') {
-        targetModel = 'anthropic/claude-4.5-opus'; 
-    } else {
-        targetModel = 'openai/gpt-4o';
-    }
+    const targetModel = TIMELY_MODEL;
     
     // 7. Call AI Streaming
     console.log(`Calling AI Stream (Provider: Timely GPT Bridge, Model: ${targetModel})...`);
