@@ -93,7 +93,7 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
 
                     {/* 5. 연락처 */}
                     <ResumeSectionBlock number={5} title="연락처">
-                        <div className="grid grid-cols-2 gap-6 text-sm md:text-base text-gray-700">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm md:text-base text-gray-700">
                             {[
                                 { label: "Email", href: `mailto:${commonData.email}`, text: commonData.email },
                                 { label: "Phone", href: null, text: commonData.phone },
@@ -101,11 +101,11 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                                 { label: "홈페이지", href: (commonData as any).homepage, text: (commonData as any).homepage },
                                 { label: "크몽", href: (commonData as any).kmong, text: (commonData as any).kmong },
                             ].filter(item => item.text).map((item, i) => (
-                                <div key={i}>
-                                    <p className="font-semibold text-gray-900 mb-1">{item.label}</p>
+                                <div key={i} className="break-all">
+                                    <p className="font-semibold text-gray-900 mb-0.5">{item.label}</p>
                                     {item.href ? (
-                                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">
-                                            {item.text} ↗
+                                        <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors inline-block">
+                                            {item.text} <span className="text-[10px] ml-0.5">↗</span>
                                         </a>
                                     ) : (
                                         <p>{item.text}</p>
