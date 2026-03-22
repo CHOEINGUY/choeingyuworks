@@ -71,7 +71,7 @@ export const RESUME_DATA = {
             {
                 title: "코호트 검진 현장 실시간 배정 앱",
                 period: "2023 - 2025",
-                link: "/portfolio/field",
+                link: "/portfolio/cohort-dashboard",
                 content: `• 종이 차트 기반 운영으로 빈 검사실 발생 시 다음 대상자를 수작업으로 찾던 문제 해결\n• 도착 순서 + 검사 선행조건 기반으로 빈 검사실에 다음 대상자 자동 배정\n• 앱시트 · 구글 시트 · 앱스 스크립트로 실시간 검진 순서 및 TTS 자동 호명 구현\n• 운영 시간 1시간 이상 단축, 현장 인력 1명 감축`,
             },
             {
