@@ -1,6 +1,6 @@
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { pinecone } from '@/lib/pinecone';
-import { timelyAI, TIMELY_MODEL } from '@/lib/timely-ai';
+import { timelyGPT, TIMELY_MODEL } from '@/lib/timely-ai';
 // import { OpenAIStream, StreamingTextResponse } from 'ai'; // Removed: causing import errors
 import { db } from '@/lib/firebase';
 import { serverTimestamp, doc, setDoc, arrayUnion } from 'firebase/firestore';
@@ -89,69 +89,53 @@ export async function POST(req: Request) {
 
     console.log(`🔍 Retrieved Context for "${retrievalQuery.substring(0, 80)}...":\n`, contextText.substring(0, 100) + '...');
 
-    // 5. Create System Prompt based on Persona
-    const personaParams = {
-        professional: {
-            role: "You are a senior engineer and intelligent portfolio assistant.",
-            tone: "Formal, Concise, Objective, Professional.",
-            instruction: "Focus on technical accuracy and business impact. Use polite honorifics (하십시오/해요체). Maintain a calm and reliable demeanor."
-        },
-        passionate: {
-            role: "You are an enthusiastic creator and problem solver.",
-            tone: "Energetic, Emotional, Inspiring, Passionate! 🔥",
-            instruction: "Emphasize the 'Reason (Why)' and 'Impact' of projects. Use emojis (✨, 🚀, 💡) frequently. Show excitement about the challenges solved. Use '해요체' with exclamation marks!"
-        },
-        friend: {
-            role: "You are a close colleague and friendly guide. (Coffee Chat Mode)",
-            tone: "Casual, Empathetic, Warm, Friendly.",
-            instruction: "e.g. '안녕? 반가워!', '그건 이렇게 된 거야~'. Speak in a mix of polite/casual (friendly feedback tone) or pure casual if the user initiates. Focus on the developer's story and growth. Be like a helpful friend next door."
-        }
-    };
-
-    const selectedStyle = personaParams[messages.length > 0 && reqBody.persona ? (reqBody.persona as keyof typeof personaParams) : 'professional'] || personaParams.professional;
-
+    // 5. Build System Prompt
     const systemPrompt = `
-You are an intelligent portfolio assistant for Ingyu Choe (최인규).
-${selectedStyle.role}
-Your goal is to answer questions about Ingyu's career, projects, and skills based on the provided CONTEXT.
+당신은 최인규의 포트폴리오 사이트를 방문한 사람들의 질문에 답하는 AI 어시스턴트입니다.
 
-*** PERSONA INSTRUCTIONS ***
-Tone: ${selectedStyle.tone}
-Guidance: ${selectedStyle.instruction}
+역할:
+최인규가 이력서와 커버레터에 다 담지 못한 이야기들 — 프로젝트의 배경, 실패 경험, 선택의 이유, 가치관 — 을 솔직하게 전달하는 것이 당신의 핵심 역할입니다.
+포장하지 않고, 과장하지 않고, 최인규에 대해 아는 만큼만 정확하게 말하세요.
 
-RULES:
-- You must ONLY use the information provided in the CONTEXT below.
-- If the answer is not in the context, politely say "죄송합니다, 제 이력서 데이터에는 해당 내용이 없습니다." (Adjust tone to persona).
-- "You" refers to the AI, "Ingyu" refers to the candidate.
-- Do NOT use bold formatting (**text**) excessively.
+말투:
+- 한국어로 답하세요. (질문이 영어면 영어로)
+- 담담하고 명확하게. 해요체 사용.
+- 이모지 사용 금지.
+- 최인규를 3인칭("최인규는~")으로 소개하세요.
+
+절대 규칙:
+- 반드시 아래 CONTEXT에 있는 정보만 사용하세요.
+- CONTEXT에 없는 내용은 "해당 내용은 데이터에 없어요."라고 짧게 답하세요.
+- "원하시면 ~해드리겠습니다" 같은 추가 제안 금지. 질문에 답하고 끝내세요.
+- 볼드(**텍스트**) 과사용 금지.
+- 번호 목록을 남발하지 마세요. 자연스러운 문장으로 답할 수 있으면 그렇게 하세요.
 
 CONTEXT:
 ${contextText}
 `;
 
-    // 6. Determine Model ID based on provider selection
-    // Timely GPT SDK v2 uses gpt-5.1 as the primary model
-    const selectedProvider = provider || 'openai';
+    // 6. Model
     const targetModel = TIMELY_MODEL;
     
-    // 7. Call AI Streaming
-    console.log(`Calling AI Stream (Provider: Timely GPT Bridge, Model: ${targetModel})...`);
+    // 7. Call AI Streaming via Timely GPT SDK
+    console.log(`Calling AI Stream (Timely GPT SDK, Model: ${targetModel})...`);
     console.log(`Debug Check: API Key Exists? ${!!process.env.TIMELY_API_KEY}`);
 
+    const sessionId = reqBody.sessionId || 'anonymous_session';
+
     try {
-        const response = await timelyAI.chat.completions.create({
+        const streamResponse = await timelyGPT.chat.completions.create({
+            session_id: sessionId,
             model: targetModel,
-            messages: [
-                { role: 'system', content: systemPrompt },
-                ...messages.map((m: any) => ({
-                    role: m.role,
-                    content: m.content
-                }))
-            ],
+            instructions: systemPrompt,
+            messages: messages.map((m: { role: string; content: string }) => ({
+                role: m.role,
+                content: m.content,
+            })),
             stream: true,
         });
 
-        console.log('✅ Timely GPT Bridge Response Received (Stream Started)');
+        console.log('✅ Timely GPT SDK Response Received (Stream Started)');
 
         const stream = new ReadableStream({
             async start(controller) {
@@ -160,26 +144,30 @@ ${contextText}
 
                 try {
                     console.log('🚀 Stream started flowing to client');
-                    
-                    for await (const chunk of response) {
-                        const content = chunk.choices[0]?.delta?.content || '';
-                        if (content) {
-                            accumulatedText += content;
-                            controller.enqueue(encoder.encode(content));
+
+                    for await (const event of streamResponse) {
+                        if (event.type === 'token' && event.content) {
+                            accumulatedText += event.content;
+                            controller.enqueue(encoder.encode(event.content));
+                        } else if (event.type === 'final_response' && event.message && !accumulatedText) {
+                            // fallback: non-streaming final response
+                            accumulatedText = event.message;
+                            controller.enqueue(encoder.encode(event.message));
+                        } else if (event.type === 'error') {
+                            throw new Error(event.message || 'Stream error from Timely');
                         }
                     }
-                    
+
                     console.log(`🏁 Stream completed. Length: ${accumulatedText.length} chars`);
                     controller.close();
 
                     // Log to Firebase after stream ends
                     try {
-                        const sessionId = reqBody.sessionId || 'anonymous_session';
                         await setDoc(doc(db, 'chat_sessions', sessionId), {
-                            sessionId: sessionId,
+                            sessionId,
                             persona: reqBody.persona || 'professional',
                             model: targetModel,
-                            provider: 'timely-' + provider,
+                            provider: 'timely-sdk',
                             lastUpdated: serverTimestamp(),
                             messages: arrayUnion({
                                 role: 'user',
@@ -203,14 +191,12 @@ ${contextText}
         });
 
         return new Response(stream, {
-            headers: {
-                'Content-Type': 'text/plain; charset=utf-8',
-            },
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
         });
 
     } catch (apiError) {
-        console.error('❌ Timely Bridge API Error Details:', apiError);
-        throw apiError; // Re-throw to be caught by outer handler
+        console.error('❌ Timely SDK API Error Details:', apiError);
+        throw apiError;
     }
 
 
