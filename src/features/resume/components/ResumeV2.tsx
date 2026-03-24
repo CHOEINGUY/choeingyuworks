@@ -68,8 +68,8 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                     {/* 헤더 - 모든 섹션 공통 */}
                     <ResumeHeader data={currentData} commonData={commonData} />
 
-                    {/* 1. 커버레터 */}
-                    <ResumeSectionBlock number={1} title="커버레터" pageBreak={false}>
+                    {/* 1. 에세이 */}
+                    <ResumeSectionBlock number={1} title="에세이" pageBreak={false}>
                         <ResumeCoverLetter content={currentData.coverLetter} />
                     </ResumeSectionBlock>
 
