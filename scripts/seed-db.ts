@@ -369,6 +369,29 @@ async function seed() {
             }
         }
 
+        // --- E. Knowledge Base MD Files ---
+        console.log('📚 Processing Knowledge Base MD files...');
+
+        const kbDir = path.join(process.cwd(), 'knowledge-base');
+        if (fs.existsSync(kbDir)) {
+            const mdFiles = fs.readdirSync(kbDir).filter(f => f.endsWith('.md'));
+            mdFiles.forEach(fileName => {
+                const filePath = path.join(kbDir, fileName);
+                const content = fs.readFileSync(filePath, 'utf-8');
+                const title = fileName.replace('.md', '');
+                chunks.push({
+                    id: `kb-${title}`,
+                    doc: new Document({
+                        pageContent: `[지식베이스: ${title}]\n${content}`,
+                        metadata: { type: 'knowledge-base', title, lang: 'ko', source: 'knowledge-base' }
+                    })
+                });
+            });
+            console.log(`✅ Loaded ${mdFiles.length} knowledge base files`);
+        } else {
+            console.warn('⚠️ knowledge-base directory not found');
+        }
+
         console.log(`📦 Prepared ${chunks.length} chunks. Generating embeddings...`);
 
         // 5. Embeddings
@@ -414,6 +437,7 @@ async function seed() {
         console.log(`  - Experience: ${chunks.filter(c => c.doc.metadata.type?.toString().startsWith('experience')).length}`);
         console.log(`  - Insights: ${chunks.filter(c => c.doc.metadata.type === 'insight').length}`);
         console.log(`  - Code: ${chunks.filter(c => c.doc.metadata.type === 'code').length}`);
+        console.log(`  - Knowledge Base: ${chunks.filter(c => c.doc.metadata.type === 'knowledge-base').length}`);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
