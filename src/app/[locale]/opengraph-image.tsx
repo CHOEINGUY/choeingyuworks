@@ -65,7 +65,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
   }
 
   const text = {
-    role: "Business Solution Engineer",
+    role: "AX & Automation Builder",
     name: "최인규", // Changed from Choeingyu
     tagline: isKo 
       ? "비즈니스 흐름을 읽고,\n기술로 실질적인 답을 찾습니다."
