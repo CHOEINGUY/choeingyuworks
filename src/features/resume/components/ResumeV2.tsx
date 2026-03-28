@@ -103,7 +103,7 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                     <ResumeSectionBlock number={6} title="연락처 및 링크">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm md:text-base text-gray-700">
                             {[
-                                { label: "Email", href: `mailto:${commonData.email}`, text: commonData.email },
+                                { label: "Email", href: null, text: commonData.email },
                                 { label: "Phone", href: null, text: commonData.phone },
                                 { label: "GitHub", href: commonData.github, text: commonData.github?.replace(/^https?:\/\//, '').replace(/\/$/, '') },
                                 { label: "홈페이지", href: (commonData as any).homepage, text: (commonData as any).homepage?.replace(/^https?:\/\//, '').replace(/\/$/, '') },
