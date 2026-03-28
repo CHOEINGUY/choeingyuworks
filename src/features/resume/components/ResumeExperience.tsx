@@ -49,7 +49,7 @@ export const ResumeExperience = ({ experience }: ResumeExperienceProps) => {
             <div className="space-y-8">
                 {experience.map((exp: Experience, index: number) => (
                     <div key={index} className={`group ${exp.isGapPeriod ? 'opacity-80' : ''}`}>
-                        <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-1 md:gap-0">
+                        <div className="flex flex-row items-baseline justify-between mb-2 gap-2">
                             <div className="flex flex-col md:flex-row md:items-baseline gap-0 md:gap-2 flex-wrap">
                                 <h3 className={`text-lg md:text-xl font-bold ${exp.isGapPeriod ? 'text-gray-600' : 'text-gray-900'}`}>
                                     {exp.company}

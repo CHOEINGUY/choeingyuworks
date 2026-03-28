@@ -8,7 +8,7 @@ export const ResumeQuestions = ({ questions }: ResumeQuestionsProps) => {
     if (!questions || questions.length === 0) return null;
 
     return (
-        <ol className="space-y-4 list-decimal list-outside ml-4">
+        <ol className="space-y-7 list-decimal list-outside ml-4">
             {questions.map((question, index) => {
                 const [title, ...rest] = question.split('\n');
                 const description = rest.join('\n');

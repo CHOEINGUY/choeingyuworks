@@ -40,7 +40,6 @@ export function AIChatWidget() {
   const [persona, setPersona] = useState<'professional' | 'passionate' | 'friend'>('professional');
   const [hasSelectedPersona, setHasSelectedPersona] = useState(false);
   const [sessionId, setSessionId] = useState(() => Date.now().toString());
-  const [provider, setProvider] = useState<'openai' | 'claude'>('openai');
   const [chatHistory, setChatHistory] = useState<ChatSession[]>([]);
 
   // Initialize messages with translated welcome message
@@ -165,12 +164,12 @@ export function AIChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll to bottom
+  // Scroll to bottom only when opening chat or switching persona
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, isOpen, hasSelectedPersona]);
+  }, [isOpen, hasSelectedPersona]);
 
   // Focus input on open
   useEffect(() => {
@@ -223,8 +222,7 @@ export function AIChatWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: [...messages, userMessage].map(m => ({ role: m.role, content: m.content })),
-          provider: provider, // Send selected provider
-          persona: persona, // Send selected persona
+          persona: persona,
           sessionId: sessionId // Send session ID
         }),
       });
@@ -315,28 +313,6 @@ export function AIChatWidget() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  {/* Model Switcher */}
-                  <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
-                    <button
-                      onClick={() => setProvider('openai')}
-                      className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${provider === 'openai'
-                        ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5'
-                        : 'text-gray-400 hover:text-gray-600'
-                        }`}
-                    >
-                      GPT-4o
-                    </button>
-                    <button
-                      onClick={() => setProvider('claude')}
-                      className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all ${provider === 'claude'
-                        ? 'bg-white text-gray-900 shadow-sm ring-1 ring-black/5'
-                        : 'text-gray-400 hover:text-gray-600'
-                        }`}
-                    >
-                      Claude
-                    </button>
-                  </div>
-
                   <button
                     onClick={() => setIsOpen(false)}
                     className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-900 bg-gray-50 sm:bg-transparent"
