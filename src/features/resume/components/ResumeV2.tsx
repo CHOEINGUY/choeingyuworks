@@ -86,20 +86,28 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                         <ResumeCareerDesc projects={currentData.careerDesc || []} />
                     </ResumeSectionBlock>
 
-                    {/* 4. 질문 */}
-                    <ResumeSectionBlock number={4} title="질문">
-                        <ResumeQuestions questions={currentData.questions || []} />
-                    </ResumeSectionBlock>
+                    {/* 4. 질문 + 5. 마무리 — PDF 인쇄 시 같은 페이지 유지 */}
+                    <div className="print:break-inside-avoid space-y-12">
+                        <ResumeSectionBlock number={4} title="질문">
+                            <ResumeQuestions questions={currentData.questions || []} />
+                        </ResumeSectionBlock>
 
-                    {/* 5. 연락처 */}
-                    <ResumeSectionBlock number={5} title="연락처">
+                        <ResumeSectionBlock number={5} title="끝으로" pageBreak={false}>
+                            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                                글로 다 담기 어려운 부분은 직접 이야기하면서 확인해보고 싶습니다. 실제로 어떤 문제를 풀게 될지, 서로 일하는 방식이 맞는지도 함께 알아갈 수 있으면 좋겠습니다. 감사합니다.
+                            </p>
+                        </ResumeSectionBlock>
+                    </div>
+
+                    {/* 6. 연락처 */}
+                    <ResumeSectionBlock number={6} title="연락처 및 링크">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm md:text-base text-gray-700">
                             {[
                                 { label: "Email", href: `mailto:${commonData.email}`, text: commonData.email },
                                 { label: "Phone", href: null, text: commonData.phone },
-                                { label: "GitHub", href: commonData.github, text: commonData.github },
-                                { label: "홈페이지", href: (commonData as any).homepage, text: (commonData as any).homepage },
-                                { label: "크몽", href: (commonData as any).kmong, text: (commonData as any).kmong },
+                                { label: "GitHub", href: commonData.github, text: commonData.github?.replace(/^https?:\/\//, '').replace(/\/$/, '') },
+                                { label: "홈페이지", href: (commonData as any).homepage, text: (commonData as any).homepage?.replace(/^https?:\/\//, '').replace(/\/$/, '') },
+                                { label: "크몽", href: (commonData as any).kmong, text: (commonData as any).kmong?.replace(/^https?:\/\//, '').replace(/\/$/, '') },
                             ].filter(item => item.text).map((item, i) => (
                                 <div key={i} className="break-all">
                                     <p className="font-semibold text-gray-900 mb-0.5">{item.label}</p>
