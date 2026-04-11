@@ -78,6 +78,15 @@ export function AIChatWidget() {
   }, [isOpen, hasSelectedPersona]);
 
   useEffect(() => {
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage?.role === 'user') {
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [messages]);
+
+  useEffect(() => {
     if (isOpen && hasSelectedPersona) {
       setTimeout(() => inputRef.current?.focus(), 300);
     }
