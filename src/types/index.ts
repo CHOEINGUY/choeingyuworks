@@ -35,9 +35,11 @@ export interface Skill {
 // Cohort Dashboard Types
 export interface ExamEvent {
     type: "start" | "complete";
-    station: string;
-    currentPerson?: string;
-    nextPerson?: string;
+    stationId: string;
+    examRoom: string;
+    currentPerson: string;
+    nextPerson: string;
+    ttsText: string;
 }
 
 export interface SnsbcRoom {
@@ -65,8 +67,8 @@ export interface BoardState {
 export interface PatientListItem {
     id: string;
     name: string;
-    status: string;
     birth: string;
+    status?: string;
 }
 
 export interface Candidate {

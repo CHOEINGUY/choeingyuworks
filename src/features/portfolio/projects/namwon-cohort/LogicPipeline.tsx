@@ -91,7 +91,7 @@ export function LogicPipeline() {
                             <h2 className="text-3xl font-bold text-gray-900 mb-6"
                                 dangerouslySetInnerHTML={{ __html: t.raw('Logic.title') }}
                             />
-                            <p className="text-gray-600 leading-relaxed break-words"
+                            <p className="text-gray-600 leading-relaxed break-keep"
                                 dangerouslySetInnerHTML={{ __html: t.raw('Logic.description') }}
                             />
                         </div>
@@ -118,7 +118,7 @@ export function LogicPipeline() {
                                             <h3 className={`font-bold text-base mb-1 ${step === i + 1 ? "text-blue-900" : "text-gray-900"}`}>
                                                 {item.title.split('. ')[1] || item.title}
                                             </h3>
-                                            <p className={`text-sm leading-relaxed break-words ${step === i + 1 ? "text-blue-700/70" : "text-gray-500"}`}>
+                                            <p className={`text-sm leading-relaxed break-keep ${step === i + 1 ? "text-blue-700/70" : "text-gray-500"}`}>
                                                 {item.desc}
                                             </p>
                                         </div>

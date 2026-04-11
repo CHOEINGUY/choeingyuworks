@@ -53,14 +53,14 @@ export function E2EFlowBento() {
             <div className="max-w-5xl mx-auto">
                 <div className="flex flex-col mb-16 items-center text-center max-w-3xl mx-auto">
                     <motion.h2
-                        className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-words"
+                        className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight break-keep"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                     />
                     <motion.p
-                        className="text-gray-600 text-lg break-words leading-relaxed"
+                        className="text-gray-600 text-lg break-keep leading-relaxed"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -139,7 +139,7 @@ export function E2EFlowBento() {
                                                 />
                                             </motion.div>
 
-                                            <span className={`absolute top-full mt-5 w-32 text-[11px] md:text-sm font-semibold break-words text-center transition-colors duration-500 ${isActive ? "text-neutral-900" : "text-gray-400"}`}>
+                                            <span className={`absolute top-full mt-5 w-32 text-[11px] md:text-sm font-semibold break-keep text-center transition-colors duration-500 ${isActive ? "text-neutral-900" : "text-gray-400"}`}>
                                                 {step.label}
                                             </span>
                                         </div>
@@ -173,11 +173,11 @@ export function E2EFlowBento() {
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.4, ease: "easeOut" }}
                             >
-                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 break-words tracking-tight">
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 break-keep tracking-tight">
                                     {steps[activeStep].title}
                                 </h3>
 
-                                <p className="text-gray-500 text-base md:text-lg leading-relaxed break-words max-w-xl">
+                                <p className="text-gray-500 text-base md:text-lg leading-relaxed break-keep max-w-xl">
                                     {steps[activeStep].desc}
                                 </p>
                             </motion.div>

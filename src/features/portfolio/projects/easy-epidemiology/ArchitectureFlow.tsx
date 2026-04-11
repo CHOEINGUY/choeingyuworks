@@ -18,7 +18,7 @@ export function ArchitectureFlow() {
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         {t('title')}
                     </h2>
-                    <p className="text-slate-400 max-w-2xl mx-auto text-lg break-words">
+                    <p className="text-slate-400 max-w-2xl mx-auto text-lg break-keep">
                         {t('description')}
                     </p>
                 </div>
@@ -40,7 +40,7 @@ export function ArchitectureFlow() {
                                 <Database className="w-8 h-8 text-blue-400" />
                             </div>
                             <h3 className="text-xl font-bold mb-3">{t('step1.title')}</h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-4 break-words">
+                            <p className="text-slate-400 text-sm leading-relaxed mb-4 break-keep">
                                 {t('step1.desc')}
                             </p>
                             <div className="flex gap-2 text-xs font-mono text-slate-500">
@@ -62,7 +62,7 @@ export function ArchitectureFlow() {
                                 <Layout className="w-8 h-8 text-blue-400" />
                             </div>
                             <h3 className="text-xl font-bold mb-3">{t('step2.title')}</h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-4 break-words">
+                            <p className="text-slate-400 text-sm leading-relaxed mb-4 break-keep">
                                 {t('step2.desc')}
                             </p>
                             <div className="flex gap-2 text-xs font-mono text-slate-500">
@@ -84,7 +84,7 @@ export function ArchitectureFlow() {
                                 <ShieldCheck className="w-8 h-8 text-emerald-400" />
                             </div>
                             <h3 className="text-xl font-bold mb-3">{t('step3.title')}</h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-4 break-words">
+                            <p className="text-slate-400 text-sm leading-relaxed mb-4 break-keep">
                                 {t('step3.desc')}
                             </p>
                             <div className="flex flex-wrap gap-2 mt-2">

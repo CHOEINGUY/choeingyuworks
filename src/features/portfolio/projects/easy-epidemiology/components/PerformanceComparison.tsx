@@ -65,7 +65,7 @@ export function PerformanceComparison() {
 
                 </div>
 
-                <div className="mt-12 text-center text-gray-500 text-sm leading-relaxed max-w-2xl mx-auto break-words">
+                <div className="mt-12 text-center text-gray-500 text-sm leading-relaxed max-w-2xl mx-auto break-keep">
                     {t('disclaimer')}
                 </div>
             </div>

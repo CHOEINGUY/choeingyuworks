@@ -35,10 +35,10 @@ export function CoreDescription() {
                         <span className="text-blue-600 font-bold tracking-wider text-sm uppercase mb-4 block">
                             The Problem
                         </span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight break-words"
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight break-keep"
                             dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                         />
-                        <p className="text-lg text-gray-600 leading-relaxed break-words">
+                        <p className="text-lg text-gray-600 leading-relaxed break-keep">
                             {t('description')}
                         </p>
                     </div>
@@ -61,7 +61,7 @@ export function CoreDescription() {
                                     <h3 className="text-lg font-bold text-gray-900 mb-1">
                                         {t(`problems.${item.title}`)}
                                     </h3>
-                                    <p className="text-gray-500 text-sm leading-relaxed break-words">
+                                    <p className="text-gray-500 text-sm leading-relaxed break-keep">
                                         {t(`problems.${item.desc}`)}
                                     </p>
                                 </div>

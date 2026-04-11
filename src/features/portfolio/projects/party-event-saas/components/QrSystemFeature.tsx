@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { QrSystemMockup } from "./QrSystemMockup/index";
+import { QrSystemMockup } from "../mockups/QrSystem/index";
 import { useTranslations } from "next-intl";
 
 export function QrSystemFeature() {
@@ -18,10 +18,10 @@ export function QrSystemFeature() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-words"
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-keep"
                     dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                 />
-                <p className="text-sm text-gray-600 leading-relaxed break-words"
+                <p className="text-sm text-gray-600 leading-relaxed break-keep"
                     dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                 />
             </motion.div>

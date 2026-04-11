@@ -1,8 +1,8 @@
 "use client";
 
-import { DashboardFeature } from "../deep-dive/DashboardFeature";
-import { FormBuilderFeature } from "../deep-dive/FormBuilderFeature";
-import { QrSystemFeature } from "../deep-dive/QrSystemFeature";
+import { DashboardFeature } from "./DashboardFeature";
+import { FormBuilderFeature } from "./FormBuilderFeature";
+import { QrSystemFeature } from "./QrSystemFeature";
 
 export function DeepDiveFeatures() {
     return (

@@ -7,4 +7,4 @@ export const timelyGPT = new TimelyGPTClient({
 });
 
 // Default model
-export const TIMELY_MODEL = process.env.TIMELY_MODEL || 'gpt-5.1';
+export const TIMELY_MODEL = (process.env.TIMELY_MODEL || 'gpt-5.1') as 'gpt-5.1';

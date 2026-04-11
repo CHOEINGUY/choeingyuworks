@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AdminDashboardMockup } from "./AdminDashboardMockup";
+import { AdminDashboardMockup } from "../mockups/AdminDashboard";
 import { useTranslations } from "next-intl";
 
 export function DashboardFeature() {
@@ -16,10 +16,10 @@ export function DashboardFeature() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-words"
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-keep"
                     dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                 />
-                <p className="text-sm text-gray-600 leading-relaxed break-words"
+                <p className="text-sm text-gray-600 leading-relaxed break-keep"
                     dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                 />
             </motion.div>
