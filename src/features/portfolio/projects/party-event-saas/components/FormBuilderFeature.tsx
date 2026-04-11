@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FormBuilderMockup } from "./FormBuilderMockup";
+import { FormBuilderMockup } from "../mockups/FormBuilder";
 import { useTranslations } from "next-intl";
 
 export function FormBuilderFeature() {
@@ -22,11 +22,11 @@ export function FormBuilderFeature() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-words"
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight break-keep"
                     dangerouslySetInnerHTML={{ __html: t.raw('title') }}
                 />
                 <div className="space-y-4">
-                    <p className="text-sm text-gray-600 leading-relaxed break-words"
+                    <p className="text-sm text-gray-600 leading-relaxed break-keep"
                         dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
                 </div>

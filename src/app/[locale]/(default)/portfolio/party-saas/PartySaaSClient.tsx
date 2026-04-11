@@ -48,11 +48,11 @@ export default function PartySaaSClient({ backLink }: Props) {
                                 transition={{ duration: 0.5 }}
                                 className="w-full min-w-0"
                             >
-                                <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-words tracking-tight text-gray-900"
+                                <h1 className="text-shimmer text-3xl md:text-5xl lg:text-5xl font-extrabold leading-tight md:leading-[1.1] mb-6 break-keep tracking-tight text-gray-900"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.title') }}
                                 />
 
-                                <p className="text-base md:text-lg font-normal text-gray-600 leading-relaxed mb-8 break-words"
+                                <p className="text-base md:text-lg font-normal text-gray-600 leading-relaxed mb-8 break-keep"
                                     dangerouslySetInnerHTML={{ __html: t.raw('Hero.description') }}
                                 />
 

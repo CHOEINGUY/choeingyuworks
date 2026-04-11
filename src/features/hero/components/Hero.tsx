@@ -6,7 +6,7 @@ import { Rocket, Mail, Check, Copy, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
-import { TabType } from "@/app/[locale]/page";
+import { TabType } from "@/app/[locale]/(default)/HomeClient";
 import { BRAND_CONFIG, CURRENT_BRAND } from "@/config/brand";
 
 interface HeroProps {

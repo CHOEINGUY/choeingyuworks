@@ -20,7 +20,7 @@ export function BusinessContext() {
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
                         {t('title')}
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg leading-relaxed break-words"
+                    <p className="text-gray-600 text-base md:text-lg leading-relaxed break-keep"
                         dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
                 </motion.div>
@@ -39,7 +39,7 @@ export function BusinessContext() {
                             </div>
                             <h3 className="font-bold text-gray-900">{t('problemTitle')}</h3>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed break-words"
+                        <p className="text-gray-600 text-sm leading-relaxed break-keep"
                             dangerouslySetInnerHTML={{ __html: t.raw('problemDesc') }}
                         />
                     </motion.div>
@@ -57,7 +57,7 @@ export function BusinessContext() {
                             </div>
                             <h3 className="font-bold text-gray-900">{t('solutionTitle')}</h3>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed break-words"
+                        <p className="text-gray-600 text-sm leading-relaxed break-keep"
                             dangerouslySetInnerHTML={{ __html: t.raw('solutionDesc') }}
                         />
                     </motion.div>

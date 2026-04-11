@@ -66,10 +66,10 @@ export function FeatureComparisonMatrix() {
         <section className="py-24 px-4 md:px-6 bg-white">
             <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col mb-12 md:mb-16 items-center text-center max-w-3xl mx-auto">
-                    <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 md:mb-6 tracking-tight break-words">
+                    <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 md:mb-6 tracking-tight break-keep">
                         {t('title')}
                     </h2>
-                    <p className="text-gray-600 text-base md:text-lg break-words leading-relaxed font-medium">
+                    <p className="text-gray-600 text-base md:text-lg break-keep leading-relaxed font-medium">
                         {t('description')}
                     </p>
                 </div>
@@ -105,13 +105,13 @@ export function FeatureComparisonMatrix() {
                                 <div className="col-span-4 p-6 text-sm font-semibold text-gray-500 min-w-0">
                                     {t('headers.category')}
                                 </div>
-                                <div className="col-span-2 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-words">
+                                <div className="col-span-2 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-keep">
                                     {t('headers.party')}
                                 </div>
-                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-words">
+                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-keep">
                                     {t('headers.rotation')}
                                 </div>
-                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-words">
+                                <div className="col-span-3 p-6 text-center text-sm font-bold text-gray-900 min-w-0 break-keep">
                                     {t('headers.match')}
                                 </div>
                             </div>
@@ -132,7 +132,7 @@ export function FeatureComparisonMatrix() {
                                                 className="grid grid-cols-12 border-b border-gray-100 items-center hover:bg-gray-50 transition-colors duration-150"
                                             >
                                                 <div className="col-span-4 px-6 py-4 min-w-0">
-                                                    <span className="text-[15px] font-medium text-gray-700 break-words">{feature.name}</span>
+                                                    <span className="text-[15px] font-medium text-gray-700 break-keep">{feature.name}</span>
                                                 </div>
 
                                                 {/* Columns */}

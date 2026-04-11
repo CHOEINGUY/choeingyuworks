@@ -15,9 +15,9 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { StatusBoard } from "./subcomponents/StatusBoard";
-import { TabletScreen } from "./subcomponents/TabletScreen";
-import { TTSAnnouncement } from "./subcomponents/TTSAnnouncement";
+import { StatusBoard } from "./components/StatusBoard";
+import { TabletScreen } from "./components/TabletScreen";
+import { TTSAnnouncement } from "./components/TTSAnnouncement";
 import { useTranslations } from "next-intl";
 import { BrowserFrame } from "@/features/portfolio/components/BrowserFrame";
 import { useMobile } from "@/hooks/useMobile";

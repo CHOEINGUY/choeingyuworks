@@ -62,21 +62,17 @@ export async function POST(req: Request) {
     
     if (process.env.COHERE_API_KEY && documents.length > 0) {
       try {
-        console.log(`🔄 Reranking ${documents.length} documents with Cohere...`);
-        
         const reranked = await cohere.rerank({
           query: retrievalQuery,
           documents: documents,
           topN: 7, // Return top 7 most relevant
           model: 'rerank-v3.5',
         });
-        
+
         // Use reranked results
         contextText = reranked.results
           .map((r) => documents[r.index])
           .join('\n\n---\n\n');
-        
-        console.log(`✅ Reranked! Top scores: ${reranked.results.slice(0, 3).map(r => r.relevanceScore.toFixed(3)).join(', ')}`);
       } catch (rerankError) {
         console.warn('⚠️ Cohere rerank failed, falling back to dense search:', rerankError);
         // Fallback to original method
@@ -86,8 +82,6 @@ export async function POST(req: Request) {
       // No Cohere API key, use original dense search
       contextText = documents.slice(0, 15).join('\n\n---\n\n');
     }
-
-    console.log(`🔍 Retrieved Context for "${retrievalQuery.substring(0, 80)}...":\n`, contextText.substring(0, 100) + '...');
 
     // 5. Build System Prompt
     const systemPrompt = `
@@ -118,8 +112,6 @@ ${contextText}
     const targetModel = TIMELY_MODEL;
     
     // 7. Call AI Streaming via Timely GPT SDK
-    console.log(`Calling AI Stream (Timely GPT SDK, Model: ${targetModel})...`);
-    console.log(`Debug Check: API Key Exists? ${!!process.env.TIMELY_API_KEY}`);
 
     const sessionId = reqBody.sessionId || 'anonymous_session';
 
@@ -135,30 +127,29 @@ ${contextText}
             stream: true,
         });
 
-        console.log('✅ Timely GPT SDK Response Received (Stream Started)');
-
         const stream = new ReadableStream({
             async start(controller) {
                 const encoder = new TextEncoder();
                 let accumulatedText = '';
 
                 try {
-                    console.log('🚀 Stream started flowing to client');
-
                     for await (const event of streamResponse) {
                         if (event.type === 'token' && event.content) {
                             accumulatedText += event.content;
                             controller.enqueue(encoder.encode(event.content));
-                        } else if (event.type === 'final_response' && event.message && !accumulatedText) {
+                        } else if (event.type === 'final_response' && !accumulatedText) {
                             // fallback: non-streaming final response
-                            accumulatedText = event.message;
-                            controller.enqueue(encoder.encode(event.message));
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const msg = (event as any).message as string | undefined;
+                            if (msg) {
+                                accumulatedText = msg;
+                                controller.enqueue(encoder.encode(msg));
+                            }
                         } else if (event.type === 'error') {
-                            throw new Error(event.message || 'Stream error from Timely');
+                            throw new Error(event.error || 'Stream error from Timely');
                         }
                     }
 
-                    console.log(`🏁 Stream completed. Length: ${accumulatedText.length} chars`);
                     controller.close();
 
                     // Log to Firebase after stream ends

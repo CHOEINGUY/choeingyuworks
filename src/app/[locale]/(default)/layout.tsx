@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { AIChatWidget } from "@/features/portfolio/components/AIChatWidget";
+import { AIChatWidget } from "@/components/AIChatWidget";
 
 export default function DefaultLayout({
     children,

@@ -14,7 +14,7 @@ export function InsightTimeline() {
                     <h2 className="text-3xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
                         {t('title')}
                     </h2>
-                    <p className="text-gray-600 text-lg leading-relaxed max-w-2xl break-words"
+                    <p className="text-gray-600 text-lg leading-relaxed max-w-2xl break-keep"
                         dangerouslySetInnerHTML={{ __html: t.raw('description') }}
                     />
                 </div>
@@ -71,11 +71,11 @@ function ReflectionCard({ icon: Icon, title, content, color, bgColor }: Reflecti
             </div>
 
             <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-4 break-words">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 break-keep">
                     {title}
                 </h3>
 
-                <p className="text-gray-600 leading-relaxed text-base break-words">
+                <p className="text-gray-600 leading-relaxed text-base break-keep">
                     {content}
                 </p>
             </div>
