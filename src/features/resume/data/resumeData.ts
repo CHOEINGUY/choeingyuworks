@@ -8,7 +8,7 @@ export const RESUME_DATA = {
     },
     ko: {
         name: "최인규",
-        role: "DX & Automation Builder",
+        role: "AX & DX Builder",
         coverLetter: `**최인규는 누구인가?**
 4년 전 첫 직장에서 마주한 비효율적인 업무들이 저를 자동화에 푹 빠지게 했습니다. 자동화에 빠진 이후, 타인의 일에도 오지랖을 부리고 있습니다. 자동화 능력을 키우기 위해 다양한 시도와 실패를 반복해왔고, 그 과정에서 조금씩 더 단단해졌습니다.
 
@@ -89,8 +89,8 @@ export const RESUME_DATA = {
         questions: [],
         experience: [
             {
-                company: "(주)한백",
-                position: "문화단 대리",
+                company: "(주) 한백",
+                position: "문화단",
                 period: "2026. 05 - 현재",
                 description: [
                     "HR 실무와 사내 자동화 과제 병행",
@@ -155,7 +155,7 @@ export const RESUME_DATA = {
     },
     en: {
         name: "Choe In-gyu",
-        role: "DX & Automation Builder",
+        role: "AX & DX Builder",
         coverLetter: "",
         careerDesc: [],
         questions: [],
