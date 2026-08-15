@@ -18,6 +18,14 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    // 👍👎 Chat Feedback Collection
+    // - Create: Allowed (visitor rates one answer, write-once)
+    // - Read/Update/Delete: Denied (no public read of raw feedback)
+    match /chat_feedback/{feedbackId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
     // 🔒 Default: Blocks all other access by default
     match /{document=**} {
       allow read, write: if false;

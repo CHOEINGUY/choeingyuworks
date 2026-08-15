@@ -108,6 +108,24 @@ export function AIChatWidget() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
+  const handleFeedback = async (messageId: string, feedback: 'up' | 'down') => {
+    setMessages(prev => prev.map(m => m.id === messageId ? { ...m, feedback } : m));
+
+    const idx = messages.findIndex(m => m.id === messageId);
+    const answer = messages[idx]?.content || '';
+    const question = messages.slice(0, idx).reverse().find(m => m.role === 'user')?.content || '';
+
+    try {
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, persona, question, answer, feedback }),
+      });
+    } catch (err) {
+      console.error('Failed to submit feedback:', err);
+    }
+  };
+
   const handlePersonaSelect = (selectedPersona: Persona) => {
     setSessionId(Date.now().toString());
     setPersona(selectedPersona);
@@ -131,6 +149,8 @@ export function AIChatWidget() {
     setInput('');
     setIsLoading(true);
 
+    let assistantMessageId: string | null = null;
+
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -148,8 +168,8 @@ export function AIChatWidget() {
       }
       if (!response.body) { setIsLoading(false); return; }
 
-      const assistantMessageId = (Date.now() + 1).toString();
-      setMessages(prev => [...prev, { id: assistantMessageId, role: 'assistant', content: '' }]);
+      assistantMessageId = (Date.now() + 1).toString();
+      setMessages(prev => [...prev, { id: assistantMessageId as string, role: 'assistant', content: '' }]);
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -167,7 +187,16 @@ export function AIChatWidget() {
       }
     } catch (error) {
       console.error('Chat error:', error);
-      setMessages(prev => [...prev, { id: Date.now().toString(), role: 'assistant', content: t('chat.error') }]);
+      if (assistantMessageId) {
+        const errorId = assistantMessageId;
+        setMessages(prev => prev.map(msg =>
+          msg.id === errorId
+            ? { ...msg, content: msg.content ? `${msg.content}\n\n${t('chat.error')}` : t('chat.error') }
+            : msg
+        ));
+      } else {
+        setMessages(prev => [...prev, { id: Date.now().toString(), role: 'assistant', content: t('chat.error') }]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -233,6 +262,7 @@ export function AIChatWidget() {
                 inputRef={inputRef}
                 onInputChange={setInput}
                 onSendMessage={handleSendMessage}
+                onFeedback={handleFeedback}
               />
             )}
           </motion.div>

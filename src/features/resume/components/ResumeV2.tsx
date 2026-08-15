@@ -37,6 +37,10 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locale]);
 
+    const hasQuestions = (currentData.questions || []).length > 0;
+    const closingNumber = hasQuestions ? 5 : 4;
+    const contactNumber = hasQuestions ? 6 : 5;
+
     const handlePrint = () => window.print();
 
     const handleShare = () => {
@@ -86,21 +90,23 @@ export function ResumeV2({ data, targetCompany }: ResumeV2Props) {
                         <ResumeCareerDesc projects={currentData.careerDesc || []} />
                     </ResumeSectionBlock>
 
-                    {/* 4. 질문 + 5. 마무리 — PDF 인쇄 시 같은 페이지 유지 */}
+                    {/* 4. 질문(선택) + 마무리 — PDF 인쇄 시 같은 페이지 유지 */}
                     <div className="print:break-inside-avoid space-y-12">
-                        <ResumeSectionBlock number={4} title="질문">
-                            <ResumeQuestions questions={currentData.questions || []} />
-                        </ResumeSectionBlock>
+                        {hasQuestions && (
+                            <ResumeSectionBlock number={4} title="질문">
+                                <ResumeQuestions questions={currentData.questions} />
+                            </ResumeSectionBlock>
+                        )}
 
-                        <ResumeSectionBlock number={5} title="끝으로" pageBreak={false}>
+                        <ResumeSectionBlock number={closingNumber} title="끝으로" pageBreak={false}>
                             <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                                 글로 다 담기 어려운 부분은 직접 이야기하면서 확인해보고 싶습니다. 실제로 어떤 문제를 풀게 될지, 서로 일하는 방식이 맞는지도 함께 알아갈 수 있으면 좋겠습니다. 감사합니다.
                             </p>
                         </ResumeSectionBlock>
                     </div>
 
-                    {/* 6. 연락처 */}
-                    <ResumeSectionBlock number={6} title="연락처 및 링크">
+                    {/* 연락처 */}
+                    <ResumeSectionBlock number={contactNumber} title="연락처 및 링크">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm md:text-base text-gray-700">
                             {[
                                 { label: "Email", href: null, text: commonData.email },

@@ -5,5 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
     // Match only internationalized pathnames
-    matcher: ['/((?!_next|_vercel|api|opengraph-image|twitter-image|.*\\..*).*)']
+    matcher: ['/((?!_next|_vercel|api|.*opengraph-image.*|.*twitter-image.*|.*\\..*).*)']
 };
