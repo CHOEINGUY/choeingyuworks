@@ -108,6 +108,24 @@ export function AIChatWidget() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
+  const handleFeedback = async (messageId: string, feedback: 'up' | 'down') => {
+    setMessages(prev => prev.map(m => m.id === messageId ? { ...m, feedback } : m));
+
+    const idx = messages.findIndex(m => m.id === messageId);
+    const answer = messages[idx]?.content || '';
+    const question = messages.slice(0, idx).reverse().find(m => m.role === 'user')?.content || '';
+
+    try {
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, persona, question, answer, feedback }),
+      });
+    } catch (err) {
+      console.error('Failed to submit feedback:', err);
+    }
+  };
+
   const handlePersonaSelect = (selectedPersona: Persona) => {
     setSessionId(Date.now().toString());
     setPersona(selectedPersona);
@@ -244,6 +262,7 @@ export function AIChatWidget() {
                 inputRef={inputRef}
                 onInputChange={setInput}
                 onSendMessage={handleSendMessage}
+                onFeedback={handleFeedback}
               />
             )}
           </motion.div>

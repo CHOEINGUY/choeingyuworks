@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { Message, Persona, PersonaConfig } from './types';
 
@@ -14,13 +14,15 @@ interface Props {
   inputRef: React.RefObject<HTMLInputElement | null>;
   onInputChange: (value: string) => void;
   onSendMessage: (e: React.FormEvent) => void;
+  onFeedback: (messageId: string, feedback: 'up' | 'down') => void;
 }
 
 export function ChatInterface({
   messages, isLoading, input, persona, personaConfig,
-  messagesEndRef, inputRef, onInputChange, onSendMessage,
+  messagesEndRef, inputRef, onInputChange, onSendMessage, onFeedback,
 }: Props) {
   const t = useTranslations('chatbot');
+  const lastMessageId = messages[messages.length - 1]?.id;
 
   return (
     <>
@@ -41,22 +43,49 @@ export function ChatInterface({
               >
                 {m.role === 'user' ? 'ME' : 'AI'}
               </div>
-              <div
-                className={`max-w-[85%] rounded-2xl px-5 py-3 text-[14px] leading-relaxed shadow-sm ${
-                  m.role === 'user'
-                    ? `${personaConfig[persona].bubble} rounded-tr-sm`
-                    : 'bg-white text-gray-800 border border-gray-100 rounded-tl-sm'
-                }`}
-              >
-                <div className="whitespace-pre-wrap font-medium">
-                  {m.content.split(/(\*\*.*?\*\*)/g).map((part, i) =>
-                    part.startsWith('**') && part.endsWith('**') ? (
-                      <strong key={i} className="font-bold">{part.slice(2, -2)}</strong>
-                    ) : (
-                      <span key={i}>{part}</span>
-                    )
-                  )}
+              <div className="flex max-w-[85%] flex-col gap-1">
+                <div
+                  className={`rounded-2xl px-5 py-3 text-[14px] leading-relaxed shadow-sm ${
+                    m.role === 'user'
+                      ? `${personaConfig[persona].bubble} rounded-tr-sm`
+                      : 'bg-white text-gray-800 border border-gray-100 rounded-tl-sm'
+                  }`}
+                >
+                  <div className="whitespace-pre-wrap font-medium">
+                    {m.content.split(/(\*\*.*?\*\*)/g).map((part, i) =>
+                      part.startsWith('**') && part.endsWith('**') ? (
+                        <strong key={i} className="font-bold">{part.slice(2, -2)}</strong>
+                      ) : (
+                        <span key={i}>{part}</span>
+                      )
+                    )}
+                  </div>
                 </div>
+
+                {m.role === 'assistant' && m.id !== 'welcome' && m.content && !(isLoading && m.id === lastMessageId) && (
+                  <div className="flex items-center gap-1 pl-1">
+                    <button
+                      type="button"
+                      onClick={() => onFeedback(m.id, 'up')}
+                      disabled={!!m.feedback}
+                      className={`rounded-full p-1 transition-colors disabled:cursor-not-allowed ${
+                        m.feedback === 'up' ? 'text-emerald-600' : 'text-gray-300 hover:text-gray-500'
+                      }`}
+                    >
+                      <ThumbsUp size={13} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onFeedback(m.id, 'down')}
+                      disabled={!!m.feedback}
+                      className={`rounded-full p-1 transition-colors disabled:cursor-not-allowed ${
+                        m.feedback === 'down' ? 'text-red-500' : 'text-gray-300 hover:text-gray-500'
+                      }`}
+                    >
+                      <ThumbsDown size={13} />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}

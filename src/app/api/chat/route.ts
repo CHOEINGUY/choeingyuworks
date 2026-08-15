@@ -32,6 +32,26 @@ function isCodeRelatedQuery(text: string): boolean {
   return CODE_INTENT_KEYWORDS.some((kw) => lower.includes(kw.toLowerCase()));
 }
 
+// 간단한 IP 기반 rate limit — 공개 엔드포인트라 반복 호출 시 OpenAI/Cohere/Pinecone 비용이 그대로 새 나가는 걸 방지.
+// 10/분으로 잡은 이유: Cohere 트라이얼 키 자체가 10 calls/분이 상한이라, 그보다 여유를 두면 어차피
+// 코어 리랭크·Timely SDK 쪽에서 429/동시요청 에러가 먼저 난다 (부하 테스트로 확인).
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 10;
+const rateLimitStore = new Map<string, { count: number; windowStart: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  if (rateLimitStore.size > 5000) rateLimitStore.clear(); // 워밍업된 인스턴스가 오래 살아있을 때의 방어적 상한
+
+  const entry = rateLimitStore.get(ip);
+  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
+    rateLimitStore.set(ip, { count: 1, windowStart: now });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > RATE_LIMIT_MAX_REQUESTS;
+}
+
 // Pinecone 유사도 점수가 이 값 미만이면 "관련 정보 없음"으로 간주.
 // 실측: 무관한 질문("오늘 날씨 어때?")은 top score 0.13~0.17, 관련 있는 질문은 0.33~0.58 나옴.
 // 그 사이인 0.22를 기본값으로 두되, 운영 로그 쌓이면 다시 튜닝 필요.
@@ -59,6 +79,14 @@ async function rewriteFollowUpQuery(recentWindow: { role: string; content: strin
 }
 
 export async function POST(req: Request) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (isRateLimited(ip)) {
+    return new Response(JSON.stringify({ error: '요청이 너무 많아요. 잠시 후 다시 시도해주세요.' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     const reqBody = await req.json();
     const { messages, persona } = reqBody;
