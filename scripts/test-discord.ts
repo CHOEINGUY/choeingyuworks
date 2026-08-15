@@ -1,5 +1,6 @@
-const path = require('path');
-require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') });
+import * as path from 'path';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
 // Manually fetching since we can't easily import TS function in JS script without compiling
 async function runTest() {

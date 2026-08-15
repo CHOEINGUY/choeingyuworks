@@ -10,6 +10,9 @@ export function useChatHistory() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem(CHAT_HISTORY_KEY);
+      // localStorage isn't available during SSR, so this has to hydrate after mount —
+      // an initial-render lazy useState would mismatch server/client output.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (saved) setChatHistory(JSON.parse(saved));
     } catch {}
   }, []);
