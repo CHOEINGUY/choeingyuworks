@@ -1,6 +1,6 @@
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { pinecone } from '@/lib/pinecone';
-import { timelyGPT, TIMELY_MODEL } from '@/lib/timely-ai';
+import { deepseek, DEEPSEEK_MODEL } from '@/lib/deepseek';
 import { openai } from '@/lib/openai';
 // import { OpenAIStream, StreamingTextResponse } from 'ai'; // Removed: causing import errors
 import { db } from '@/lib/firebase';
@@ -32,9 +32,9 @@ function isCodeRelatedQuery(text: string): boolean {
   return CODE_INTENT_KEYWORDS.some((kw) => lower.includes(kw.toLowerCase()));
 }
 
-// 간단한 IP 기반 rate limit — 공개 엔드포인트라 반복 호출 시 OpenAI/Cohere/Pinecone 비용이 그대로 새 나가는 걸 방지.
+// 간단한 IP 기반 rate limit — 공개 엔드포인트라 반복 호출 시 OpenAI/Cohere/Pinecone/DeepSeek 비용이 그대로 새 나가는 걸 방지.
 // 10/분으로 잡은 이유: Cohere 트라이얼 키 자체가 10 calls/분이 상한이라, 그보다 여유를 두면 어차피
-// 코어 리랭크·Timely SDK 쪽에서 429/동시요청 에러가 먼저 난다 (부하 테스트로 확인).
+// 코어 리랭크 쪽에서 429가 먼저 난다 (부하 테스트로 확인).
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 10;
 const rateLimitStore = new Map<string, { count: number; windowStart: number }>();
@@ -186,21 +186,22 @@ ${contextText}
 `;
 
     // 6. Model
-    const targetModel = TIMELY_MODEL;
-    
-    // 7. Call AI Streaming via Timely GPT SDK
+    const targetModel = DEEPSEEK_MODEL;
+
+    // 7. Call AI Streaming via DeepSeek (OpenAI 호환 API)
 
     const sessionId = reqBody.sessionId || 'anonymous_session';
 
     try {
-        const streamResponse = await timelyGPT.chat.completions.create({
-            session_id: sessionId,
+        const streamResponse = await deepseek.chat.completions.create({
             model: targetModel,
-            instructions: systemPrompt,
-            messages: messages.map((m: { role: string; content: string }) => ({
-                role: m.role,
-                content: m.content,
-            })),
+            messages: [
+                { role: 'system', content: systemPrompt },
+                ...messages.map((m: { role: string; content: string }) => ({
+                    role: m.role,
+                    content: m.content,
+                })),
+            ],
             stream: true,
         });
 
@@ -210,20 +211,11 @@ ${contextText}
                 let accumulatedText = '';
 
                 try {
-                    for await (const event of streamResponse) {
-                        if (event.type === 'token' && event.content) {
-                            accumulatedText += event.content;
-                            controller.enqueue(encoder.encode(event.content));
-                        } else if (event.type === 'final_response' && !accumulatedText) {
-                            // fallback: non-streaming final response
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            const msg = (event as any).message as string | undefined;
-                            if (msg) {
-                                accumulatedText = msg;
-                                controller.enqueue(encoder.encode(msg));
-                            }
-                        } else if (event.type === 'error') {
-                            throw new Error(event.error || 'Stream error from Timely');
+                    for await (const chunk of streamResponse) {
+                        const delta = chunk.choices[0]?.delta?.content;
+                        if (delta) {
+                            accumulatedText += delta;
+                            controller.enqueue(encoder.encode(delta));
                         }
                     }
 
@@ -235,7 +227,7 @@ ${contextText}
                             sessionId,
                             persona: reqBody.persona || 'professional',
                             model: targetModel,
-                            provider: 'timely-sdk',
+                            provider: 'deepseek',
                             lastUpdated: serverTimestamp(),
                             messages: arrayUnion({
                                 role: 'user',
@@ -263,7 +255,7 @@ ${contextText}
         });
 
     } catch (apiError) {
-        console.error('❌ Timely SDK API Error Details:', apiError);
+        console.error('❌ DeepSeek API Error Details:', apiError);
         throw apiError;
     }
 

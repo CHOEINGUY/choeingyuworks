@@ -41,7 +41,7 @@ export async function sendErrorAlert(error: any, context: string) {
             }
           ],
           footer: {
-            text: "Timely GPT Bridge System"
+            text: "Portfolio AI Chat System"
           }
         }
       ]
