@@ -42,7 +42,7 @@ export function PortfolioSection({ targetCompany }: PortfolioSectionProps) {
             }),
             imageColor: "bg-emerald-50",
             detailLink: "/portfolio/easy-epidemiology",
-            demoUrl: "https://easy-epi.xyz/"
+            demoUrl: "https://easy-epidemiology.pages.dev/"
         },
         {
             id: "field",
